@@ -301,7 +301,7 @@ class Package extends PrimaryConfiguration
     public function addKeyword(mixed $keyword): self
     {
         if (empty($keyword) || ! is_string($keyword)) {
-            Log::warning(__('playground-stub::stub.Package.keywords.required', [
+            Log::warning(__('playground-make-package::configuration.keywords.required', [
                 'keyword' => is_string($keyword) ? $keyword : gettype($keyword),
             ]));
         } elseif (! in_array($keyword, $this->package_keywords)) {
@@ -314,7 +314,7 @@ class Package extends PrimaryConfiguration
     public function addRequire(mixed $package, mixed $version): self
     {
         if (empty($package) || ! is_string($package)) {
-            Log::warning(__('playground-stub::stub.Package.require.package.required', [
+            Log::warning(__('playground-make-package::configuration.require.package.required', [
                 'package' => is_string($package) ? $package : gettype($package),
                 'version' => is_string($version) ? $version : gettype($version),
             ]), [
@@ -326,7 +326,7 @@ class Package extends PrimaryConfiguration
         }
 
         if (empty($version) || ! is_string($version)) {
-            Log::warning(__('playground-stub::stub.Package.require.version.required', [
+            Log::warning(__('playground-make-package::configuration.require.version.required', [
                 'package' => is_string($package) ? $package : gettype($package),
                 'version' => is_string($version) ? $version : gettype($version),
             ]), [
@@ -347,7 +347,7 @@ class Package extends PrimaryConfiguration
     public function addRequireDev(mixed $package, mixed $version): self
     {
         if (empty($package) || ! is_string($package)) {
-            Log::warning(__('playground-stub::stub.Package.require-dev.package.required', [
+            Log::warning(__('playground-make-package::configuration.require-dev.package.required', [
                 'package' => is_string($package) ? $package : gettype($package),
                 'version' => is_string($version) ? $version : gettype($version),
             ]), [
@@ -359,7 +359,7 @@ class Package extends PrimaryConfiguration
         }
 
         if (empty($version) || ! is_string($version)) {
-            Log::warning(__('playground-stub::stub.Package.require-dev.version.required', [
+            Log::warning(__('playground-make-package::configuration.require-dev.version.required', [
                 'package' => is_string($package) ? $package : gettype($package),
                 'version' => is_string($version) ? $version : gettype($version),
             ]), [

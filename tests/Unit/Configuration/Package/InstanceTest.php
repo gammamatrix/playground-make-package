@@ -257,7 +257,7 @@ class InstanceTest extends TestCase
         $log->assertLogged(
             fn (LogEntry $log) => is_string($log->message) && str_contains(
                 $log->message,
-                __('playground-stub::stub.Package.keywords.required', [
+                __('playground-make-package::configuration.keywords.required', [
                     'keyword' => '',
                 ])
             )
@@ -285,7 +285,7 @@ class InstanceTest extends TestCase
         $log->assertLogged(
             fn (LogEntry $log) => is_string($log->message) && str_contains(
                 $log->message,
-                __('playground-stub::stub.Package.require.package.required', [
+                __('playground-make-package::configuration.require.package.required', [
                     'package' => '',
                     'version' => 'dev-master',
                 ])
@@ -314,7 +314,7 @@ class InstanceTest extends TestCase
         $log->assertLogged(
             fn (LogEntry $log) => is_string($log->message) && str_contains(
                 $log->message,
-                __('playground-stub::stub.Package.require.version.required', [
+                __('playground-make-package::configuration.require.version.required', [
                     'package' => 'some-package',
                     'version' => '',
                 ])
@@ -343,7 +343,7 @@ class InstanceTest extends TestCase
         $log->assertLogged(
             fn (LogEntry $log) => is_string($log->message) && str_contains(
                 $log->message,
-                __('playground-stub::stub.Package.require-dev.package.required', [
+                __('playground-make-package::configuration.require-dev.package.required', [
                     'package' => '',
                     'version' => 'dev-master',
                 ])
@@ -372,7 +372,7 @@ class InstanceTest extends TestCase
         $log->assertLogged(
             fn (LogEntry $log) => is_string($log->message) && str_contains(
                 $log->message,
-                __('playground-stub::stub.Package.require-dev.version.required', [
+                __('playground-make-package::configuration.require-dev.version.required', [
                     'package' => 'some-package',
                     'version' => '',
                 ])
