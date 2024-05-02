@@ -1,0 +1,16 @@
+{
+    "name": "{{ packagist }}",
+    "description": "{{ package_description }}",
+{{ package_keywords }}{{ package_homepage }}{{ package_license }}
+{{ package_require }}{{ package_require_dev }}{{ package_autoload }}
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [{{ package_laravel_providers }}]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

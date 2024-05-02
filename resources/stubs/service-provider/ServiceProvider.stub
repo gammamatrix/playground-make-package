@@ -1,0 +1,49 @@
+<?php
+/**
+ * {{ organization }}
+ */
+
+declare(strict_types=1);
+namespace {{ namespace }};
+
+use Illuminate\Foundation\Console\AboutCommand;
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * \{{ namespace }}\ServiceProvider
+ */
+class ServiceProvider extends AuthServiceProvider
+{
+    public string $package = '{{ package }}';
+
+    const VERSION = '{{ version }}';
+
+    /**
+     * Bootstrap any package services.
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        // $config = config($this->package);
+
+        AboutCommand::add('{{ organization }}', fn () => [
+            $this->package => $this->version(),
+        ]);
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+    }
+
+    public function version()
+    {
+        return static::VERSION;
+    }
+}

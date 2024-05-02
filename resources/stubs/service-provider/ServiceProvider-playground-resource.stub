@@ -1,0 +1,86 @@
+<?php
+/**
+ * {{ organization }}
+ */
+
+declare(strict_types=1);
+namespace {{ namespace }};
+
+use Illuminate\Foundation\Console\AboutCommand;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
+
+/**
+ * \{{ namespace }}\ServiceProvider
+ */
+class ServiceProvider extends AuthServiceProvider
+{
+    public string $package = '{{ package }}';
+
+    const VERSION = '{{ version }}';
+
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+{{ policies }}
+    ];
+
+    /**
+     * Bootstrap any package services.
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $config = config($this->package);
+
+        if (!empty($config) && $this->app->runningInConsole()) {
+
+            // Publish configuration
+            $this->publishes([
+                dirname(__DIR__).'/config/{{ package }}.php'
+                    => config_path('{{ package }}.php')
+            ], 'playground-config');
+
+            // Load migrations
+            if (!empty($config['load'])
+                && !empty($config['load']['migrations'])
+            ) {
+               $this->loadMigrationsFrom(dirname(__DIR__). '/database/migrations');
+            }
+        }
+
+        $this->loadViewsFrom(
+            dirname(__DIR__) . '/resources/views',
+            '{{ package }}'
+        );
+
+        // { {routes} }
+        // $this->loadRoutesFrom(dirname(__DIR__) . '/routes/matrix.php');
+
+        AboutCommand::add('{{ organization }}', fn () => [
+            $this->package => $this->version(),
+        ]);
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/config/{{ package }}.php',
+            '{{ package }}'
+        );
+    }
+
+    public function version()
+    {
+        return static::VERSION;
+    }
+}

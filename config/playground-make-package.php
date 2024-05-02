@@ -21,7 +21,7 @@ return [
     |
     */
 
-    'about' => (bool) env('PLAYGROUND_MAKE_ABOUT', true),
+    'about' => (bool) env('PLAYGROUND_MAKE_PACKAGE_ABOUT', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -33,8 +33,8 @@ return [
     */
 
     'load' => [
-        'commands' => (bool) env('PLAYGROUND_MAKE_LOAD_COMMANDS', true),
-        'translations' => (bool) env('PLAYGROUND_MAKE_LOAD_TRANSLATIONS', true),
+        'commands' => (bool) env('PLAYGROUND_MAKE_PACKAGE_LOAD_COMMANDS', true),
+        'translations' => (bool) env('PLAYGROUND_MAKE_PACKAGE_LOAD_TRANSLATIONS', true),
     ],
 
     /*
@@ -50,9 +50,9 @@ return [
     */
 
     'paths' => [
-        'makes' => env('PLAYGROUND_MAKE_PATHS_MAKES', ''),
-        // 'makes' => env('PLAYGROUND_MAKE_PATHS_MAKES', '/tmp/does-not-exist'),
-        // 'makes' => env('PLAYGROUND_MAKE_PATHS_MAKES', '/tmp'),
+        'makes' => env('PLAYGROUND_MAKE_PACKAGE_PATHS_MAKES', ''),
+        // 'makes' => env('PLAYGROUND_MAKE_PACKAGE_PATHS_MAKES', '/tmp/does-not-exist'),
+        // 'makes' => env('PLAYGROUND_MAKE_PACKAGE_PATHS_MAKES', '/tmp'),
 
     ],
 ];

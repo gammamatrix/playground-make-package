@@ -13,7 +13,7 @@
 .DS_Store
 */.DS_Store
 
-*.derp
+.derp
 
 Homestead.yaml
 Homestead.json
@@ -29,10 +29,6 @@ Homestead.json
 nbproject/private/
 
 database/migrations/*.disabled
-
-resources/packages
-
-composer.lock
 
 tmp-*
 temp-*
@@ -57,13 +53,7 @@ public/storage
 # Test ignores
 ################################################################################
 
-output
-
-public/docs
-
 public/tests
-
-phpstan.neon
 
 phpunit.xml
 
