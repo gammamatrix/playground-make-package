@@ -23,7 +23,7 @@ trait BuildSkeleton
         $skeletons['.editorconfig'] = '.editorconfig';
         $skeletons['.gitattributes'] = '.gitattributes';
         $skeletons['gitignore'] = '.gitignore';
-        $skeletons['.php-cs-fixer.dist'] = '.php-cs-fixer.dist';
+        $skeletons['.php-cs-fixer.dist.php'] = '.php-cs-fixer.dist.php';
         $skeletons['CHANGELOG.md'] = 'CHANGELOG.md';
 
         if ($this->c->package_license() === 'MIT') {

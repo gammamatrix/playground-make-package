@@ -36,23 +36,4 @@ return [
         'commands' => (bool) env('PLAYGROUND_MAKE_PACKAGE_LOAD_COMMANDS', true),
         'translations' => (bool) env('PLAYGROUND_MAKE_PACKAGE_LOAD_TRANSLATIONS', true),
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Paths
-    |--------------------------------------------------------------------------
-    |
-    | By default, makes will be loaded from the resources directory of this
-    | package. A different path may be provided with:
-    |
-    | PLAYGROUND_MAKE_PATHS_MAKES
-    |
-    */
-
-    'paths' => [
-        'makes' => env('PLAYGROUND_MAKE_PACKAGE_PATHS_MAKES', ''),
-        // 'makes' => env('PLAYGROUND_MAKE_PACKAGE_PATHS_MAKES', '/tmp/does-not-exist'),
-        // 'makes' => env('PLAYGROUND_MAKE_PACKAGE_PATHS_MAKES', '/tmp'),
-
-    ],
 ];
