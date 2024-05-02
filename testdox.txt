@@ -1,3 +1,86 @@
+Api (Tests\Acceptance\Playground\Make\Package\Console\Commands\PackageMakeCommand\Api)
+ [x] Command make api package with force and without skeleton
+ [x] Command make api package with force and with skeleton
+
 Command (Tests\Feature\Playground\Make\Package\Console\Commands\About\Command)
  [x] Command about displays package information and succeed with code 0
+
+Command (Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand\Command)
+ [x] Command without options or arguments
+ [x] Command skeleton
+
+Command (Tests\Unit\Playground\Make\Package\Console\Commands\PackageMakeCommand\Command)
+ [x] Command displays help
+
+Instance (Tests\Unit\Playground\Make\Package\Configuration\Package\Instance)
+ [x] Instance
+ [x] Instance apply without options
+ [x] Folder is empty by default
+ [x] Package for model with file and skeleton
+ [x] Package for api with file and skeleton
+ [x] AddKeyword with invalid keyword and log message
+ [x] AddRequire with invalid package and log message
+ [x] AddRequire with invalid version and log message
+ [x] AddRequireDev with invalid package and log message
+ [x] AddRequireDev with invalid version and log message
+
+Options (Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand\Options)
+ [x] Command make package with force and with factories
+ [x] Command make package with force with factories and with skeleton
+ [x] Command make package with force and with factories without file
+ [x] Command make package with force with factories and with skeleton without file
+ [x] Command make package with force and with policies
+ [x] Command make package with force with policies and with skeleton
+ [x] Command make package with force and with policies without file
+ [x] Command make package with force with policies and with skeleton without file
+ [x] Command make package with force and with controllers
+ [x] Command make package with force with controllers and with skeleton
+ [x] Command make package with force and with controllers without file
+ [x] Command make package with force with controllers and with skeleton without file
+ [x] Command make package with force and with migrations
+ [x] Command make package with force with migrations and with skeleton
+ [x] Command make package with force and with migrations without file
+ [x] Command make package with force with migrations and with skeleton without file
+ [x] Command make package with force and with models
+ [x] Command make package with force with models and with skeleton
+ [x] Command make package with force and with models without file
+ [x] Command make package with force with models and with skeleton without file
+ [x] Command make package with force and with license
+ [x] Command make package with force with license and with skeleton
+ [x] Command make package with force and with license without file
+ [x] Command make package with force with license and with skeleton without file
+
+Types (Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand\Types)
+ [x] Command make package with force and with playground type
+ [x] Command make package with force with playground type and with skeleton
+ [x] Command make package with force and with playground type without file
+ [x] Command make package with force with playground type and with skeleton without file
+ [x] Command make package with force and with playground model type
+ [x] Command make package with force with playground model type and with skeleton
+ [x] Command make package with force and with playground model type without file
+ [x] Command make package with force with playground model type and with skeleton without file
+ [x] Command make package with force and with playground api type
+ [x] Command make package with force with playground api type and with skeleton
+ [x] Command make package with force and with playground api type without file
+ [x] Command make package with force with playground api type and with skeleton without file
+ [x] Command make package with force and with playground resource type
+ [x] Command make package with force with playground resource type and with skeleton
+ [x] Command make package with force and with playground resource type without file
+ [x] Command make package with force with playground resource type and with skeleton without file
+ [x] Command make package with force and with api type
+ [x] Command make package with force with api type and with skeleton
+ [x] Command make package with force and with api type without file
+ [x] Command make package with force with api type and with skeleton without file
+ [x] Command make package with force and with resource type
+ [x] Command make package with force with resource type and with skeleton
+ [x] Command make package with force and with resource type without file
+ [x] Command make package with force with resource type and with skeleton without file
+ [x] Command make package with force and with default type
+ [x] Command make package with force with default type and with skeleton
+ [x] Command make package with force and with default type without file
+ [x] Command make package with force with default type and with skeleton without file
+ [x] Command make package with force and with default type with policies
+ [x] Command make package with force with playground model type and with skeleton with policies
+ [x] Command make package with force and with playground model type without file with policies
+ [x] Command make package with force with playground model type and with skeleton without file with policies
 
