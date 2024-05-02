@@ -65,7 +65,7 @@ class ServiceProvider extends AuthServiceProvider
     {
         $commands = [];
 
-        // $commands[] = Console\Commands\PackageMakeCommand::class;
+        $commands[] = Console\Commands\PackageMakeCommand::class;
 
         $this->commands($commands);
 
