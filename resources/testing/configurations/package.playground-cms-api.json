@@ -1,0 +1,62 @@
+{
+    "config": "playground-cms-api",
+    "factories": false,
+    "package": "playground-cms-api",
+    "module": "Cms",
+    "module_slug": "cms",
+    "name": "Playground\\Cms\\Api\\ServiceProvider",
+    "fqdn": "Playground\\Cms\\Api\\ServiceProvider",
+    "namespace": "Playground\\Cms\\Api",
+    "organization": "Playground",
+    "version": "73.0.0",
+    "package_name": "Playground: CMS API",
+    "package_homepage": "https://github.com/gammamatrix/playground-cms-api",
+    "package_license": "MIT",
+    "package_description": "A CMS API package for Playground under Laravel.",
+    "package_keywords": [
+        "laravel",
+        "playground",
+        "cms",
+        "api"
+    ],
+    "package_require": {
+        "php": "^8.2"
+    },
+    "package_require_dev": {
+        "playground-test": "^73.0"
+    },
+    "package_autoload_psr4":  {
+        "Vendor\\Namespace\\": ""
+    },
+    "package_laravel_providers": [
+        "Playground\\Cms\\Api\\ServiceProvider"
+    ],
+    "packagist": "gammamatrix/playground-cms-api",
+    "controllers": [
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/controller.page.json"
+    ],
+    "models": [
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-page.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-snippet.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page-revision.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet-revision.json"
+    ],
+    "policies": [
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/policy.page.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/policy.snippet.json"
+    ],
+    "requests": [
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json"
+    ],
+    "routes": [
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/route.snippet.json"
+    ],
+    "service_provider": "playground-policies"
+}

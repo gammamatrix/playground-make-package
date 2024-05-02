@@ -1,0 +1,40 @@
+{
+    "class": "ServiceProvider",
+    "config": "playground-cms",
+    "factories": true,
+    "package": "playground-cms",
+    "module": "Cms",
+    "module_slug": "cms",
+    "name": "Playground/Cms/ServiceProvider",
+    "fqdn": "Playground/Cms/ServiceProvider",
+    "namespace": "Playground/Cms",
+    "organization": "Playground",
+    "package_name": "Playground: CMS",
+    "package_homepage": "https://github.com/gammamatrix/playground-cms",
+    "package_license": "MIT",
+    "package_description": "A CMS package for Playground under Laravel.",
+    "package_keywords": [
+        "laravel",
+        "playground",
+        "cms"
+    ],
+    "package_require": {
+        "php": "^8.2"
+    },
+    "package_require_dev": "",
+    "package_autoload_psr4": "",
+    "package_laravel_providers": [
+        "Playground/Cms/ServiceProvider"
+    ],
+    "packagist": "gammamatrix/playground-cms",
+    "models": [
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-page.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-snippet.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page-revision.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet-revision.json"
+    ],
+    "service_provider": "playground"
+}
