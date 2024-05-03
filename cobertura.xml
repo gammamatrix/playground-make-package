@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.83760683760684" branch-rate="0" lines-covered="490" lines-valid="585" branches-covered="0" branches-valid="0" complexity="246" version="0.4" timestamp="1714684512">
+<coverage line-rate="0.85324232081911" branch-rate="0" lines-covered="500" lines-valid="586" branches-covered="0" branches-valid="0" complexity="246" version="0.4" timestamp="1714719644">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -619,21 +619,21 @@
         </class>
       </classes>
     </package>
-    <package name="Building/MakeCommands.php" line-rate="0" branch-rate="0" complexity="22">
+    <package name="Building/MakeCommands.php" line-rate="0.25714285714286" branch-rate="0" complexity="22">
       <classes>
-        <class name="Playground\Make\Package\Building\MakeCommands" filename="Building/MakeCommands.php" line-rate="0" branch-rate="0" complexity="22">
+        <class name="Playground\Make\Package\Building\MakeCommands" filename="Building/MakeCommands.php" line-rate="0.25714285714286" branch-rate="0" complexity="22">
           <methods>
-            <method name="handle_controllers" signature="" line-rate="0" branch-rate="0" complexity="6">
+            <method name="handle_controllers" signature="" line-rate="1" branch-rate="0" complexity="6">
               <lines>
-                <line number="23" hits="0"/>
-                <line number="24" hits="0"/>
-                <line number="25" hits="0"/>
-                <line number="27" hits="0"/>
-                <line number="28" hits="0"/>
-                <line number="31" hits="0"/>
-                <line number="32" hits="0"/>
-                <line number="33" hits="0"/>
-                <line number="34" hits="0"/>
+                <line number="23" hits="59"/>
+                <line number="24" hits="59"/>
+                <line number="25" hits="59"/>
+                <line number="27" hits="59"/>
+                <line number="28" hits="59"/>
+                <line number="31" hits="59"/>
+                <line number="32" hits="30"/>
+                <line number="33" hits="30"/>
+                <line number="34" hits="30"/>
               </lines>
             </method>
             <method name="handle_models" signature="" line-rate="0" branch-rate="0" complexity="6">
@@ -676,15 +676,15 @@
             </method>
           </methods>
           <lines>
-            <line number="23" hits="0"/>
-            <line number="24" hits="0"/>
-            <line number="25" hits="0"/>
-            <line number="27" hits="0"/>
-            <line number="28" hits="0"/>
-            <line number="31" hits="0"/>
-            <line number="32" hits="0"/>
-            <line number="33" hits="0"/>
-            <line number="34" hits="0"/>
+            <line number="23" hits="59"/>
+            <line number="24" hits="59"/>
+            <line number="25" hits="59"/>
+            <line number="27" hits="59"/>
+            <line number="28" hits="59"/>
+            <line number="31" hits="59"/>
+            <line number="32" hits="30"/>
+            <line number="33" hits="30"/>
+            <line number="34" hits="30"/>
             <line number="47" hits="0"/>
             <line number="48" hits="0"/>
             <line number="49" hits="0"/>
@@ -1133,9 +1133,9 @@
         </class>
       </classes>
     </package>
-    <package name="Console/Commands/PackageMakeCommand.php" line-rate="0.84375" branch-rate="0" complexity="31">
+    <package name="Console/Commands/PackageMakeCommand.php" line-rate="0.84536082474227" branch-rate="0" complexity="31">
       <classes>
-        <class name="Playground\Make\Package\Console\Commands\PackageMakeCommand" filename="Console/Commands/PackageMakeCommand.php" line-rate="0.84375" branch-rate="0" complexity="31">
+        <class name="Playground\Make\Package\Console\Commands\PackageMakeCommand" filename="Console/Commands/PackageMakeCommand.php" line-rate="0.84536082474227" branch-rate="0" complexity="31">
           <methods>
             <method name="getOptions" signature="" line-rate="1" branch-rate="0" complexity="1">
               <lines>
@@ -1185,6 +1185,7 @@
                 <line number="179" hits="59"/>
                 <line number="180" hits="59"/>
                 <line number="181" hits="59"/>
+                <line number="186" hits="59"/>
                 <line number="188" hits="59"/>
                 <line number="190" hits="59"/>
               </lines>
@@ -1297,6 +1298,7 @@
             <line number="179" hits="59"/>
             <line number="180" hits="59"/>
             <line number="181" hits="59"/>
+            <line number="186" hits="59"/>
             <line number="188" hits="59"/>
             <line number="190" hits="59"/>
             <line number="195" hits="59"/>
