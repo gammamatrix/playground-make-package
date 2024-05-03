@@ -183,7 +183,7 @@ class PackageMakeCommand extends GeneratorCommand
         // $this->handle_models();
         // $this->handle_policies();
         // $this->handle_requests();
-        // $this->handle_controllers();
+        $this->handle_controllers();
 
         $this->saveConfiguration();
 
