@@ -19,55 +19,55 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make.git"
+            "url": "https://github.com/gammamatrix/playground-make.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-controller.git"
+            "url": "https://github.com/gammamatrix/playground-make-controller.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-factory.git"
+            "url": "https://github.com/gammamatrix/playground-make-factory.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-migration.git"
+            "url": "https://github.com/gammamatrix/playground-make-migration.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-model.git"
+            "url": "https://github.com/gammamatrix/playground-make-model.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-policy.git"
+            "url": "https://github.com/gammamatrix/playground-make-policy.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-request.git"
+            "url": "https://github.com/gammamatrix/playground-make-request.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-resource.git"
+            "url": "https://github.com/gammamatrix/playground-make-resource.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-route.git"
+            "url": "https://github.com/gammamatrix/playground-make-route.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-seeder.git"
+            "url": "https://github.com/gammamatrix/playground-make-seeder.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-swagger.git"
+            "url": "https://github.com/gammamatrix/playground-make-swagger.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-template.git"
+            "url": "https://github.com/gammamatrix/playground-make-template.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make-test.git"
+            "url": "https://github.com/gammamatrix/playground-make-test.git"
         }
     ],
     "require": {
