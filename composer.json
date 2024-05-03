@@ -24,66 +24,12 @@
         {
             "type": "vcs",
             "url": "https://github.com/gammamatrix/playground-make-controller.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-factory.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-migration.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-model.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-policy.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-request.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-resource.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-route.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-seeder.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-swagger.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-template.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-make-test.git"
         }
     ],
     "require": {
         "php": "^8.2",
         "gammamatrix/playground-make": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-controller": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-factory": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-migration": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-policy": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-request": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-resource": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-route": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-seeder": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-swagger": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-template": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-make-test": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
+        "gammamatrix/playground-make-controller": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
     },
     "require-dev": {
         "gammamatrix/playground-test": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
