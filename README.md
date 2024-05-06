@@ -29,6 +29,35 @@ See the contents of the published config file: [config/playground-make-package.p
 
 This application utilizes Laravel make commands.
 
+### Build out skeletons
+
+These examples use [Playground Matrix](https://github.com/gammamatrix/playground-matrix/) models and controllers:
+
+#### Build: Playground Model
+
+
+
+```sh
+artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix --package playground-matrix --module Matrix --type playground-model --playground --factories --migrations --models --skeleton --force
+```
+
+```sh
+artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force
+```
+
+#### Build: Playground Api
+
+```sh
+artisan playground:make:package Matrix --namespace Playground/Matrix/Api --package playground-matrix-api --module Matrix --type playground-api --playground --skeleton --force
+```
+
+#### Build: Playground Resource
+
+```sh
+artisan playground:make:package Matrix --namespace Playground/Matrix/Resource --package playground-matrix-resource --module Matrix  --type playground-resource --playground --skeleton --force
+```
+
+
 ## PHPStan
 
 Tests at level 9 on:

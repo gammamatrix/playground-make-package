@@ -20,6 +20,7 @@ class Package extends PrimaryConfiguration
     protected $properties = [
         'class' => 'ServiceProvider',
         'config' => '',
+        'config_space' => '',
         'fqdn' => '',
         'module' => '',
         'module_slug' => '',
@@ -33,6 +34,7 @@ class Package extends PrimaryConfiguration
         'withMigrations' => false,
         'withModels' => false,
         'withPolicies' => false,
+        'playground' => false,
         'package_name' => '',
         // 'package_autoload' => '',
         'package_description' => '',
@@ -52,6 +54,7 @@ class Package extends PrimaryConfiguration
         'transformers' => [],
         'service_provider' => '',
         // 'version' => '0.1.2-alpha.3',
+        'type' => '',
         'version' => '',
     ];
 
@@ -66,6 +69,8 @@ class Package extends PrimaryConfiguration
     protected bool $withModels = false;
 
     protected bool $withPolicies = false;
+
+    protected string $config_space = '';
 
     protected string $package_name = '';
 
@@ -110,7 +115,7 @@ class Package extends PrimaryConfiguration
     protected array $controllers = [];
 
     /**
-     * @var array<int, string>
+     * @var array<string, string>
      */
     protected array $models = [];
 
@@ -171,6 +176,12 @@ class Package extends PrimaryConfiguration
             $this->package_name = $options['package_name'];
         }
 
+        if (! empty($options['config_space'])
+            && is_string($options['config_space'])
+        ) {
+            $this->config_space = $options['config_space'];
+        }
+
         // if (! empty($options['package_autoload'])
         //     && is_string($options['package_autoload'])
         // ) {
@@ -221,6 +232,14 @@ class Package extends PrimaryConfiguration
             }
         }
 
+        // if (! empty($options['package_providers'])
+        //     && is_array($options['package_providers'])
+        // ) {
+        //     foreach ($options['package_providers'] as $provider) {
+        //         $this->addClassTo('package_providers', $provider);
+        //     }
+        // }
+
         if (! empty($options['packagist'])
             && is_string($options['packagist'])
         ) {
@@ -232,14 +251,6 @@ class Package extends PrimaryConfiguration
         ) {
             foreach ($options['controllers'] as $file) {
                 $this->addClassFileTo('controllers', $file);
-            }
-        }
-
-        if (! empty($options['models'])
-            && is_array($options['models'])
-        ) {
-            foreach ($options['models'] as $file) {
-                $this->addClassFileTo('models', $file);
             }
         }
 
@@ -402,6 +413,11 @@ class Package extends PrimaryConfiguration
         return $this->withPolicies;
     }
 
+    public function config_space(): string
+    {
+        return $this->config_space;
+    }
+
     public function package_name(): string
     {
         return $this->package_name;
@@ -481,7 +497,7 @@ class Package extends PrimaryConfiguration
     }
 
     /**
-     * @return array<int, string>
+     * @return array<string, string>
      */
     public function models(): array
     {

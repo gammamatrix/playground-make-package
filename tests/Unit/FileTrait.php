@@ -17,6 +17,7 @@ trait FileTrait
     protected function getResourceFileAsArray(string $type = ''): array
     {
         $file = $this->getResourceFile($type);
+        // dump($file);
         $content = file_exists($file) ? file_get_contents($file) : null;
         $data = $content ? json_decode($content, true) : [];
         return is_array($data) ? $data : [];
@@ -26,11 +27,20 @@ trait FileTrait
     {
         $package_base = dirname(dirname(__DIR__));
 
-       if (in_array($type, [
+        if (in_array($type, [
             'test-package-model',
         ])) {
             $file = sprintf(
                 '%1$s/resources/testing/configurations/package.playground-cms.json',
+                $package_base
+            );
+
+        } elseif (in_array($type, [
+            'test-model',
+            'model-rocket',
+        ])) {
+            $file = sprintf(
+                '%1$s/resources/testing/configurations/model.rocket.json',
                 $package_base
             );
 
@@ -40,6 +50,14 @@ trait FileTrait
         ])) {
             $file = sprintf(
                 '%1$s/resources/testing/configurations/package.playground-cms-api.json',
+                $package_base
+            );
+
+        } elseif (in_array($type, [
+            'test-package-resource',
+        ])) {
+            $file = sprintf(
+                '%1$s/resources/testing/configurations/package.acme-demo-resource.json',
                 $package_base
             );
 

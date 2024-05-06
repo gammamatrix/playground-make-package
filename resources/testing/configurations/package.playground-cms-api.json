@@ -9,6 +9,7 @@
     "namespace": "Playground\\Cms\\Api",
     "organization": "Playground",
     "version": "73.0.0",
+    "type": "playground-api",
     "package_name": "Playground: CMS API",
     "package_homepage": "https://github.com/gammamatrix/playground-cms-api",
     "package_license": "MIT",
@@ -35,25 +36,25 @@
     "controllers": [
         "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/controller.page.json"
     ],
-    "models": [
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-page.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-snippet.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page-revision.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet-revision.json"
-    ],
+    "models": {
+        "Page": "resources/configurations/playground-cms/model.page.json",
+        "Snippet": "resources/configurations/playground-cms/model.snippet.json",
+        "PageRevision": "resources/configurations/playground-cms/model.page-revision.json",
+        "SnippetRevision": "resources/configurations/playground-cms/model.snippet-revision.json"
+    },
     "policies": [
         "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/policy.page.json",
         "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/policy.snippet.json"
     ],
     "requests": [
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json",
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.create.json"
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/page/request.index.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/page/request.show.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/page/request.store.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/page/request.update.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.index.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.show.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.store.json",
+        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.update.json"
     ],
     "routes": [
         "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/route.snippet.json"

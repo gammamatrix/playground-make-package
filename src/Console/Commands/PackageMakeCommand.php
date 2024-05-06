@@ -6,6 +6,7 @@
 declare(strict_types=1);
 namespace Playground\Make\Package\Console\Commands;
 
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Playground\Make\Configuration\Contracts\PrimaryConfiguration as PrimaryConfigurationContract;
@@ -24,8 +25,11 @@ class PackageMakeCommand extends GeneratorCommand
 {
     use Building\BuildComposer;
     use Building\BuildConfig;
+    use Building\BuildModels;
     use Building\BuildSkeleton;
+    use Building\BuildTests;
     use Building\MakeCommands;
+    use CreatesMatchingTest;
 
     /**
      * @var class-string<Configuration>
@@ -43,6 +47,7 @@ class PackageMakeCommand extends GeneratorCommand
         'module_slug' => '',
         'namespace' => '',
         'organization' => '',
+        'config_space' => '',
         'package' => '',
         'package_name' => '',
         'package_autoload' => '',
@@ -52,10 +57,12 @@ class PackageMakeCommand extends GeneratorCommand
         'package_license' => '',
         'package_require' => '',
         'package_require_dev' => '',
+        'package_scripts' => '',
         'package_autoload_psr4' => '',
         'package_laravel_providers' => '',
         'packagist' => '',
         'policies' => '',
+        'publish_migrations' => '',
         'routes' => '',
         'version' => '1.0.0',
     ];
@@ -119,6 +126,8 @@ class PackageMakeCommand extends GeneratorCommand
         $options[] = ['models', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have models.'];
         $options[] = ['policies', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model policies.'];
         $options[] = ['license', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' license.'];
+        $options[] = ['playground', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use Playground features'];
+        $options[] = ['test', null, InputOption::VALUE_NONE, 'Create the unit and feature tests for the '.strtolower($this->type)];
 
         return $options;
     }
@@ -172,6 +181,18 @@ class PackageMakeCommand extends GeneratorCommand
                 'withPolicies' => true,
             ]);
         }
+
+        if ($this->hasOption('playground') && $this->option('playground')) {
+            $this->c->setOptions([
+                'playground' => true,
+            ]);
+        }
+
+        if ($this->c->playground() && in_array($this->c->type(), [
+            'playground-model',
+        ])) {
+            $this->make_published_models();
+        }
     }
 
     public function finish(): ?bool
@@ -180,10 +201,14 @@ class PackageMakeCommand extends GeneratorCommand
         $this->createConfig($this->searches);
         $this->createSkeleton($this->searches);
 
-        // $this->handle_models();
+        $this->command_models();
         // $this->handle_policies();
         // $this->handle_requests();
         $this->handle_controllers();
+
+        if ($this->hasOption('test') && $this->option('test')) {
+            $this->createTest();
+        }
 
         $this->saveConfiguration();
 
@@ -207,7 +232,11 @@ class PackageMakeCommand extends GeneratorCommand
         $template = 'service-provider/ServiceProvider.stub';
 
         $type = $this->getConfigurationType();
-
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$type' => $type,
+        //     '$this->c' => $this->c,
+        // ]);
         if (in_array($type, [
             'playground',
         ])) {
@@ -232,51 +261,5 @@ class PackageMakeCommand extends GeneratorCommand
         }
 
         return $this->resolveStubPath($template);
-    }
-
-    /**
-     * Resolve the fully-qualified path to the stub.
-     *
-     * @param  string  $stub
-     */
-    protected function resolveStubPath($stub): string
-    {
-        $path = '';
-        $stub_path = config('playground-make.paths.stubs');
-        if (! empty($stub_path)
-            && is_string($stub_path)
-        ) {
-            if (! is_dir($stub_path)) {
-                Log::error(__('playground-make::generator.path.invalid'), [
-                    '$stub_path' => $stub_path,
-                    '$stub' => $stub,
-                ]);
-            } else {
-                $path = sprintf(
-                    '%1$s/%2$s',
-                    // Str::of($stub_path)->finish('/')->toString(),
-                    Str::of($stub_path)->toString(),
-                    $stub
-                );
-            }
-        }
-
-        if (empty($path)) {
-            $path = sprintf(
-                '%1$s/resources/stubs/%2$s',
-                dirname(dirname(dirname(__DIR__))),
-                $stub
-            );
-        }
-
-        if (! file_exists($path)) {
-            $this->components->error(__('playground-make::generator.stub.missing', [
-                'stub_path' => is_string($stub_path) ? $stub_path : gettype($stub_path),
-                'stub' => $stub,
-                'path' => $path,
-            ]));
-        }
-
-        return $path;
     }
 }

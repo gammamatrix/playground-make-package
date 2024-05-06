@@ -6,7 +6,7 @@
 declare(strict_types=1);
 namespace Playground\Make\Package\Building;
 
-// use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * \Playground\Make\Package\Building\BuildConfig
@@ -29,9 +29,41 @@ trait BuildConfig
             return;
         }
 
-        // $destinationPath = $this->getDestinationPath();
+        $config_space = $this->c->config_space();
+
+        if (! $config_space) {
+            $config_space = Str::of($this->c->namespace())
+                ->upper()
+                ->trim('/',)
+                ->trim('\\',)
+                ->replace('/', '_')
+                ->replace('\\', '_')
+                ->toString();
+        }
+
+        $this->searches['config_space'] = $config_space;
 
         $path_stub = 'config/default.stub';
+
+        $type = $this->c->type();
+
+        if (in_array($type, [
+            'model',
+            'playground-model',
+        ])) {
+            $path_stub = 'config/playground-model.stub';
+        } elseif (in_array($type, [
+            'api',
+            'playground-api',
+        ])) {
+            $path_stub = 'config/playground-api.stub';
+        } elseif (in_array($type, [
+            'resource',
+            'playground-resource',
+        ])) {
+            $path_stub = 'config/playground-resource.stub';
+        }
+
         $path = $this->resolveStubPath($path_stub);
 
         $file = sprintf(
@@ -49,6 +81,7 @@ trait BuildConfig
         //     '__METHOD__' => __METHOD__,
         //     '$path_stub' => $path_stub,
         //     '$path' => $path,
+        //     '$config_space' => $config_space,
         //     '$destination' => $destination,
         //     '$this->folder' => $this->folder,
         //     '$this->qualifiedName' => $this->qualifiedName,
@@ -56,6 +89,7 @@ trait BuildConfig
         //     // '$destination' => $destination,
         //     // '$searches' => $searches,
         //     '$this->rootNamespace()' => $this->rootNamespace(),
+        //     '$this->c->namespace()' => $this->c->namespace(),
         // ]);
 
         $stub = $this->files->get($path);
@@ -66,24 +100,8 @@ trait BuildConfig
 
         $this->makeDirectory($full_path);
 
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$full_path' => $full_path,
-        //     'dirname($full_path)' => dirname($full_path),
-        //     '$path' => $path,
-        //     '$destination' => $destination,
-        //     '$this->folder' => $this->folder,
-        //     '$this->qualifiedName' => $this->qualifiedName,
-        //     // '$stub' => $stub,
-        //     // '$destination' => $destination,
-        //     // '$searches' => $searches,
-        //     '$this->rootNamespace()' => $this->rootNamespace(),
-        // ]);
-
         $this->files->put($full_path, $stub);
 
-        // $this->components->info('The composer.json file was saved: '.$full_path);
-        // $this->info('The composer.json file was saved: '.$full_path);
         $this->components->info(sprintf('%s [%s] created successfully.', $file, $full_path));
     }
 }

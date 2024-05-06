@@ -1,0 +1,39 @@
+<?php
+/**
+ * Playground
+ */
+
+declare(strict_types=1);
+
+/**
+ * {{ package_name }} Configuration and Environment Variables
+ */
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | About Information
+    |--------------------------------------------------------------------------
+    |
+    | By default, information will be displayed about this package when using:
+    |
+    | `artisan about`
+    |
+    */
+
+    'about' => (bool) env('{{ config_space }}_ABOUT', true),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Loading
+    |--------------------------------------------------------------------------
+    |
+    | By default, translations and views are loaded.
+    |
+    */
+
+    'load' => [
+        'commands' => (bool) env('{{ config_space }}_LOAD_COMMANDS', true),
+        'views' => (bool) env('{{ config_space }}_LOAD_VIEWS', true),
+    ],
+];

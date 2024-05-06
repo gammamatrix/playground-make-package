@@ -14,9 +14,9 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
  */
 class ServiceProvider extends AuthServiceProvider
 {
-    public string $package = '{{ package }}';
+    public const VERSION = '{{ version }}';
 
-    const VERSION = '{{ version }}';
+    public string $package = '{{ package }}';
 
     /**
      * The policy mappings for the application.
@@ -35,22 +35,25 @@ class ServiceProvider extends AuthServiceProvider
      */
     public function boot()
     {
+        /**
+         * @var array<string, mixed> $config
+         */
         $config = config($this->package);
 
-        if (!empty($config) && $this->app->runningInConsole()) {
+        if (! empty($config['load']) && is_array($config['load'])) {
+
+            if (! empty($config['load']['translations'])) {
+                $this->loadTranslationsFrom(
+                    dirname(__DIR__).'/lang',
+                    $this->package
+                );
+            }
 
             // Publish configuration
             $this->publishes([
                 dirname(__DIR__).'/config/{{ package }}.php'
                     => config_path('{{ package }}.php')
             ], 'playground-config');
-
-            // Load migrations
-            if (!empty($config['load'])
-                && !empty($config['load']['migrations'])
-            ) {
-               $this->loadMigrationsFrom(dirname(__DIR__). '/database/migrations');
-            }
         }
 
         $this->loadViewsFrom(
@@ -61,9 +64,9 @@ class ServiceProvider extends AuthServiceProvider
         // { {routes} }
         // $this->loadRoutesFrom(dirname(__DIR__) . '/routes/matrix.php');
 
-        AboutCommand::add('{{ organization }}', fn () => [
-            $this->package => $this->version(),
-        ]);
+        if (! empty($config['about'])) {
+            $this->about();
+        }
     }
 
     /**
@@ -71,7 +74,7 @@ class ServiceProvider extends AuthServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/config/{{ package }}.php',
@@ -79,7 +82,22 @@ class ServiceProvider extends AuthServiceProvider
         );
     }
 
-    public function version()
+    public function about(): void
+    {
+        $config = config($this->package);
+        $config = is_array($config) ? $config : [];
+
+        $load = ! empty($config['load']) && is_array($config['load']) ? $config['load'] : [];
+
+        $version = $this->version();
+
+        AboutCommand::add('{{ organization }}: {{ module }}', fn () => [
+            'Package' => $this->package,
+            'Version' => $version,
+        ]);
+    }
+
+    public function version(): string
     {
         return static::VERSION;
     }

@@ -36,30 +36,6 @@ trait MakeCommands
         }
     }
 
-    public function handle_models(): void
-    {
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     // '$his->option(license)' => $this->option('license'),
-        //     '$models' => $models,
-        // ]);
-
-        $params = [
-            '--file' => '',
-        ];
-
-        if ($this->hasOption('force') && $this->option('force')) {
-            $params['--force'] = true;
-        }
-
-        foreach ($this->c->models() as $model) {
-            if (is_string($model) && $model) {
-                $params['--file'] = $model;
-                $this->call('playground:make:model', $params);
-            }
-        }
-    }
-
     public function handle_policies(): void
     {
         // dd([

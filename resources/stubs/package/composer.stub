@@ -10,7 +10,12 @@
         "laravel": {
             "providers": [{{ package_laravel_providers }}]
         }
-    },
+    },{{ package_scripts }}
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "test": "vendor/bin/testbench package:test",
+        "format": "vendor/bin/php-cs-fixer fix",
+        "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max"
+    }
 }

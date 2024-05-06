@@ -31,6 +31,7 @@ class InstanceTest extends TestCase
     protected array $expected_properties = [
         'class' => 'ServiceProvider',
         'config' => '',
+        'config_space' => '',
         'fqdn' => '',
         'module' => '',
         'module_slug' => '',
@@ -44,8 +45,8 @@ class InstanceTest extends TestCase
         'withMigrations' => false,
         'withModels' => false,
         'withPolicies' => false,
+        'playground' => false,
         'package_name' => '',
-        // 'package_autoload' => '',
         'package_description' => '',
         'package_homepage' => '',
         'package_keywords' => [],
@@ -62,7 +63,7 @@ class InstanceTest extends TestCase
         'routes' => [],
         'transformers' => [],
         'service_provider' => '',
-        // 'version' => '0.1.2-alpha.3',
+        'type' => '',
         'version' => '',
     ];
 
@@ -98,8 +99,6 @@ class InstanceTest extends TestCase
         $options = $this->getResourceFileAsArray('test-package-model');
         // dd([
         //     '__METHOD__' => __METHOD__,
-        //     '$file' => $file,
-        //     '$content' => $content,
         //     '$options' => $options,
         // ]);
 
@@ -109,11 +108,9 @@ class InstanceTest extends TestCase
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$options' => $options,
-        //     '$instance' => $instance,
-        //     // 'json_encode($instance)' => json_encode($instance, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
+        //     '$instance' => $instance->toArray(),
         //     // '$options' => $options,
         // ]);
-        // echo(json_encode($instance, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         $this->assertEmpty($instance->folder());
         $this->assertTrue($instance->skeleton());
 
@@ -126,7 +123,7 @@ class InstanceTest extends TestCase
         $this->assertSame('Playground/Cms', $instance->namespace());
         $this->assertSame('Playground/Cms/ServiceProvider', $instance->name());
         $this->assertSame('ServiceProvider', $instance->class());
-        $this->assertSame('', $instance->type());
+        $this->assertSame('playground-model', $instance->type());
         $this->assertSame('playground', $instance->service_provider());
         $this->assertSame([
             'laravel',
@@ -143,13 +140,10 @@ class InstanceTest extends TestCase
         ], $instance->package_laravel_providers());
         $this->assertSame([], $instance->controllers());
         $this->assertSame([
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-page.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-snippet.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page-revision.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet-revision.json',
+            'Page' => 'resources/configurations/playground-cms/model.page.json',
+            'Snippet' => 'resources/configurations/playground-cms/model.snippet.json',
+            'PageRevision' => 'resources/configurations/playground-cms/model.page-revision.json',
+            'SnippetRevision' => 'resources/configurations/playground-cms/model.snippet-revision.json',
         ], $instance->models());
         $this->assertSame([], $instance->policies());
         $this->assertSame([], $instance->routes());
@@ -193,7 +187,7 @@ class InstanceTest extends TestCase
         $this->assertSame('Playground\\Cms\\Api', $instance->namespace());
         $this->assertSame('Playground\\Cms\\Api\\ServiceProvider', $instance->name());
         $this->assertSame('ServiceProvider', $instance->class());
-        $this->assertSame('', $instance->type());
+        $this->assertSame('playground-api', $instance->type());
         $this->assertSame('playground-policies', $instance->service_provider());
         $this->assertSame([
             'laravel',
@@ -215,13 +209,10 @@ class InstanceTest extends TestCase
             'vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/controller.page.json',
         ], $instance->controllers());
         $this->assertSame([
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-page.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.abstract-snippet.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.page-revision.json',
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms/model.snippet-revision.json',
+            'Page' => 'resources/configurations/playground-cms/model.page.json',
+            'Snippet' => 'resources/configurations/playground-cms/model.snippet.json',
+            'PageRevision' => 'resources/configurations/playground-cms/model.page-revision.json',
+            'SnippetRevision' => 'resources/configurations/playground-cms/model.snippet-revision.json',
         ], $instance->models());
         $this->assertSame([
             'vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/policy.page.json',
