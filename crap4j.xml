@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-03 20:29:41</timestamp>
+  <timestamp>2024-05-06 19:32:08</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>55</methodCount>
+    <methodCount>61</methodCount>
     <crapMethodCount>1</crapMethodCount>
-    <crapLoad>7</crapLoad>
-    <totalCrap>354.84</totalCrap>
-    <crapMethodPercent>1.82</crapMethodPercent>
+    <crapLoad>4</crapLoad>
+    <totalCrap>352.79</totalCrap>
+    <crapMethodPercent>1.64</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -39,31 +39,31 @@
       <methodName>make_composer_autoload</methodName>
       <methodSignature>make_composer_autoload(array $searches, array $autoload): string</methodSignature>
       <fullMethod>make_composer_autoload(array $searches, array $autoload): string</fullMethod>
-      <crap>13.05</crap>
+      <crap>13</crap>
       <complexity>13</complexity>
-      <coverage>93.33</coverage>
+      <coverage>97.73</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildComposer</className>
       <methodName>make_composer_require</methodName>
-      <methodSignature>make_composer_require(array $searches): string</methodSignature>
-      <fullMethod>make_composer_require(array $searches): string</fullMethod>
+      <methodSignature>make_composer_require(): string</methodSignature>
+      <fullMethod>make_composer_require(): string</fullMethod>
       <crap>7</crap>
       <complexity>7</complexity>
-      <coverage>96.43</coverage>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildComposer</className>
       <methodName>make_composer_require_dev</methodName>
-      <methodSignature>make_composer_require_dev(array $searches): string</methodSignature>
-      <fullMethod>make_composer_require_dev(array $searches): string</fullMethod>
-      <crap>13.3</crap>
-      <complexity>8</complexity>
-      <coverage>56.41</coverage>
+      <methodSignature>make_composer_require_dev(): string</methodSignature>
+      <fullMethod>make_composer_require_dev(): string</fullMethod>
+      <crap>7</crap>
+      <complexity>7</complexity>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -74,7 +74,7 @@
       <fullMethod>make_composer_keywords(array $searches): string</fullMethod>
       <crap>7</crap>
       <complexity>7</complexity>
-      <coverage>96.15</coverage>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -83,19 +83,19 @@
       <methodName>make_composer_packagist</methodName>
       <methodSignature>make_composer_packagist(array $searches): string</methodSignature>
       <fullMethod>make_composer_packagist(array $searches): string</fullMethod>
-      <crap>5.01</crap>
-      <complexity>5</complexity>
-      <coverage>91.67</coverage>
+      <crap>4</crap>
+      <complexity>4</complexity>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildComposer</className>
       <methodName>make_composer_license</methodName>
-      <methodSignature>make_composer_license(array $searches): string</methodSignature>
-      <fullMethod>make_composer_license(array $searches): string</fullMethod>
-      <crap>3</crap>
-      <complexity>3</complexity>
+      <methodSignature>make_composer_license(): string</methodSignature>
+      <fullMethod>make_composer_license(): string</fullMethod>
+      <crap>2</crap>
+      <complexity>2</complexity>
       <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -105,9 +105,9 @@
       <methodName>make_composer_homepage</methodName>
       <methodSignature>make_composer_homepage(array $searches): string</methodSignature>
       <fullMethod>make_composer_homepage(array $searches): string</fullMethod>
-      <crap>6.97</crap>
-      <complexity>5</complexity>
-      <coverage>57.14</coverage>
+      <crap>5.57</crap>
+      <complexity>4</complexity>
+      <coverage>53.85</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -116,9 +116,9 @@
       <methodName>make_composer_providers</methodName>
       <methodSignature>make_composer_providers(array $searches): string</methodSignature>
       <fullMethod>make_composer_providers(array $searches): string</fullMethod>
-      <crap>9.42</crap>
+      <crap>9.21</crap>
       <complexity>9</complexity>
-      <coverage>82.76</coverage>
+      <coverage>86.21</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -138,9 +138,31 @@
       <methodName>createConfig</methodName>
       <methodSignature>createConfig(array $searches): void</methodSignature>
       <fullMethod>createConfig(array $searches): void</fullMethod>
-      <crap>3.01</crap>
-      <complexity>3</complexity>
-      <coverage>90.48</coverage>
+      <crap>7</crap>
+      <complexity>7</complexity>
+      <coverage>95.74</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildModels</className>
+      <methodName>command_models</methodName>
+      <methodSignature>command_models(): void</methodSignature>
+      <fullMethod>command_models(): void</fullMethod>
+      <crap>7</crap>
+      <complexity>7</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildModels</className>
+      <methodName>make_published_models</methodName>
+      <methodSignature>make_published_models(): void</methodSignature>
+      <fullMethod>make_published_models(): void</fullMethod>
+      <crap>4</crap>
+      <complexity>4</complexity>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -156,6 +178,61 @@
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>createTest</methodName>
+      <methodSignature>createTest(): void</methodSignature>
+      <fullMethod>createTest(): void</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>command_tests_playground_api</methodName>
+      <methodSignature>command_tests_playground_api(): void</methodSignature>
+      <fullMethod>command_tests_playground_api(): void</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>command_tests_providers</methodName>
+      <methodSignature>command_tests_providers(string $type): void</methodSignature>
+      <fullMethod>command_tests_providers(string $type): void</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>command_tests_playground_model</methodName>
+      <methodSignature>command_tests_playground_model(): void</methodSignature>
+      <fullMethod>command_tests_playground_model(): void</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>command_tests_playground_resource</methodName>
+      <methodSignature>command_tests_playground_resource(): void</methodSignature>
+      <fullMethod>command_tests_playground_resource(): void</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\MakeCommands</className>
       <methodName>handle_controllers</methodName>
       <methodSignature>handle_controllers(): void</methodSignature>
@@ -163,17 +240,6 @@
       <crap>6</crap>
       <complexity>6</complexity>
       <coverage>100</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Package\Building</package>
-      <className>Playground\Make\Package\Building\MakeCommands</className>
-      <methodName>handle_models</methodName>
-      <methodSignature>handle_models(): void</methodSignature>
-      <fullMethod>handle_models(): void</fullMethod>
-      <crap>42</crap>
-      <complexity>6</complexity>
-      <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -204,10 +270,10 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>55.68</crap>
-      <complexity>51</complexity>
-      <coverage>87.84</coverage>
-      <crapLoad>7</crapLoad>
+      <crap>50.8</crap>
+      <complexity>50</complexity>
+      <coverage>93.15</coverage>
+      <crapLoad>4</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
@@ -292,6 +358,17 @@
       <methodName>withPolicies</methodName>
       <methodSignature>withPolicies(): bool</methodSignature>
       <fullMethod>withPolicies(): bool</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>config_space</methodName>
+      <methodSignature>config_space(): string</methodSignature>
+      <fullMethod>config_space(): string</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
@@ -512,9 +589,9 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>14</crap>
-      <complexity>14</complexity>
-      <coverage>100</coverage>
+      <crap>18.2</crap>
+      <complexity>18</complexity>
+      <coverage>91.43</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -523,9 +600,9 @@
       <methodName>finish</methodName>
       <methodSignature>finish(): ?bool</methodSignature>
       <fullMethod>finish(): ?bool</fullMethod>
-      <crap>1</crap>
-      <complexity>1</complexity>
-      <coverage>100</coverage>
+      <crap>3.01</crap>
+      <complexity>3</complexity>
+      <coverage>88.89</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -548,17 +625,6 @@
       <crap>7</crap>
       <complexity>7</complexity>
       <coverage>100</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Package\Console\Commands</package>
-      <className>Playground\Make\Package\Console\Commands\PackageMakeCommand</className>
-      <methodName>resolveStubPath</methodName>
-      <methodSignature>resolveStubPath($stub): string</methodSignature>
-      <fullMethod>resolveStubPath($stub): string</fullMethod>
-      <crap>15.4</crap>
-      <complexity>7</complexity>
-      <coverage>44.44</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>

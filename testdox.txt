@@ -24,6 +24,10 @@ Instance (Tests\Unit\Playground\Make\Package\Configuration\Package\Instance)
  [x] AddRequireDev with invalid package and log message
  [x] AddRequireDev with invalid version and log message
 
+Model (Tests\Acceptance\Playground\Make\Package\Console\Commands\PackageMakeCommand\Model)
+ [x] Command make model package with force and without skeleton
+ [x] Command make model package with force and with skeleton
+
 Options (Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand\Options)
  [x] Command make package with force and with factories
  [x] Command make package with force with factories and with skeleton
@@ -49,6 +53,10 @@ Options (Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeComma
  [x] Command make package with force with license and with skeleton
  [x] Command make package with force and with license without file
  [x] Command make package with force with license and with skeleton without file
+
+Resource (Tests\Acceptance\Playground\Make\Package\Console\Commands\PackageMakeCommand\Resource)
+ [x] Command make resource package with force and without skeleton
+ [x] Command make resource package with force and with skeleton
 
 Types (Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand\Types)
  [x] Command make package with force and with playground type
