@@ -34,6 +34,7 @@ class Package extends PrimaryConfiguration
         'withMigrations' => false,
         'withModels' => false,
         'withPolicies' => false,
+        'withTests' => false,
         'playground' => false,
         'package_name' => '',
         // 'package_autoload' => '',
@@ -54,6 +55,7 @@ class Package extends PrimaryConfiguration
         'transformers' => [],
         'service_provider' => '',
         // 'version' => '0.1.2-alpha.3',
+        'use' => '',
         'type' => '',
         'version' => '',
     ];
@@ -69,6 +71,8 @@ class Package extends PrimaryConfiguration
     protected bool $withModels = false;
 
     protected bool $withPolicies = false;
+
+    protected bool $withTests = false;
 
     protected string $config_space = '';
 
@@ -168,6 +172,10 @@ class Package extends PrimaryConfiguration
 
         if (array_key_exists('withPolicies', $options)) {
             $this->withPolicies = ! empty($options['withPolicies']);
+        }
+
+        if (array_key_exists('withTests', $options)) {
+            $this->withTests = ! empty($options['withTests']);
         }
 
         if (! empty($options['package_name'])
@@ -411,6 +419,11 @@ class Package extends PrimaryConfiguration
     public function withPolicies(): bool
     {
         return $this->withPolicies;
+    }
+
+    public function withTests(): bool
+    {
+        return $this->withTests;
     }
 
     public function config_space(): string

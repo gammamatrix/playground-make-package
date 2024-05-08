@@ -6,7 +6,6 @@
 declare(strict_types=1);
 namespace Playground\Make\Package\Building;
 
-use Illuminate\Support\Str;
 use Playground\Make\Configuration\Model;
 
 /**
@@ -52,7 +51,7 @@ trait BuildModels
         foreach ($this->c->models() as $name => $file) {
             $model = new Model($this->readJsonFileAsArray($file));
             $migration = $model->create()?->migration();
-            if ($migration && !in_array($migration, $migrations)) {
+            if ($migration && ! in_array($migration, $migrations)) {
                 $migrations[] = $migration;
                 $this->searches['publish_migrations'] .= sprintf(
                     '%1$s%2$s\'%3$s.php\',',

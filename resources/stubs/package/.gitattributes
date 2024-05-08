@@ -23,4 +23,5 @@
 # These database components are for testing only.
 /database/factories             export-ignore
 /database/migrations-laravel    export-ignore
-/database/migrations-playgroun  export-ignore
+/database/migrations-package    export-ignore
+/database/migrations-playground export-ignore

@@ -7,7 +7,6 @@ declare(strict_types=1);
 namespace Playground\Make\Package\Console\Commands;
 
 use Illuminate\Console\Concerns\CreatesMatchingTest;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Playground\Make\Configuration\Contracts\PrimaryConfiguration as PrimaryConfigurationContract;
 use Playground\Make\Console\Commands\GeneratorCommand;
@@ -30,6 +29,8 @@ class PackageMakeCommand extends GeneratorCommand
     use Building\BuildTests;
     use Building\MakeCommands;
     use CreatesMatchingTest;
+
+    public const INDENT = '    ';
 
     /**
      * @var class-string<Configuration>
@@ -182,6 +183,12 @@ class PackageMakeCommand extends GeneratorCommand
             ]);
         }
 
+        if ($this->hasOption('test') && $this->option('test')) {
+            $this->c->setOptions([
+                'withTests' => true,
+            ]);
+        }
+
         if ($this->hasOption('playground') && $this->option('playground')) {
             $this->c->setOptions([
                 'playground' => true,
@@ -197,7 +204,7 @@ class PackageMakeCommand extends GeneratorCommand
 
     public function finish(): ?bool
     {
-        $this->createComposerJson($this->searches, $this->autoload);
+        $this->createComposerJson();
         $this->createConfig($this->searches);
         $this->createSkeleton($this->searches);
 
@@ -206,7 +213,7 @@ class PackageMakeCommand extends GeneratorCommand
         // $this->handle_requests();
         $this->handle_controllers();
 
-        if ($this->hasOption('test') && $this->option('test')) {
+        if ($this->c->withTests()) {
             $this->createTest();
         }
 

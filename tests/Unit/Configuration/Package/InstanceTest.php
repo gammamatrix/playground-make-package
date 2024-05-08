@@ -45,6 +45,7 @@ class InstanceTest extends TestCase
         'withMigrations' => false,
         'withModels' => false,
         'withPolicies' => false,
+        'withTests' => false,
         'playground' => false,
         'package_name' => '',
         'package_description' => '',
@@ -63,6 +64,7 @@ class InstanceTest extends TestCase
         'routes' => [],
         'transformers' => [],
         'service_provider' => '',
+        'use' => '',
         'type' => '',
         'version' => '',
     ];

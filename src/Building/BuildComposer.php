@@ -21,24 +21,18 @@ trait BuildComposer
     //     }
     // },
 
-    abstract protected function setConfigurationByKey(string $key, string $value): void;
+    // abstract protected function setConfigurationByKey(string $key, string $value): void;
 
-    abstract protected function isConfigurationByKeyEmpty(string $key): bool;
+    // abstract protected function isConfigurationByKeyEmpty(string $key): bool;
 
-    /**
-     * @param array<string, string> $searches
-     * @param array<string, array<string, string>> $autoload
-     */
-    protected function make_composer_autoload(array &$searches, array &$autoload): string
+    protected function make_composer_autoload(): string
     {
-        $indent = '    ';
-
         $element = '%2$s';
 
         $content = '';
 
-        if (!(empty($searches['package_require'])
-            && empty($searches['package_require_dev'])
+        if (! (empty($this->searches['package_require'])
+            && empty($this->searches['package_require_dev'])
         )) {
             $element .= '%1$s%2$s';
         }
@@ -49,31 +43,31 @@ trait BuildComposer
 
         $psr4 = '';
 
-        if (empty($searches['package_autoload'])
-            && empty($autoload['psr-4'])
-            && ! empty($searches['namespace'])
+        if (empty($this->searches['package_autoload'])
+            && empty($this->autoload['psr-4'])
+            && ! empty($this->searches['namespace'])
         ) {
 
-            $autoload['psr-4'] = [];
+            $this->autoload['psr-4'] = [];
 
-            $autoload['psr-4'][addslashes(sprintf('%1$s\\', $searches['namespace']))] = 'src';
+            $this->autoload['psr-4'][addslashes(sprintf('%1$s\\', $this->searches['namespace']))] = 'src';
 
             if (! $this->isConfigurationByKeyEmpty('factories')) {
-                $autoload['psr-4'][addslashes(sprintf('%1$s\Database\Factories', $searches['namespace']))] = 'database/factories';
+                $this->autoload['psr-4'][addslashes(sprintf('%1$s\Database\Factories', $this->searches['namespace']))] = 'database/factories';
             }
         }
 
-        if (! empty($autoload['psr-4'])
-            && is_array($autoload['psr-4'])
+        if (! empty($this->autoload['psr-4'])
+            && is_array($this->autoload['psr-4'])
         ) {
             $i = 0;
-            foreach ($autoload['psr-4'] as $namespace => $folder) {
+            foreach ($this->autoload['psr-4'] as $namespace => $folder) {
                 $psr4 .= sprintf('%2$s"%3$s": "%4$s"%5$s%1$s',
                     PHP_EOL,
-                    str_repeat($indent, 3),
+                    str_repeat(static::INDENT, 3),
                     $namespace,
                     $folder,
-                    (count($autoload['psr-4']) - 2) >= $i ? ',' : ''
+                    (count($this->autoload['psr-4']) - 2) >= $i ? ',' : ''
                 );
                 $i++;
             }
@@ -83,28 +77,26 @@ trait BuildComposer
             $content .= sprintf(
                 $element_psr4,
                 PHP_EOL,
-                str_repeat($indent, 2),
+                str_repeat(static::INDENT, 2),
                 $psr4
             );
         }
 
-        $searches['package_autoload'] = '';
+        $this->searches['package_autoload'] = '';
         if (! empty($content)) {
-            $searches['package_autoload'] = sprintf(
+            $this->searches['package_autoload'] = sprintf(
                 $element,
                 PHP_EOL,
-                str_repeat($indent, 1),
+                str_repeat(static::INDENT, 1),
                 $content
             );
         }
 
-        return $searches['package_autoload'];
+        return $this->searches['package_autoload'];
     }
 
     protected function make_composer_require(): string
     {
-        $indent = '    ';
-
         $element = '%2$s"require": {%1$s%3$s%2$s},';
 
         $content = '';
@@ -127,7 +119,7 @@ trait BuildComposer
         foreach ($package_require as $package => $versions) {
             $content .= sprintf('%2$s"%3$s": "%4$s"%5$s%1$s',
                 PHP_EOL,
-                str_repeat($indent, 2),
+                str_repeat(static::INDENT, 2),
                 $package,
                 $versions,
                 (count($package_require) - 2) >= $i ? ',' : ''
@@ -141,7 +133,7 @@ trait BuildComposer
             $this->searches['package_require'] = sprintf(
                 $element,
                 PHP_EOL,
-                str_repeat($indent, 1),
+                str_repeat(static::INDENT, 1),
                 $content
             );
         }
@@ -151,8 +143,6 @@ trait BuildComposer
 
     protected function make_composer_require_dev(): string
     {
-        $indent = '    ';
-
         $element = '%2$s';
 
         if (! empty($this->searches['package_require'])) {
@@ -175,7 +165,7 @@ trait BuildComposer
         foreach ($package_require_dev as $package => $versions) {
             $content .= sprintf('%2$s"%3$s": "%4$s"%5$s%1$s',
                 PHP_EOL,
-                str_repeat($indent, 2),
+                str_repeat(static::INDENT, 2),
                 $package,
                 $versions,
                 (count($package_require_dev) - 2) >= $i ? ',' : ''
@@ -188,7 +178,7 @@ trait BuildComposer
             $this->searches['package_require_dev'] = sprintf(
                 $element,
                 PHP_EOL,
-                str_repeat($indent, 1),
+                str_repeat(static::INDENT, 1),
                 $content
             );
         }
@@ -196,95 +186,68 @@ trait BuildComposer
         return $this->searches['package_require_dev'];
     }
 
-    /**
-     * @param array<string, string> $searches
-     */
-    protected function make_composer_keywords(array &$searches): string
+    protected function make_composer_keywords(): string
     {
-        $indent = '    ';
+        $package_keywords = $this->c->package_keywords();
 
         $element = '%2$s"keywords": [%1$s%3$s%2$s],';
 
         $content = '';
 
-        if (empty($searches['package_keywords'])) {
-            $searches['package_keywords'] = [
-                'laravel',
-                // 'playground',
-            ];
+        if (empty($package_keywords)) {
+            $package_keywords[] = 'laravel';
         }
 
-        if (! empty($searches['package_keywords'])
-            && is_array($searches['package_keywords'])
-        ) {
-            foreach ($searches['package_keywords'] as $i => $keyword) {
-                $content .= sprintf('%2$s"%3$s"%4$s%1$s',
-                    PHP_EOL,
-                    str_repeat($indent, 2),
-                    $keyword,
-                    (count($searches['package_keywords']) - 2) >= $i ? ',' : ''
-                );
-                // $content = trim($content, ',');
-            }
+        if ($this->c->playground() && ! in_array('playground', $package_keywords)) {
+            $package_keywords[] = 'playground';
         }
 
-        $searches['package_keywords'] = '';
+        foreach ($package_keywords as $i => $keyword) {
+            $content .= sprintf('%2$s"%3$s"%4$s%1$s',
+                PHP_EOL,
+                str_repeat(static::INDENT, 2),
+                $keyword,
+                (count($package_keywords) - 2) >= $i ? ',' : ''
+            );
+        }
+
+        $this->searches['package_keywords'] = '';
         if (! empty($content)) {
-            $searches['package_keywords'] = sprintf(
+            $this->searches['package_keywords'] = sprintf(
                 $element,
                 PHP_EOL,
-                str_repeat($indent, 1),
+                str_repeat(static::INDENT, 1),
                 $content
             );
         }
 
-        return $searches['package_keywords'];
+        return $this->searches['package_keywords'];
     }
 
-    /**
-     * @param array<string, string> $searches
-     */
-    protected function make_composer_packagist(array &$searches): string
+    protected function make_composer_packagist(): string
     {
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     // '$searches[packagist]' => $searches['packagist'],
-        //     '$searches' => $searches,
-        // ]);
+        $this->searches['packagist'] = '';
 
-        $searches['packagist'] = '';
+        $packagist = $this->c->packagist();
+        $package = $this->c->package();
 
-        if (empty($searches['packagist'])
-            && ! empty($searches['package'])
-        ) {
-            $searches['packagist'] = sprintf(
+        if (!$packagist && $package) {
+            $packagist = sprintf(
                 '%1$s/%2$s',
                 Str::of($this->rootNamespace())->before('\\')->slug('-')->toString(),
-                $searches['package'],
+                $package,
             );
         }
 
-        if ($searches['packagist']) {
-            $this->setConfigurationByKey('packagist', $searches['packagist']);
+        if ($packagist) {
+            $this->setConfigurationByKey('packagist', $packagist);
         }
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$searches[packagist]' => $searches['packagist'],
-        //     '$searches' => $searches,
-        //     '$this->searches' => $this->searches,
-        //     '$this->c' => $this->c,
-        // ]);
 
-        return $searches['packagist'];
+        return $this->searches['packagist'];
     }
 
-    /**
-     * @param array<string, string> $searches
-     */
     protected function make_composer_license(): string
     {
-        $indent = '    ';
-
         $package_license = $this->c->package_license();
 
         $element = '%1$s%2$s"license": "%3$s",';
@@ -295,7 +258,7 @@ trait BuildComposer
             $this->searches['package_license'] = sprintf(
                 $element,
                 PHP_EOL,
-                str_repeat($indent, 1),
+                str_repeat(static::INDENT, 1),
                 $package_license
             );
         }
@@ -303,38 +266,33 @@ trait BuildComposer
         return $this->searches['package_license'];
     }
 
-    /**
-     * @param array<string, string> $searches
-     */
-    protected function make_composer_homepage(array &$searches): string
+    protected function make_composer_homepage(): string
     {
-        $indent = '    ';
+        $package_homepage = $this->c->package_homepage();
 
         $element = '%1$s%2$s"homepage": "%3$s",';
 
-        $searches['package_homepage'] = '';
+        $this->searches['package_homepage'] = '';
 
-        if (! empty($searches['package_homepage'])
-            && is_string($searches['package_homepage'])
-            && filter_var($searches['package_homepage'], FILTER_VALIDATE_URL)
+        if ($package_homepage
+            && filter_var($package_homepage, FILTER_VALIDATE_URL)
         ) {
-            $searches['package_homepage'] = sprintf(
+            $this->searches['package_homepage'] = sprintf(
                 $element,
                 PHP_EOL,
-                str_repeat($indent, 1),
-                $searches['package_homepage']
+                str_repeat(static::INDENT, 1),
+                $package_homepage
             );
         }
 
-        return $searches['package_homepage'];
+        return $this->searches['package_homepage'];
     }
 
-    /**
-     * @param array<string, string> $searches
-     */
-    protected function make_composer_providers(array &$searches): string
+    protected function make_composer_providers(): string
     {
-        $indent = '    ';
+        $package_laravel_providers = $this->c->package_laravel_providers();
+
+        $this->searches['package_laravel_providers'] = '';
 
         $element = '%1$s%2$s%3$s%4$s';
 
@@ -342,10 +300,10 @@ trait BuildComposer
 
         $providers = [];
 
-        if (empty($searches['package_laravel_providers'])) {
-            $providers[] = addslashes(sprintf('%1$s\ServiceProvider', $searches['namespace']));
-        } elseif (is_array($searches['package_laravel_providers'])) {
-            foreach ($searches['package_laravel_providers'] as $provider) {
+        if (! $package_laravel_providers) {
+            $providers[] = addslashes(sprintf('%1$s\ServiceProvider', $this->searches['namespace']));
+        } else {
+            foreach ($package_laravel_providers as $provider) {
                 if (! empty($provider) && is_string($provider)) {
                     $providers[] = addslashes($provider);
                 }
@@ -356,49 +314,44 @@ trait BuildComposer
         foreach ($providers as $provider) {
             $content .= sprintf('%2$s"%3$s"%4$s%1$s',
                 PHP_EOL,
-                str_repeat($indent, 3),
+                str_repeat(static::INDENT, 3),
                 $provider,
                 (count($providers) - 2) >= $i ? ',' : ''
             );
             $i++;
         }
 
-        $searches['package_laravel_providers'] = '';
         if (! empty($content)) {
-            $searches['package_laravel_providers'] = sprintf(
+            $this->searches['package_laravel_providers'] = sprintf(
                 $element,
                 PHP_EOL,
-                str_repeat($indent, 1),
+                str_repeat(static::INDENT, 1),
                 $content,
-                str_repeat($indent, 3)
+                str_repeat(static::INDENT, 3)
             );
         }
 
-        return $searches['package_laravel_providers'];
+        return $this->searches['package_laravel_providers'];
     }
 
     /**
      * Create the configuration folder for the package.
-     *
-     * @param array<string, string> $searches
-     * @param array<string, array<string, string>> $autoload
-     * @return void
      */
-    protected function createComposerJson(array &$searches, array &$autoload)
+    protected function createComposerJson(): void
     {
         $path_stub = 'package/composer.stub';
         $path = $this->resolveStubPath($path_stub);
 
         $stub = $this->files->get($path);
 
-        $this->make_composer_packagist($searches);
-        $this->make_composer_keywords($searches);
+        $this->make_composer_packagist();
+        $this->make_composer_keywords();
         $this->make_composer_license();
-        $this->make_composer_homepage($searches);
+        $this->make_composer_homepage();
         $this->make_composer_require();
         $this->make_composer_require_dev();
-        $this->make_composer_autoload($searches, $autoload);
-        $this->make_composer_providers($searches);
+        $this->make_composer_autoload();
+        $this->make_composer_providers();
 
         $this->search_and_replace($stub);
 

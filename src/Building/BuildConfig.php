@@ -34,8 +34,8 @@ trait BuildConfig
         if (! $config_space) {
             $config_space = Str::of($this->c->namespace())
                 ->upper()
-                ->trim('/',)
-                ->trim('\\',)
+                ->trim('/')
+                ->trim('\\')
                 ->replace('/', '_')
                 ->replace('\\', '_')
                 ->toString();
