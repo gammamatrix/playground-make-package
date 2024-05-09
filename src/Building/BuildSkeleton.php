@@ -13,10 +13,8 @@ trait BuildSkeleton
 {
     /**
      * Create the skeleton configuration
-     *
-     * @param array<string, string> $searches
      */
-    protected function createSkeleton(array &$searches): void
+    protected function createSkeleton(): void
     {
         $skeletons = [];
 
@@ -32,22 +30,6 @@ trait BuildSkeleton
         } else {
             $skeletons['README.md'] = 'README.md';
         }
-
-        // $destinationPath = $this->getDestinationPath();
-
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$full_path' => $full_path,
-        //     'dirname($full_path)' => dirname($full_path),
-        //     '$path' => $path,
-        //     '$destination' => $destination,
-        //     '$this->folder' => $this->folder,
-        //     '$this->qualifiedName' => $this->qualifiedName,
-        //     // '$stub' => $stub,
-        //     // '$destination' => $destination,
-        //     // '$searches' => $searches,
-        //     '$this->rootNamespace()' => $this->rootNamespace(),
-        // ]);
 
         foreach ($skeletons as $skeleton => $file) {
 

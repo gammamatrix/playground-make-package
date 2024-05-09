@@ -15,10 +15,8 @@ trait BuildConfig
 {
     /**
      * Create the configuration folder for the package.
-     *
-     * @param array<string, string> $searches
      */
-    protected function createConfig(array &$searches): void
+    protected function createConfig(): void
     {
         if (! $this->c->config()
             || ! preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $this->c->config())
@@ -76,21 +74,6 @@ trait BuildConfig
             dirname($this->folder()),
             $file
         );
-
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$path_stub' => $path_stub,
-        //     '$path' => $path,
-        //     '$config_space' => $config_space,
-        //     '$destination' => $destination,
-        //     '$this->folder' => $this->folder,
-        //     '$this->qualifiedName' => $this->qualifiedName,
-        //     // '$stub' => $stub,
-        //     // '$destination' => $destination,
-        //     // '$searches' => $searches,
-        //     '$this->rootNamespace()' => $this->rootNamespace(),
-        //     '$this->c->namespace()' => $this->c->namespace(),
-        // ]);
 
         $stub = $this->files->get($path);
 

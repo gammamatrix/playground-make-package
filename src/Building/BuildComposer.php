@@ -14,17 +14,6 @@ use Illuminate\Support\Str;
  */
 trait BuildComposer
 {
-    // "autoload": {
-    //     "psr-4": {
-    //         "GammaMatrix\\Playground\\Cms\\Api\\": "src",
-    //         "GammaMatrix\\Playground\\Cms\\Api\\Database\\Factories\\": "database/factories"
-    //     }
-    // },
-
-    // abstract protected function setConfigurationByKey(string $key, string $value): void;
-
-    // abstract protected function isConfigurationByKeyEmpty(string $key): bool;
-
     protected function make_composer_autoload(): string
     {
         $element = '%2$s';
@@ -231,7 +220,7 @@ trait BuildComposer
         $packagist = $this->c->packagist();
         $package = $this->c->package();
 
-        if (!$packagist && $package) {
+        if (! $packagist && $package) {
             $packagist = sprintf(
                 '%1$s/%2$s',
                 Str::of($this->rootNamespace())->before('\\')->slug('-')->toString(),

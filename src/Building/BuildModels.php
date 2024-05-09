@@ -15,18 +15,16 @@ trait BuildModels
 {
     public function command_models(): void
     {
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     // '$his->option(license)' => $this->option('license'),
-        //     '$models' => $models,
-        // ]);
-
         $params = [
             '--file' => '',
         ];
 
         if ($this->hasOption('force') && $this->option('force')) {
             $params['--force'] = true;
+        }
+
+        if ($this->hasOption('test') && $this->option('test')) {
+            $params['--test'] = true;
         }
 
         foreach ($this->c->models() as $model => $file) {
@@ -36,8 +34,15 @@ trait BuildModels
                 if ($this->c->skeleton()) {
                     $params['--skeleton'] = true;
                 }
-
+                // dump([
+                //     '__METHOD__' => __METHOD__,
+                //     '$params' => $params,
+                // ]);
                 $this->call('playground:make:model', $params);
+                // dd([
+                //     '__METHOD__' => __METHOD__,
+                //     '$this->c' => $this->c,
+                // ]);
             }
         }
     }

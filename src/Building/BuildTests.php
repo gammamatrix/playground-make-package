@@ -16,10 +16,7 @@ trait BuildTests
     public function createTest(): void
     {
         $type = $this->c->type();
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$type' => $type,
-        // ]);
+
         if (in_array($type, [
             'playground-model',
         ])) {

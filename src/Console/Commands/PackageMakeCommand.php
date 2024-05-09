@@ -205,8 +205,8 @@ class PackageMakeCommand extends GeneratorCommand
     public function finish(): ?bool
     {
         $this->createComposerJson();
-        $this->createConfig($this->searches);
-        $this->createSkeleton($this->searches);
+        $this->createConfig();
+        $this->createSkeleton();
 
         $this->command_models();
         // $this->handle_policies();
