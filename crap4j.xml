@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-08 22:59:34</timestamp>
+  <timestamp>2024-05-09 06:20:16</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>60</methodCount>
     <crapMethodCount>1</crapMethodCount>
     <crapLoad>5</crapLoad>
-    <totalCrap>354.92</totalCrap>
+    <totalCrap>356.96</totalCrap>
     <crapMethodPercent>1.67</crapMethodPercent>
   </stats>
   <methods>
@@ -114,8 +114,8 @@
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildConfig</className>
       <methodName>createConfig</methodName>
-      <methodSignature>createConfig(array $searches): void</methodSignature>
-      <fullMethod>createConfig(array $searches): void</fullMethod>
+      <methodSignature>createConfig(): void</methodSignature>
+      <fullMethod>createConfig(): void</fullMethod>
       <crap>7</crap>
       <complexity>7</complexity>
       <coverage>95.74</coverage>
@@ -127,9 +127,9 @@
       <methodName>command_models</methodName>
       <methodSignature>command_models(): void</methodSignature>
       <fullMethod>command_models(): void</fullMethod>
-      <crap>7</crap>
-      <complexity>7</complexity>
-      <coverage>100</coverage>
+      <crap>9.04</crap>
+      <complexity>9</complexity>
+      <coverage>92.31</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -147,8 +147,8 @@
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildSkeleton</className>
       <methodName>createSkeleton</methodName>
-      <methodSignature>createSkeleton(array $searches): void</methodSignature>
-      <fullMethod>createSkeleton(array $searches): void</fullMethod>
+      <methodSignature>createSkeleton(): void</methodSignature>
+      <fullMethod>createSkeleton(): void</fullMethod>
       <crap>3</crap>
       <complexity>3</complexity>
       <coverage>100</coverage>
