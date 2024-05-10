@@ -24,13 +24,11 @@ class PackageMakeCommand extends GeneratorCommand
 {
     use Building\BuildComposer;
     use Building\BuildConfig;
+    use Building\BuildControllers;
     use Building\BuildModels;
     use Building\BuildSkeleton;
     use Building\BuildTests;
-    use Building\MakeCommands;
     use CreatesMatchingTest;
-
-    public const INDENT = '    ';
 
     /**
      * @var class-string<Configuration>
@@ -65,7 +63,7 @@ class PackageMakeCommand extends GeneratorCommand
         'policies' => '',
         'publish_migrations' => '',
         'routes' => '',
-        'version' => '1.0.0',
+        'version' => '',
     ];
 
     protected string $path_destination_folder = 'src';
@@ -125,10 +123,17 @@ class PackageMakeCommand extends GeneratorCommand
         $options[] = ['factories', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model factories.'];
         $options[] = ['migrations', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model migrations.'];
         $options[] = ['models', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have models.'];
-        $options[] = ['policies', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model policies.'];
+        $options[] = ['policies', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have policies.'];
+        $options[] = ['requests', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have requests.'];
+        $options[] = ['routes', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have routes.'];
         $options[] = ['license', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' license.'];
+        $options[] = ['package-version', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' version.'];
+        $options[] = ['build', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' controllers, policies, requests and routes for the models'];
         $options[] = ['playground', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use Playground features'];
+        $options[] = ['swagger', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' the Swagger documentation'];
         $options[] = ['test', null, InputOption::VALUE_NONE, 'Create the unit and feature tests for the '.strtolower($this->type)];
+        $options[] = ['api', null, InputOption::VALUE_NONE, 'Generate an API controller class when creating the model. Requires --controllers option'];
+        $options[] = ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class when creating the model. Requires --controllers option'];
 
         return $options;
     }
@@ -143,6 +148,8 @@ class PackageMakeCommand extends GeneratorCommand
         //     ]);
         // }
 
+        $build = $this->hasOption('build') && $this->option('build');
+
         if ($this->hasOption('license')
             && is_string($this->option('license'))
             && $this->option('license')
@@ -155,7 +162,7 @@ class PackageMakeCommand extends GeneratorCommand
 
         if ($this->hasOption('controllers') && $this->option('controllers')) {
             $this->c->setOptions([
-                'withControllers' => true,
+                'withControllers' => ! $build,
             ]);
         }
 
@@ -179,7 +186,25 @@ class PackageMakeCommand extends GeneratorCommand
 
         if ($this->hasOption('policies') && $this->option('policies')) {
             $this->c->setOptions([
-                'withPolicies' => true,
+                'withPolicies' => ! $build,
+            ]);
+        }
+
+        if ($this->hasOption('requests') && $this->option('requests')) {
+            $this->c->setOptions([
+                'withRequests' => ! $build,
+            ]);
+        }
+
+        if ($this->hasOption('routes') && $this->option('routes')) {
+            $this->c->setOptions([
+                'withRoutes' => ! $build,
+            ]);
+        }
+
+        if ($this->hasOption('swagger') && $this->option('swagger')) {
+            $this->c->setOptions([
+                'withSwagger' => ! $build,
             ]);
         }
 
@@ -200,17 +225,33 @@ class PackageMakeCommand extends GeneratorCommand
         ])) {
             $this->make_published_models();
         }
+
+        if ($this->hasOption('package-version')
+            && is_string($this->option('package-version'))
+            && $this->option('package-version')
+        ) {
+            $this->c->setOptions([
+                'version' => $this->option('package-version'),
+            ]);
+            $this->searches['version'] = $this->c->version();
+        }
     }
 
     public function finish(): ?bool
     {
+        $build = $this->hasOption('build') && $this->option('build');
+
         $this->createComposerJson();
         $this->createConfig();
         $this->createSkeleton();
+        // $this->setPackageVersion();
 
-        $this->command_models();
-        // $this->handle_policies();
-        // $this->handle_requests();
+        if (! $build) {
+            $this->handle_models();
+        } else {
+            $this->build_crud();
+        }
+
         $this->handle_controllers();
 
         if ($this->c->withTests()) {
@@ -268,5 +309,10 @@ class PackageMakeCommand extends GeneratorCommand
         }
 
         return $this->resolveStubPath($template);
+    }
+
+    public function handleName(string $name): string
+    {
+        return 'ServiceProvider';
     }
 }

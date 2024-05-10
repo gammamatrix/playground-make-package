@@ -38,23 +38,36 @@ These examples use [Playground Matrix](https://github.com/gammamatrix/playground
 
 
 ```sh
-artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix --package playground-matrix --module Matrix --type playground-model --playground --factories --migrations --models --skeleton --force
+artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix --package playground-matrix --module Matrix --type playground-model --package-version 73.0.0 --playground --factories --migrations --models --test --skeleton --force
 ```
 
 ```sh
-artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force
+artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force --test
 ```
 
 #### Build: Playground Api
 
+
 ```sh
-artisan playground:make:package Matrix --namespace Playground/Matrix/Api --package playground-matrix-api --module Matrix --type playground-api --playground --skeleton --force
+artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force --build --api --skeleton
+```
+
+
+
+```sh
+artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix/Api --package playground-matrix-api --module Matrix --type playground-api --playground --controllers --policies --requests --routes --test --skeleton --force
 ```
 
 #### Build: Playground Resource
 
 ```sh
-artisan playground:make:package Matrix --namespace Playground/Matrix/Resource --package playground-matrix-resource --module Matrix  --type playground-resource --playground --skeleton --force
+artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force --build --resource --skeleton
+```
+
+
+
+```sh
+artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix/Resource --package playground-matrix-resource --module Matrix  --type playground-resource --playground --controllers --policies --requests --routes --test --skeleton --force
 ```
 
 

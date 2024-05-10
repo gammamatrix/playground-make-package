@@ -34,6 +34,9 @@ class Package extends PrimaryConfiguration
         'withMigrations' => false,
         'withModels' => false,
         'withPolicies' => false,
+        'withRequests' => false,
+        'withRoutes' => false,
+        'withSwagger' => false,
         'withTests' => false,
         'playground' => false,
         'package_name' => '',
@@ -71,6 +74,12 @@ class Package extends PrimaryConfiguration
     protected bool $withModels = false;
 
     protected bool $withPolicies = false;
+
+    protected bool $withRequests = false;
+
+    protected bool $withRoutes = false;
+
+    protected bool $withSwagger = false;
 
     protected bool $withTests = false;
 
@@ -172,6 +181,18 @@ class Package extends PrimaryConfiguration
 
         if (array_key_exists('withPolicies', $options)) {
             $this->withPolicies = ! empty($options['withPolicies']);
+        }
+
+        if (array_key_exists('withRequests', $options)) {
+            $this->withRequests = ! empty($options['withRequests']);
+        }
+
+        if (array_key_exists('withRoutes', $options)) {
+            $this->withRoutes = ! empty($options['withRoutes']);
+        }
+
+        if (array_key_exists('withSwagger', $options)) {
+            $this->withSwagger = ! empty($options['withSwagger']);
         }
 
         if (array_key_exists('withTests', $options)) {
@@ -419,6 +440,21 @@ class Package extends PrimaryConfiguration
     public function withPolicies(): bool
     {
         return $this->withPolicies;
+    }
+
+    public function withRequests(): bool
+    {
+        return $this->withRequests;
+    }
+
+    public function withRoutes(): bool
+    {
+        return $this->withRoutes;
+    }
+
+    public function withSwagger(): bool
+    {
+        return $this->withSwagger;
     }
 
     public function withTests(): bool

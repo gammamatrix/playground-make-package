@@ -51,4 +51,11 @@ trait BuildSkeleton
             $this->components->info(sprintf('%s [%s] created successfully.', $file, $full_path));
         }
     }
+
+    protected function setPackageVersion(): void
+    {
+        if (! $this->c->version() && $this->c->skeleton()) {
+            $this->c->setOptions(['version' => '1.0.0']);
+        }
+    }
 }

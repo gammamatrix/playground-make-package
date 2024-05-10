@@ -13,7 +13,7 @@ use Playground\Make\Configuration\Model;
  */
 trait BuildModels
 {
-    public function command_models(): void
+    public function handle_models(): void
     {
         $params = [
             '--file' => '',
@@ -39,10 +39,6 @@ trait BuildModels
                 //     '$params' => $params,
                 // ]);
                 $this->call('playground:make:model', $params);
-                // dd([
-                //     '__METHOD__' => __METHOD__,
-                //     '$this->c' => $this->c,
-                // ]);
             }
         }
     }

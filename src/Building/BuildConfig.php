@@ -37,6 +37,10 @@ trait BuildConfig
                 ->replace('/', '_')
                 ->replace('\\', '_')
                 ->toString();
+
+            $this->c->setOptions([
+                'config_space' => $config_space,
+            ]);
         }
 
         $this->searches['config_space'] = $config_space;
