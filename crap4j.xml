@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-10 19:55:56</timestamp>
+  <timestamp>2024-05-11 17:25:19</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>65</methodCount>
+    <methodCount>66</methodCount>
     <crapMethodCount>4</crapMethodCount>
-    <crapLoad>43</crapLoad>
-    <totalCrap>755.29</totalCrap>
-    <crapMethodPercent>6.15</crapMethodPercent>
+    <crapLoad>44</crapLoad>
+    <totalCrap>762.33</totalCrap>
+    <crapMethodPercent>6.06</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -259,10 +259,10 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>58</crap>
-      <complexity>54</complexity>
-      <coverage>88.89</coverage>
-      <crapLoad>7</crapLoad>
+      <crap>64.04</crap>
+      <complexity>57</complexity>
+      <coverage>87.06</coverage>
+      <crapLoad>9</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
@@ -490,6 +490,17 @@
       <methodName>package_autoload_psr4</methodName>
       <methodSignature>package_autoload_psr4(): array</methodSignature>
       <fullMethod>package_autoload_psr4(): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>package_providers</methodName>
+      <methodSignature>package_providers(): array</methodSignature>
+      <fullMethod>package_providers(): array</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
