@@ -6,7 +6,6 @@
 declare(strict_types=1);
 namespace Playground\Make\Package\Building;
 
-// use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -35,7 +34,6 @@ trait BuildComposer
         $psr4 = '';
 
         if ($this->c->withFactories()) {
-            // "Database\\Factories\\Playground\\Matrix\\Models\\": "database/factories/",
             $this->autoload['psr-4'][addslashes(sprintf('Database\\Factories\\%1$s\\Models\\', $this->searches['namespace']))] = 'database/factories';
         }
 
@@ -78,10 +76,6 @@ trait BuildComposer
             );
         }
 
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$this->searches[package_autoload]' => $this->searches['package_autoload'],
-        // ]);
         return $this->searches['package_autoload'];
     }
 
@@ -145,11 +139,6 @@ trait BuildComposer
             );
         }
 
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$this->c->withTests()' => $this->c->withTests(),
-        //     '$this->searches[package_autoload_dev]' => $this->searches['package_autoload_dev'],
-        // ]);
         return $this->searches['package_autoload_dev'];
     }
 
@@ -282,6 +271,25 @@ trait BuildComposer
         return $this->searches['package_keywords'];
     }
 
+    protected function make_composer_package_name(): string
+    {
+        $package_name = $this->c->package_name();
+        $package = $this->c->package();
+
+        if (! $package_name && $package) {
+            $package_name = sprintf(
+                '%1$s%2$s%3$s',
+                $this->c->organization(),
+                $this->c->organization() ? ': ' : '',
+                $this->c->name(),
+            );
+            $this->c->setOptions(['package_name' => $package_name]);
+            $this->searches['package_name'] = $this->c->package_name();
+        }
+
+        return $this->searches['package_name'];
+    }
+
     protected function make_composer_packagist(): string
     {
         $packagist = $this->c->packagist();
@@ -297,14 +305,6 @@ trait BuildComposer
             $this->searches['packagist'] = $this->c->packagist();
         }
 
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$packagist' => $packagist,
-        //     '$package' => $package,
-        //     '$this->c->packagist()' => $this->c->packagist(),
-        //     '$this->c->package()' => $this->c->package(),
-        //     '$this->searches[packagist]' => $this->searches['packagist'],
-        // ]);
         return $this->searches['packagist'];
     }
 
@@ -406,6 +406,7 @@ trait BuildComposer
 
         $stub = $this->files->get($path);
 
+        $this->make_composer_package_name();
         $this->make_composer_packagist();
         $this->make_composer_keywords();
         $this->make_composer_license();

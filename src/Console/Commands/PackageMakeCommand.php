@@ -268,7 +268,7 @@ class PackageMakeCommand extends GeneratorCommand
         $this->createComposerJson();
         $this->createConfig();
         $this->createSkeleton();
-        // $this->setPackageVersion();
+        $this->setPackageVersion();
 
         if (! $build) {
             $this->handle_models();
