@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-11 20:25:53</timestamp>
+  <timestamp>2024-05-11 20:50:41</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>69</methodCount>
+    <methodCount>70</methodCount>
     <crapMethodCount>4</crapMethodCount>
     <crapLoad>50</crapLoad>
-    <totalCrap>877.25</totalCrap>
-    <crapMethodPercent>5.8</crapMethodPercent>
+    <totalCrap>872.23</totalCrap>
+    <crapMethodPercent>5.71</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -64,6 +64,17 @@
       <crap>7</crap>
       <complexity>7</complexity>
       <coverage>95.65</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildComposer</className>
+      <methodName>make_composer_package_name</methodName>
+      <methodSignature>make_composer_package_name(): string</methodSignature>
+      <fullMethod>make_composer_package_name(): string</fullMethod>
+      <crap>4</crap>
+      <complexity>4</complexity>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -204,9 +215,9 @@
       <methodName>setPackageVersion</methodName>
       <methodSignature>setPackageVersion(): void</methodSignature>
       <fullMethod>setPackageVersion(): void</fullMethod>
-      <crap>12</crap>
+      <crap>3</crap>
       <complexity>3</complexity>
-      <coverage>0</coverage>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -677,9 +688,9 @@
       <methodName>finish</methodName>
       <methodSignature>finish(): ?bool</methodSignature>
       <fullMethod>finish(): ?bool</fullMethod>
-      <crap>5.09</crap>
+      <crap>5.07</crap>
       <complexity>5</complexity>
-      <coverage>84.62</coverage>
+      <coverage>85.71</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
