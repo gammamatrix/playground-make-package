@@ -42,7 +42,7 @@ artisan playground:make:package Matrix --license MIT --namespace Playground/Matr
 ```
 
 ```sh
-artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force --test
+artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force
 ```
 
 #### Build: Playground Api

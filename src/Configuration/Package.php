@@ -48,6 +48,7 @@ class Package extends PrimaryConfiguration
         'package_require' => [],
         'package_require_dev' => [],
         'package_autoload_psr4' => [],
+        'package_providers' => [],
         'package_laravel_providers' => [],
         'packagist' => '',
         'controllers' => [],
@@ -56,9 +57,9 @@ class Package extends PrimaryConfiguration
         'requests' => [],
         'routes' => [],
         'transformers' => [],
+        'uses' => [],
         'service_provider' => '',
         // 'version' => '0.1.2-alpha.3',
-        'use' => '',
         'type' => '',
         'version' => '',
     ];
@@ -114,6 +115,11 @@ class Package extends PrimaryConfiguration
      * @var array<int, string>
      */
     protected array $package_autoload_psr4 = [];
+
+    /**
+     * @var array<int, string>
+     */
+    protected array $package_providers = [];
 
     /**
      * @var array<int, string>
@@ -261,13 +267,13 @@ class Package extends PrimaryConfiguration
             }
         }
 
-        // if (! empty($options['package_providers'])
-        //     && is_array($options['package_providers'])
-        // ) {
-        //     foreach ($options['package_providers'] as $provider) {
-        //         $this->addClassTo('package_providers', $provider);
-        //     }
-        // }
+        if (! empty($options['package_providers'])
+            && is_array($options['package_providers'])
+        ) {
+            foreach ($options['package_providers'] as $provider) {
+                $this->addClassTo('package_providers', $provider);
+            }
+        }
 
         if (! empty($options['packagist'])
             && is_string($options['packagist'])
@@ -522,6 +528,16 @@ class Package extends PrimaryConfiguration
     public function package_autoload_psr4(): array
     {
         return $this->package_autoload_psr4;
+    }
+
+    /**
+     * package_providers is used for tests in the PackageProviders trait.
+     *
+     * @return array<int, string>
+     */
+    public function package_providers(): array
+    {
+        return $this->package_providers;
     }
 
     /**
