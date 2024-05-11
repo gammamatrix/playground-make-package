@@ -16,6 +16,8 @@ trait BuildComposer
 {
     protected function make_composer_autoload(): string
     {
+        $this->autoload['psr-4'] = [];
+
         $element = '%2$s';
 
         $content = '';
@@ -32,18 +34,13 @@ trait BuildComposer
 
         $psr4 = '';
 
-        if (empty($this->searches['package_autoload'])
-            && empty($this->autoload['psr-4'])
-            && ! empty($this->searches['namespace'])
-        ) {
+        if ($this->c->withFactories()) {
+            // "Database\\Factories\\Playground\\Matrix\\Models\\": "database/factories/",
+            $this->autoload['psr-4'][addslashes(sprintf('Database\\Factories\\%1$s\\Models\\', $this->searches['namespace']))] = 'database/factories';
+        }
 
-            $this->autoload['psr-4'] = [];
-
+        if ($this->c->class() === 'ServiceProvider') {
             $this->autoload['psr-4'][addslashes(sprintf('%1$s\\', $this->searches['namespace']))] = 'src';
-
-            if (! $this->isConfigurationByKeyEmpty('factories')) {
-                $this->autoload['psr-4'][addslashes(sprintf('%1$s\Database\Factories', $this->searches['namespace']))] = 'database/factories';
-            }
         }
 
         if (! empty($this->autoload['psr-4'])
@@ -81,7 +78,79 @@ trait BuildComposer
             );
         }
 
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->searches[package_autoload]' => $this->searches['package_autoload'],
+        // ]);
         return $this->searches['package_autoload'];
+    }
+
+    protected function make_composer_autoload_dev(): string
+    {
+        $this->autoload['dev-psr-4'] = [];
+
+        $element = '%2$s';
+
+        $content = '';
+
+        if (! (empty($this->searches['package_require'])
+            && empty($this->searches['package_require_dev'])
+        )) {
+            $element .= '%1$s%2$s';
+        }
+
+        $element .= '"autoload_dev": {%1$s%3$s%2$s},';
+
+        $element_psr4 = '%2$s"psr-4": {%1$s%3$s%2$s}%1$s';
+
+        $psr4 = '';
+
+        if ($this->c->withTests()) {
+            $this->autoload['dev-psr-4'][addslashes(sprintf('Tests\\Feature\\%1$s\\', $this->searches['namespace']))] = 'tests/Feature';
+            $this->autoload['dev-psr-4'][addslashes(sprintf('Tests\\Unit\\%1$s\\', $this->searches['namespace']))] = 'tests/Unit';
+        }
+
+        if (! empty($this->autoload['dev-psr-4'])
+            && is_array($this->autoload['dev-psr-4'])
+        ) {
+            $i = 0;
+            foreach ($this->autoload['dev-psr-4'] as $namespace => $folder) {
+                $psr4 .= sprintf('%2$s"%3$s": "%4$s"%5$s%1$s',
+                    PHP_EOL,
+                    str_repeat(static::INDENT, 3),
+                    $namespace,
+                    $folder,
+                    (count($this->autoload['dev-psr-4']) - 2) >= $i ? ',' : ''
+                );
+                $i++;
+            }
+        }
+
+        if (! empty($psr4)) {
+            $content .= sprintf(
+                $element_psr4,
+                PHP_EOL,
+                str_repeat(static::INDENT, 2),
+                $psr4
+            );
+        }
+
+        $this->searches['package_autoload_dev'] = '';
+        if (! empty($content)) {
+            $this->searches['package_autoload_dev'] = sprintf(
+                $element,
+                PHP_EOL,
+                str_repeat(static::INDENT, 1),
+                $content
+            );
+        }
+
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->withTests()' => $this->c->withTests(),
+        //     '$this->searches[package_autoload_dev]' => $this->searches['package_autoload_dev'],
+        // ]);
+        return $this->searches['package_autoload_dev'];
     }
 
     protected function make_composer_require(): string
@@ -215,8 +284,6 @@ trait BuildComposer
 
     protected function make_composer_packagist(): string
     {
-        $this->searches['packagist'] = '';
-
         $packagist = $this->c->packagist();
         $package = $this->c->package();
 
@@ -226,12 +293,18 @@ trait BuildComposer
                 Str::of($this->rootNamespace())->before('\\')->slug('-')->toString(),
                 $package,
             );
+            $this->c->setOptions(['packagist' => $packagist]);
+            $this->searches['packagist'] = $this->c->packagist();
         }
 
-        if ($packagist) {
-            $this->setConfigurationByKey('packagist', $packagist);
-        }
-
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$packagist' => $packagist,
+        //     '$package' => $package,
+        //     '$this->c->packagist()' => $this->c->packagist(),
+        //     '$this->c->package()' => $this->c->package(),
+        //     '$this->searches[packagist]' => $this->searches['packagist'],
+        // ]);
         return $this->searches['packagist'];
     }
 
@@ -340,6 +413,7 @@ trait BuildComposer
         $this->make_composer_require();
         $this->make_composer_require_dev();
         $this->make_composer_autoload();
+        $this->make_composer_autoload_dev();
         $this->make_composer_providers();
 
         $this->search_and_replace($stub);

@@ -30,7 +30,7 @@ trait BuildTests
         } elseif (in_array($type, [
             'playground-resource',
         ])) {
-            $this->command_tests_providers('providers-esource');
+            $this->command_tests_providers('providers-resource');
             $this->command_tests_playground_resource();
         }
     }

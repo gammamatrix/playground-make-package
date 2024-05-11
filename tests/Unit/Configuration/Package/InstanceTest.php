@@ -38,6 +38,7 @@ class InstanceTest extends TestCase
         'name' => '',
         'namespace' => '',
         'organization' => '',
+        'organization_email' => '',
         'package' => '',
         // properties
         'withControllers' => false,
@@ -59,6 +60,7 @@ class InstanceTest extends TestCase
         'package_require' => [],
         'package_require_dev' => [],
         'package_autoload_psr4' => [],
+        'package_autoload_dev_psr4' => [],
         'package_providers' => [],
         'package_laravel_providers' => [],
         'packagist' => '',

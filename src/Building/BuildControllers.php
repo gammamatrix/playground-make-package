@@ -85,6 +85,7 @@ trait BuildControllers
 
         if ($isApi) {
             $params_controller['--api'] = true;
+            $params_controller['--policies'] = true;
             $params_controller['--requests'] = true;
             $params_controller['--routes'] = true;
             $params_controller['--swagger'] = true;
@@ -94,10 +95,15 @@ trait BuildControllers
             // $params_controller['--blade'] = true;
             $params_controller['--policies'] = true;
             $params_controller['--requests'] = true;
+            $params_controller['--resource'] = true;
             $params_controller['--routes'] = true;
             $params_controller['--swagger'] = true;
             $params_controller['--test'] = true;
             $params_controller['--type'] = 'playground-resource';
+        }
+
+        if ($this->c->playground()) {
+            $params_controller['--playground'] = true;
         }
 
         foreach ($this->c->models() as $model => $file) {
@@ -109,17 +115,17 @@ trait BuildControllers
                 $params_controller['name'] = Str::of($model->name())->studly()->finish('Controller')->toString();
                 $params_controller['--model-file'] = $file;
 
-                // dump([
+                // dd([
                 //     '__METHOD__' => __METHOD__,
                 //     '$params_controller' => $params_controller,
-                //     '$this->c' => $this->c,
+                //     // '$this->c' => $this->c,
                 // ]);
                 $this->createControllerForModel($model, $package, $params_controller);
 
-                dd([
-                    '__METHOD__' => __METHOD__,
-                    '$this->c' => $this->c->toArray(),
-                ]);
+                // dd([
+                //     '__METHOD__' => __METHOD__,
+                //     '$this->c' => $this->c->toArray(),
+                // ]);
             }
         }
     }

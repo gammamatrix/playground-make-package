@@ -58,6 +58,7 @@ class PackageMakeCommand extends GeneratorCommand
         'package_require_dev' => '',
         'package_scripts' => '',
         'package_autoload_psr4' => '',
+        'package_autoload_dev' => '',
         'package_laravel_providers' => '',
         'packagist' => '',
         'policies' => '',
@@ -108,6 +109,7 @@ class PackageMakeCommand extends GeneratorCommand
      */
     protected array $autoload = [
         'psr-4' => [],
+        'dev-psr-4' => [],
     ];
 
     /**
@@ -127,7 +129,9 @@ class PackageMakeCommand extends GeneratorCommand
         $options[] = ['requests', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have requests.'];
         $options[] = ['routes', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have routes.'];
         $options[] = ['license', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' license.'];
+        $options[] = ['email', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' organization email.'];
         $options[] = ['package-version', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' version.'];
+        $options[] = ['packagist', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' packagist name in composer.json.'];
         $options[] = ['build', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' controllers, policies, requests and routes for the models'];
         $options[] = ['playground', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use Playground features'];
         $options[] = ['swagger', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' the Swagger documentation'];
@@ -150,6 +154,16 @@ class PackageMakeCommand extends GeneratorCommand
 
         $build = $this->hasOption('build') && $this->option('build');
 
+        if ($this->hasOption('packagist')
+            && is_string($this->option('packagist'))
+            && $this->option('packagist')
+        ) {
+            $this->c->setOptions([
+                'packagist' => $this->option('packagist'),
+            ]);
+            $this->searches['packagist'] = $this->c->packagist();
+        }
+
         if ($this->hasOption('license')
             && is_string($this->option('license'))
             && $this->option('license')
@@ -158,6 +172,16 @@ class PackageMakeCommand extends GeneratorCommand
                 'package_license' => $this->option('license'),
             ]);
             $this->searches['package_license'] = $this->c->package_license();
+        }
+
+        if ($this->hasOption('email')
+            && is_string($this->option('email'))
+            && $this->option('email')
+        ) {
+            $this->c->setOptions([
+                'organization_email' => $this->option('email'),
+            ]);
+            $this->searches['organization_email'] = $this->c->organization_email();
         }
 
         if ($this->hasOption('controllers') && $this->option('controllers')) {
@@ -258,7 +282,9 @@ class PackageMakeCommand extends GeneratorCommand
             $this->createTest();
         }
 
-        $this->saveConfiguration();
+        if (! $build) {
+            $this->saveConfiguration();
+        }
 
         return $this->return_status;
     }

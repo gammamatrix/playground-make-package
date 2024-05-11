@@ -27,6 +27,7 @@ class Package extends PrimaryConfiguration
         'name' => '',
         'namespace' => '',
         'organization' => '',
+        'organization_email' => '',
         'package' => '',
         // properties
         'withControllers' => false,
@@ -48,6 +49,7 @@ class Package extends PrimaryConfiguration
         'package_require' => [],
         'package_require_dev' => [],
         'package_autoload_psr4' => [],
+        'package_autoload_dev_psr4' => [],
         'package_providers' => [],
         'package_laravel_providers' => [],
         'packagist' => '',
@@ -86,6 +88,8 @@ class Package extends PrimaryConfiguration
 
     protected string $config_space = '';
 
+    protected string $organization_email = '';
+
     protected string $package_name = '';
 
     // protected string $package_autoload = '';
@@ -115,6 +119,11 @@ class Package extends PrimaryConfiguration
      * @var array<int, string>
      */
     protected array $package_autoload_psr4 = [];
+
+    /**
+     * @var array<int, string>
+     */
+    protected array $package_autoload_dev_psr4 = [];
 
     /**
      * @var array<int, string>
@@ -215,6 +224,12 @@ class Package extends PrimaryConfiguration
             && is_string($options['config_space'])
         ) {
             $this->config_space = $options['config_space'];
+        }
+
+        if (! empty($options['organization_email'])
+            && is_string($options['organization_email'])
+        ) {
+            $this->organization_email = $options['organization_email'];
         }
 
         // if (! empty($options['package_autoload'])
@@ -473,6 +488,11 @@ class Package extends PrimaryConfiguration
         return $this->config_space;
     }
 
+    public function organization_email(): string
+    {
+        return $this->organization_email;
+    }
+
     public function package_name(): string
     {
         return $this->package_name;
@@ -528,6 +548,14 @@ class Package extends PrimaryConfiguration
     public function package_autoload_psr4(): array
     {
         return $this->package_autoload_psr4;
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function package_autoload_dev_psr4(): array
+    {
+        return $this->package_autoload_dev_psr4;
     }
 
     /**
