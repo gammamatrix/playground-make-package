@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-11 17:25:19</timestamp>
+  <timestamp>2024-05-11 20:25:53</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>66</methodCount>
+    <methodCount>69</methodCount>
     <crapMethodCount>4</crapMethodCount>
-    <crapLoad>44</crapLoad>
-    <totalCrap>762.33</totalCrap>
-    <crapMethodPercent>6.06</crapMethodPercent>
+    <crapLoad>50</crapLoad>
+    <totalCrap>877.25</totalCrap>
+    <crapMethodPercent>5.8</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -17,9 +17,20 @@
       <methodName>make_composer_autoload</methodName>
       <methodSignature>make_composer_autoload(): string</methodSignature>
       <fullMethod>make_composer_autoload(): string</fullMethod>
-      <crap>13</crap>
-      <complexity>13</complexity>
-      <coverage>97.67</coverage>
+      <crap>11</crap>
+      <complexity>11</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildComposer</className>
+      <methodName>make_composer_autoload_dev</methodName>
+      <methodSignature>make_composer_autoload_dev(): string</methodSignature>
+      <fullMethod>make_composer_autoload_dev(): string</fullMethod>
+      <crap>31.6</crap>
+      <complexity>10</complexity>
+      <coverage>40</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -61,8 +72,8 @@
       <methodName>make_composer_packagist</methodName>
       <methodSignature>make_composer_packagist(): string</methodSignature>
       <fullMethod>make_composer_packagist(): string</fullMethod>
-      <crap>4</crap>
-      <complexity>4</complexity>
+      <crap>3</crap>
+      <complexity>3</complexity>
       <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -138,10 +149,10 @@
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>342</crap>
-      <complexity>18</complexity>
+      <crap>380</crap>
+      <complexity>19</complexity>
       <coverage>0</coverage>
-      <crapLoad>18</crapLoad>
+      <crapLoad>19</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -259,9 +270,9 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>64.04</crap>
-      <complexity>57</complexity>
-      <coverage>87.06</coverage>
+      <crap>67.83</crap>
+      <complexity>59</complexity>
+      <coverage>86.36</coverage>
       <crapLoad>9</crapLoad>
     </method>
     <method>
@@ -410,6 +421,17 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>organization_email</methodName>
+      <methodSignature>organization_email(): string</methodSignature>
+      <fullMethod>organization_email(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
       <methodName>package_name</methodName>
       <methodSignature>package_name(): string</methodSignature>
       <fullMethod>package_name(): string</fullMethod>
@@ -490,6 +512,17 @@
       <methodName>package_autoload_psr4</methodName>
       <methodSignature>package_autoload_psr4(): array</methodSignature>
       <fullMethod>package_autoload_psr4(): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>package_autoload_dev_psr4</methodName>
+      <methodSignature>package_autoload_dev_psr4(): array</methodSignature>
+      <fullMethod>package_autoload_dev_psr4(): array</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
@@ -633,10 +666,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>60.06</crap>
-      <complexity>30</complexity>
-      <coverage>67.8</coverage>
-      <crapLoad>10</crapLoad>
+      <crap>101.57</crap>
+      <complexity>36</complexity>
+      <coverage>63.01</coverage>
+      <crapLoad>14</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Console\Commands</package>
@@ -644,9 +677,9 @@
       <methodName>finish</methodName>
       <methodSignature>finish(): ?bool</methodSignature>
       <fullMethod>finish(): ?bool</fullMethod>
-      <crap>4.07</crap>
-      <complexity>4</complexity>
-      <coverage>83.33</coverage>
+      <crap>5.09</crap>
+      <complexity>5</complexity>
+      <coverage>84.62</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
