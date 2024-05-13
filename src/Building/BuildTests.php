@@ -11,7 +11,7 @@ namespace Playground\Make\Package\Building;
  */
 trait BuildTests
 {
-    protected bool $createTest = false;
+    // protected bool $createTest = false;
 
     public function createTest(): void
     {
@@ -32,6 +32,8 @@ trait BuildTests
         ])) {
             $this->command_tests_providers('providers-resource');
             $this->command_tests_playground_resource();
+            $this->command_tests_playground_request_test_case();
+            $this->command_tests_playground_service_provider();
         }
     }
 
@@ -64,7 +66,7 @@ trait BuildTests
 
         $this->call('playground:make:test', $options);
 
-        $this->createTest = true;
+        // $this->createTest = true;
     }
 
     public function command_tests_playground_model(): void
@@ -96,11 +98,93 @@ trait BuildTests
         $options['--suite'] = 'feature';
         $this->call('playground:make:test', $options);
 
-        $this->createTest = true;
+        // $this->createTest = true;
     }
 
     public function command_tests_playground_resource(): void
     {
+        $force = $this->hasOption('force') && $this->option('force');
 
+        $options = [
+            'name' => 'TestCase',
+            '--namespace' => $this->c->namespace(),
+            '--force' => $force,
+            '--playground' => true,
+            '--package' => $this->c->package(),
+            '--organization' => $this->c->organization(),
+            '--module' => $this->c->module(),
+            '--type' => 'playground-resource-test-case',
+        ];
+
+        if ($this->c->skeleton()) {
+            $options['--skeleton'] = true;
+        }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$options' => $options,
+        // ]);
+
+        $options['--suite'] = 'unit';
+        $this->call('playground:make:test', $options);
+
+        $options['--suite'] = 'feature';
+        $this->call('playground:make:test', $options);
+
+        // $this->createTest = true;
+
+    }
+
+    public function command_tests_playground_request_test_case(): void
+    {
+        $force = $this->hasOption('force') && $this->option('force');
+
+        $options = [
+            'name' => 'RequestTestCase',
+            '--namespace' => $this->c->namespace(),
+            '--force' => $force,
+            '--playground' => true,
+            '--package' => $this->c->package(),
+            '--organization' => $this->c->organization(),
+            '--module' => $this->c->module(),
+            '--type' => 'playground-request-test-case',
+        ];
+
+        if ($this->c->skeleton()) {
+            $options['--skeleton'] = true;
+        }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$options' => $options,
+        // ]);
+
+        $options['--suite'] = 'unit';
+        $this->call('playground:make:test', $options);
+    }
+
+    public function command_tests_playground_service_provider(): void
+    {
+        $force = $this->hasOption('force') && $this->option('force');
+
+        $options = [
+            'name' => 'InstanceTest',
+            '--namespace' => $this->c->namespace(),
+            '--force' => $force,
+            '--playground' => true,
+            '--package' => $this->c->package(),
+            '--organization' => $this->c->organization(),
+            '--module' => $this->c->module(),
+            '--type' => 'playground-service-provider-policies',
+        ];
+
+        if ($this->c->skeleton()) {
+            $options['--skeleton'] = true;
+        }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$options' => $options,
+        // ]);
+
+        $options['--suite'] = 'unit';
+        $this->call('playground:make:test', $options);
     }
 }

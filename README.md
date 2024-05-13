@@ -35,11 +35,13 @@ These examples use [Playground Matrix](https://github.com/gammamatrix/playground
 
 #### Build: Playground Model
 
-
+Create the model package skeleton:
 
 ```sh
 artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix --package playground-matrix --module Matrix --packagist gammamatrix/playground-matrix --type playground-model --package-version 73.0.0 --email support@example.com --playground --factories --migrations --models --test --skeleton --force
 ```
+
+Build the models out for the package:
 
 ```sh
 artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force
@@ -47,45 +49,41 @@ artisan playground:make:package --file resources/configurations/playground-matri
 
 #### Build: Playground Api
 
+Create the API package skeleton:
+
+```sh
+artisan playground:make:package "Matrix API" --license MIT --namespace Playground/Matrix/Api --package playground-matrix-api --module Matrix --packagist gammamatrix/playground-matrix-api --type playground-api --package-version 73.0.0 --email support@example.com --playground --api --controllers --policies --requests --routes --swagger --test --skeleton --force
+```
+
+Pass the models into the API package and build:
 
 ```sh
 artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force --build --api
 ```
 
+Build the out the controllers, policies, requests, resources, routes, Swagger Documentation, and tests:
 
 ```sh
-artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix/Api --package playground-matrix-api --module Matrix --type playground-api --package-version 73.0.0 --playground --api --controllers --policies --requests --routes --swagger --test --skeleton --force
-```
-
-```sh
-artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force
-```
-
-
-
-```sh
-artisan playground:make:package "Matrix Resource" --license MIT --namespace Playground/Matrix/Api --package playground-matrix-api --module Matrix --type playground-api --playground --controllers --policies --requests --routes --test --skeleton --force
+artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix-api.json --force
 ```
 
 #### Build: Playground Resource
 
 ```sh
-artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix/Resource --package playground-matrix-resource --module Matrix --type playground-resource --package-version 73.0.0 --playground --resource --controllers --policies --requests --routes --swagger --test --skeleton --force
+artisan playground:make:package "Matrix Resource" --license MIT --namespace Playground/Matrix/Resource --package playground-matrix-resource --module Matrix --packagist gammamatrix/playground-matrix-resource --type playground-resource --package-version 73.0.0 --email support@example.com --playground --resource --controllers --blade --policies --requests --routes --swagger --test --skeleton --force
 ```
+
+Pass the models into the Resource package and build:
 
 ```sh
-artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force --build --api
+artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force --build --resource
 ```
 
-
+Build the out the Blade templates, controllers, policies, requests, resources, routes, Swagger Documentation, and tests:
 
 ```sh
-artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix.json --force --build --resource --skeleton
+artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix-resource.json --force
 ```
-
-
-
-
 
 ## PHPStan
 

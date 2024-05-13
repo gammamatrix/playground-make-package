@@ -30,6 +30,7 @@ class Package extends PrimaryConfiguration
         'organization_email' => '',
         'package' => '',
         // properties
+        'withBlades' => false,
         'withControllers' => false,
         'withFactories' => false,
         'withMigrations' => false,
@@ -67,6 +68,8 @@ class Package extends PrimaryConfiguration
     ];
 
     protected string $class = 'ServiceProvider';
+
+    protected bool $withBlades = false;
 
     protected bool $withControllers = false;
 
@@ -177,6 +180,10 @@ class Package extends PrimaryConfiguration
     public function setOptions(array $options = []): self
     {
         parent::setOptions($options);
+
+        if (array_key_exists('withBlades', $options)) {
+            $this->withBlades = ! empty($options['withBlades']);
+        }
 
         if (array_key_exists('withControllers', $options)) {
             $this->withControllers = ! empty($options['withControllers']);
@@ -436,6 +443,11 @@ class Package extends PrimaryConfiguration
         }
 
         return $this;
+    }
+
+    public function withBlades(): bool
+    {
+        return $this->withBlades;
     }
 
     public function withControllers(): bool

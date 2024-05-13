@@ -1,6 +1,6 @@
 <?php
 /**
- * Playground
+ * {{ organization }}
  */
 
 declare(strict_types=1);
@@ -28,11 +28,71 @@ return [
     | Loading
     |--------------------------------------------------------------------------
     |
-    | By default, translations are loaded.
+    | By default, translations and views are loaded.
     |
     */
 
     'load' => [
+        'policies' => (bool) env('{{ config_space }}_LOAD_POLICIES', true),
+        'routes' => (bool) env('{{ config_space }}_LOAD_ROUTES', true),
         'translations' => (bool) env('{{ config_space }}_LOAD_TRANSLATIONS', true),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Middleware
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'middleware' => [
+        'default' => env('{{ config_space }}_MIDDLEWARE_DEFAULT', ['web']),
+        'auth' => env('{{ config_space }}_MIDDLEWARE_AUTH', ['web', 'auth']),
+        'guest' => env('{{ config_space }}_MIDDLEWARE_GUEST', ['web']),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Policies
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'policies' => [
+{{config_policies}}
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Routes
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'routes' => [
+{{config_routes}}
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Abilities
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'abilities' => [
+        'admin' => [
+            '{{ package }}:*',
+        ],
+        'manager' => [
+{{config_abilities_manager}}
+        ],
+        'user' => [
+{{config_abilities_user}}
+        ],
     ],
 ];

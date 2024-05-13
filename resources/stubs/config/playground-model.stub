@@ -1,6 +1,6 @@
 <?php
 /**
- * Playground
+ * {{ organization }}
  */
 
 declare(strict_types=1);

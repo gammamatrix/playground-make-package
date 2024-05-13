@@ -41,6 +41,7 @@ class InstanceTest extends TestCase
         'organization_email' => '',
         'package' => '',
         // properties
+        'withBlades' => false,
         'withControllers' => false,
         'withFactories' => false,
         'withMigrations' => false,

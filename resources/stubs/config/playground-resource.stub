@@ -1,6 +1,6 @@
 <?php
 /**
- * Playground
+ * {{ organization }}
  */
 
 declare(strict_types=1);
@@ -33,7 +33,92 @@ return [
     */
 
     'load' => [
-        'commands' => (bool) env('{{ config_space }}_LOAD_COMMANDS', true),
+        'policies' => (bool) env('{{ config_space }}_LOAD_POLICIES', true),
+        'routes' => (bool) env('{{ config_space }}_LOAD_ROUTES', true),
+        'translations' => (bool) env('{{ config_space }}_LOAD_TRANSLATIONS', true),
         'views' => (bool) env('{{ config_space }}_LOAD_VIEWS', true),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Middleware
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'middleware' => [
+        'default' => env('{{ config_space }}_MIDDLEWARE_DEFAULT', ['web']),
+        'auth' => env('{{ config_space }}_MIDDLEWARE_AUTH', ['web', 'auth']),
+        'guest' => env('{{ config_space }}_MIDDLEWARE_GUEST', ['web']),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Policies
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'policies' => [
+{{config_policies}}
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Routes
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'routes' => [
+{{config_routes}}
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sitemap
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'sitemap' => [
+        'enable' => (bool) env('{{ config_space }}_SITEMAP_ENABLE', true),
+        'guest' => (bool) env('{{ config_space }}_SITEMAP_GUEST', true),
+        'user' => (bool) env('{{ config_space }}_SITEMAP_USER', true),
+        'view' => env('{{ config_space }}_SITEMAP_VIEW', '{{ package }}::sitemap'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Templates
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'blade' => env('{{ config_space }}_BLADE', '{{ package }}::'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Abilities
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'abilities' => [
+        'admin' => [
+            '{{ package }}:*',
+        ],
+        'manager' => [
+{{config_abilities_manager}}
+        ],
+        'user' => [
+{{config_abilities_user}}
+        ],
     ],
 ];

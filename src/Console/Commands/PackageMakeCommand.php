@@ -63,6 +63,10 @@ class PackageMakeCommand extends GeneratorCommand
         'packagist' => '',
         'policies' => '',
         'publish_migrations' => '',
+        'config_policies' => '',
+        'config_routes' => '',
+        'config_abilities_manager' => '',
+        'config_abilities_user' => '',
         'routes' => '',
         'version' => '',
     ];
@@ -121,17 +125,18 @@ class PackageMakeCommand extends GeneratorCommand
     {
         $options = parent::getOptions();
 
-        $options[] = ['controllers', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have controllers.'];
-        $options[] = ['factories', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model factories.'];
-        $options[] = ['migrations', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model migrations.'];
-        $options[] = ['models', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have models.'];
-        $options[] = ['policies', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have policies.'];
-        $options[] = ['requests', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have requests.'];
-        $options[] = ['routes', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have routes.'];
-        $options[] = ['license', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' license.'];
-        $options[] = ['email', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' organization email.'];
-        $options[] = ['package-version', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' version.'];
-        $options[] = ['packagist', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' packagist name in composer.json.'];
+        $options[] = ['blade', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have blade templates'];
+        $options[] = ['controllers', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have controllers'];
+        $options[] = ['factories', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model factories'];
+        $options[] = ['migrations', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model migrations'];
+        $options[] = ['models', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have models'];
+        $options[] = ['policies', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have policies'];
+        $options[] = ['requests', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have requests'];
+        $options[] = ['routes', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have routes'];
+        $options[] = ['license', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' license'];
+        $options[] = ['email', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' organization email'];
+        $options[] = ['package-version', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' version'];
+        $options[] = ['packagist', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' packagist name in composer.json'];
         $options[] = ['build', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' controllers, policies, requests and routes for the models'];
         $options[] = ['playground', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use Playground features'];
         $options[] = ['swagger', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' the Swagger documentation'];
@@ -182,6 +187,12 @@ class PackageMakeCommand extends GeneratorCommand
                 'organization_email' => $this->option('email'),
             ]);
             $this->searches['organization_email'] = $this->c->organization_email();
+        }
+
+        if ($this->hasOption('blade') && $this->option('blade')) {
+            $this->c->setOptions([
+                'withBlades' => ! $build,
+            ]);
         }
 
         if ($this->hasOption('controllers') && $this->option('controllers')) {
@@ -273,6 +284,7 @@ class PackageMakeCommand extends GeneratorCommand
         if (! $build) {
             $this->handle_models();
         } else {
+            $this->createBaseController();
             $this->build_crud();
         }
 

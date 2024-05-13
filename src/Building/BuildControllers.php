@@ -161,16 +161,94 @@ trait BuildControllers
             $params['--test'] = true;
         }
 
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$params' => $params,
-        ]);
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$params' => $params,
+        // ]);
         if (! $this->call('playground:make:controller', $params)) {
             $file_controller = sprintf(
                 '%1$s/app/stub/%2$s/resources/packages/%3$s/controller.json',
                 $this->laravel->storagePath(),
                 $package,
                 Str::of($model->name())->kebab()->toString()
+            );
+            $this->c->addClassFileTo('controllers', $file_controller);
+            // dd([
+            //     '__METHOD__' => __METHOD__,
+            //     '$file_controller' => $file_controller,
+            //     '$package' => $package,
+            //     // '$this->c' => $this->c->toArray(),
+            //     '$this->c' => $this->c,
+            // ]);
+        }
+    }
+
+    /**
+     * Create a base controller.
+     *
+     * @see PolicyMakeCommand
+     * @see SeederMakeCommand
+     * @see TestMakeCommand
+     */
+    protected function createBaseController(): void
+    {
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
+
+        $namespace = $this->c->namespace();
+
+        if ($namespace) {
+            $namespace = $this->parseClassConfig($namespace);
+            if ($isApi) {
+                $namespace = Str::of($namespace)->finish('/Api')->studly()->toString();
+            } elseif ($isResource) {
+                $namespace = Str::of($namespace)->finish('/Resource')->studly()->toString();
+            }
+        }
+
+        $package = $this->c->package();
+        if ($package && $this->c->playground()) {
+            if ($isApi) {
+                $package = Str::of($package)->finish('-api')->toString();
+            } elseif ($isResource) {
+                $package = Str::of($package)->finish('-resource')->toString();
+            }
+        }
+
+        $params = [
+            'name' => 'Controller',
+            '--abstract' => true,
+            '--namespace' => $namespace,
+            '--package' => $package,
+            '--type' => 'base',
+        ];
+        $namespace = $this->c->namespace();
+
+        if ($this->c->playground()) {
+            $params['--playground'] = true;
+        }
+
+        if ($this->hasOption('force') && $this->option('force')) {
+            $params['--force'] = true;
+        }
+
+        if ($this->c->skeleton()) {
+            $params['--skeleton'] = true;
+        }
+
+        // if ($this->c->withTests()) {
+        //     $params['--test'] = true;
+        // }
+
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$params' => $params,
+        // ]);
+        if (! $this->call('playground:make:controller', $params)) {
+            $file_controller = sprintf(
+                '%1$s/app/stub/%2$s/resources/packages/controller.base.json',
+                $this->laravel->storagePath(),
+                $package,
             );
             $this->c->addClassFileTo('controllers', $file_controller);
             // dd([
