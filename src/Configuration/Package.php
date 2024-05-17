@@ -161,7 +161,7 @@ class Package extends PrimaryConfiguration
     protected array $requests = [];
 
     /**
-     * @var array<int, string>
+     * @var array<string, string>
      */
     protected array $routes = [];
 
@@ -445,6 +445,23 @@ class Package extends PrimaryConfiguration
         return $this;
     }
 
+    public function addRoute(
+        string $slug,
+        string $file = ''
+    ): self {
+
+        if (empty($slug)) {
+            throw new \RuntimeException(__('playground-make-package::configuration.addRoute.slug.required', [
+                'class' => static::class,
+                'file' => $file,
+            ]));
+        }
+
+        $this->routes[$slug] = $file;
+
+        return $this;
+    }
+
     public function withBlades(): bool
     {
         return $this->withBlades;
@@ -626,7 +643,7 @@ class Package extends PrimaryConfiguration
     }
 
     /**
-     * @return array<int, string>
+     * @return array<string, string>
      */
     public function routes(): array
     {

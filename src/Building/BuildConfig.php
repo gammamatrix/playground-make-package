@@ -42,7 +42,10 @@ trait BuildConfig
                 'config_space' => $config_space,
             ]);
         }
-
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->config_space()' => $this->c->config_space(),
+        // ]);
         $this->searches['config_space'] = $config_space;
 
         $path_stub = 'config/default.stub';

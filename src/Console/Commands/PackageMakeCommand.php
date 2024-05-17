@@ -26,6 +26,7 @@ class PackageMakeCommand extends GeneratorCommand
     use Building\BuildConfig;
     use Building\BuildControllers;
     use Building\BuildModels;
+    use Building\BuildServiceProvider;
     use Building\BuildSkeleton;
     use Building\BuildTests;
     use CreatesMatchingTest;
@@ -69,6 +70,8 @@ class PackageMakeCommand extends GeneratorCommand
         'config_abilities_user' => '',
         'routes' => '',
         'version' => '',
+        'about_routes' => '',
+        'load_routes' => '',
     ];
 
     protected string $path_destination_folder = 'src';
@@ -143,6 +146,7 @@ class PackageMakeCommand extends GeneratorCommand
         $options[] = ['test', null, InputOption::VALUE_NONE, 'Create the unit and feature tests for the '.strtolower($this->type)];
         $options[] = ['api', null, InputOption::VALUE_NONE, 'Generate an API controller class when creating the model. Requires --controllers option'];
         $options[] = ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class when creating the model. Requires --controllers option'];
+        $options[] = ['model-package', null, InputOption::VALUE_OPTIONAL, 'Provide a model package configuration to import into an API or Resource package.'];
 
         return $options;
     }
@@ -156,8 +160,50 @@ class PackageMakeCommand extends GeneratorCommand
         //         'factories' => true,
         //     ]);
         // }
+        if ($this->hasOption('playground') && $this->option('playground')) {
+            $this->c->setOptions([
+                'playground' => true,
+            ]);
+        }
+
+        $requireConfigSpace = false;
+
+        if ($this->c->playground() && in_array($this->c->type(), [
+            'playground-api',
+            'playground-model',
+            'playground-resource',
+        ])) {
+            $requireConfigSpace = true;
+        }
 
         $build = $this->hasOption('build') && $this->option('build');
+
+        $model_package = $this->hasOption('model-package') && is_string($this->option('model-package')) ? $this->option('model-package') : '';
+        if ($model_package) {
+            $this->load_model_package($model_package);
+        }
+        $config_space = null;
+        if ($requireConfigSpace && ! $this->c->config_space()) {
+            $config_space = Str::of($this->c->namespace())
+                ->upper()
+                ->trim('/')
+                ->trim('\\')
+                ->replace('/', '_')
+                ->replace('\\', '_')
+                ->toString();
+
+            $this->c->setOptions([
+                'config_space' => $config_space,
+            ]);
+            $this->searches['config_space'] = $config_space;
+        }
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c->config_space()' => $this->c->config_space(),
+        //     '$requireConfigSpace' => $requireConfigSpace,
+        //     '$this->searches' => $this->searches,
+        // ]);
 
         if ($this->hasOption('packagist')
             && is_string($this->option('packagist'))
@@ -191,13 +237,13 @@ class PackageMakeCommand extends GeneratorCommand
 
         if ($this->hasOption('blade') && $this->option('blade')) {
             $this->c->setOptions([
-                'withBlades' => ! $build,
+                'withBlades' => true,
             ]);
         }
 
         if ($this->hasOption('controllers') && $this->option('controllers')) {
             $this->c->setOptions([
-                'withControllers' => ! $build,
+                'withControllers' => true,
             ]);
         }
 
@@ -221,37 +267,32 @@ class PackageMakeCommand extends GeneratorCommand
 
         if ($this->hasOption('policies') && $this->option('policies')) {
             $this->c->setOptions([
-                'withPolicies' => ! $build,
+                'withPolicies' => true,
             ]);
         }
 
         if ($this->hasOption('requests') && $this->option('requests')) {
             $this->c->setOptions([
-                'withRequests' => ! $build,
+                'withRequests' => true,
             ]);
         }
 
         if ($this->hasOption('routes') && $this->option('routes')) {
             $this->c->setOptions([
-                'withRoutes' => ! $build,
+                'withRoutes' => true,
             ]);
+            $this->preload_model_routes_for_service_provider();
         }
 
         if ($this->hasOption('swagger') && $this->option('swagger')) {
             $this->c->setOptions([
-                'withSwagger' => ! $build,
+                'withSwagger' => true,
             ]);
         }
 
         if ($this->hasOption('test') && $this->option('test')) {
             $this->c->setOptions([
                 'withTests' => true,
-            ]);
-        }
-
-        if ($this->hasOption('playground') && $this->option('playground')) {
-            $this->c->setOptions([
-                'playground' => true,
             ]);
         }
 
@@ -270,33 +311,42 @@ class PackageMakeCommand extends GeneratorCommand
             ]);
             $this->searches['version'] = $this->c->version();
         }
+
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        // ]);
     }
 
     public function finish(): ?bool
     {
         $build = $this->hasOption('build') && $this->option('build');
 
+        if (! $build) {
+            $this->handle_models();
+            $this->handle_controllers();
+        } else {
+            $this->createBaseController();
+            $this->createResourceIndexController();
+            $this->build_crud();
+        }
+
+        $this->saveConfiguration();
+
         $this->createComposerJson();
         $this->createConfig();
         $this->createSkeleton();
         $this->setPackageVersion();
 
-        if (! $build) {
-            $this->handle_models();
-        } else {
-            $this->createBaseController();
-            $this->build_crud();
-        }
-
-        $this->handle_controllers();
+        $this->saveConfiguration();
 
         if ($this->c->withTests()) {
             $this->createTest();
         }
 
-        if (! $build) {
-            $this->saveConfiguration();
-        }
+        $this->saveConfiguration();
 
         return $this->return_status;
     }

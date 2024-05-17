@@ -8,12 +8,15 @@ namespace Playground\Make\Package\Building;
 
 use Illuminate\Support\Str;
 use Playground\Make\Configuration\Model;
+use Playground\Make\Package\Configuration\Package;
 
 /**
  * \Playground\Make\Package\Building\BuildControllers
  */
 trait BuildControllers
 {
+    protected ?Package $modelPackage = null;
+
     public function handle_controllers(): void
     {
         $params = [
@@ -29,6 +32,15 @@ trait BuildControllers
                 $params['--file'] = $controller;
                 $this->call('playground:make:controller', $params);
             }
+        }
+    }
+
+    public function load_model_package(string $model_package): void
+    {
+        $payload = $this->readJsonFileAsArray($model_package);
+        if (! empty($payload)) {
+            $this->modelPackage = new Package($payload);
+            // $this->modelPackage->apply();
         }
     }
 
@@ -83,6 +95,10 @@ trait BuildControllers
         $params_controller['--model'] = '';
         $params_controller['--module'] = $this->c->module();
 
+        if ($this->c->module_slug()) {
+            $this->c->addRoute($this->c->module_slug());
+        }
+
         if ($isApi) {
             $params_controller['--api'] = true;
             $params_controller['--policies'] = true;
@@ -105,8 +121,8 @@ trait BuildControllers
         if ($this->c->playground()) {
             $params_controller['--playground'] = true;
         }
-
-        foreach ($this->c->models() as $model => $file) {
+        $models = $this->modelPackage?->models() ?? [];
+        foreach ($models as $model => $file) {
             if (is_string($file) && $file) {
 
                 $model = new Model($this->readJsonFileAsArray($file));
@@ -128,6 +144,12 @@ trait BuildControllers
                 // ]);
             }
         }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->routes()' => $this->c->routes(),
+        // ]);
+
+        $this->make_service_provider_routes();
     }
 
     /**
@@ -166,13 +188,25 @@ trait BuildControllers
         //     '$params' => $params,
         // ]);
         if (! $this->call('playground:make:controller', $params)) {
+            $model_slug = Str::of($model->name())->kebab()->toString();
+            $model_plural_slug = Str::of($model->model_plural())->kebab()->toString();
             $file_controller = sprintf(
                 '%1$s/app/stub/%2$s/resources/packages/%3$s/controller.json',
                 $this->laravel->storagePath(),
                 $package,
-                Str::of($model->name())->kebab()->toString()
+                $model_slug
             );
             $this->c->addClassFileTo('controllers', $file_controller);
+            $file_route = sprintf(
+                '%1$s/app/stub/%2$s/resources/packages/%3$s/route.json',
+                $this->laravel->storagePath(),
+                $package,
+                $model_slug
+            );
+            if ($model_plural_slug) {
+                $this->c->addRoute($model_plural_slug, $file_route);
+            }
+
             // dd([
             //     '__METHOD__' => __METHOD__,
             //     '$file_controller' => $file_controller,
@@ -247,6 +281,84 @@ trait BuildControllers
         if (! $this->call('playground:make:controller', $params)) {
             $file_controller = sprintf(
                 '%1$s/app/stub/%2$s/resources/packages/controller.base.json',
+                $this->laravel->storagePath(),
+                $package,
+            );
+            $this->c->addClassFileTo('controllers', $file_controller);
+            // dd([
+            //     '__METHOD__' => __METHOD__,
+            //     '$file_controller' => $file_controller,
+            //     '$package' => $package,
+            //     // '$this->c' => $this->c->toArray(),
+            //     '$this->c' => $this->c,
+            // ]);
+        }
+    }
+
+    /**
+     * Create a resource index controller.
+     *
+     * @see PolicyMakeCommand
+     * @see SeederMakeCommand
+     * @see TestMakeCommand
+     */
+    protected function createResourceIndexController(): void
+    {
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
+
+        $namespace = $this->c->namespace();
+
+        if ($namespace) {
+            $namespace = $this->parseClassConfig($namespace);
+            if ($isApi) {
+                $namespace = Str::of($namespace)->finish('/Api')->studly()->toString();
+            } elseif ($isResource) {
+                $namespace = Str::of($namespace)->finish('/Resource')->studly()->toString();
+            }
+        }
+
+        $package = $this->c->package();
+        if ($package && $this->c->playground()) {
+            if ($isApi) {
+                $package = Str::of($package)->finish('-api')->toString();
+            } elseif ($isResource) {
+                $package = Str::of($package)->finish('-resource')->toString();
+            }
+        }
+
+        $params = [
+            'name' => 'IndexController',
+            '--namespace' => $namespace,
+            '--package' => $package,
+            '--routes' => true,
+            '--type' => 'playground-resource-index',
+        ];
+        $namespace = $this->c->namespace();
+
+        if ($this->c->playground()) {
+            $params['--playground'] = true;
+        }
+
+        if ($this->hasOption('force') && $this->option('force')) {
+            $params['--force'] = true;
+        }
+
+        if ($this->c->skeleton()) {
+            $params['--skeleton'] = true;
+        }
+
+        // if ($this->c->withTests()) {
+        //     $params['--test'] = true;
+        // }
+
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$params' => $params,
+        // ]);
+        if (! $this->call('playground:make:controller', $params)) {
+            $file_controller = sprintf(
+                '%1$s/app/stub/%2$s/resources/packages/controller.index.json',
                 $this->laravel->storagePath(),
                 $package,
             );

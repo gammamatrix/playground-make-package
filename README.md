@@ -85,6 +85,23 @@ Build the out the Blade templates, controllers, policies, requests, resources, r
 artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix-resource.json --force
 ```
 
+```sh
+artisan playground:make:package "Matrix Resource" --license MIT --namespace Playground/Matrix/Resource --package playground-matrix-resource --module Matrix --packagist gammamatrix/playground-matrix-resource --type playground-resource --package-version 73.0.0 --email support@example.com --playground --resource --controllers --blade --policies --requests --routes --swagger --test --skeleton --force --model-package resources/configurations/playground-matrix/package.playground-matrix-resource.json
+```
+
+**TODO:** working
+- [ ] needs abilities in config
+- [x] needs routes in config
+- [ ] needs required attribute (title) in requests
+- [ ] needs About Command Test
+- [ ] Unit tests: Requests
+- [ ] Unit tests: Policies
+- [ ] Views: also need clean up
+
+```sh
+artisan playground:make:package "Matrix Resource" --license MIT --namespace Playground/Matrix/Resource --package playground-matrix-resource --module Matrix --packagist gammamatrix/playground-matrix-resource --type playground-resource --package-version 73.0.0 --email support@example.com --playground --resource --controllers --blade --policies --requests --routes --swagger --test --skeleton --force --model-package resources/configurations/playground-matrix/package.playground-matrix.json --build
+```
+
 ## PHPStan
 
 Tests at level 9 on:
