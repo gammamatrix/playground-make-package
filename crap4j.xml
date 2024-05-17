@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-13 01:28:41</timestamp>
+  <timestamp>2024-05-17 23:51:29</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>74</methodCount>
-    <crapMethodCount>5</crapMethodCount>
-    <crapLoad>67</crapLoad>
-    <totalCrap>1172.21</totalCrap>
-    <crapMethodPercent>6.76</crapMethodPercent>
+    <methodCount>80</methodCount>
+    <crapMethodCount>6</crapMethodCount>
+    <crapLoad>84</crapLoad>
+    <totalCrap>1527.22</totalCrap>
+    <crapMethodPercent>7.5</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -157,13 +157,24 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>load_model_package</methodName>
+      <methodSignature>load_model_package(string $model_package): void</methodSignature>
+      <fullMethod>load_model_package(string $model_package): void</fullMethod>
+      <crap>6</crap>
+      <complexity>2</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>380</crap>
-      <complexity>19</complexity>
+      <crap>420</crap>
+      <complexity>20</complexity>
       <coverage>0</coverage>
-      <crapLoad>19</crapLoad>
+      <crapLoad>20</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -171,10 +182,10 @@
       <methodName>createControllerForModel</methodName>
       <methodSignature>createControllerForModel(Playground\Make\Configuration\Model $model, string $package, array $params): void</methodSignature>
       <fullMethod>createControllerForModel(Playground\Make\Configuration\Model $model, string $package, array $params): void</fullMethod>
-      <crap>56</crap>
-      <complexity>7</complexity>
+      <crap>72</crap>
+      <complexity>8</complexity>
       <coverage>0</coverage>
-      <crapLoad>7</crapLoad>
+      <crapLoad>8</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -182,6 +193,17 @@
       <methodName>createBaseController</methodName>
       <methodSignature>createBaseController(): void</methodSignature>
       <fullMethod>createBaseController(): void</fullMethod>
+      <crap>240</crap>
+      <complexity>15</complexity>
+      <coverage>0</coverage>
+      <crapLoad>15</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>createResourceIndexController</methodName>
+      <methodSignature>createResourceIndexController(): void</methodSignature>
+      <fullMethod>createResourceIndexController(): void</fullMethod>
       <crap>240</crap>
       <complexity>15</complexity>
       <coverage>0</coverage>
@@ -207,6 +229,28 @@
       <crap>4</crap>
       <complexity>4</complexity>
       <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildServiceProvider</className>
+      <methodName>make_service_provider_routes</methodName>
+      <methodSignature>make_service_provider_routes(): void</methodSignature>
+      <fullMethod>make_service_provider_routes(): void</fullMethod>
+      <crap>30</crap>
+      <complexity>5</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildServiceProvider</className>
+      <methodName>preload_model_routes_for_service_provider</methodName>
+      <methodSignature>preload_model_routes_for_service_provider(): void</methodSignature>
+      <fullMethod>preload_model_routes_for_service_provider(): void</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -289,6 +333,17 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>command_tests_playground_controller_test_case</methodName>
+      <methodSignature>command_tests_playground_controller_test_case(): void</methodSignature>
+      <fullMethod>command_tests_playground_controller_test_case(): void</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
       <methodName>command_tests_playground_request_test_case</methodName>
       <methodSignature>command_tests_playground_request_test_case(): void</methodSignature>
       <fullMethod>command_tests_playground_request_test_case(): void</fullMethod>
@@ -350,6 +405,17 @@
       <crap>17</crap>
       <complexity>17</complexity>
       <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addRoute</methodName>
+      <methodSignature>addRoute(string $slug, string $file): self</methodSignature>
+      <fullMethod>addRoute(string $slug, string $file): self</fullMethod>
+      <crap>6</crap>
+      <complexity>2</complexity>
+      <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -721,10 +787,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>123.4</crap>
-      <complexity>38</complexity>
-      <coverage>61.04</coverage>
-      <crapLoad>16</crapLoad>
+      <crap>109.4</crap>
+      <complexity>45</complexity>
+      <coverage>68.32</coverage>
+      <crapLoad>15</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Console\Commands</package>
@@ -732,9 +798,9 @@
       <methodName>finish</methodName>
       <methodSignature>finish(): ?bool</methodSignature>
       <fullMethod>finish(): ?bool</fullMethod>
-      <crap>5.2</crap>
-      <complexity>5</complexity>
-      <coverage>80</coverage>
+      <crap>4.21</crap>
+      <complexity>4</complexity>
+      <coverage>76.47</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
