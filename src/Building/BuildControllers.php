@@ -46,6 +46,9 @@ trait BuildControllers
 
     public function build_crud(): void
     {
+        $config_policies = '';
+        $policy_line = '%1$s%2$s::class => %3$s\Policies\%4$sPolicy::class,%5$s';
+
         $force = $this->hasOption('force') && $this->option('force');
         // $withControllers = $this->hasOption('controllers') && $this->option('controllers');
         // $withPolicies = $this->hasOption('policies') && $this->option('policies');
@@ -138,6 +141,15 @@ trait BuildControllers
                 // ]);
                 $this->createControllerForModel($model, $package, $params_controller);
 
+                // Playground\Matrix\Models\Backlog::class => Playground\Matrix\Resource\Policies\BacklogPolicy::class,
+                $config_policies .= sprintf($policy_line,
+                    str_repeat(static::INDENT, 2),
+                    $this->parseClassInput($model->fqdn()),
+                    $this->parseClassInput($this->c->namespace()),
+                    $model->model(),
+                    PHP_EOL,
+                );
+
                 // dd([
                 //     '__METHOD__' => __METHOD__,
                 //     '$this->c' => $this->c->toArray(),
@@ -148,6 +160,10 @@ trait BuildControllers
         //     '__METHOD__' => __METHOD__,
         //     '$this->c->routes()' => $this->c->routes(),
         // ]);
+
+        if (! empty($config_policies)) {
+            $this->searches['config_policies'] = rtrim($config_policies);
+        }
 
         $this->make_service_provider_routes();
     }

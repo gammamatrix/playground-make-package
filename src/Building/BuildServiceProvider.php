@@ -73,6 +73,12 @@ PHP_CODE;
 
     public function preload_model_routes_for_service_provider(): void
     {
+        $config_abilities_manager = '';
+        $config_abilities_user = '';
+
+        $manager_line = '%1$s\'%2$s:%3$s:*\',%4$s';
+        $user_line = '%1$s\'%2$s:%3$s:view\',%4$s';
+        $user_line .= '%1$s\'%2$s:%3$s:viewAny\',%4$s';
 
         if ($this->c->module_slug()) {
             $this->c->addRoute($this->c->module_slug());
@@ -86,9 +92,32 @@ PHP_CODE;
         // ]);
         foreach ($models as $model => $file) {
             $model_plural_slug = Str::of($model)->plural()->kebab()->toString();
+            $model_slug = Str::of($model)->slug()->toString();
             if ($model_plural_slug) {
                 $this->c->addRoute($model_plural_slug);
             }
+
+            $config_abilities_manager .= sprintf($manager_line,
+                str_repeat(static::INDENT, 3),
+                $this->c->package(),
+                $model_slug,
+                PHP_EOL,
+            );
+
+            $config_abilities_user .= sprintf($user_line,
+                str_repeat(static::INDENT, 3),
+                $this->c->package(),
+                $model_slug,
+                PHP_EOL,
+            );
+        }
+
+        if (! empty($config_abilities_manager)) {
+            $this->searches['config_abilities_manager'] = rtrim($config_abilities_manager);
+        }
+
+        if (! empty($config_abilities_user)) {
+            $this->searches['config_abilities_user'] = rtrim($config_abilities_user);
         }
 
         $this->make_service_provider_routes();

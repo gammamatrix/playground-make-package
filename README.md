@@ -90,8 +90,9 @@ artisan playground:make:package "Matrix Resource" --license MIT --namespace Play
 ```
 
 **TODO:** working
-- [ ] needs abilities in config
+- [x] needs abilities in config
 - [x] needs routes in config
+- [x] needs policies in config
 - [ ] needs required attribute (title) in requests
 - [ ] needs About Command Test
 - [ ] Unit tests: Requests
