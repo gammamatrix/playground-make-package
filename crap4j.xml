@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-17 23:51:29</timestamp>
+  <timestamp>2024-05-18 05:52:21</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>80</methodCount>
     <crapMethodCount>6</crapMethodCount>
-    <crapLoad>84</crapLoad>
-    <totalCrap>1527.22</totalCrap>
+    <crapLoad>85</crapLoad>
+    <totalCrap>1591.22</totalCrap>
     <crapMethodPercent>7.5</crapMethodPercent>
   </stats>
   <methods>
@@ -171,10 +171,10 @@
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>420</crap>
-      <complexity>20</complexity>
+      <crap>462</crap>
+      <complexity>21</complexity>
       <coverage>0</coverage>
-      <crapLoad>20</crapLoad>
+      <crapLoad>21</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -248,8 +248,8 @@
       <methodName>preload_model_routes_for_service_provider</methodName>
       <methodSignature>preload_model_routes_for_service_provider(): void</methodSignature>
       <fullMethod>preload_model_routes_for_service_provider(): void</fullMethod>
-      <crap>20</crap>
-      <complexity>4</complexity>
+      <crap>42</crap>
+      <complexity>6</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
