@@ -111,7 +111,7 @@ trait BuildControllers
             $params_controller['--test'] = true;
             $params_controller['--type'] = 'playground-api';
         } elseif ($isResource) {
-            // $params_controller['--blade'] = true;
+            $params_controller['--blade'] = true;
             $params_controller['--policies'] = true;
             $params_controller['--requests'] = true;
             $params_controller['--resource'] = true;
@@ -134,7 +134,7 @@ trait BuildControllers
                 $params_controller['name'] = Str::of($model->name())->studly()->finish('Controller')->toString();
                 $params_controller['--model-file'] = $file;
 
-                // dd([
+                // dump([
                 //     '__METHOD__' => __METHOD__,
                 //     '$params_controller' => $params_controller,
                 //     // '$this->c' => $this->c,
@@ -183,6 +183,7 @@ trait BuildControllers
         array $params = []
     ): void {
 
+        $withCovers = $this->hasOption('covers') && $this->option('covers');
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
         $namespace = $this->c->namespace();
@@ -198,6 +199,14 @@ trait BuildControllers
         if ($this->c->withTests()) {
             $params['--test'] = true;
         }
+
+        if ($withCovers) {
+            $params['--covers'] = true;
+        }
+
+        // if ($isApi || $isResource) {
+        //     $params['--covers'] = true;
+        // }
 
         // dump([
         //     '__METHOD__' => __METHOD__,
@@ -223,7 +232,7 @@ trait BuildControllers
                 $this->c->addRoute($model_plural_slug, $file_route);
             }
 
-            // dd([
+            // dump([
             //     '__METHOD__' => __METHOD__,
             //     '$file_controller' => $file_controller,
             //     '$package' => $package,

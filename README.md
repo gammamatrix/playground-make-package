@@ -93,15 +93,21 @@ artisan playground:make:package "Matrix Resource" --license MIT --namespace Play
 - [x] needs abilities in config
 - [x] needs routes in config
 - [x] needs policies in config
-- [ ] needs required attribute (title) in requests
+- [x] needs required attribute (title) in requests
+- [ ] Views: also need clean up
 - [ ] needs About Command Test
 - [ ] Unit tests: Requests
 - [ ] Unit tests: Policies
-- [ ] Views: also need clean up
 
 ```sh
 artisan playground:make:package "Matrix Resource" --license MIT --namespace Playground/Matrix/Resource --package playground-matrix-resource --module Matrix --packagist gammamatrix/playground-matrix-resource --type playground-resource --package-version 73.0.0 --email support@example.com --playground --resource --controllers --blade --policies --requests --routes --swagger --test --skeleton --force --model-package resources/configurations/playground-matrix/package.playground-matrix.json --build
 ```
+
+With --covers
+```sh
+artisan playground:make:package "Matrix Resource" --license MIT --namespace Playground/Matrix/Resource --package playground-matrix-resource --module Matrix --packagist gammamatrix/playground-matrix-resource --type playground-resource --package-version 73.0.0 --email support@example.com --playground --resource --controllers --blade --policies --requests --routes --swagger --test --force --model-package resources/configurations/playground-matrix/package.playground-matrix.json --build --covers --skeleton
+```
+
 
 ## PHPStan
 

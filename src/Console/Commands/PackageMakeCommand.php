@@ -130,6 +130,7 @@ class PackageMakeCommand extends GeneratorCommand
 
         $options[] = ['blade', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have blade templates'];
         $options[] = ['controllers', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have controllers'];
+        $options[] = ['covers', null, InputOption::VALUE_NONE, 'Use CoversClass for code coverage'];
         $options[] = ['factories', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model factories'];
         $options[] = ['migrations', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have model migrations'];
         $options[] = ['models', null, InputOption::VALUE_NONE, 'The '.strtolower($this->type).' will have models'];
