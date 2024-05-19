@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-18 05:52:21</timestamp>
+  <timestamp>2024-05-19 23:03:13</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>80</methodCount>
     <crapMethodCount>6</crapMethodCount>
-    <crapLoad>85</crapLoad>
-    <totalCrap>1591.22</totalCrap>
+    <crapLoad>87</crapLoad>
+    <totalCrap>1629.22</totalCrap>
     <crapMethodPercent>7.5</crapMethodPercent>
   </stats>
   <methods>
@@ -182,10 +182,10 @@
       <methodName>createControllerForModel</methodName>
       <methodSignature>createControllerForModel(Playground\Make\Configuration\Model $model, string $package, array $params): void</methodSignature>
       <fullMethod>createControllerForModel(Playground\Make\Configuration\Model $model, string $package, array $params): void</fullMethod>
-      <crap>72</crap>
-      <complexity>8</complexity>
+      <crap>110</crap>
+      <complexity>10</complexity>
       <coverage>0</coverage>
-      <crapLoad>8</crapLoad>
+      <crapLoad>10</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
