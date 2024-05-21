@@ -85,7 +85,7 @@ class ServiceProvider extends AuthServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/config/{{ package }}.php',
+            dirname(__DIR__).'/config/{{ package }}.php',
             $this->package
         );
     }

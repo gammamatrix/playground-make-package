@@ -24,6 +24,28 @@ trait BuildSkeleton
         $skeletons['.php-cs-fixer.dist.php'] = '.php-cs-fixer.dist.php';
         $skeletons['CHANGELOG.md'] = 'CHANGELOG.md';
 
+        $phpstan = 'phpstan.neon.dist';
+        $type = $this->c->type();
+
+        if (in_array($type, [
+            'api',
+            'playground-api',
+        ])) {
+            $phpstan .= '-api';
+        } elseif (in_array($type, [
+            'resource',
+            'playground-resource',
+        ])) {
+            $phpstan .= '-resource';
+        } elseif (in_array($type, [
+            'model',
+            'playground-model',
+        ])) {
+            $phpstan .= '-model';
+        }
+
+        $skeletons[$phpstan] = 'phpstan.neon.dist';
+
         if ($this->c->package_license() === 'MIT') {
             $skeletons['LICENSE-MIT.md'] = 'LICENSE.md';
             $skeletons['README-MIT.md'] = 'README.md';

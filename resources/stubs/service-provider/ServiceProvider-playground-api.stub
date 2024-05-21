@@ -58,7 +58,7 @@ class ServiceProvider extends AuthServiceProvider
         }
 
         // { {routes} }
-        // $this->loadRoutesFrom(dirname(__DIR__) . '/routes/matrix.php');
+        // $this->loadRoutesFrom(dirname(__DIR__).'/routes/matrix.php');
 
     }
 
@@ -68,7 +68,7 @@ class ServiceProvider extends AuthServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/config/{{ package }}.php',
+            dirname(__DIR__).'/config/{{ package }}.php',
             '{{ package }}'
         );
     }

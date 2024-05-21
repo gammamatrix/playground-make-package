@@ -41,6 +41,11 @@ Create the model package skeleton:
 artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix --package playground-matrix --module Matrix --packagist gammamatrix/playground-matrix --type playground-model --package-version 73.0.0 --email support@example.com --playground --factories --migrations --models --test --skeleton --force
 ```
 
+```sh
+artisan playground:make:package Matrix --license MIT --namespace Playground/Matrix --package playground-matrix --module Matrix --packagist gammamatrix/playground-matrix --type playground-model --package-version 73.0.0 --email jeremy.postlethwaite@gmail.com --playground --factories --migrations --models --test --skeleton --force --covers
+```
+
+
 Build the models out for the package:
 
 ```sh
