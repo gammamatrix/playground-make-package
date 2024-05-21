@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-05-19 23:03:13</timestamp>
+  <timestamp>2024-05-21 06:26:07</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>80</methodCount>
+    <methodCount>82</methodCount>
     <crapMethodCount>6</crapMethodCount>
     <crapLoad>87</crapLoad>
-    <totalCrap>1629.22</totalCrap>
-    <crapMethodPercent>7.5</crapMethodPercent>
+    <totalCrap>1666.22</totalCrap>
+    <crapMethodPercent>7.32</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -259,8 +259,8 @@
       <methodName>createSkeleton</methodName>
       <methodSignature>createSkeleton(): void</methodSignature>
       <fullMethod>createSkeleton(): void</fullMethod>
-      <crap>3</crap>
-      <complexity>3</complexity>
+      <crap>6</crap>
+      <complexity>6</complexity>
       <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -292,8 +292,8 @@
       <methodName>command_tests_playground_api</methodName>
       <methodSignature>command_tests_playground_api(): void</methodSignature>
       <fullMethod>command_tests_playground_api(): void</fullMethod>
-      <crap>2</crap>
-      <complexity>1</complexity>
+      <crap>12</crap>
+      <complexity>3</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -314,6 +314,17 @@
       <methodName>command_tests_playground_model</methodName>
       <methodSignature>command_tests_playground_model(): void</methodSignature>
       <fullMethod>command_tests_playground_model(): void</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>command_tests_playground_model_test_case</methodName>
+      <methodSignature>command_tests_playground_model_test_case(): void</methodSignature>
+      <fullMethod>command_tests_playground_model_test_case(): void</fullMethod>
       <crap>12</crap>
       <complexity>3</complexity>
       <coverage>0</coverage>
@@ -358,6 +369,17 @@
       <methodName>command_tests_playground_service_provider</methodName>
       <methodSignature>command_tests_playground_service_provider(): void</methodSignature>
       <fullMethod>command_tests_playground_service_provider(): void</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>command_tests_about_command</methodName>
+      <methodSignature>command_tests_about_command(): void</methodSignature>
+      <fullMethod>command_tests_about_command(): void</fullMethod>
       <crap>12</crap>
       <complexity>3</complexity>
       <coverage>0</coverage>
