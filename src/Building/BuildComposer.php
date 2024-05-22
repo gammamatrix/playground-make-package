@@ -406,7 +406,7 @@ trait BuildComposer
 
         $stub = $this->files->get($path);
 
-        $this->make_composer_package_name();
+        // $this->make_composer_package_name();
         $this->make_composer_packagist();
         $this->make_composer_keywords();
         $this->make_composer_license();

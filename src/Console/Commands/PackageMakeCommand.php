@@ -47,6 +47,7 @@ class PackageMakeCommand extends GeneratorCommand
         'module_slug' => '',
         'namespace' => '',
         'organization' => '',
+        'organization_email' => '',
         'config_space' => '',
         'package' => '',
         'package_name' => '',
@@ -312,6 +313,8 @@ class PackageMakeCommand extends GeneratorCommand
             ]);
             $this->searches['version'] = $this->c->version();
         }
+
+        $this->make_composer_package_name();
 
         // dd([
         //     '__METHOD__' => __METHOD__,

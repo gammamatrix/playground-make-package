@@ -40,7 +40,7 @@ class ServiceProvider extends AuthServiceProvider
          */
         $config = config($this->package);
 
-        AboutCommand::add('{{ organization }}', fn () => [
+        AboutCommand::add('{{ package_name }}', fn () => [
             $this->package => $this->version(),
         ]);
     }

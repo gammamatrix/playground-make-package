@@ -279,6 +279,8 @@ trait BuildControllers
             '--abstract' => true,
             '--namespace' => $namespace,
             '--package' => $package,
+            '--module' => $this->c->module(),
+            '--organization' => $this->c->organization(),
             '--type' => 'base',
         ];
         $namespace = $this->c->namespace();
@@ -332,6 +334,11 @@ trait BuildControllers
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
 
+        $model = '';
+        if ($this->hasOption('model') && $this->option('model') && is_string($this->option('model'))) {
+            $model = $this->option('model');
+        }
+
         $namespace = $this->c->namespace();
 
         if ($namespace) {
@@ -356,7 +363,10 @@ trait BuildControllers
             'name' => 'IndexController',
             '--namespace' => $namespace,
             '--package' => $package,
-            '--routes' => true,
+            '--module' => $this->c->module(),
+            '--organization' => $this->c->organization(),
+            '--policies' => false,
+            // '--routes' => true,
             '--type' => 'playground-resource-index',
         ];
         $namespace = $this->c->namespace();
@@ -377,13 +387,24 @@ trait BuildControllers
         //     $params['--test'] = true;
         // }
 
+        if ($model) {
+            $params['--model'] = $model;
+            $models = $this->modelPackage?->models();
+            if (is_array($models) && ! empty($models[$model])) {
+                $params['--model-file'] = $models[$model];
+            }
+
+        }
+
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$params' => $params,
+        //     // '$this->options()' => $this->options(),
+        //     // '$this->modelPackage' => $this->modelPackage,
         // ]);
         if (! $this->call('playground:make:controller', $params)) {
             $file_controller = sprintf(
-                '%1$s/app/stub/%2$s/resources/packages/controller.index.json',
+                '%1$s/app/stub/%2$s/resources/packages/index/controller.json',
                 $this->laravel->storagePath(),
                 $package,
             );
