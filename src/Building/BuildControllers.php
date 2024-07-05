@@ -44,6 +44,9 @@ trait BuildControllers
         }
     }
 
+    /**
+     * @param array<string, mixed> $params
+     */
     public function build_crud_form_request(string $package, array $params): void
     {
         if (! $this->call('playground:make:request', $params)) {

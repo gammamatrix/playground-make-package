@@ -49,7 +49,7 @@ jobs:
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*Start:*\n${{ steps.timer_start.outputs.DATE_START }}"
+                    "text": "<!date^${{ steps.timer_start.outputs.TIMESTAMP_START }}^{date} at {time}|${{ steps.timer_start.outputs.DATE_START }}>"
                   },
                   {
                     "type": "mrkdwn",
