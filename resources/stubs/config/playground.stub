@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 /**
- * Playground Make Configuration and Environment Variables
+ * {{ package_name }} Configuration and Environment Variables
  */
 return [
 
@@ -21,19 +21,20 @@ return [
     |
     */
 
-    'about' => (bool) env('PLAYGROUND_MAKE_PACKAGE_ABOUT', true),
+    'about' => (bool) env('{{ config_space }}_ABOUT', true),
 
     /*
     |--------------------------------------------------------------------------
     | Loading
     |--------------------------------------------------------------------------
     |
-    | By default, commands and translations are loaded.
+    | By default, commands and translations are loaded. Migrations are disabled.
     |
     */
 
     'load' => [
-        'commands' => (bool) env('PLAYGROUND_MAKE_PACKAGE_LOAD_COMMANDS', true),
-        'translations' => (bool) env('PLAYGROUND_MAKE_PACKAGE_LOAD_TRANSLATIONS', true),
+        'commands' => (bool) env('{{ config_space }}_LOAD_COMMANDS', true),
+        'migrations' => (bool) env('{{ config_space }}_LOAD_MIGRATIONS', false),
+        'translations' => (bool) env('{{ config_space }}_LOAD_TRANSLATIONS', true),
     ],
 ];

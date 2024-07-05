@@ -19,12 +19,32 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:gammamatrix/playground-make.git"
+            "url": "https://github.com/gammamatrix/playground-make.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gammamatrix/playground-make-blade.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gammamatrix/playground-make-controller.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gammamatrix/playground-make-model.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gammamatrix/playground-make-test.git"
         }
     ],
     "require": {
         "php": "^8.2",
-        "gammamatrix/playground-make": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
+        "gammamatrix/playground-make": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
+        "gammamatrix/playground-make-blade": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
+        "gammamatrix/playground-make-controller": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
+        "gammamatrix/playground-make-model": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
+        "gammamatrix/playground-make-test": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
     },
     "require-dev": {
         "gammamatrix/playground-test": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"

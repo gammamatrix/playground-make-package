@@ -1,0 +1,49 @@
+{
+    "class": "ServiceProvider",
+    "config": "playground-cms",
+    "fqdn": "Playground/Cms/ServiceProvider",
+    "module": "Cms",
+    "module_slug": "cms",
+    "name": "Playground/Cms/ServiceProvider",
+    "namespace": "Playground/Cms",
+    "organization": "Playground",
+    "package": "playground-cms",
+    "withControllers": false,
+    "withFactories": false,
+    "withMigrations": false,
+    "withModels": false,
+    "withPolicies": false,
+    "playground": true,
+    "package_name": "Playground: CMS",
+    "package_description": "A CMS package for Playground under Laravel.",
+    "package_homepage": "",
+    "package_keywords": [
+        "laravel",
+        "playground",
+        "cms"
+    ],
+    "package_license": "MIT",
+    "package_require": {
+        "php": "^8.2"
+    },
+    "package_require_dev": [],
+    "package_autoload_psr4": [],
+    "package_laravel_providers": [
+        "Playground/Cms/ServiceProvider"
+    ],
+    "packagist": "gammamatrix/playground-cms",
+    "controllers": [],
+    "models": {
+        "Page": "resources/configurations/playground-cms/model.page.json",
+        "Snippet": "resources/configurations/playground-cms/model.snippet.json",
+        "PageRevision": "resources/configurations/playground-cms/model.page-revision.json",
+        "SnippetRevision": "resources/configurations/playground-cms/model.snippet-revision.json"
+    },
+    "policies": [],
+    "requests": [],
+    "routes": [],
+    "transformers": [],
+    "service_provider": "playground",
+    "type": "playground-model",
+    "version": "73.0.0"
+}

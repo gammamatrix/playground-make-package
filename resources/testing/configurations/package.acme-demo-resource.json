@@ -1,0 +1,56 @@
+{
+    "config": "acme-demo-resource",
+    "factories": false,
+    "package": "acme-demo-resource",
+    "module": "Demo",
+    "module_slug": "demo",
+    "name": "Acme/Demo/Resource/ServiceProvider",
+    "fqdn": "Acme/Demo/Resource/ServiceProvider",
+    "namespace": "Acme/Demo/Resource",
+    "organization": "Acme",
+    "version": "73.0.0",
+    "type": "playground-resource",
+    "package_name": "Acme: Demo Resource",
+    "package_homepage": "https://github.com/gammamatrix/acme-demo-resource",
+    "package_license": "MIT",
+    "package_description": "A Demo Resource package for Acme under Laravel.",
+    "package_keywords": [
+        "laravel",
+        "acme",
+        "demo",
+        "resource"
+    ],
+    "package_require": {
+        "php": "^8.2"
+    },
+    "package_require_dev": {
+        "acme-test": "^73.0"
+    },
+    "package_autoload_psr4":  {
+        "Vendor\\Namespace\\": ""
+    },
+    "package_laravel_providers": [
+        "Acme\\Demo\\Resource\\ServiceProvider"
+    ],
+    "packagist": "gammamatrix/acme-demo-resource",
+    "controllers": [
+        "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/controller.rocket.json"
+    ],
+    "models": {
+        "Rocket": "resources/testing/configurations/model.rocket.json"
+    },
+    "policies": [
+        "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/policy.rocket.json"
+    ],
+    "requests": [
+        "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/rocket/request.create.json",
+        "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/rocket/request.edit.json",
+        "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/rocket/request.index.json",
+        "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/rocket/request.store.json",
+        "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/rocket/request.update.json"
+    ],
+    "routes": [
+        "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/route.rocket.json"
+    ],
+    "service_provider": "acme-policies"
+}

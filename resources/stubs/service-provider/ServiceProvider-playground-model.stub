@@ -1,23 +1,22 @@
 <?php
 /**
- * Playground
+ * {{ organization }}
  */
 
 declare(strict_types=1);
-namespace Playground\Make\Package;
+namespace {{ namespace }};
 
-use Illuminate\Console\GeneratorCommand;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
 
 /**
- * \Playground\Make\Package\ServiceProvider
+ * \{{ namespace }}\ServiceProvider
  */
 class ServiceProvider extends AuthServiceProvider
 {
-    public const VERSION = '73.0.0';
+    public const VERSION = '{{ version }}';
 
-    public string $package = 'playground-make-package';
+    public string $package = '{{ package }}';
 
     /**
      * Bootstrap any package services.
@@ -34,22 +33,19 @@ class ServiceProvider extends AuthServiceProvider
 
         if (! empty($config['load']) && is_array($config['load'])) {
 
-            if (! empty($config['load']['commands'])) {
-                $this->boot_commands();
-            }
-
-            if (! empty($config['load']['translations'])) {
-                $this->loadTranslationsFrom(
-                    dirname(__DIR__).'/lang',
-                    $this->package
-                );
-            }
-
             if ($this->app->runningInConsole()) {
                 // Publish configuration
                 $this->publishes([
                     sprintf('%1$s/config/%2$s.php', dirname(__DIR__), $this->package) => config_path(sprintf('%1$s.php', $this->package)),
                 ], 'playground-config');
+
+                // Publish migrations
+                $this->publishMigrations();
+
+                // Load migrations
+                if (! empty($config['load']['migrations'])) {
+                    $this->loadMigrationsFrom(dirname(__DIR__).'/database/migrations');
+                }
             }
         }
 
@@ -59,28 +55,29 @@ class ServiceProvider extends AuthServiceProvider
     }
 
     /**
-     * @return array<int, class-string<GeneratorCommand>>
-     */
-    public function boot_commands(): array
-    {
-        $commands = [];
-
-        $commands[] = Console\Commands\PackageMakeCommand::class;
-
-        $this->commands($commands);
-
-        return $commands;
-    }
-
-    /**
      * Register any application services.
      */
     public function register(): void
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__).'/config/playground-make-package.php',
-            'playground-make-package'
+            dirname(__DIR__).'/config/{{ package }}.php',
+            $this->package
         );
+    }
+
+    /**
+     * Register any application services.
+     */
+    public function publishMigrations(): void
+    {
+        $migrations = [];
+
+        foreach ([{{publish_migrations}}
+        ] as $file) {
+            $migrations[dirname(__DIR__).'/database/migrations/'.$file] = database_path('migrations/'.$file);
+        }
+
+        $this->publishes($migrations, 'playground-migrations');
     }
 
     public function about(): void
@@ -92,9 +89,8 @@ class ServiceProvider extends AuthServiceProvider
 
         $version = $this->version();
 
-        AboutCommand::add('Playground: Make Package', fn () => [
-            '<fg=yellow;options=bold>Load</> Commands' => ! empty($load['commands']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
-            '<fg=yellow;options=bold>Load</> Translations' => ! empty($load['translations']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
+        AboutCommand::add('{{ package_name }}', fn () => [
+            '<fg=yellow;options=bold>Load</> Migrations' => ! empty($load['migrations']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
             'Package' => $this->package,
             'Version' => $version,
         ]);
