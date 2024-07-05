@@ -44,6 +44,26 @@ trait BuildControllers
         }
     }
 
+    public function build_crud_form_request(string $package, array $params): void
+    {
+        if (! $this->call('playground:make:request', $params)) {
+            $file_request = sprintf(
+                '%1$s/app/stub/%2$s/resources/packages/form.request.json',
+                $this->laravel->storagePath(),
+                $package,
+            );
+            $this->c->addClassFileTo('requests', $file_request);
+            // dd([
+            //     '__METHOD__' => __METHOD__,
+            //     '$file_request' => $file_request,
+            //     '$package' => $package,
+            //     // '$this->c' => $this->c->toArray(),
+            //     '$this->c' => $this->c,
+            // ]);
+        }
+
+    }
+
     public function build_crud(): void
     {
         $config_policies = '';
@@ -80,6 +100,11 @@ trait BuildControllers
             }
         }
 
+        $params_form_request = [
+            'name' => 'FormRequest',
+            '--type' => 'form-request',
+        ];
+
         $params_controller = [
             '--model-file' => '',
         ];
@@ -90,6 +115,7 @@ trait BuildControllers
 
         if ($force) {
             $params_controller['--force'] = true;
+            $params_form_request['--force'] = true;
         }
 
         $params_controller['--namespace'] = $namespace;
@@ -98,11 +124,17 @@ trait BuildControllers
         $params_controller['--model'] = '';
         $params_controller['--module'] = $this->c->module();
 
+        $params_form_request['--namespace'] = $namespace;
+        $params_form_request['--package'] = $package;
+        $params_form_request['--organization'] = $this->c->organization();
+        $params_form_request['--module'] = $this->c->module();
+
         if ($this->c->module_slug()) {
             $this->c->addRoute($this->c->module_slug());
         }
 
         if ($isApi) {
+            $params_form_request['--api'] = true;
             $params_controller['--api'] = true;
             $params_controller['--policies'] = true;
             $params_controller['--requests'] = true;
@@ -111,6 +143,7 @@ trait BuildControllers
             $params_controller['--test'] = true;
             $params_controller['--type'] = 'playground-api';
         } elseif ($isResource) {
+            $params_form_request['--resource'] = true;
             $params_controller['--blade'] = true;
             $params_controller['--policies'] = true;
             $params_controller['--requests'] = true;
@@ -123,7 +156,11 @@ trait BuildControllers
 
         if ($this->c->playground()) {
             $params_controller['--playground'] = true;
+            $params_form_request['--playground'] = true;
         }
+
+        $this->build_crud_form_request($package, $params_form_request);
+
         $models = $this->modelPackage?->models() ?? [];
         foreach ($models as $model => $file) {
             if (is_string($file) && $file) {

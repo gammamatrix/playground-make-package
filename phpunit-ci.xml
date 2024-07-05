@@ -26,9 +26,9 @@
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
         </testsuite>
-        <!-- <testsuite name="Feature">
+        <testsuite name="Feature">
             <directory>tests/Feature</directory>
-        </testsuite> -->
+        </testsuite>
     </testsuites>
     <coverage
         includeUncoveredFiles="true"
@@ -39,10 +39,10 @@
             <clover outputFile="output/clover.xml" />
             <cobertura outputFile="output/cobertura.xml" />
             <crap4j outputFile="output/crap4j.xml" threshold="50" />
-            <html outputDirectory="output/html" lowUpperBound="50" highLowerBound="90" />
+            <!-- <html outputDirectory="output/html" lowUpperBound="50" highLowerBound="90" /> -->
             <php outputFile="output/coverage.php" />
             <text outputFile="output/coverage.txt" showUncoveredFiles="false" showOnlySummary="true" />
-            <xml outputDirectory="output/xml" />
+            <!-- <xml outputDirectory="output/xml" /> -->
         </report>
     </coverage>
     <logging>
