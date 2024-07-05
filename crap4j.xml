@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-07-05 18:18:13</timestamp>
+  <timestamp>2024-07-05 18:35:28</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>82</methodCount>
+    <methodCount>83</methodCount>
     <crapMethodCount>6</crapMethodCount>
     <crapLoad>93</crapLoad>
-    <totalCrap>1886.35</totalCrap>
-    <crapMethodPercent>7.32</crapMethodPercent>
+    <totalCrap>1892.35</totalCrap>
+    <crapMethodPercent>7.23</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -160,6 +160,17 @@
       <methodName>load_model_package</methodName>
       <methodSignature>load_model_package(string $model_package): void</methodSignature>
       <fullMethod>load_model_package(string $model_package): void</fullMethod>
+      <crap>6</crap>
+      <complexity>2</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_crud_form_request</methodName>
+      <methodSignature>build_crud_form_request(string $package, array $params): void</methodSignature>
+      <fullMethod>build_crud_form_request(string $package, array $params): void</fullMethod>
       <crap>6</crap>
       <complexity>2</complexity>
       <coverage>0</coverage>
