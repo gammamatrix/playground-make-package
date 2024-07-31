@@ -14,7 +14,7 @@ composer require {{ packagist }}
 
 All options are disabled by default.
 
-See the contents of the published config file: [config/{{ package }}.php](.config/{{ package }}.php)
+See the contents of the published config file: [config/{{ package }}.php](config/{{ package }}.php)
 
 
 ## Changelog

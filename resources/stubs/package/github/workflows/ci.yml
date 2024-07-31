@@ -1,4 +1,4 @@
-name: 'CI'
+name: "CI"
 
 on:
   push:
@@ -30,9 +30,9 @@ jobs:
         echo "TIMESTAMP_START=$(date +'%s')" >> $GITHUB_OUTPUT
     - name: "Slack notification: IN PROGRESS"
       id: slack
-      uses: slackapi/slack-github-action@v1.25.0
+      uses: slackapi/slack-github-action@v1.26.0
       with:
-        channel-id: 'C068A06PV43'
+        channel-id: "C068A06PV43"
         payload: |
           {
             "text": "CI Build Status for {{ package }}: IN PROGRESS\n${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
@@ -118,7 +118,7 @@ jobs:
         coverage_badge_path: output/coverage.svg
         push_badge: false
     - name: Git push to testing/develop branch
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         publish_dir: ./output
         publish_branch: testing/develop
@@ -129,7 +129,7 @@ jobs:
       with:
         level: 9
         php_version: "8.2"
-        path: config/ lang/ src/ tests/Feature/
+        path: config/ database/ src/ tests/Feature/ tests/Unit/
         args: --verbose --debug
     - name: Stopping timer
       if: ${{ !cancelled() }}
@@ -141,9 +141,9 @@ jobs:
         echo "DURATION_PHRASE=$(($(date +'%s')-$TIMESTAMP_START)) seconds" >> $GITHUB_OUTPUT
         echo "TIMESTAMP_END=$(date +'%s')" >> $GITHUB_OUTPUT
     - name: "Slack notification: Done"
-      uses: slackapi/slack-github-action@v1.25.0
+      uses: slackapi/slack-github-action@v1.26.0
       with:
-        channel-id: 'C068A06PV43'
+        channel-id: "C068A06PV43"
         update-ts: ${{ steps.slack.outputs.ts }}
         payload: |
           {
@@ -210,9 +210,9 @@ jobs:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
     - name: "Send a notification for failures"
       if: ${{ failure() }}
-      uses: slackapi/slack-github-action@v1.25.0
+      uses: slackapi/slack-github-action@v1.26.0
       with:
-        channel-id: 'C068A06PV43'
+        channel-id: "C068A06PV43"
         update-ts: ${{ steps.slack.outputs.ts }}
         payload: |
           {

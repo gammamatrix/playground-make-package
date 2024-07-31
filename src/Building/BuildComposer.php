@@ -93,7 +93,7 @@ trait BuildComposer
             $element .= '%1$s%2$s';
         }
 
-        $element .= '"autoload_dev": {%1$s%3$s%2$s},';
+        $element .= '"autoload-dev": {%1$s%3$s%2$s},';
 
         $element_psr4 = '%2$s"psr-4": {%1$s%3$s%2$s}%1$s';
 
@@ -196,7 +196,7 @@ trait BuildComposer
             $element .= '%1$s%2$s';
         }
 
-        $element .= '"require_dev": {%1$s%3$s%2$s},';
+        $element .= '"require-dev": {%1$s%3$s%2$s},';
 
         $content = '';
 
