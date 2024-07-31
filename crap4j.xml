@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-07-05 18:50:57</timestamp>
+  <timestamp>2024-07-31 01:27:08</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>83</methodCount>
+    <methodCount>86</methodCount>
     <crapMethodCount>6</crapMethodCount>
     <crapLoad>93</crapLoad>
-    <totalCrap>1892.35</totalCrap>
-    <crapMethodPercent>7.23</crapMethodPercent>
+    <totalCrap>1905.35</totalCrap>
+    <crapMethodPercent>6.98</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -283,6 +283,39 @@
       <fullMethod>setPackageVersion(): void</fullMethod>
       <crap>3</crap>
       <complexity>3</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setUpWorkflow_create_github</methodName>
+      <methodSignature>setUpWorkflow_create_github(): void</methodSignature>
+      <fullMethod>setUpWorkflow_create_github(): void</fullMethod>
+      <crap>3</crap>
+      <complexity>3</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setUpWorkflow_create_github_workflows</methodName>
+      <methodSignature>setUpWorkflow_create_github_workflows(): void</methodSignature>
+      <fullMethod>setUpWorkflow_create_github_workflows(): void</fullMethod>
+      <crap>3</crap>
+      <complexity>3</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setUpWorkflow</methodName>
+      <methodSignature>setUpWorkflow(): void</methodSignature>
+      <fullMethod>setUpWorkflow(): void</fullMethod>
+      <crap>7</crap>
+      <complexity>7</complexity>
       <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
