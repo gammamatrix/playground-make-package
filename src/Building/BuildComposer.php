@@ -304,6 +304,10 @@ trait BuildComposer
             $this->c->setOptions(['packagist' => $packagist]);
             $this->searches['packagist'] = $this->c->packagist();
         }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->packagist()' => $this->c->packagist(),
+        // ]);
 
         return $this->searches['packagist'];
     }

@@ -14,8 +14,9 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
-        "test": "vendor/bin/testbench package:test",
+        "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
+        "cloc": "cloc --exclude-dir=node_modules,output,vendor .",
         "format": "vendor/bin/php-cs-fixer fix",
-        "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max"
+        "test": "vendor/bin/testbench package:test"
     }
 }

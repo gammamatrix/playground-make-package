@@ -52,6 +52,12 @@ trait BuildModels
         foreach ($this->c->models() as $name => $file) {
             $model = new Model($this->readJsonFileAsArray($file));
             $migration = $model->create()?->migration();
+            // dump([
+            //     '__METHOD__' => __METHOD__,
+            //     '$name' => $name,
+            //     '$file' => $file,
+            //     '$migration' => $migration,
+            // ]);
             if ($migration && ! in_array($migration, $migrations)) {
                 $migrations[] = $migration;
                 $this->searches['publish_migrations'] .= sprintf(
@@ -62,5 +68,10 @@ trait BuildModels
                 );
             }
         }
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->searches[publish_migrations]' => $this->searches['publish_migrations'],
+        //     '$this->c' => $this->c,
+        // ]);
     }
 }

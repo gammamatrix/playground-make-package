@@ -41,7 +41,7 @@ class ServiceProvider extends AuthServiceProvider
         $config = config($this->package);
 
         AboutCommand::add('{{ package_name }}', fn () => [
-            $this->package => $this->version(),
+            $this->package => ServiceProvider::VERSION,
         ]);
     }
 
@@ -50,10 +50,5 @@ class ServiceProvider extends AuthServiceProvider
      */
     public function register(): void
     {
-    }
-
-    public function version(): string
-    {
-        return static::VERSION;
     }
 }

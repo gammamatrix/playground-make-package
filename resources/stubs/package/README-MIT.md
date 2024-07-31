@@ -1,5 +1,5 @@
 # {{ package_name }}
-
+{{ package_workflow }}
 The {{ package_name }} package.
 
 ## Installation
