@@ -18,6 +18,7 @@ trait BuildComposer
         $this->autoload['psr-4'] = [];
 
         $element = '%2$s';
+        $element = '';
 
         $content = '';
 
@@ -46,7 +47,7 @@ trait BuildComposer
         ) {
             $i = 0;
             foreach ($this->autoload['psr-4'] as $namespace => $folder) {
-                $psr4 .= sprintf('%2$s"%3$s": "%4$s"%5$s%1$s',
+                $psr4 .= sprintf('%2$s"%3$s": "%4$s/"%5$s%1$s',
                     PHP_EOL,
                     str_repeat(static::INDENT, 3),
                     $namespace,
@@ -84,12 +85,14 @@ trait BuildComposer
         $this->autoload['dev-psr-4'] = [];
 
         $element = '%2$s';
+        $element = '';
 
         $content = '';
 
         if (! (empty($this->searches['package_require'])
             && empty($this->searches['package_require_dev'])
         )) {
+            // $element .= '%1$s%2$s';
             $element .= '%1$s%2$s';
         }
 
@@ -109,7 +112,7 @@ trait BuildComposer
         ) {
             $i = 0;
             foreach ($this->autoload['dev-psr-4'] as $namespace => $folder) {
-                $psr4 .= sprintf('%2$s"%3$s": "%4$s"%5$s%1$s',
+                $psr4 .= sprintf('%2$s"%3$s": "%4$s/"%5$s%1$s',
                     PHP_EOL,
                     str_repeat(static::INDENT, 3),
                     $namespace,
@@ -159,7 +162,7 @@ trait BuildComposer
         if ($this->c->playground()
             && empty($package_require['gammamatrix/playground'])
         ) {
-            $package_require['gammamatrix/playground'] = 'dev-develop|dev-feature/*';
+            $package_require['gammamatrix/playground'] = '*';
         }
 
         $i = 0;
@@ -191,6 +194,7 @@ trait BuildComposer
     protected function make_composer_require_dev(): string
     {
         $element = '%2$s';
+        $element = '';
 
         if (! empty($this->searches['package_require'])) {
             $element .= '%1$s%2$s';
@@ -205,7 +209,7 @@ trait BuildComposer
         if ($this->c->playground()
             && empty($package_require_dev['gammamatrix/playground-test'])
         ) {
-            $package_require_dev['gammamatrix/playground-test'] = 'dev-develop|dev-feature/*';
+            $package_require_dev['gammamatrix/playground-test'] = '*';
         }
 
         $i = 0;
@@ -233,6 +237,45 @@ trait BuildComposer
         return $this->searches['package_require_dev'];
     }
 
+    protected function make_composer_suggest(): string
+    {
+        $element = '%2$s"suggest": {%1$s%3$s%2$s},';
+
+        $content = '';
+
+        $package_suggest = $this->c->package_suggest();
+
+        $i = 0;
+        foreach ($package_suggest as $package => $versions) {
+            $content .= sprintf('%2$s"%3$s": "%4$s"%5$s%1$s',
+                PHP_EOL,
+                str_repeat(static::INDENT, 2),
+                $package,
+                $versions,
+                (count($package_suggest) - 2) >= $i ? ',' : ''
+            );
+            $i++;
+        }
+
+        $this->searches['package_suggest'] = '';
+
+        if (! empty($content)) {
+            $this->searches['package_suggest'] = PHP_EOL.sprintf(
+                $element,
+                PHP_EOL,
+                str_repeat(static::INDENT, 1),
+                $content
+            );
+        }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->searches[package_suggest]' => $this->searches['package_suggest'],
+        //     '$package_suggest' => $package_suggest,
+        // ]);
+
+        return $this->searches['package_suggest'];
+    }
+
     protected function make_composer_keywords(): string
     {
         $package_keywords = $this->c->package_keywords();
@@ -240,14 +283,6 @@ trait BuildComposer
         $element = '%2$s"keywords": [%1$s%3$s%2$s],';
 
         $content = '';
-
-        if (empty($package_keywords)) {
-            $package_keywords[] = 'laravel';
-        }
-
-        if ($this->c->playground() && ! in_array('playground', $package_keywords)) {
-            $package_keywords[] = 'playground';
-        }
 
         foreach ($package_keywords as $i => $keyword) {
             $content .= sprintf('%2$s"%3$s"%4$s%1$s',
@@ -332,6 +367,79 @@ trait BuildComposer
         return $this->searches['package_license'];
     }
 
+    protected function make_composer_authors(): string
+    {
+        $element = '%2$s"authors": [%3$s%1$s%2$s],';
+
+        $content = '';
+
+        $package_authors = $this->c->package_authors();
+
+        for ($i = 0; $i < count($package_authors); $i++) {
+
+            $author = '';
+
+            if (! empty($package_authors[$i]['name'])) {
+                $author .= sprintf('%1$s%2$s"name": "%3$s",',
+                    PHP_EOL,
+                    str_repeat(static::INDENT, 3),
+                    $package_authors[$i]['name'],
+                );
+            }
+
+            if (! empty($package_authors[$i]['email'])) {
+                $author .= sprintf('%1$s%2$s"email": "%3$s",',
+                    PHP_EOL,
+                    str_repeat(static::INDENT, 3),
+                    $package_authors[$i]['email'],
+                );
+            }
+
+            if (! empty($package_authors[$i]['role'])) {
+                $author .= sprintf('%1$s%2$s"role": "%3$s",',
+                    PHP_EOL,
+                    str_repeat(static::INDENT, 3),
+                    $package_authors[$i]['role'],
+                );
+            }
+            if ($author) {
+                $author = rtrim($author, ',');
+                $content .= sprintf('%1$s%2$s{%3$s%4$s%1$s%2$s}',
+                    PHP_EOL,
+                    str_repeat(static::INDENT, 2),
+                    $author,
+                    (count($package_authors) - 2) >= $i ? ',' : ''
+                );
+            }
+
+            // dump([
+            //     '__METHOD__' => __METHOD__,
+            //     '$i' => $i,
+            //     '$author' => $author,
+            //     '$content' => $content,
+            //     '$package_authors[$i]' => $package_authors[$i],
+            // ]);
+        }
+
+        $this->searches['package_authors'] = '';
+
+        if (! empty($content)) {
+            $this->searches['package_authors'] = PHP_EOL.sprintf(
+                $element,
+                PHP_EOL,
+                str_repeat(static::INDENT, 1),
+                $content
+            );
+        }
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$package_authors' => $package_authors,
+        //     '$this->searches[package_authors]' => $this->searches['package_authors'],
+        // ]);
+
+        return $this->searches['package_suggest'];
+    }
+
     protected function make_composer_homepage(): string
     {
         $package_homepage = $this->c->package_homepage();
@@ -350,6 +458,12 @@ trait BuildComposer
                 $package_homepage
             );
         }
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->searches' => $this->searches,
+        //     '$this->c' => $this->c,
+        // ]);
 
         return $this->searches['package_homepage'];
     }
@@ -357,6 +471,12 @@ trait BuildComposer
     protected function make_composer_providers(): string
     {
         $package_laravel_providers = $this->c->package_laravel_providers();
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$package_laravel_providers' => $package_laravel_providers,
+        //     // '$this->c' => $this->c,
+        //     // '$this->searches' => $this->searches,
+        // ]);
 
         $this->searches['package_laravel_providers'] = '';
 
@@ -366,15 +486,15 @@ trait BuildComposer
 
         $providers = [];
 
-        if (! $package_laravel_providers) {
-            $providers[] = addslashes(sprintf('%1$s\ServiceProvider', $this->searches['namespace']));
-        } else {
-            foreach ($package_laravel_providers as $provider) {
-                if (! empty($provider) && is_string($provider)) {
-                    $providers[] = addslashes($provider);
-                }
+        // if (! $package_laravel_providers) {
+        //     $providers[] = addslashes(sprintf('%1$s\ServiceProvider', $this->searches['namespace']));
+        // } else {
+        foreach ($package_laravel_providers as $provider) {
+            if (! empty($provider) && is_string($provider)) {
+                $providers[] = addslashes($this->parseClassInput($provider));
             }
         }
+        // }
 
         $i = 0;
         foreach ($providers as $provider) {
@@ -397,6 +517,12 @@ trait BuildComposer
             );
         }
 
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$package_laravel_providers' => $package_laravel_providers,
+        //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        // ]);
         return $this->searches['package_laravel_providers'];
     }
 
@@ -414,9 +540,11 @@ trait BuildComposer
         $this->make_composer_packagist();
         $this->make_composer_keywords();
         $this->make_composer_license();
+        $this->make_composer_authors();
         $this->make_composer_homepage();
         $this->make_composer_require();
         $this->make_composer_require_dev();
+        $this->make_composer_suggest();
         $this->make_composer_autoload();
         $this->make_composer_autoload_dev();
         $this->make_composer_providers();

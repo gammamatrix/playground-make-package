@@ -1,17 +1,24 @@
 {
     "name": "{{ packagist }}",
     "description": "{{ package_description }}",
-{{ package_keywords }}{{ package_homepage }}{{ package_license }}
-{{ package_require }}{{ package_require_dev }}{{ package_autoload }}{{ package_autoload_dev }}
+{{ package_keywords }}{{ package_homepage }}{{ package_license }}{{ package_authors }}
+{{ package_require }}{{ package_require_dev }}{{ package_suggest }}{{ package_autoload }}{{ package_autoload_dev }}
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "preferred-install": {
+            "gammamatrix/*": "source",
+            "*": "dist"
+        }
     },
     "extra": {
+        "branch-alias": {
+            "dev-develop": "73.x-dev"
+        },
         "laravel": {
             "providers": [{{ package_laravel_providers }}]
         }
     },{{ package_scripts }}
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",

@@ -16,6 +16,41 @@ All options are disabled by default.
 
 See the contents of the published config file: [config/{{ package }}.php](config/{{ package }}.php)
 
+## Cloc
+
+```sh
+composer cloc
+```
+
+```
+➜  {{ package }} git:(develop) ✗ composer cloc
+> cloc --exclude-dir=node_modules,output,vendor .
+```
+
+## PHPStan
+
+Tests at level 9 on:
+- `config/`
+- `database/`
+- `src/`
+- `tests/Feature/`
+- `tests/Unit/`
+
+```sh
+composer analyse
+```
+
+## Coding Standards
+
+```sh
+composer format
+```
+
+## Testing
+
+```sh
+composer test --parallel
+```
 
 ## Changelog
 

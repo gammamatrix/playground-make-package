@@ -10,6 +10,7 @@
 /.php-cs-fixer.dist     export-ignore
 /.phpunit.cache         export-ignore
 /docs                   export-ignore
+/resources/package      export-ignore
 /tests                  export-ignore
 /vendor                 export-ignore
 /composer.lock          export-ignore

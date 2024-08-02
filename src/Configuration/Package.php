@@ -47,8 +47,10 @@ class Package extends PrimaryConfiguration
         'package_homepage' => '',
         'package_keywords' => [],
         'package_license' => '',
+        'package_authors' => [],
         'package_require' => [],
         'package_require_dev' => [],
+        'package_suggest' => [],
         'package_autoload_psr4' => [],
         'package_autoload_dev_psr4' => [],
         'package_providers' => [],
@@ -106,6 +108,11 @@ class Package extends PrimaryConfiguration
 
     protected string $package_homepage = '';
 
+    /**
+     * @var array<int, array<string, string>>
+     */
+    protected array $package_authors = [];
+
     protected string $package_license = '';
 
     /**
@@ -117,6 +124,11 @@ class Package extends PrimaryConfiguration
      * @var array<string, string>
      */
     protected array $package_require_dev = [];
+
+    /**
+     * @var array<string, string>
+     */
+    protected array $package_suggest = [];
 
     /**
      * @var array<int, string>
@@ -251,6 +263,12 @@ class Package extends PrimaryConfiguration
             $this->package_description = $options['package_description'];
         }
 
+        if (! empty($options['package_homepage'])
+            && is_string($options['package_homepage'])
+        ) {
+            $this->package_homepage = $options['package_homepage'];
+        }
+
         if (! empty($options['package_keywords'])
             && is_array($options['package_keywords'])
         ) {
@@ -278,6 +296,22 @@ class Package extends PrimaryConfiguration
         ) {
             foreach ($options['package_require_dev'] as $package => $version) {
                 $this->addRequireDev($package, $version);
+            }
+        }
+
+        if (! empty($options['package_suggest'])
+            && is_array($options['package_suggest'])
+        ) {
+            foreach ($options['package_suggest'] as $package => $description) {
+                $this->addSuggest($package, $description);
+            }
+        }
+
+        if (! empty($options['package_authors'])
+            && is_array($options['package_authors'])
+        ) {
+            foreach ($options['package_authors'] as $i => $author) {
+                $this->addAuthor($i, $author);
             }
         }
 
@@ -445,6 +479,87 @@ class Package extends PrimaryConfiguration
         return $this;
     }
 
+    public function addAuthor(mixed $i, mixed $author): self
+    {
+        $isValid = null;
+        if (! is_numeric($i)) {
+            Log::warning(__('playground-make-package::configuration.author.invalid', [
+                'i' => is_numeric($i) ? $i : gettype($i),
+                'author-type' => gettype($author),
+            ]), [
+                'i-type' => gettype($i),
+                'author-type' => gettype($author),
+                'i' => is_numeric($i) ? $i : gettype($i),
+                'author' => is_array($author) ? $author : gettype($author),
+            ]);
+        } else {
+            $isValid = true;
+        }
+
+        // At least the author name is required
+        if (empty($author) || ! is_array($author) || empty($author['name'])) {
+            Log::warning(__('playground-make-package::configuration.author.invalid', [
+                'i' => is_numeric($i) ? $i : gettype($i),
+                'author-type' => gettype($author),
+            ]), [
+                'i-type' => gettype($i),
+                'author-type' => gettype($author),
+                'i' => is_numeric($i) ? $i : gettype($i),
+                'author' => is_array($author) ? $author : gettype($author),
+            ]);
+        } else {
+            $isValid = true;
+        }
+
+        if (is_numeric($i) && ! empty($author) && is_array($author)) {
+            $a = [
+                'name' => $author['name'],
+            ];
+            if (! empty($author['email']) && is_string($author['email'])) {
+                $a['email'] = $author['email'];
+            }
+            if (! empty($author['role']) && is_string($author['role'])) {
+                $a['role'] = $author['role'];
+            }
+            $this->package_authors[$i] = $a;
+        }
+
+        return $this;
+    }
+
+    public function addSuggest(mixed $package, mixed $description): self
+    {
+        if (empty($package) || ! is_string($package)) {
+            Log::warning(__('playground-make-package::configuration.suggest.package.required', [
+                'package' => is_string($package) ? $package : gettype($package),
+                'description' => is_string($description) ? $description : gettype($description),
+            ]), [
+                'package-type' => gettype($package),
+                'description-type' => gettype($description),
+                'package' => is_string($package) ? $package : gettype($package),
+                'description' => is_string($description) ? $description : gettype($description),
+            ]);
+        }
+
+        if (empty($description) || ! is_string($description)) {
+            Log::warning(__('playground-make-package::configuration.suggest.description.required', [
+                'package' => is_string($package) ? $package : gettype($package),
+                'description' => is_string($description) ? $description : gettype($description),
+            ]), [
+                'package-type' => gettype($package),
+                'description-type' => gettype($description),
+                'package' => is_string($package) ? $package : gettype($package),
+                'description' => is_string($description) ? $description : gettype($description),
+            ]);
+        }
+
+        if (! empty($package) && is_string($package) && ! empty($description) && is_string($description)) {
+            $this->package_suggest[$package] = $description;
+        }
+
+        return $this;
+    }
+
     public function addRoute(
         string $slug,
         string $file = ''
@@ -556,6 +671,14 @@ class Package extends PrimaryConfiguration
     }
 
     /**
+     * @return array<int, array<string, string>>
+     */
+    public function package_authors(): array
+    {
+        return $this->package_authors;
+    }
+
+    /**
      * @return array<string, string>
      */
     public function package_require(): array
@@ -569,6 +692,14 @@ class Package extends PrimaryConfiguration
     public function package_require_dev(): array
     {
         return $this->package_require_dev;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function package_suggest(): array
+    {
+        return $this->package_suggest;
     }
 
     /**

@@ -6,7 +6,7 @@
 declare(strict_types=1);
 namespace Playground\Make\Package\Console\Commands;
 
-use Illuminate\Console\Concerns\CreatesMatchingTest;
+// use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Str;
 use Playground\Make\Configuration\Contracts\PrimaryConfiguration as PrimaryConfigurationContract;
 use Playground\Make\Console\Commands\GeneratorCommand;
@@ -29,7 +29,7 @@ class PackageMakeCommand extends GeneratorCommand
     use Building\BuildServiceProvider;
     use Building\BuildSkeleton;
     use Building\BuildTests;
-    use CreatesMatchingTest;
+    // use CreatesMatchingTest;
 
     /**
      * @var class-string<Configuration>
@@ -56,8 +56,10 @@ class PackageMakeCommand extends GeneratorCommand
         'package_keywords' => '',
         'package_homepage' => '',
         'package_license' => '',
+        'package_authors' => '',
         'package_require' => '',
         'package_require_dev' => '',
+        'package_suggest' => '',
         'package_scripts' => '',
         'package_autoload_psr4' => '',
         'package_autoload_dev' => '',
@@ -337,13 +339,38 @@ class PackageMakeCommand extends GeneratorCommand
             $this->build_crud();
         }
 
+        // $this->saveConfiguration();
+
+        $this->setPackageAuthor();
+        $this->setPackageDescription();
+        $this->setPackageKeywords();
+        $this->setPackageHomepage();
+        $this->setPackageRequire();
+        $this->setPackageProviders();
+        $this->setPackageSuggest();
+        $this->setPackageVersion();
+
+        $this->c->apply();
+        $this->applyConfigurationToSearch();
         $this->saveConfiguration();
+
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        // ]);
 
         $this->createComposerJson();
         $this->createConfig();
         $this->createSkeleton();
-        $this->setPackageVersion();
 
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        // ]);
         $this->saveConfiguration();
 
         if ($this->c->withTests()) {
