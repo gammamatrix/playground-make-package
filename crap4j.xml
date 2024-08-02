@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-07-31 20:05:08</timestamp>
+  <timestamp>2024-08-02 21:57:33</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>86</methodCount>
-    <crapMethodCount>6</crapMethodCount>
-    <crapLoad>93</crapLoad>
-    <totalCrap>1905.35</totalCrap>
-    <crapMethodPercent>6.98</crapMethodPercent>
+    <methodCount>99</methodCount>
+    <crapMethodCount>8</crapMethodCount>
+    <crapLoad>132</crapLoad>
+    <totalCrap>2648.08</totalCrap>
+    <crapMethodPercent>8.08</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -28,9 +28,9 @@
       <methodName>make_composer_autoload_dev</methodName>
       <methodSignature>make_composer_autoload_dev(): string</methodSignature>
       <fullMethod>make_composer_autoload_dev(): string</fullMethod>
-      <crap>31.6</crap>
+      <crap>30.06</crap>
       <complexity>10</complexity>
-      <coverage>40</coverage>
+      <coverage>41.46</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -58,12 +58,23 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildComposer</className>
+      <methodName>make_composer_suggest</methodName>
+      <methodSignature>make_composer_suggest(): string</methodSignature>
+      <fullMethod>make_composer_suggest(): string</fullMethod>
+      <crap>4</crap>
+      <complexity>4</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildComposer</className>
       <methodName>make_composer_keywords</methodName>
       <methodSignature>make_composer_keywords(): string</methodSignature>
       <fullMethod>make_composer_keywords(): string</fullMethod>
-      <crap>7</crap>
-      <complexity>7</complexity>
-      <coverage>95.65</coverage>
+      <crap>4</crap>
+      <complexity>4</complexity>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -102,12 +113,23 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildComposer</className>
+      <methodName>make_composer_authors</methodName>
+      <methodSignature>make_composer_authors(): string</methodSignature>
+      <fullMethod>make_composer_authors(): string</fullMethod>
+      <crap>9</crap>
+      <complexity>8</complexity>
+      <coverage>75</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildComposer</className>
       <methodName>make_composer_homepage</methodName>
       <methodSignature>make_composer_homepage(): string</methodSignature>
       <fullMethod>make_composer_homepage(): string</fullMethod>
-      <crap>4.12</crap>
+      <crap>3</crap>
       <complexity>3</complexity>
-      <coverage>50</coverage>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -116,8 +138,8 @@
       <methodName>make_composer_providers</methodName>
       <methodSignature>make_composer_providers(): string</methodSignature>
       <fullMethod>make_composer_providers(): string</fullMethod>
-      <crap>8</crap>
-      <complexity>8</complexity>
+      <crap>7</crap>
+      <complexity>7</complexity>
       <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -270,6 +292,83 @@
       <methodName>createSkeleton</methodName>
       <methodSignature>createSkeleton(): void</methodSignature>
       <fullMethod>createSkeleton(): void</fullMethod>
+      <crap>7</crap>
+      <complexity>7</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setPackageKeywords</methodName>
+      <methodSignature>setPackageKeywords(): void</methodSignature>
+      <fullMethod>setPackageKeywords(): void</fullMethod>
+      <crap>13.34</crap>
+      <complexity>12</complexity>
+      <coverage>78.95</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setPackageHomepage</methodName>
+      <methodSignature>setPackageHomepage(): void</methodSignature>
+      <fullMethod>setPackageHomepage(): void</fullMethod>
+      <crap>6</crap>
+      <complexity>6</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setPackageAuthor</methodName>
+      <methodSignature>setPackageAuthor(): void</methodSignature>
+      <fullMethod>setPackageAuthor(): void</fullMethod>
+      <crap>4.01</crap>
+      <complexity>4</complexity>
+      <coverage>92.31</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setPackageDescription</methodName>
+      <methodSignature>setPackageDescription(): void</methodSignature>
+      <fullMethod>setPackageDescription(): void</fullMethod>
+      <crap>6</crap>
+      <complexity>6</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setPackageProviders</methodName>
+      <methodSignature>setPackageProviders(): void</methodSignature>
+      <fullMethod>setPackageProviders(): void</fullMethod>
+      <crap>2</crap>
+      <complexity>2</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setPackageRequire</methodName>
+      <methodSignature>setPackageRequire(): void</methodSignature>
+      <fullMethod>setPackageRequire(): void</fullMethod>
+      <crap>28.99</crap>
+      <complexity>8</complexity>
+      <coverage>31.03</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setPackageSuggest</methodName>
+      <methodSignature>setPackageSuggest(): void</methodSignature>
+      <fullMethod>setPackageSuggest(): void</fullMethod>
       <crap>6</crap>
       <complexity>6</complexity>
       <coverage>100</coverage>
@@ -435,10 +534,10 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>70.85</crap>
-      <complexity>60</complexity>
-      <coverage>85.56</coverage>
-      <crapLoad>10</crapLoad>
+      <crap>90.05</crap>
+      <complexity>68</complexity>
+      <coverage>83.17</coverage>
+      <crapLoad>13</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
@@ -472,6 +571,28 @@
       <complexity>17</complexity>
       <coverage>100</coverage>
       <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addAuthor</methodName>
+      <methodSignature>addAuthor(mixed $i, mixed $author): self</methodSignature>
+      <fullMethod>addAuthor(mixed $i, mixed $author): self</fullMethod>
+      <crap>342</crap>
+      <complexity>18</complexity>
+      <coverage>0</coverage>
+      <crapLoad>18</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addSuggest</methodName>
+      <methodSignature>addSuggest(mixed $package, mixed $description): self</methodSignature>
+      <fullMethod>addSuggest(mixed $package, mixed $description): self</fullMethod>
+      <crap>306</crap>
+      <complexity>17</complexity>
+      <coverage>0</coverage>
+      <crapLoad>17</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
@@ -674,6 +795,17 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>package_authors</methodName>
+      <methodSignature>package_authors(): array</methodSignature>
+      <fullMethod>package_authors(): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
       <methodName>package_require</methodName>
       <methodSignature>package_require(): array</methodSignature>
       <fullMethod>package_require(): array</fullMethod>
@@ -688,6 +820,17 @@
       <methodName>package_require_dev</methodName>
       <methodSignature>package_require_dev(): array</methodSignature>
       <fullMethod>package_require_dev(): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>package_suggest</methodName>
+      <methodSignature>package_suggest(): array</methodSignature>
+      <fullMethod>package_suggest(): array</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
@@ -864,9 +1007,9 @@
       <methodName>finish</methodName>
       <methodSignature>finish(): ?bool</methodSignature>
       <fullMethod>finish(): ?bool</fullMethod>
-      <crap>4.21</crap>
+      <crap>4.06</crap>
       <complexity>4</complexity>
-      <coverage>76.47</coverage>
+      <coverage>84.62</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
