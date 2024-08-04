@@ -146,6 +146,7 @@ class PackageMakeCommand extends GeneratorCommand
         $options[] = ['packagist', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' packagist name in composer.json'];
         $options[] = ['build', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' controllers, policies, requests and routes for the models'];
         $options[] = ['playground', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use Playground features'];
+        $options[] = ['revision', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use revision features'];
         $options[] = ['swagger', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' the Swagger documentation'];
         $options[] = ['test', null, InputOption::VALUE_NONE, 'Create the unit and feature tests for the '.strtolower($this->type)];
         $options[] = ['api', null, InputOption::VALUE_NONE, 'Generate an API controller class when creating the model. Requires --controllers option'];
@@ -300,6 +301,12 @@ class PackageMakeCommand extends GeneratorCommand
             ]);
         }
 
+        if ($this->hasOption('revision') && $this->option('revision')) {
+            $this->c->setOptions([
+                'revision' => true,
+            ]);
+        }
+
         if ($this->c->playground() && in_array($this->c->type(), [
             'playground-model',
         ])) {
@@ -338,6 +345,12 @@ class PackageMakeCommand extends GeneratorCommand
             $this->createResourceIndexController();
             $this->build_crud();
         }
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        // ]);
 
         // $this->saveConfiguration();
 

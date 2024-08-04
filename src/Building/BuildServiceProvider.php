@@ -24,6 +24,11 @@ trait BuildServiceProvider
         $about_line = '%1$s\'<fg=red;options=bold>Route</> %2$s\' => ! empty($routes[\'%2$s\']) ? \'<fg=green;options=bold>ENABLED</>\' : \'<fg=yellow;options=bold>DISABLED</>\',%3$s';
 
         $route_line = '%1$s\'%2$s\' => (bool) env(\'%3$s_%4$s\', %5$s),%6$s';
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->routes()' => $this->c->routes(),
+        //     // '$this->c' => $this->c->toArray(),
+        // ]);
 
         $i = 0;
         foreach ($this->c->routes() as $route => $file) {
@@ -60,7 +65,7 @@ PHP_CODE;
         if (! empty($load_routes)) {
             $this->searches['load_routes'] = $load_routes;
         }
-        // dd([
+        // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$about_routes' => $about_routes,
         //     '$config_routes' => $config_routes,
@@ -73,6 +78,8 @@ PHP_CODE;
 
     public function preload_model_routes_for_service_provider(): void
     {
+        $isApi = $this->hasOption('api') && $this->option('api');
+
         $config_abilities_manager = '';
         $config_abilities_user = '';
 
@@ -80,17 +87,22 @@ PHP_CODE;
         $user_line = '%1$s\'%2$s:%3$s:view\',%4$s';
         $user_line .= '%1$s\'%2$s:%3$s:viewAny\',%4$s';
 
-        if ($this->c->module_slug()) {
+        if (! $isApi && $this->c->module_slug()) {
             $this->c->addRoute($this->c->module_slug());
         }
-
-        $models = $this->modelPackage?->models() ?? [];
         // dump([
         //     '__METHOD__' => __METHOD__,
-        //     '$models' => $models,
-        //     // '$this->modelPackage' => $this->modelPackage,
+        //     '$isApi' => $isApi,
+        //     '$this->c->routes()' => $this->c->routes(),
         // ]);
+
+        $models = $this->modelPackage?->models() ?? [];
+
         foreach ($models as $model => $file) {
+
+            if (Str::of($model)->endsWith('Revision')) {
+                continue;
+            }
             $model_plural_slug = Str::of($model)->plural()->kebab()->toString();
             $model_slug = Str::of($model)->slug()->toString();
             if ($model_plural_slug) {

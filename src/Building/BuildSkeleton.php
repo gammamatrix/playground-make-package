@@ -176,6 +176,13 @@ trait BuildSkeleton
     protected function setPackageDescription(): void
     {
         $package_description = $this->c->package_description();
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$package_description' => $package_description,
+        //     '$this->c->organization()' => $this->c->organization(),
+        //     '$this->c->module()' => $this->c->module(),
+        //     '$this->c->name()' => $this->c->name(),
+        // ]);
 
         if (! $package_description && $this->c->organization()) {
             if (in_array($this->c->type(), [
@@ -207,7 +214,7 @@ trait BuildSkeleton
 
         $this->c->setOptions(['package_description' => $package_description]);
         $this->c->apply();
-        // dump([
+        // dd([
         //     '__METHOD__' => __METHOD__,
         //     '$package_description' => $package_description,
         //     '$this->c' => $this->c,

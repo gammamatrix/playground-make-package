@@ -41,6 +41,7 @@ class Package extends PrimaryConfiguration
         'withSwagger' => false,
         'withTests' => false,
         'playground' => false,
+        'revision' => false,
         'package_name' => '',
         // 'package_autoload' => '',
         'package_description' => '',
@@ -90,6 +91,8 @@ class Package extends PrimaryConfiguration
     protected bool $withSwagger = false;
 
     protected bool $withTests = false;
+
+    protected bool $revision = false;
 
     protected string $config_space = '';
 
@@ -233,7 +236,11 @@ class Package extends PrimaryConfiguration
             $this->withTests = ! empty($options['withTests']);
         }
 
+        if (array_key_exists('revision', $options)) {
+            $this->revision = ! empty($options['revision']);
+        }
         if (! empty($options['package_name'])
+
             && is_string($options['package_name'])
         ) {
             $this->package_name = $options['package_name'];
@@ -625,6 +632,11 @@ class Package extends PrimaryConfiguration
     public function withTests(): bool
     {
         return $this->withTests;
+    }
+
+    public function revision(): bool
+    {
+        return $this->revision;
     }
 
     public function config_space(): string

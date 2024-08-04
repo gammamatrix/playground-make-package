@@ -49,6 +49,13 @@ trait BuildControllers
      */
     public function build_crud_form_request(string $package, array $params): void
     {
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$package' => $package,
+        //     '$params' => $params,
+        //     // '$this->c' => $this->c->toArray(),
+        //     // '$this->c' => $this->c,
+        // ]);
         if (! $this->call('playground:make:request', $params)) {
             $file_request = sprintf(
                 '%1$s/app/stub/%2$s/resources/packages/form.request.json',
@@ -84,6 +91,14 @@ trait BuildControllers
         $isResource = $this->hasOption('resource') && $this->option('resource');
 
         $namespace = $this->c->namespace();
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$isApi' => $isApi,
+        //     '$isResource' => $isResource,
+        //     '$namespace' => $namespace,
+        //     // '$this->c' => $this->c->toArray(),
+        //     // '$this->c' => $this->c,
+        // ]);
 
         if ($namespace) {
             $namespace = $this->parseClassConfig($namespace);
@@ -116,6 +131,10 @@ trait BuildControllers
             $params_controller['--skeleton'] = true;
         }
 
+        if ($this->c->revision()) {
+            $params_controller['--revision'] = true;
+        }
+
         if ($force) {
             $params_controller['--force'] = true;
             $params_form_request['--force'] = true;
@@ -132,7 +151,7 @@ trait BuildControllers
         $params_form_request['--organization'] = $this->c->organization();
         $params_form_request['--module'] = $this->c->module();
 
-        if ($this->c->module_slug()) {
+        if (! $isApi && $this->c->module_slug()) {
             $this->c->addRoute($this->c->module_slug());
         }
 
@@ -162,6 +181,17 @@ trait BuildControllers
             $params_form_request['--playground'] = true;
         }
 
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$package' => $package,
+        //     '$params_form_request' => $params_form_request,
+        //     '$isApi' => $isApi,
+        //     '$isResource' => $isResource,
+        //     '$namespace' => $namespace,
+        //     // '$this->c' => $this->c->toArray(),
+        //     // '$this->c' => $this->c,
+        // ]);
+
         $this->build_crud_form_request($package, $params_form_request);
 
         $models = $this->modelPackage?->models() ?? [];
@@ -169,6 +199,11 @@ trait BuildControllers
             if (is_string($file) && $file) {
 
                 $model = new Model($this->readJsonFileAsArray($file));
+
+                if ($model->revision()) {
+                    // Revision models do not have controllers.
+                    continue;
+                }
 
                 $params_controller['--model'] = $model->name();
                 $params_controller['name'] = Str::of($model->name())->studly()->finish('Controller')->toString();
@@ -178,10 +213,11 @@ trait BuildControllers
                 //     '__METHOD__' => __METHOD__,
                 //     '$params_controller' => $params_controller,
                 //     // '$this->c' => $this->c,
+                //     '$model->name()' => $model->name(),
+                //     '$model->revision()' => $model->revision(),
                 // ]);
                 $this->createControllerForModel($model, $package, $params_controller);
 
-                // Playground\Matrix\Models\Backlog::class => Playground\Matrix\Resource\Policies\BacklogPolicy::class,
                 $config_policies .= sprintf($policy_line,
                     str_repeat(static::INDENT, 2),
                     $this->parseClassInput($model->fqdn()),
@@ -250,6 +286,10 @@ trait BuildControllers
 
         // dump([
         //     '__METHOD__' => __METHOD__,
+        //     '$withCovers' => $withCovers,
+        //     '$isApi' => $isApi,
+        //     '$isResource' => $isResource,
+        //     '$namespace' => $namespace,
         //     '$params' => $params,
         // ]);
         if (! $this->call('playground:make:controller', $params)) {
@@ -343,6 +383,10 @@ trait BuildControllers
 
         // dump([
         //     '__METHOD__' => __METHOD__,
+        //     '$package' => $package,
+        //     '$isApi' => $isApi,
+        //     '$isResource' => $isResource,
+        //     '$namespace' => $namespace,
         //     '$params' => $params,
         // ]);
         if (! $this->call('playground:make:controller', $params)) {
@@ -374,6 +418,11 @@ trait BuildControllers
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
 
+        if ($isApi) {
+            // Playground API controllers do not have an index.
+            return;
+        }
+
         $model = '';
         if ($this->hasOption('model') && $this->option('model') && is_string($this->option('model'))) {
             $model = $this->option('model');
@@ -383,20 +432,12 @@ trait BuildControllers
 
         if ($namespace) {
             $namespace = $this->parseClassConfig($namespace);
-            if ($isApi) {
-                $namespace = Str::of($namespace)->finish('/Api')->studly()->toString();
-            } elseif ($isResource) {
-                $namespace = Str::of($namespace)->finish('/Resource')->studly()->toString();
-            }
+            $namespace = Str::of($namespace)->finish('/Resource')->studly()->toString();
         }
 
         $package = $this->c->package();
         if ($package && $this->c->playground()) {
-            if ($isApi) {
-                $package = Str::of($package)->finish('-api')->toString();
-            } elseif ($isResource) {
-                $package = Str::of($package)->finish('-resource')->toString();
-            }
+            $package = Str::of($package)->finish('-resource')->toString();
         }
 
         $params = [
@@ -436,7 +477,7 @@ trait BuildControllers
 
         }
 
-        // dump([
+        // dd([
         //     '__METHOD__' => __METHOD__,
         //     '$params' => $params,
         //     // '$this->options()' => $this->options(),
