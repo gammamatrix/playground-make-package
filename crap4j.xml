@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-08-04 18:09:53</timestamp>
+  <timestamp>2024-08-05 19:05:01</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>100</methodCount>
-    <crapMethodCount>9</crapMethodCount>
-    <crapLoad>143</crapLoad>
-    <totalCrap>2738.43</totalCrap>
-    <crapMethodPercent>9</crapMethodPercent>
+    <methodCount>105</methodCount>
+    <crapMethodCount>11</crapMethodCount>
+    <crapLoad>162</crapLoad>
+    <totalCrap>3088.88</totalCrap>
+    <crapMethodPercent>10.48</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -201,13 +201,57 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_policy_line</methodName>
+      <methodSignature>build_config_policy_line(Playground\Make\Configuration\Model $model): string</methodSignature>
+      <fullMethod>build_config_policy_line(Playground\Make\Configuration\Model $model): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_policy_line_revision</methodName>
+      <methodSignature>build_config_policy_line_revision(Playground\Make\Configuration\Model $model): string</methodSignature>
+      <fullMethod>build_config_policy_line_revision(Playground\Make\Configuration\Model $model): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_revision_line</methodName>
+      <methodSignature>build_config_revision_line(string $model_plural): string</methodSignature>
+      <fullMethod>build_config_revision_line(string $model_plural): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_revision</methodName>
+      <methodSignature>build_config_revision(string $revisions): string</methodSignature>
+      <fullMethod>build_config_revision(string $revisions): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>600</crap>
-      <complexity>24</complexity>
+      <crap>702</crap>
+      <complexity>26</complexity>
       <coverage>0</coverage>
-      <crapLoad>24</crapLoad>
+      <crapLoad>27</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -292,9 +336,9 @@
       <methodName>createSkeleton</methodName>
       <methodSignature>createSkeleton(): void</methodSignature>
       <fullMethod>createSkeleton(): void</fullMethod>
-      <crap>7</crap>
-      <complexity>7</complexity>
-      <coverage>100</coverage>
+      <crap>11</crap>
+      <complexity>11</complexity>
+      <coverage>96.43</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -358,9 +402,9 @@
       <methodName>setPackageRequire</methodName>
       <methodSignature>setPackageRequire(): void</methodSignature>
       <fullMethod>setPackageRequire(): void</fullMethod>
-      <crap>28.99</crap>
+      <crap>33.44</crap>
       <complexity>8</complexity>
-      <coverage>31.03</coverage>
+      <coverage>26.47</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -413,9 +457,9 @@
       <methodName>setUpWorkflow</methodName>
       <methodSignature>setUpWorkflow(): void</methodSignature>
       <fullMethod>setUpWorkflow(): void</fullMethod>
-      <crap>7</crap>
-      <complexity>7</complexity>
-      <coverage>100</coverage>
+      <crap>11</crap>
+      <complexity>11</complexity>
+      <coverage>95.24</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -435,8 +479,8 @@
       <methodName>command_tests_playground_api</methodName>
       <methodSignature>command_tests_playground_api(): void</methodSignature>
       <fullMethod>command_tests_playground_api(): void</fullMethod>
-      <crap>12</crap>
-      <complexity>3</complexity>
+      <crap>30</crap>
+      <complexity>5</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -468,8 +512,8 @@
       <methodName>command_tests_playground_model_test_case</methodName>
       <methodSignature>command_tests_playground_model_test_case(): void</methodSignature>
       <fullMethod>command_tests_playground_model_test_case(): void</fullMethod>
-      <crap>12</crap>
-      <complexity>3</complexity>
+      <crap>20</crap>
+      <complexity>4</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -479,8 +523,8 @@
       <methodName>command_tests_playground_resource</methodName>
       <methodSignature>command_tests_playground_resource(): void</methodSignature>
       <fullMethod>command_tests_playground_resource(): void</fullMethod>
-      <crap>12</crap>
-      <complexity>3</complexity>
+      <crap>30</crap>
+      <complexity>5</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -490,10 +534,21 @@
       <methodName>command_tests_playground_controller_test_case</methodName>
       <methodSignature>command_tests_playground_controller_test_case(): void</methodSignature>
       <fullMethod>command_tests_playground_controller_test_case(): void</fullMethod>
-      <crap>12</crap>
-      <complexity>3</complexity>
+      <crap>42</crap>
+      <complexity>6</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>command_tests_playground_controller_route_tests</methodName>
+      <methodSignature>command_tests_playground_controller_route_tests(): void</methodSignature>
+      <fullMethod>command_tests_playground_controller_route_tests(): void</fullMethod>
+      <crap>110</crap>
+      <complexity>10</complexity>
+      <coverage>0</coverage>
+      <crapLoad>10</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -523,10 +578,10 @@
       <methodName>command_tests_about_command</methodName>
       <methodSignature>command_tests_about_command(): void</methodSignature>
       <fullMethod>command_tests_about_command(): void</fullMethod>
-      <crap>12</crap>
-      <complexity>3</complexity>
+      <crap>56</crap>
+      <complexity>7</complexity>
       <coverage>0</coverage>
-      <crapLoad>0</crapLoad>
+      <crapLoad>7</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
