@@ -68,6 +68,7 @@ class PackageMakeCommand extends GeneratorCommand
         'policies' => '',
         'publish_migrations' => '',
         'config_policies' => '',
+        'config_revisions' => '',
         'config_routes' => '',
         'config_abilities_manager' => '',
         'config_abilities_user' => '',

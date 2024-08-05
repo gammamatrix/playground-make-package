@@ -74,10 +74,80 @@ trait BuildControllers
 
     }
 
+    protected function build_config_policy_line(Model $model): string
+    {
+        $fqdn = $this->parseClassInput($model->fqdn());
+        $namespace = $this->parseClassInput($this->c->namespace());
+
+        $policy = sprintf(
+            '%1$s\Policies\%2$sPolicy::class',
+            $namespace,
+            $model->model(),
+        );
+
+        return <<<PHP_CODE
+        $fqdn::class => $policy,
+
+PHP_CODE;
+    }
+
+    protected function build_config_policy_line_revision(Model $model): string
+    {
+        $fqdn = $this->parseClassInput($model->fqdn());
+        $namespace = $this->parseClassInput($this->c->namespace());
+
+        $policy = sprintf(
+            '%1$s\Policies\%2$sPolicy::class',
+            $namespace,
+            $model->model(),
+        );
+
+        return <<<PHP_CODE
+        $fqdn::class => $policy,
+        {$fqdn}Revision::class => $policy,
+
+PHP_CODE;
+    }
+
+    protected function build_config_revision_line(string $model_plural): string
+    {
+        $config_space = $this->c->config_space();
+        $model_plural_upper = strtoupper($model_plural);
+
+        return <<<PHP_CODE
+        '$model_plural' => (bool) env('{$config_space}_REVISIONS_{$model_plural_upper}', true),
+
+PHP_CODE;
+    }
+
+    protected function build_config_revision(string $revisions): string
+    {
+        $config_space = $this->c->config_space();
+
+        return <<<PHP_CODE
+
+    /*
+    |--------------------------------------------------------------------------
+    | Revisions
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'revisions' => [
+        'optional' => (bool) env('{$config_space}_ROUTES_OPTIONAL', false),
+{$revisions}    ],
+
+PHP_CODE;
+    }
+
     public function build_crud(): void
     {
         $config_policies = '';
         $policy_line = '%1$s%2$s::class => %3$s\Policies\%4$sPolicy::class,%5$s';
+
+        $addConfigForRevisions = false;
+        $revisions_text = '';
 
         $force = $this->hasOption('force') && $this->option('force');
         // $withControllers = $this->hasOption('controllers') && $this->option('controllers');
@@ -133,6 +203,7 @@ trait BuildControllers
 
         if ($this->c->revision()) {
             $params_controller['--revision'] = true;
+            $addConfigForRevisions = true;
         }
 
         if ($force) {
@@ -218,13 +289,22 @@ trait BuildControllers
                 // ]);
                 $this->createControllerForModel($model, $package, $params_controller);
 
-                $config_policies .= sprintf($policy_line,
-                    str_repeat(static::INDENT, 2),
-                    $this->parseClassInput($model->fqdn()),
-                    $this->parseClassInput($this->c->namespace()),
-                    $model->model(),
-                    PHP_EOL,
-                );
+                // $config_policies .= sprintf($policy_line,
+                //     str_repeat(static::INDENT, 2),
+                //     $this->parseClassInput($model->fqdn()),
+                //     $this->parseClassInput($this->c->namespace()),
+                //     $model->model(),
+                //     PHP_EOL,
+                // );
+
+                if ($addConfigForRevisions) {
+                    $config_policies .= $this->build_config_policy_line_revision($model);
+                    $revisions_text .= $this->build_config_revision_line(
+                        Str::of($model->name())->plural()->kebab()->toString()
+                    );
+                } else {
+                    $config_policies .= $this->build_config_policy_line($model);
+                }
 
                 // dd([
                 //     '__METHOD__' => __METHOD__,
@@ -232,14 +312,22 @@ trait BuildControllers
                 // ]);
             }
         }
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$this->c->routes()' => $this->c->routes(),
-        // ]);
 
         if (! empty($config_policies)) {
             $this->searches['config_policies'] = rtrim($config_policies);
         }
+
+        if ($revisions_text) {
+            $this->searches['config_revisions'] = $this->build_config_revision($revisions_text);
+        }
+
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c' => $this->c,
+        //     '$this->searches' => $this->searches,
+        //     // '$this->c->routes()' => $this->c->routes(),
+        //     // '$addConfigForRevisions' => $addConfigForRevisions,
+        // ]);
 
         $this->make_service_provider_routes();
     }

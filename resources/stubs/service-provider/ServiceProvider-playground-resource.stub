@@ -126,7 +126,7 @@ class ServiceProvider extends AuthServiceProvider
      * @param array<string, mixed> $config
      */
     public function routes(array $config): void
-{{{ load_routes }}
+    {{{ load_routes }}
     }
 
     public function about(): void
@@ -161,7 +161,6 @@ class ServiceProvider extends AuthServiceProvider
             '<fg=magenta;options=bold>Sitemap</> [view]' => sprintf('[%s]', $sitemap['view']),
 
 {{ about_routes }}
-
             'Package' => $this->package,
             'Version' => ServiceProvider::VERSION,
         ]);

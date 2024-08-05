@@ -104,7 +104,8 @@ PHP_CODE;
                 continue;
             }
             $model_plural_slug = Str::of($model)->plural()->kebab()->toString();
-            $model_slug = Str::of($model)->slug()->toString();
+            // $model_slug = Str::of($model)->slug()->toString();
+            $model_kebab = Str::of($model)->kebab()->toString();
             if ($model_plural_slug) {
                 $this->c->addRoute($model_plural_slug);
             }
@@ -112,14 +113,14 @@ PHP_CODE;
             $config_abilities_manager .= sprintf($manager_line,
                 str_repeat(static::INDENT, 3),
                 $this->c->package(),
-                $model_slug,
+                $model_kebab,
                 PHP_EOL,
             );
 
             $config_abilities_user .= sprintf($user_line,
                 str_repeat(static::INDENT, 3),
                 $this->c->package(),
-                $model_slug,
+                $model_kebab,
                 PHP_EOL,
             );
         }

@@ -15,15 +15,20 @@ trait BuildSkeleton
 {
     /**
      * Create the skeleton configuration
+     *
+     * NOTE we are checking for API and resource a few different ways here.
+     * - for now support as many as possible
      */
     protected function createSkeleton(): void
     {
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
+
         $skeletons = [];
 
         $skeletons['.editorconfig'] = '.editorconfig';
         $skeletons['.gitattributes'] = '.gitattributes';
         $skeletons['gitignore'] = '.gitignore';
-        $skeletons['.php-cs-fixer.dist.php'] = '.php-cs-fixer.dist.php';
         $skeletons['CHANGELOG.md'] = 'CHANGELOG.md';
 
         $phpstan = 'phpstan.neon.dist';
@@ -66,6 +71,14 @@ trait BuildSkeleton
             $skeletons['phpunit-ci.xml.stub'] = 'phpunit-ci.xml';
             $skeletons['phpunit.xml.dev.stub'] = 'phpunit.xml.dev';
             $skeletons['phpunit.xml.dist.stub'] = 'phpunit.xml.dist';
+        }
+
+        if ($isApi) {
+            $skeletons['.php-cs-fixer.dist-api.php'] = '.php-cs-fixer.dist.php';
+        } elseif ($isResource) {
+            $skeletons['.php-cs-fixer.dist-resource.php'] = '.php-cs-fixer.dist.php';
+        } else {
+            $skeletons['.php-cs-fixer.dist.php'] = '.php-cs-fixer.dist.php';
         }
 
         foreach ($skeletons as $skeleton => $file) {
@@ -258,6 +271,9 @@ trait BuildSkeleton
             if (in_array($this->c->type(), [
                 'playground-resource',
             ])) {
+                $package_require['gammamatrix/playground-auth'] = '*';
+                $package_require['gammamatrix/playground-http'] = '*';
+
                 $package_model = Str::of($packagist)->before('-response')->toString();
                 if ($package_model) {
                     $package_require[$package_model] = '*';
@@ -266,6 +282,10 @@ trait BuildSkeleton
             if (in_array($this->c->type(), [
                 'playground-api',
             ])) {
+                $package_require['gammamatrix/playground-auth'] = '*';
+                $package_require['gammamatrix/playground-http'] = '*';
+                $package_require_dev['laravel/sanctum'] = '^4.0';
+
                 $package_model = Str::of($packagist)->before('-api')->toString();
                 if ($package_model) {
                     $package_require[$package_model] = '*';
@@ -362,6 +382,9 @@ trait BuildSkeleton
         $workflow = '';
         $this->searches['package_workflow'] = '';
 
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
+
         // $path_github_workflows = sprintf(
         //     '%1$s/.github/workflows',
         //     dirname($this->folder()),
@@ -390,7 +413,13 @@ trait BuildSkeleton
             //     // '$this->folder()' => $this->folder(),
             // ]);
 
-            $path_stub = 'package/github/workflows/ci.yml';
+            if ($isApi) {
+                $path_stub = 'package/github/workflows/ci-api.yml';
+            } elseif ($isResource) {
+                $path_stub = 'package/github/workflows/ci-resource.yml';
+            } else {
+                $path_stub = 'package/github/workflows/ci.yml';
+            }
             $path = $this->resolveStubPath($path_stub);
 
             $destination = sprintf(
