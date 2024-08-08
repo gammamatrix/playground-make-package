@@ -52,13 +52,12 @@ trait BuildTests
             $this->command_tests_playground_service_provider();
             $this->command_tests_about_command();
         }
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$type' => $type,
-            '$this->c' => $this->c,
-            '$this->options()' => $this->options(),
-        ]);
-
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$type' => $type,
+        //     '$this->c' => $this->c,
+        //     '$this->options()' => $this->options(),
+        // ]);
     }
 
     public function command_tests_playground_api(): void
@@ -322,10 +321,10 @@ trait BuildTests
         }
 
         $models = $this->modelPackage?->models() ?? [];
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$models' => $models,
-        ]);
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$models' => $models,
+        // ]);
         foreach ($models as $model => $file) {
             if (is_string($file) && $file) {
 
@@ -338,10 +337,10 @@ trait BuildTests
                 $options['--model'] = $model->name();
                 $options['name'] = Str::of($model->name())->studly()->finish('TestCase')->toString();
                 $options['--model-file'] = $file;
-                dump([
-                    '__METHOD__' => __METHOD__,
-                    '$options' => $options,
-                ]);
+                // dump([
+                //     '__METHOD__' => __METHOD__,
+                //     '$options' => $options,
+                // ]);
 
                 $this->call('playground:make:test', $options);
 
