@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-08-08 19:57:51</timestamp>
+  <timestamp>2024-08-10 19:15:35</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>105</methodCount>
-    <crapMethodCount>11</crapMethodCount>
-    <crapLoad>162</crapLoad>
-    <totalCrap>3088.88</totalCrap>
-    <crapMethodPercent>10.48</crapMethodPercent>
+    <methodCount>110</methodCount>
+    <crapMethodCount>12</crapMethodCount>
+    <crapLoad>171</crapLoad>
+    <totalCrap>3186.37</totalCrap>
+    <crapMethodPercent>10.91</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -336,9 +336,9 @@
       <methodName>createSkeleton</methodName>
       <methodSignature>createSkeleton(): void</methodSignature>
       <fullMethod>createSkeleton(): void</fullMethod>
-      <crap>11</crap>
-      <complexity>11</complexity>
-      <coverage>96.43</coverage>
+      <crap>12.02</crap>
+      <complexity>12</complexity>
+      <coverage>94.92</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -347,9 +347,9 @@
       <methodName>setPackageKeywords</methodName>
       <methodSignature>setPackageKeywords(): void</methodSignature>
       <fullMethod>setPackageKeywords(): void</fullMethod>
-      <crap>13.34</crap>
-      <complexity>12</complexity>
-      <coverage>78.95</coverage>
+      <crap>16.61</crap>
+      <complexity>16</complexity>
+      <coverage>86.67</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -380,9 +380,9 @@
       <methodName>setPackageDescription</methodName>
       <methodSignature>setPackageDescription(): void</methodSignature>
       <fullMethod>setPackageDescription(): void</fullMethod>
-      <crap>6</crap>
-      <complexity>6</complexity>
-      <coverage>100</coverage>
+      <crap>9.03</crap>
+      <complexity>9</complexity>
+      <coverage>93.02</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -402,9 +402,9 @@
       <methodName>setPackageRequire</methodName>
       <methodSignature>setPackageRequire(): void</methodSignature>
       <fullMethod>setPackageRequire(): void</fullMethod>
-      <crap>33.44</crap>
+      <crap>35</crap>
       <complexity>8</complexity>
-      <coverage>26.47</coverage>
+      <coverage>25</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -431,7 +431,7 @@
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
-      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <className>Playground\Make\Package\Building\BuildSkeletonGitHub</className>
       <methodName>setUpWorkflow_create_github</methodName>
       <methodSignature>setUpWorkflow_create_github(): void</methodSignature>
       <fullMethod>setUpWorkflow_create_github(): void</fullMethod>
@@ -442,7 +442,7 @@
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
-      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <className>Playground\Make\Package\Building\BuildSkeletonGitHub</className>
       <methodName>setUpWorkflow_create_github_workflows</methodName>
       <methodSignature>setUpWorkflow_create_github_workflows(): void</methodSignature>
       <fullMethod>setUpWorkflow_create_github_workflows(): void</fullMethod>
@@ -453,13 +453,68 @@
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
-      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <className>Playground\Make\Package\Building\BuildSkeletonGitHub</className>
       <methodName>setUpWorkflow</methodName>
       <methodSignature>setUpWorkflow(): void</methodSignature>
       <fullMethod>setUpWorkflow(): void</fullMethod>
       <crap>11</crap>
       <complexity>11</complexity>
       <coverage>95.24</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeletonLang</className>
+      <methodName>setUpLang</methodName>
+      <methodSignature>setUpLang(): void</methodSignature>
+      <fullMethod>setUpLang(): void</fullMethod>
+      <crap>54.84</crap>
+      <complexity>13</complexity>
+      <coverage>37.21</coverage>
+      <crapLoad>8</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeletonLang</className>
+      <methodName>make_lang_revision</methodName>
+      <methodSignature>make_lang_revision(string $names): string</methodSignature>
+      <fullMethod>make_lang_revision(string $names): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeletonLang</className>
+      <methodName>getLocale</methodName>
+      <methodSignature>getLocale(): ?string</methodSignature>
+      <fullMethod>getLocale(): ?string</fullMethod>
+      <crap>7.77</crap>
+      <complexity>7</complexity>
+      <coverage>75</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeletonLang</className>
+      <methodName>setUpLang_create_lang</methodName>
+      <methodSignature>setUpLang_create_lang(): void</methodSignature>
+      <fullMethod>setUpLang_create_lang(): void</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeletonLang</className>
+      <methodName>setUpLang_create_for_lang</methodName>
+      <methodSignature>setUpLang_create_for_lang(string $lang): void</methodSignature>
+      <fullMethod>setUpLang_create_for_lang(string $lang): void</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
