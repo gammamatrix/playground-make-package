@@ -16,8 +16,8 @@ return [
     */
 
 
-    'model.description' => ':organization: Provide the :module models for the :organization :module System.',
-    'api.description' => ':organization: Provides an API, without a UI for interacting with :module, a :organization System for Laravel applications',
-    'resource.description' => ':organization: Provides an API, with a UI for interacting with :module, a :organization System for Laravel applications',
+    'model.description' => ':organization: Provide the :module models for the :organization :system.',
+    'api.description' => ':organization: Provides an API, without a UI for interacting with :organization :module, a :system for Laravel applications.',
+    'resource.description' => ':organization: Provides an API and a Blade UI for interacting with :organization :module, a :system for Laravel applications.',
 
 ];

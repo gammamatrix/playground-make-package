@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | {{module}} Revision Language Lines
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'optional' => 'Revisions are optional.',
+{{lang_models_revisions}}
+];

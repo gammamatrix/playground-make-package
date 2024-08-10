@@ -216,7 +216,6 @@ $finder = PhpCsFixer\Finder::create()
     ->in([
         __DIR__.'/config',
         __DIR__.'/lang',
-        __DIR__.'/resources/views',
         __DIR__.'/routes',
         __DIR__.'/src',
         __DIR__.'/tests/Feature',

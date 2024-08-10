@@ -23,6 +23,8 @@ return [
 
     'about' => (bool) env('PLAYGROUND_MAKE_PACKAGE_ABOUT', true),
 
+    'locale' => env('PLAYGROUND_MAKE_PACKAGE_LOCALE'),
+
     /*
     |--------------------------------------------------------------------------
     | Loading

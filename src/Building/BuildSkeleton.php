@@ -23,6 +23,13 @@ trait BuildSkeleton
     {
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$isApi' => $isApi,
+        //     '$isResource' => $isResource,
+        //     '$this->options()' => $this->options(),
+        //     '$this->c' => $this->c,
+        // ]);
 
         $skeletons = [];
 
@@ -56,6 +63,7 @@ trait BuildSkeleton
             $phpstan .= '-model';
         }
 
+        $this->setUpLang();
         $this->setUpWorkflow();
 
         $skeletons[$phpstan] = 'phpstan.neon.dist';
@@ -79,6 +87,11 @@ trait BuildSkeleton
             $skeletons['.php-cs-fixer.dist-resource.php'] = '.php-cs-fixer.dist.php';
         } else {
             $skeletons['.php-cs-fixer.dist.php'] = '.php-cs-fixer.dist.php';
+        }
+
+        if ($this->c->withSwagger()) {
+            $skeletons['package-docs.json'] = 'package.json';
+
         }
 
         foreach ($skeletons as $skeleton => $file) {
@@ -106,6 +119,14 @@ trait BuildSkeleton
     {
         $gammamatrix = $this->c->playground();
         $laravel = $this->c->playground();
+        $package = $this->c->package();
+        $module = $this->c->module();
+
+        if (ctype_upper($module)) {
+            $module_slug = Str::of($this->c->module())->lower()->kebab()->toString();
+        } else {
+            $module_slug = Str::of($this->c->module())->kebab()->toString();
+        }
 
         $package_keywords = $this->c->package_keywords();
 
@@ -121,15 +142,47 @@ trait BuildSkeleton
             $package_keywords[] = 'laravel';
         }
 
+        if ($module_slug && ! in_array($module_slug, $package_keywords)) {
+            $package_keywords[] = $module_slug;
+        }
+
+        $package_model = '';
+
         if (in_array($this->c->type(), [
             'playground-api',
-            'playground-model',
-            'playground-resource',
         ])) {
-            if ($this->c->module_slug() && ! in_array($this->c->module_slug(), $package_keywords)) {
-                $package_keywords[] = $this->c->module_slug();
+            if ($package) {
+                $package_model = Str::of($package)->before('-api')->toString();
             }
         }
+
+        // if (in_array($this->c->type(), [
+        //     'playground-resource',
+        // ])) {
+        //     if ($package) {
+        //         $package_model = Str::of($package)->before('-resource')->toString();
+        //     }
+        // }
+
+        // if ($package_model && ! in_array($package_model, $package_keywords)) {
+        //     $package_keywords[] = $package_model;
+        // }
+
+        if (in_array($this->c->type(), [
+            'playground-resource',
+        ])) {
+            if ( ! in_array('playground-blade', $package_keywords)) {
+                $package_keywords[] = 'playground-blade';
+            }
+        }
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c' => $this->c,
+        //     '$this->options()' => $this->options(),
+        //     '$package_keywords' => $package_keywords,
+        //     '$package_model' => $package_model,
+        //     '$package' => $package,
+        // ]);
 
         sort($package_keywords);
 
@@ -189,6 +242,8 @@ trait BuildSkeleton
     protected function setPackageDescription(): void
     {
         $package_description = $this->c->package_description();
+        $organization = $this->c->organization();
+        $module = $this->c->module();
         // dd([
         //     '__METHOD__' => __METHOD__,
         //     '$package_description' => $package_description,
@@ -197,31 +252,49 @@ trait BuildSkeleton
         //     '$this->c->name()' => $this->c->name(),
         // ]);
 
+        $system = 'System';
+
+        if ($module === 'CMS') {
+            $system = 'Content Management System';
+        } elseif ($module === 'CRM') {
+            $system = 'Client Relationship Management System';
+        } elseif ($module === 'DAM') {
+            $system = 'Digital Asset Management System';
+        }
+
         if (! $package_description && $this->c->organization()) {
             if (in_array($this->c->type(), [
                 'playground-model',
             ])) {
                 $package_description = sprintf(
-                    '%1$s: Provide the %2$s models for the %1$s %2$s System.',
-                    $this->c->organization(),
-                    $this->c->module(),
+                    // Playground: Provide the CMS models for the Playground Content Management System.
+                    '%1$s: Provide the %2$s models for the %1$s %3$s.',
+                    // '%1$s: Provide the %2$s models for the %1$s %2$s System.',
+                    $organization,
+                    $module,
+                    $system,
                 );
+                $package_description = __('playground-make-package::composer.model.description', [
+                    'organization' => $this->c->organization(),
+                    'module' => $this->c->module(),
+                    'system' => $system,
+                ]);
             } elseif (in_array($this->c->type(), [
                 'playground-api',
             ])) {
-                $package_description = sprintf(
-                    '%1$s: Provides an API, without a UI for interacting with %2$s, a %1$s System for Laravel applications',
-                    $this->c->organization(),
-                    $this->c->module(),
-                );
+                $package_description = __('playground-make-package::composer.api.description', [
+                    'organization' => $this->c->organization(),
+                    'module' => $this->c->module(),
+                    'system' => $system,
+                ]);
             } elseif (in_array($this->c->type(), [
                 'playground-resource',
             ])) {
-                $package_description = sprintf(
-                    '%1$s: Provides an API, with a UI for interacting with %2$s, a %1$s System for Laravel applications',
-                    $this->c->organization(),
-                    $this->c->module(),
-                );
+                $package_description = __('playground-make-package::composer.resource.description', [
+                    'organization' => $this->c->organization(),
+                    'module' => $this->c->module(),
+                    'system' => $system,
+                ]);
             }
         }
 
@@ -241,13 +314,6 @@ trait BuildSkeleton
         if (! in_array($provider, $this->c->package_laravel_providers())) {
             $this->c->addClassTo('package_laravel_providers', $provider);
         }
-
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$provider' => $provider,
-        //     '$provider' => $provider,
-        //     '$this->c' => $this->c,
-        // ]);
     }
 
     protected function setPackageRequire(): void
@@ -256,6 +322,12 @@ trait BuildSkeleton
         $packagist = $this->c->packagist();
         $package_require = $this->c->package_require();
         $package_require_dev = $this->c->package_require_dev();
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$package_require' => $package_require,
+        //     '$package_require_dev' => $package_require_dev,
+        //     // '$this->c' => $this->c,
+        // ]);
 
         if (! $package_require && $playground) {
             if (in_array($this->c->type(), [
@@ -274,7 +346,10 @@ trait BuildSkeleton
                 $package_require['gammamatrix/playground-auth'] = '*';
                 $package_require['gammamatrix/playground-http'] = '*';
 
-                $package_model = Str::of($packagist)->before('-response')->toString();
+                $package_require_dev['gammamatrix/playground-login-blade'] = '*';
+                $package_require_dev['gammamatrix/playground-site-blade'] = '*';
+
+                $package_model = Str::of($packagist)->before('-resource')->toString();
                 if ($package_model) {
                     $package_require[$package_model] = '*';
                 }
@@ -292,6 +367,13 @@ trait BuildSkeleton
                 }
             }
         }
+
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$package_require' => $package_require,
+        //     '$package_require_dev' => $package_require_dev,
+        //     // '$this->c' => $this->c,
+        // ]);
 
         $this->c->setOptions([
             'package_require' => $package_require,
@@ -324,143 +406,6 @@ trait BuildSkeleton
     {
         if (! $this->c->version() && $this->c->skeleton()) {
             $this->c->setOptions(['version' => '1.0.0']);
-        }
-    }
-
-    protected bool $withCiWorkflow = true;
-
-    protected bool $withTestCoverage = true;
-
-    protected bool $withPhpStan = true;
-
-    protected string $path_github = '';
-
-    protected string $path_github_workflows = '';
-
-    protected function setUpWorkflow_create_github(): void
-    {
-        $this->path_github = sprintf(
-            '%1$s/.github',
-            dirname($this->folder()),
-        );
-
-        $full_path_github = $this->laravel->storagePath().$this->path_github;
-
-        if (is_dir($full_path_github)) {
-            $this->components->info(sprintf('Directory [%s] already exists.', $full_path_github));
-
-        } else {
-            mkdir($full_path_github, 0755, true);
-            if (is_dir($full_path_github)) {
-                $this->components->info(sprintf('Directory [%s] created successfully.', $full_path_github));
-            }
-        }
-    }
-
-    protected function setUpWorkflow_create_github_workflows(): void
-    {
-        $this->path_github_workflows = sprintf(
-            '%1$s/.github/workflows',
-            dirname($this->folder()),
-        );
-
-        $full_path_github_workflows = $this->laravel->storagePath().$this->path_github_workflows;
-
-        if (is_dir($full_path_github_workflows)) {
-            $this->components->info(sprintf('Directory [%s] already exists.', $full_path_github_workflows));
-
-        } else {
-            mkdir($full_path_github_workflows, 0755, true);
-            if (is_dir($full_path_github_workflows)) {
-                $this->components->info(sprintf('Directory [%s] created successfully.', $full_path_github_workflows));
-            }
-        }
-    }
-
-    protected function setUpWorkflow(): void
-    {
-        $workflow = '';
-        $this->searches['package_workflow'] = '';
-
-        $isApi = $this->hasOption('api') && $this->option('api');
-        $isResource = $this->hasOption('resource') && $this->option('resource');
-
-        // $path_github_workflows = sprintf(
-        //     '%1$s/.github/workflows',
-        //     dirname($this->folder()),
-        // );
-
-        // $full_path_github_workflows = $this->laravel->storagePath().$path_github_workflows;
-
-        if ($this->withCiWorkflow) {
-            $workflow .= sprintf(
-                '[![%1$s CI Workflow](https://github.com/%2$s/actions/workflows/ci.yml/badge.svg?branch=develop)](https://raw.githubusercontent.com/%2$s/testing/develop/testdox.txt)',
-                $this->c->organization(),
-                $this->c->packagist(),
-            );
-
-            $this->setUpWorkflow_create_github();
-            $this->setUpWorkflow_create_github_workflows();
-
-            // dd([
-            //     '__METHOD__' => __METHOD__,
-            //     // '$path_github' => $path_github,
-            //     // '$full_path_github' => $full_path_github,
-            //     // '$path_github_workflows' => $path_github_workflows,
-            //     // '$full_path_github_workflows' => $full_path_github_workflows,
-            //     // '$workflow' => $workflow,
-            //     // '$this->getPackageFolder()' => $this->getPackageFolder(),
-            //     // '$this->folder()' => $this->folder(),
-            // ]);
-
-            if ($isApi) {
-                $path_stub = 'package/github/workflows/ci-api.yml';
-            } elseif ($isResource) {
-                $path_stub = 'package/github/workflows/ci-resource.yml';
-            } else {
-                $path_stub = 'package/github/workflows/ci.yml';
-            }
-            $path = $this->resolveStubPath($path_stub);
-
-            $destination = sprintf(
-                '%1$s/%2$s',
-                $this->path_github_workflows,
-                'ci.yml'
-            );
-
-            $stub = $this->files->get($path);
-
-            $this->search_and_replace($stub);
-            $full_path = $this->laravel->storagePath().$destination;
-            $this->files->put($full_path, $stub);
-
-            $this->components->info(sprintf('GitHub Actions CI Workflow [%s] created successfully.', $full_path));
-        }
-
-        if ($this->withTestCoverage) {
-            if ($workflow) {
-                $workflow .= PHP_EOL;
-            }
-            $workflow .= sprintf(
-                '[![Test Coverage](https://raw.githubusercontent.com/%1$s/testing/develop/coverage.svg)](tests)',
-                $this->c->packagist(),
-            );
-        }
-
-        if ($this->withPhpStan) {
-            if ($workflow) {
-                $workflow .= PHP_EOL;
-            }
-            $workflow .=
-                '[![PHPStan Level 9](https://img.shields.io/badge/PHPStan-level%209-brightgreen)](.github/workflows/ci.yml#L120)';
-        }
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$workflow' => $workflow,
-        // ]);
-
-        if ($workflow) {
-            $this->searches['package_workflow'] = PHP_EOL.$workflow.PHP_EOL;
         }
     }
 }

@@ -28,6 +28,8 @@ class PackageMakeCommand extends GeneratorCommand
     use Building\BuildModels;
     use Building\BuildServiceProvider;
     use Building\BuildSkeleton;
+    use Building\BuildSkeletonGitHub;
+    use Building\BuildSkeletonLang;
     use Building\BuildTests;
     // use CreatesMatchingTest;
 
@@ -76,6 +78,7 @@ class PackageMakeCommand extends GeneratorCommand
         'version' => '',
         'about_routes' => '',
         'load_routes' => '',
+        'lang_models_revisions' => '',
     ];
 
     protected string $path_destination_folder = 'src';
