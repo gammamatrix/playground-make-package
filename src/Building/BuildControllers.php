@@ -228,6 +228,7 @@ PHP_CODE;
 
         if ($isApi) {
             $params_form_request['--api'] = true;
+            $params_form_request['--test'] = true;
             $params_controller['--api'] = true;
             $params_controller['--policies'] = true;
             $params_controller['--requests'] = true;
@@ -237,6 +238,7 @@ PHP_CODE;
             $params_controller['--type'] = 'playground-api';
         } elseif ($isResource) {
             $params_form_request['--resource'] = true;
+            $params_form_request['--test'] = true;
             $params_controller['--blade'] = true;
             $params_controller['--policies'] = true;
             $params_controller['--requests'] = true;
