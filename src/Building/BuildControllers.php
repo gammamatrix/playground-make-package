@@ -505,6 +505,7 @@ PHP_CODE;
      */
     protected function createResourceIndexController(): void
     {
+        $model_package = $this->hasOption('model-package') && $this->option('model-package') ? $this->option('model-package') : '';
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
 
@@ -546,6 +547,10 @@ PHP_CODE;
             $params['--playground'] = true;
         }
 
+        if ($model_package) {
+            $params['--model-package'] = $model_package;
+        }
+
         if ($this->hasOption('force') && $this->option('force')) {
             $params['--force'] = true;
         }
@@ -567,9 +572,10 @@ PHP_CODE;
 
         }
 
-        // dd([
+        // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$params' => $params,
+        //     // 'model-package' => $this->option('model-package'),
         //     // '$this->options()' => $this->options(),
         //     // '$this->modelPackage' => $this->modelPackage,
         // ]);
