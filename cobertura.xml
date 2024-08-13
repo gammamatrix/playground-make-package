@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.55082339579784" branch-rate="0" lines-covered="970" lines-valid="1761" branches-covered="0" branches-valid="0" complexity="608" version="0.4" timestamp="1723395500">
+<coverage line-rate="0.54988662131519" branch-rate="0" lines-covered="970" lines-valid="1764" branches-covered="0" branches-valid="0" complexity="611" version="0.4" timestamp="1723589664">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -817,9 +817,9 @@
         </class>
       </classes>
     </package>
-    <package name="Building/BuildControllers.php" line-rate="0.035714285714286" branch-rate="0" complexity="83">
+    <package name="Building/BuildControllers.php" line-rate="0.035294117647059" branch-rate="0" complexity="86">
       <classes>
-        <class name="Playground\Make\Package\Building\BuildControllers" filename="Building/BuildControllers.php" line-rate="0.035714285714286" branch-rate="0" complexity="83">
+        <class name="Playground\Make\Package\Building\BuildControllers" filename="Building/BuildControllers.php" line-rate="0.035294117647059" branch-rate="0" complexity="86">
           <methods>
             <method name="handle_controllers" signature="" line-rate="1" branch-rate="0" complexity="6">
               <lines>
@@ -1071,50 +1071,53 @@
                 <line number="488" hits="0"/>
               </lines>
             </method>
-            <method name="createResourceIndexController" signature="" line-rate="0" branch-rate="0" complexity="18">
+            <method name="createResourceIndexController" signature="" line-rate="0" branch-rate="0" complexity="21">
               <lines>
                 <line number="508" hits="0"/>
                 <line number="509" hits="0"/>
-                <line number="511" hits="0"/>
-                <line number="513" hits="0"/>
-                <line number="516" hits="0"/>
+                <line number="510" hits="0"/>
+                <line number="512" hits="0"/>
+                <line number="514" hits="0"/>
                 <line number="517" hits="0"/>
                 <line number="518" hits="0"/>
-                <line number="521" hits="0"/>
-                <line number="523" hits="0"/>
+                <line number="519" hits="0"/>
+                <line number="522" hits="0"/>
                 <line number="524" hits="0"/>
                 <line number="525" hits="0"/>
-                <line number="528" hits="0"/>
+                <line number="526" hits="0"/>
                 <line number="529" hits="0"/>
                 <line number="530" hits="0"/>
-                <line number="533" hits="0"/>
+                <line number="531" hits="0"/>
                 <line number="534" hits="0"/>
                 <line number="535" hits="0"/>
                 <line number="536" hits="0"/>
                 <line number="537" hits="0"/>
                 <line number="538" hits="0"/>
                 <line number="539" hits="0"/>
-                <line number="541" hits="0"/>
+                <line number="540" hits="0"/>
                 <line number="542" hits="0"/>
                 <line number="543" hits="0"/>
-                <line number="545" hits="0"/>
+                <line number="544" hits="0"/>
                 <line number="546" hits="0"/>
-                <line number="549" hits="0"/>
+                <line number="547" hits="0"/>
                 <line number="550" hits="0"/>
-                <line number="553" hits="0"/>
+                <line number="551" hits="0"/>
                 <line number="554" hits="0"/>
-                <line number="561" hits="0"/>
-                <line number="562" hits="0"/>
-                <line number="563" hits="0"/>
-                <line number="564" hits="0"/>
-                <line number="565" hits="0"/>
-                <line number="576" hits="0"/>
-                <line number="577" hits="0"/>
-                <line number="578" hits="0"/>
-                <line number="579" hits="0"/>
-                <line number="580" hits="0"/>
-                <line number="581" hits="0"/>
+                <line number="555" hits="0"/>
+                <line number="558" hits="0"/>
+                <line number="559" hits="0"/>
+                <line number="566" hits="0"/>
+                <line number="567" hits="0"/>
+                <line number="568" hits="0"/>
+                <line number="569" hits="0"/>
+                <line number="570" hits="0"/>
                 <line number="582" hits="0"/>
+                <line number="583" hits="0"/>
+                <line number="584" hits="0"/>
+                <line number="585" hits="0"/>
+                <line number="586" hits="0"/>
+                <line number="587" hits="0"/>
+                <line number="588" hits="0"/>
               </lines>
             </method>
           </methods>
@@ -1331,46 +1334,49 @@
             <line number="488" hits="0"/>
             <line number="508" hits="0"/>
             <line number="509" hits="0"/>
-            <line number="511" hits="0"/>
-            <line number="513" hits="0"/>
-            <line number="516" hits="0"/>
+            <line number="510" hits="0"/>
+            <line number="512" hits="0"/>
+            <line number="514" hits="0"/>
             <line number="517" hits="0"/>
             <line number="518" hits="0"/>
-            <line number="521" hits="0"/>
-            <line number="523" hits="0"/>
+            <line number="519" hits="0"/>
+            <line number="522" hits="0"/>
             <line number="524" hits="0"/>
             <line number="525" hits="0"/>
-            <line number="528" hits="0"/>
+            <line number="526" hits="0"/>
             <line number="529" hits="0"/>
             <line number="530" hits="0"/>
-            <line number="533" hits="0"/>
+            <line number="531" hits="0"/>
             <line number="534" hits="0"/>
             <line number="535" hits="0"/>
             <line number="536" hits="0"/>
             <line number="537" hits="0"/>
             <line number="538" hits="0"/>
             <line number="539" hits="0"/>
-            <line number="541" hits="0"/>
+            <line number="540" hits="0"/>
             <line number="542" hits="0"/>
             <line number="543" hits="0"/>
-            <line number="545" hits="0"/>
+            <line number="544" hits="0"/>
             <line number="546" hits="0"/>
-            <line number="549" hits="0"/>
+            <line number="547" hits="0"/>
             <line number="550" hits="0"/>
-            <line number="553" hits="0"/>
+            <line number="551" hits="0"/>
             <line number="554" hits="0"/>
-            <line number="561" hits="0"/>
-            <line number="562" hits="0"/>
-            <line number="563" hits="0"/>
-            <line number="564" hits="0"/>
-            <line number="565" hits="0"/>
-            <line number="576" hits="0"/>
-            <line number="577" hits="0"/>
-            <line number="578" hits="0"/>
-            <line number="579" hits="0"/>
-            <line number="580" hits="0"/>
-            <line number="581" hits="0"/>
+            <line number="555" hits="0"/>
+            <line number="558" hits="0"/>
+            <line number="559" hits="0"/>
+            <line number="566" hits="0"/>
+            <line number="567" hits="0"/>
+            <line number="568" hits="0"/>
+            <line number="569" hits="0"/>
+            <line number="570" hits="0"/>
             <line number="582" hits="0"/>
+            <line number="583" hits="0"/>
+            <line number="584" hits="0"/>
+            <line number="585" hits="0"/>
+            <line number="586" hits="0"/>
+            <line number="587" hits="0"/>
+            <line number="588" hits="0"/>
           </lines>
         </class>
       </classes>

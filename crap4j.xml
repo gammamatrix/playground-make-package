@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-08-11 16:58:20</timestamp>
+  <timestamp>2024-08-13 22:54:24</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>110</methodCount>
     <crapMethodCount>12</crapMethodCount>
-    <crapLoad>171</crapLoad>
-    <totalCrap>3186.37</totalCrap>
+    <crapLoad>174</crapLoad>
+    <totalCrap>3306.37</totalCrap>
     <crapMethodPercent>10.91</crapMethodPercent>
   </stats>
   <methods>
@@ -281,10 +281,10 @@
       <methodName>createResourceIndexController</methodName>
       <methodSignature>createResourceIndexController(): void</methodSignature>
       <fullMethod>createResourceIndexController(): void</fullMethod>
-      <crap>342</crap>
-      <complexity>18</complexity>
+      <crap>462</crap>
+      <complexity>21</complexity>
       <coverage>0</coverage>
-      <crapLoad>18</crapLoad>
+      <crapLoad>21</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
