@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-08-13 23:14:54</timestamp>
+  <timestamp>2024-08-16 05:18:55</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>110</methodCount>
-    <crapMethodCount>12</crapMethodCount>
-    <crapLoad>174</crapLoad>
-    <totalCrap>3306.37</totalCrap>
-    <crapMethodPercent>10.91</crapMethodPercent>
+    <methodCount>114</methodCount>
+    <crapMethodCount>13</crapMethodCount>
+    <crapLoad>185</crapLoad>
+    <totalCrap>3468.47</totalCrap>
+    <crapMethodPercent>11.4</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -281,10 +281,10 @@
       <methodName>createResourceIndexController</methodName>
       <methodSignature>createResourceIndexController(): void</methodSignature>
       <fullMethod>createResourceIndexController(): void</fullMethod>
-      <crap>462</crap>
-      <complexity>21</complexity>
+      <crap>506</crap>
+      <complexity>22</complexity>
       <coverage>0</coverage>
-      <crapLoad>21</crapLoad>
+      <crapLoad>22</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -336,9 +336,9 @@
       <methodName>createSkeleton</methodName>
       <methodSignature>createSkeleton(): void</methodSignature>
       <fullMethod>createSkeleton(): void</fullMethod>
-      <crap>12.02</crap>
+      <crap>12</crap>
       <complexity>12</complexity>
-      <coverage>94.92</coverage>
+      <coverage>95.08</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -426,6 +426,39 @@
       <fullMethod>setPackageVersion(): void</fullMethod>
       <crap>3</crap>
       <complexity>3</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setReadme</methodName>
+      <methodSignature>setReadme(): void</methodSignature>
+      <fullMethod>setReadme(): void</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setReadmePhpStan</methodName>
+      <methodSignature>setReadmePhpStan(): void</methodSignature>
+      <fullMethod>setReadmePhpStan(): void</fullMethod>
+      <crap>5.12</crap>
+      <complexity>5</complexity>
+      <coverage>83.33</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeleton</className>
+      <methodName>setReadmeLicense</methodName>
+      <methodSignature>setReadmeLicense(): void</methodSignature>
+      <fullMethod>setReadmeLicense(): void</fullMethod>
+      <crap>2</crap>
+      <complexity>2</complexity>
       <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -593,6 +626,17 @@
       <complexity>6</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildTests</className>
+      <methodName>command_tests_playground_controller_model_cases</methodName>
+      <methodSignature>command_tests_playground_controller_model_cases(): void</methodSignature>
+      <fullMethod>command_tests_playground_controller_model_cases(): void</fullMethod>
+      <crap>110</crap>
+      <complexity>10</complexity>
+      <coverage>0</coverage>
+      <crapLoad>10</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
