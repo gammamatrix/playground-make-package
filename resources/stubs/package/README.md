@@ -1,5 +1,5 @@
 # {{ package_name }}
-
+{{ package_workflow }}
 The {{ package_name }} package.
 
 ## Installation
@@ -21,7 +21,40 @@ You can publish the config file with:
 php artisan vendor:publish --provider={{ namespace }}\ServiceProvider" --tag="playground-config"
 ```
 
+## Cloc
+
+```sh
+composer cloc
+```
+
+```
+➜  {{ package }} git:(develop) ✗ composer cloc
+> cloc --exclude-dir=node_modules,output,vendor .
+```
+
+## PHPStan
+
+Tests at level 9 on:
+{{readme_phpstan}}
+
+```sh
+composer analyse
+```
+
+## Coding Standards
+
+```sh
+composer format
+```
+
+## Testing
+
+```sh
+composer test --parallel
+```
 
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+{{readme_license}}

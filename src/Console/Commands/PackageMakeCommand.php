@@ -79,6 +79,7 @@ class PackageMakeCommand extends GeneratorCommand
         'about_routes' => '',
         'load_routes' => '',
         'lang_models_revisions' => '',
+        'readme_phpstan' => '',
     ];
 
     protected string $path_destination_folder = 'src';

@@ -38,6 +38,7 @@ trait BuildTests
             $this->command_tests_playground_api();
             $this->command_tests_playground_request_test_case();
             $this->command_tests_playground_controller_test_case();
+            $this->command_tests_playground_controller_model_cases();
             $this->command_tests_playground_controller_route_tests();
             $this->command_tests_playground_service_provider();
             $this->command_tests_about_command();
@@ -48,6 +49,7 @@ trait BuildTests
             $this->command_tests_playground_resource();
             $this->command_tests_playground_request_test_case();
             $this->command_tests_playground_controller_test_case();
+            $this->command_tests_playground_controller_model_cases();
             $this->command_tests_playground_controller_route_tests();
             $this->command_tests_playground_service_provider();
             $this->command_tests_about_command();
@@ -77,7 +79,7 @@ trait BuildTests
         ];
 
         if ($this->c->playground()) {
-            $options['--model-package'] = Str::of($this->c->packagist())->before('-api')->toString();
+            $options['--model-packagist'] = Str::of($this->c->packagist())->before('-api')->toString();
         }
 
         if ($this->c->revision()) {
@@ -212,7 +214,7 @@ trait BuildTests
         ];
 
         if ($this->c->playground()) {
-            $options['--model-package'] = Str::of($this->c->packagist())->before('-resource')->toString();
+            $options['--model-packagist'] = Str::of($this->c->packagist())->before('-resource')->toString();
         }
 
         if ($this->c->revision()) {
@@ -275,6 +277,83 @@ trait BuildTests
 
         $options['--suite'] = 'feature';
         $this->call('playground:make:test', $options);
+    }
+
+    public function command_tests_playground_controller_model_cases(): void
+    {
+        // $isApi = $this->hasOption('api') && $this->option('api');
+        // $isResource = $this->hasOption('resource') && $this->option('resource');
+        $force = $this->hasOption('force') && $this->option('force');
+        $type = $this->c->type();
+
+        $options = [
+            'name' => '',
+            '--namespace' => $this->c->namespace(),
+            '--force' => $force,
+            '--playground' => true,
+            '--package' => $this->c->package(),
+            '--organization' => $this->c->organization(),
+            '--module' => $this->c->module(),
+            '--suite' => 'feature',
+            '--type' => '',
+        ];
+
+        if ($this->c->skeleton()) {
+            $options['--skeleton'] = true;
+        }
+
+        if ($this->c->revision()) {
+            $options['--revision'] = true;
+        }
+
+        // if ($isApi) {
+        //     $options['--type'] = 'playground-api-controller-model-case';
+        // } elseif ($isResource) {
+        //     $options['--type'] = 'playground-resource-controller-model-case';
+        // }
+
+        if (in_array($type, [
+            'playground-api',
+        ])) {
+            $options['--type'] = 'playground-api-controller-model-user';
+        } elseif (in_array($type, [
+            'playground-resource',
+        ])) {
+            $options['--type'] = 'playground-resource-controller-model-user';
+        }
+
+        $models = $this->modelPackage?->models() ?? [];
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$models' => $models,
+        // ]);
+        foreach ($models as $model => $file) {
+            if (is_string($file) && $file) {
+
+                $model = new Model($this->readJsonFileAsArray($file));
+
+                if ($model->revision()) {
+                    // Revision models do not have controllers.
+                    continue;
+                }
+                $options['--model'] = $model->name();
+                $options['name'] = Str::of($model->name())->studly()->finish('RouteTest')->toString();
+                $options['--model-file'] = $file;
+                // dump([
+                //     '__METHOD__' => __METHOD__,
+                //     '$options' => $options,
+                // ]);
+
+                $this->call('playground:make:test', $options);
+
+            }
+        }
+
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$options' => $options,
+        // ]);
+
     }
 
     public function command_tests_playground_controller_route_tests(): void

@@ -559,9 +559,9 @@ PHP_CODE;
             $params['--skeleton'] = true;
         }
 
-        // if ($this->c->withTests()) {
-        //     $params['--test'] = true;
-        // }
+        if ($this->c->withTests()) {
+            $params['--test'] = true;
+        }
 
         if ($model) {
             $params['--model'] = $model;

@@ -37,6 +37,7 @@ trait BuildSkeleton
         $skeletons['.gitattributes'] = '.gitattributes';
         $skeletons['gitignore'] = '.gitignore';
         $skeletons['CHANGELOG.md'] = 'CHANGELOG.md';
+        $skeletons['README.md'] = 'README.md';
 
         $phpstan = 'phpstan.neon.dist';
         $type = $this->c->type();
@@ -49,12 +50,14 @@ trait BuildSkeleton
         ])) {
             $withPhpunit = true;
             $phpstan .= '-api';
+            $skeletons['README-API.md'] = 'README.md';
         } elseif (in_array($type, [
             'resource',
             'playground-resource',
         ])) {
             $withPhpunit = true;
             $phpstan .= '-resource';
+            $skeletons['README-API.md'] = 'README.md';
         } elseif (in_array($type, [
             'model',
             'playground-model',
@@ -68,11 +71,10 @@ trait BuildSkeleton
 
         $skeletons[$phpstan] = 'phpstan.neon.dist';
 
+        $this->setReadme();
+
         if ($this->c->package_license() === 'MIT') {
             $skeletons['LICENSE-MIT.md'] = 'LICENSE.md';
-            $skeletons['README-MIT.md'] = 'README.md';
-        } else {
-            $skeletons['README.md'] = 'README.md';
         }
 
         if ($withPhpunit) {
@@ -252,14 +254,14 @@ trait BuildSkeleton
         //     '$this->c->name()' => $this->c->name(),
         // ]);
 
-        $system = 'System';
-
         if ($module === 'CMS') {
             $system = 'Content Management System';
         } elseif ($module === 'CRM') {
             $system = 'Client Relationship Management System';
         } elseif ($module === 'DAM') {
             $system = 'Digital Asset Management System';
+        } else {
+            $system = trim($module.' System');
         }
 
         if (! $package_description && $this->c->organization()) {
@@ -407,5 +409,51 @@ trait BuildSkeleton
         if (! $this->c->version() && $this->c->skeleton()) {
             $this->c->setOptions(['version' => '1.0.0']);
         }
+    }
+
+    protected function setReadme(): void
+    {
+        $this->setReadmePhpStan();
+        $this->setReadmeLicense();
+    }
+
+    protected function setReadmePhpStan(): void
+    {
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
+
+        $phpstan = [];
+
+        $phpstan[] = '- `config/`';
+
+        if (! $isApi && ! $isResource) {
+            $phpstan[] = '- `database/`';
+        } else {
+            $phpstan[] = '- `lang/`';
+            $phpstan[] = '- `routes/`';
+        }
+
+        $phpstan[] = '- `src/`';
+        $phpstan[] = '- `tests/Feature/`';
+        $phpstan[] = '- `tests/Unit/`';
+
+        $this->searches['readme_phpstan'] = implode(PHP_EOL, $phpstan);
+    }
+
+    protected function setReadmeLicense(): void
+    {
+        $this->searches['readme_license'] = '';
+
+        if ($this->c->package_license() !== 'MIT') {
+            return;
+        }
+
+        $this->searches['readme_license'] = <<<'PHP_CODE'
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+PHP_CODE;
     }
 }
