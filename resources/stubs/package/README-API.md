@@ -47,7 +47,7 @@ See the contents of the published config file: [config/{{ package }}.php](config
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider={{ namespace }}\ServiceProvider" --tag="playground-config"
+php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-config"
 ```
 
 ## Cloc
