@@ -23,7 +23,7 @@ trait BuildServiceProvider
 
         $about_line = '%1$s\'<fg=red;options=bold>Route</> %2$s\' => ! empty($routes[\'%2$s\']) ? \'<fg=green;options=bold>ENABLED</>\' : \'<fg=yellow;options=bold>DISABLED</>\',%3$s';
 
-        $route_line = '%1$s\'%2$s\' => (bool) env(\'%3$s_%4$s\', %5$s),%6$s';
+        $route_line = '%1$s\'%2$s\' => (bool) env(\'%3$s_ROUTES_%4$s\', %5$s),%6$s';
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$this->c->routes()' => $this->c->routes(),
