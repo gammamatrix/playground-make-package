@@ -1,14 +1,16 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Tests\Unit\Playground\Make\Package\Configuration\Package;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use Tests\Unit\Playground\Make\Package\TestCase;
 use Playground\Make\Package\Configuration\Package;
+use Tests\Unit\Playground\Make\Package\TestCase;
 use TiMacDonald\Log\LogEntry;
 use TiMacDonald\Log\LogFake;
 
@@ -22,6 +24,7 @@ class InstanceTest extends TestCase
     {
         $instance = new Package;
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertInstanceOf(Package::class, $instance);
     }
 
@@ -102,8 +105,6 @@ class InstanceTest extends TestCase
     {
         $instance = new Package;
 
-        $this->assertInstanceOf(Package::class, $instance);
-
         $this->assertIsString($instance->folder());
         $this->assertEmpty($instance->folder());
     }
@@ -145,7 +146,7 @@ class InstanceTest extends TestCase
             'cms',
         ], $instance->package_keywords());
         $this->assertSame([
-            'php' => '^8.2',
+            'php' => '^8.4',
         ], $instance->package_require());
         $this->assertSame([], $instance->package_require_dev());
         // $this->assertSame([], $instance->package_autoload_psr4());
@@ -210,10 +211,10 @@ class InstanceTest extends TestCase
             'api',
         ], $instance->package_keywords());
         $this->assertSame([
-            'php' => '^8.2',
+            'php' => '^8.4',
         ], $instance->package_require());
         $this->assertSame([
-            'playground-test' => '^73.0',
+            'playground-test' => '^74.0',
         ], $instance->package_require_dev());
         // $this->assertSame([], $instance->package_autoload_psr4());
         $this->assertSame([
@@ -242,13 +243,12 @@ class InstanceTest extends TestCase
         $this->assertFalse($instance->withPolicies());
     }
 
-    public function test_addKeyword_with_invalid_keyword_and_log_message(): void
+    public function test_add_keyword_with_invalid_keyword_and_log_message(): void
     {
         $log = LogFake::bind();
 
         $instance = new Package;
 
-        $this->assertInstanceOf(Package::class, $instance);
         $keyword = '';
         $instance->addKeyword($keyword);
         $this->assertIsString($instance->folder());
@@ -269,13 +269,12 @@ class InstanceTest extends TestCase
         );
     }
 
-    public function test_addRequire_with_invalid_package_and_log_message(): void
+    public function test_add_require_with_invalid_package_and_log_message(): void
     {
         $log = LogFake::bind();
 
         $instance = new Package;
 
-        $this->assertInstanceOf(Package::class, $instance);
         $package = '';
         $version = 'dev-master';
         $instance->addRequire($package, $version);
@@ -298,13 +297,12 @@ class InstanceTest extends TestCase
         );
     }
 
-    public function test_addRequire_with_invalid_version_and_log_message(): void
+    public function test_add_require_with_invalid_version_and_log_message(): void
     {
         $log = LogFake::bind();
 
         $instance = new Package;
 
-        $this->assertInstanceOf(Package::class, $instance);
         $package = 'some-package';
         $version = '';
         $instance->addRequire($package, $version);
@@ -327,13 +325,12 @@ class InstanceTest extends TestCase
         );
     }
 
-    public function test_addRequireDev_with_invalid_package_and_log_message(): void
+    public function test_add_require_dev_with_invalid_package_and_log_message(): void
     {
         $log = LogFake::bind();
 
         $instance = new Package;
 
-        $this->assertInstanceOf(Package::class, $instance);
         $package = '';
         $version = 'dev-master';
         $instance->addRequireDev($package, $version);
@@ -356,13 +353,12 @@ class InstanceTest extends TestCase
         );
     }
 
-    public function test_addRequireDev_with_invalid_version_and_log_message(): void
+    public function test_add_require_dev_with_invalid_version_and_log_message(): void
     {
         $log = LogFake::bind();
 
         $instance = new Package;
 
-        $this->assertInstanceOf(Package::class, $instance);
         $package = 'some-package';
         $version = '';
         $instance->addRequireDev($package, $version);

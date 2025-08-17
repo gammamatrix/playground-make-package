@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Package\Building;
 
 use Illuminate\Support\Str;
@@ -45,7 +47,7 @@ trait BuildControllers
     }
 
     /**
-     * @param array<string, mixed> $params
+     * @param  array<string, mixed>  $params
      */
     public function build_crud_form_request(string $package, array $params): void
     {
@@ -337,7 +339,7 @@ PHP_CODE;
     /**
      * Create a controller for the model.
      *
-     * @param array<string, mixed> $params
+     * @param  array<string, mixed>  $params
      *
      * @see PolicyMakeCommand
      * @see SeederMakeCommand

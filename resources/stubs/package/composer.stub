@@ -12,7 +12,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-develop": "73.x-dev"
+            "dev-develop": "74.x-dev"
         },
         "laravel": {
             "providers": [{{ package_laravel_providers }}]
@@ -23,7 +23,8 @@
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
         "cloc": "cloc --exclude-dir=node_modules,output,vendor .",
-        "format": "vendor/bin/php-cs-fixer fix",
-        "test": "vendor/bin/testbench package:test"
+        "format": "vendor/bin/pint",
+        "test": "vendor/bin/testbench package:test",
+        "test-dev": "vendor/bin/phpunit -c phpunit-dev.xml"
     }
 }

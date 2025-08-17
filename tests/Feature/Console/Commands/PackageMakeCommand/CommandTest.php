@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
 use Illuminate\Support\Facades\Artisan;
@@ -26,7 +28,7 @@ class CommandTest extends TestCase
         // $result = $this->withoutMockingConsoleOutput()->artisan('playground:make:package');
         // dd(Artisan::output());
         $result->assertExitCode(1);
-        $result->expectsOutputToContain( __('playground-make::generator.input.error'));
+        $result->expectsOutputToContain(__('playground-make::generator.input.error'));
     }
 
     public function test_command_skeleton(): void

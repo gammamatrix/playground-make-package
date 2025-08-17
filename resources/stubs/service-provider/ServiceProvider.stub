@@ -14,9 +14,9 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
  */
 class ServiceProvider extends BaseServiceProvider
 {
-    public string $package = '{{ package }}';
+    public const string VERSION = '{{ version }}';
 
-    const VERSION = '{{ version }}';
+    public string $package = '{{ package }}';
 
     /**
      * Bootstrap any package services.

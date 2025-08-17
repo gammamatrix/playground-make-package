@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Package\Building;
 
 use Illuminate\Support\Str;
@@ -79,21 +81,21 @@ trait BuildSkeleton
 
         if ($withPhpunit) {
             $skeletons['phpunit-ci.xml.stub'] = 'phpunit-ci.xml';
-            $skeletons['phpunit.xml.dev.stub'] = 'phpunit.xml.dev';
+            $skeletons['phpunit-dev.xml.stub'] = 'phpunit-dev.xml';
             $skeletons['phpunit.xml.dist.stub'] = 'phpunit.xml.dist';
         }
 
         if ($isApi) {
-            $skeletons['.php-cs-fixer.dist-api.php'] = '.php-cs-fixer.dist.php';
+            $skeletons['pint.json'] = 'pint.json';
         } elseif ($isResource) {
-            $skeletons['.php-cs-fixer.dist-resource.php'] = '.php-cs-fixer.dist.php';
+            $skeletons['pint.json'] = 'pint.json';
         } else {
-            $skeletons['.php-cs-fixer.dist.php'] = '.php-cs-fixer.dist.php';
+            $skeletons['pint.json'] = 'pint.json';
         }
 
         if ($this->c->withSwagger()) {
             $skeletons['package-docs.json'] = 'package.json';
-
+            $skeletons['redocly.yaml'] = 'redocly.yaml';
         }
 
         foreach ($skeletons as $skeleton => $file) {
@@ -173,7 +175,7 @@ trait BuildSkeleton
         if (in_array($this->c->type(), [
             'playground-resource',
         ])) {
-            if ( ! in_array('playground-blade', $package_keywords)) {
+            if (! in_array('playground-blade', $package_keywords)) {
                 $package_keywords[] = 'playground-blade';
             }
         }
@@ -337,9 +339,17 @@ trait BuildSkeleton
                 'playground-model',
                 'playground-resource',
             ])) {
-                $package_require['php'] = '^8.2';
+                $package_require['php'] = '^8.4';
                 $package_require['gammamatrix/playground'] = '*';
                 $package_require_dev['gammamatrix/playground-test'] = '*';
+                $package_require['illuminate/support'] = '^12.0';
+                $package_require_dev['illuminate/testing'] = '^12.0';
+            }
+
+            if (in_array($this->c->type(), [
+                'playground-model',
+            ])) {
+                $package_require['illuminate/database'] = '^12.0';
             }
 
             if (in_array($this->c->type(), [

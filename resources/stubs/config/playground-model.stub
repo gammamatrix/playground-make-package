@@ -8,6 +8,11 @@ declare(strict_types=1);
 
 /**
  * {{ package_name }} Configuration and Environment Variables
+ *
+ * @return array{
+ *     about: bool,
+ *     load: array{migrations: bool}
+ * }
  */
 return [
 

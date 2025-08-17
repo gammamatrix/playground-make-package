@@ -1,9 +1,11 @@
 {
     "private": true,
     "scripts": {
+        "bundle": "npx @redocly/cli bundle",
+        "lint": "npx @redocly/cli lint",
+        "preview": "npx @redocly/cli preview-docs",
         "dev": "npm run development",
         "development": "mix",
-        "docs": "npx swagger-cli validate docs/api.yml && npx swagger-cli bundle docs/api.yml --type json --outfile swagger.json",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
@@ -11,6 +13,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@redocly/cli": "latest",
         "autoprefixer": "^10.4.16",
         "axios": "^1.6.0",
         "bootstrap": "5.3.2",
@@ -20,9 +23,6 @@
         "lodash": "^4.17.21",
         "postcss": "^8.2.13",
         "postcss-import": "^15.1.0",
-        "swagger-cli": "^4.0.4",
-        "swagger-jsdoc": "^6.2.8",
-        "swagger-ui-express": "^5.0.0",
         "vue": "^3.3.7",
         "vue-loader": "^17.3.1"
     }

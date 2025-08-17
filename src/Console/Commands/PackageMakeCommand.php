@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Package\Console\Commands;
 
 // use Illuminate\Console\Concerns\CreatesMatchingTest;
@@ -72,6 +74,9 @@ class PackageMakeCommand extends GeneratorCommand
         'config_policies' => '',
         'config_revisions' => '',
         'config_routes' => '',
+        'config_routes_docs' => '',
+        'config_service_provider_docs_revisions' => '', // TODO implement
+        'config_service_provider_docs_cache' => '', // TODO implement
         'config_abilities_manager' => '',
         'config_abilities_user' => '',
         'routes' => '',

@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * Playground
  */
+
 namespace Playground\Make\Package\Configuration;
 
 use Illuminate\Support\Facades\Log;
@@ -190,7 +191,41 @@ class Package extends PrimaryConfiguration
     protected string $version = '';
 
     /**
-     * @param array<string, mixed> $options
+     * @param  array{
+     *     withBlades?: bool,
+     *     withControllers?: bool,
+     *     withFactories?: bool,
+     *     withMigrations?: bool,
+     *     withModels?: bool,
+     *     withPolicies?: bool,
+     *     withRequests?: bool,
+     *     withRoutes?: bool,
+     *     withSwagger?: bool,
+     *     withTests?: bool,
+     *     revision?: bool,
+     *     package_name?: string,
+     *     config_space?: string,
+     *     organization_email?: string,
+     *     package_description?: string,
+     *     package_homepage?: string,
+     *     package_keywords?: string[],
+     *     package_license?: string,
+     *     package_require?: array<string, string>,
+     *     package_require_dev?: array<string, string>,
+     *     package_suggest?: array<string, string>,
+     *     package_authors?: array<int, array<string, string>>,
+     *     package_laravel_providers?: string[],
+     *     package_providers?: string[],
+     *     packagist?: string,
+     *     controllers?: string[],
+     *     policies?: string[],
+     *     resources?: string[],
+     *     routes?: string[],
+     *     transformers?: string[],
+     *     requests?: string[],
+     *     service_provider?: string,
+     *     version?: string
+     * }  $options
      */
     public function setOptions(array $options = []): self
     {
@@ -518,17 +553,16 @@ class Package extends PrimaryConfiguration
             $isValid = true;
         }
 
-        if (is_numeric($i) && ! empty($author) && is_array($author)) {
-            $a = [
+        if (is_int($i) && ! empty($author) && is_array($author) && ! empty($author['name']) && is_string($author['name'])) {
+            $this->package_authors[$i] = [
                 'name' => $author['name'],
             ];
             if (! empty($author['email']) && is_string($author['email'])) {
-                $a['email'] = $author['email'];
+                $this->package_authors[$i]['email'] = $author['email'];
             }
             if (! empty($author['role']) && is_string($author['role'])) {
-                $a['role'] = $author['role'];
+                $this->package_authors[$i]['role'] = $author['role'];
             }
-            $this->package_authors[$i] = $a;
         }
 
         return $this;

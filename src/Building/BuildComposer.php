@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Package\Building;
 
 use Illuminate\Support\Str;
@@ -155,7 +157,7 @@ trait BuildComposer
 
         if (empty($package_require)) {
             $package_require = [
-                'php' => '^8.2',
+                'php' => '^8.4',
             ];
         }
 

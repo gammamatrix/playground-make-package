@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Tests\Acceptance\Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
 use PHPUnit\Framework\Attributes\CoversClass;

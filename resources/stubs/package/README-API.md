@@ -4,14 +4,14 @@ The {{ package_name }} package.
 
 ## Documentation
 
-### Swagger
+### OpenAPI
 
-This application provides Swagger documentation: [swagger.json](swagger.json).
+This application provides OpenAPI documentation: [openapi.json](openapi.json).
 - The endpoint models support locks, trash with force delete, restoring, revisions and more.
 - Index endpoints support advanced query filtering.
 
-Swagger API Documentation is built with npm.
-- npm is only needed to generate documentation and is not needed to operate the CMS API.
+OpenAPI API Documentation is built with npm using Redocly.
+- npm is only needed to generate documentation and is not needed to operate the {{ package_name }} API.
 
 See [package.json](package.json) requirements.
 
@@ -21,15 +21,14 @@ Install npm.
 npm install
 ```
 
-Build the documentation to generate the [swagger.json](swagger.json) configuration.
+Build the documentation to generate the [openapi.json](openapi.json) configuration.
 
 ```sh
 npm run docs
 ```
 
 Documentation
-- Preview [swagger.json on the Swagger Editor UI.](https://editor.swagger.io/?url=https://raw.githubusercontent.com/{{packagist}}/develop/swagger.json)
-- Preview [swagger.json on the Redocly Editor UI.](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/{{packagist}}/develop/swagger.json)
+- Preview [openapi.json on the Redocly Editor UI.](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/{{packagist}}/develop/openapi.json)
 
 ## Installation
 
@@ -63,7 +62,7 @@ composer cloc
 
 ## PHPStan
 
-Tests at level 9 on:
+Tests at level 10 on:
 {{readme_phpstan}}
 
 ```sh

@@ -1,14 +1,16 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Tests\Unit\Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use Tests\Unit\Playground\Make\Package\TestCase;
 use Playground\Make\Package\Console\Commands\PackageMakeCommand;
+use Tests\Unit\Playground\Make\Package\TestCase;
 
 /**
  * \Tests\Unit\Playground\Make\Package\Console\Commands\PackageMakeCommand

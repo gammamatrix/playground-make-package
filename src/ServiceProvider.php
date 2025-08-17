@@ -1,21 +1,24 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Make\Package;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
+use Illuminate\Support\Facades\App;
 
 /**
  * \Playground\Make\Package\ServiceProvider
  */
 class ServiceProvider extends AuthServiceProvider
 {
-    public const VERSION = '73.0.0';
+    public const string VERSION = '74.0.0';
 
     public string $package = 'playground-make-package';
 
@@ -28,7 +31,11 @@ class ServiceProvider extends AuthServiceProvider
     public function boot()
     {
         /**
-         * @var array<string, mixed> $config
+         * @var array{
+         *        about: bool,
+         *        locale: ?string,
+         *        load: array{commands: bool, translations: bool}
+         *    } $config
          */
         $config = config($this->package);
 
@@ -45,7 +52,7 @@ class ServiceProvider extends AuthServiceProvider
                 );
             }
 
-            if ($this->app->runningInConsole()) {
+            if (App::runningInConsole()) {
                 // Publish configuration
                 $this->publishes([
                     sprintf('%1$s/config/%2$s.php', dirname(__DIR__), $this->package) => config_path(sprintf('%1$s.php', $this->package)),

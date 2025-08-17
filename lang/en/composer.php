@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Playground
  */
@@ -14,7 +15,6 @@ return [
     |
     |
     */
-
 
     'model.description' => ':organization: Provide the :module models for the :organization :system.',
     'api.description' => ':organization: Provides an API, without a UI for interacting with :organization :module, a :system for Laravel applications.',

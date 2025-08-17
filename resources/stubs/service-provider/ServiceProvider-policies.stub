@@ -14,7 +14,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
  */
 class ServiceProvider extends AuthServiceProvider
 {
-    public const VERSION = '{{ version }}';
+    public const string VERSION = '{{ version }}';
 
     public string $package = '{{ package }}';
 
