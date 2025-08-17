@@ -7,7 +7,7 @@
 declare(strict_types=1);
 
 /**
- * Playground Make Configuration and Environment Variables
+ * Playground Make Package Configuration and Environment Variables
  *
  * @return array{
  *       about: bool,
