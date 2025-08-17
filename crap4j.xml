@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2024-08-17 20:11:46</timestamp>
+  <timestamp>2025-08-17 17:44:28</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>114</methodCount>
     <crapMethodCount>13</crapMethodCount>
-    <crapLoad>185</crapLoad>
-    <totalCrap>3468.47</totalCrap>
+    <crapLoad>187</crapLoad>
+    <totalCrap>3594.74</totalCrap>
     <crapMethodPercent>11.4</crapMethodPercent>
   </stats>
   <methods>
@@ -116,9 +116,9 @@
       <methodName>make_composer_authors</methodName>
       <methodSignature>make_composer_authors(): string</methodSignature>
       <fullMethod>make_composer_authors(): string</fullMethod>
-      <crap>9</crap>
+      <crap>43.94</crap>
       <complexity>8</complexity>
-      <coverage>75</coverage>
+      <coverage>17.5</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -202,8 +202,8 @@
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildControllers</className>
       <methodName>build_config_policy_line</methodName>
-      <methodSignature>build_config_policy_line(Playground\Make\Configuration\Model $model): string</methodSignature>
-      <fullMethod>build_config_policy_line(Playground\Make\Configuration\Model $model): string</fullMethod>
+      <methodSignature>build_config_policy_line(Model $model): string</methodSignature>
+      <fullMethod>build_config_policy_line(Model $model): string</fullMethod>
       <crap>2</crap>
       <complexity>1</complexity>
       <coverage>0</coverage>
@@ -213,8 +213,8 @@
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildControllers</className>
       <methodName>build_config_policy_line_revision</methodName>
-      <methodSignature>build_config_policy_line_revision(Playground\Make\Configuration\Model $model): string</methodSignature>
-      <fullMethod>build_config_policy_line_revision(Playground\Make\Configuration\Model $model): string</fullMethod>
+      <methodSignature>build_config_policy_line_revision(Model $model): string</methodSignature>
+      <fullMethod>build_config_policy_line_revision(Model $model): string</fullMethod>
       <crap>2</crap>
       <complexity>1</complexity>
       <coverage>0</coverage>
@@ -257,8 +257,8 @@
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildControllers</className>
       <methodName>createControllerForModel</methodName>
-      <methodSignature>createControllerForModel(Playground\Make\Configuration\Model $model, string $package, array $params): void</methodSignature>
-      <fullMethod>createControllerForModel(Playground\Make\Configuration\Model $model, string $package, array $params): void</fullMethod>
+      <methodSignature>createControllerForModel(Model $model, string $package, array $params): void</methodSignature>
+      <fullMethod>createControllerForModel(Model $model, string $package, array $params): void</fullMethod>
       <crap>110</crap>
       <complexity>10</complexity>
       <coverage>0</coverage>
@@ -336,9 +336,9 @@
       <methodName>createSkeleton</methodName>
       <methodSignature>createSkeleton(): void</methodSignature>
       <fullMethod>createSkeleton(): void</fullMethod>
-      <crap>12</crap>
+      <crap>12.04</crap>
       <complexity>12</complexity>
-      <coverage>95.08</coverage>
+      <coverage>93.55</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -402,9 +402,9 @@
       <methodName>setPackageRequire</methodName>
       <methodSignature>setPackageRequire(): void</methodSignature>
       <fullMethod>setPackageRequire(): void</fullMethod>
-      <crap>35</crap>
-      <complexity>8</complexity>
-      <coverage>25</coverage>
+      <crap>48.29</crap>
+      <complexity>9</complexity>
+      <coverage>21.43</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -732,10 +732,10 @@
       <methodName>addAuthor</methodName>
       <methodSignature>addAuthor(mixed $i, mixed $author): self</methodSignature>
       <fullMethod>addAuthor(mixed $i, mixed $author): self</fullMethod>
-      <crap>342</crap>
-      <complexity>18</complexity>
+      <crap>420</crap>
+      <complexity>20</complexity>
       <coverage>0</coverage>
-      <crapLoad>18</crapLoad>
+      <crapLoad>20</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>

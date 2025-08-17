@@ -18,11 +18,11 @@ Instance (Tests\Unit\Playground\Make\Package\Configuration\Package\Instance)
  [x] Folder is empty by default
  [x] Package for model with file and skeleton
  [x] Package for api with file and skeleton
- [x] AddKeyword with invalid keyword and log message
- [x] AddRequire with invalid package and log message
- [x] AddRequire with invalid version and log message
- [x] AddRequireDev with invalid package and log message
- [x] AddRequireDev with invalid version and log message
+ [x] Add keyword with invalid keyword and log message
+ [x] Add require with invalid package and log message
+ [x] Add require with invalid version and log message
+ [x] Add require dev with invalid package and log message
+ [x] Add require dev with invalid version and log message
 
 Model (Tests\Acceptance\Playground\Make\Package\Console\Commands\PackageMakeCommand\Model)
  [x] Command make model package with force and without skeleton
