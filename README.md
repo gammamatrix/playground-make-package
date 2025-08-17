@@ -2,7 +2,7 @@
 
 [![Playground CI Workflow](https://github.com/gammamatrix/playground-make-package/actions/workflows/ci.yml/badge.svg?branch=develop)](https://raw.githubusercontent.com/gammamatrix/playground-make-package/testing/develop/testdox.txt)
 [![Test Coverage](https://raw.githubusercontent.com/gammamatrix/playground-make-package/testing/develop/coverage.svg)](tests)
-[![PHPStan Level 9](https://img.shields.io/badge/PHPStan-level%209-brightgreen)](.github/workflows/ci.yml#L120)
+[![PHPStan Level 10 src and tests](https://img.shields.io/badge/PHPStan-level%2010-brightgreen)](.github/workflows/ci.yml#L128)
 
 The Playground Make Package Tool for building out [Laravel](https://laravel.com/docs/11.x) applications.
 
