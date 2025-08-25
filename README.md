@@ -75,6 +75,16 @@ Build the out the Blade templates, controllers, policies, requests, resources, r
 artisan playground:make:package --file resources/configurations/playground-matrix/package.playground-matrix-resource.json --force
 ```
 
+### Rebuild existing packages
+
+```shell
+artisan playground:make:package --force --file resources/configurations/playground-cms/package.playground-cms.json
+```
+
+```sh
+artisan playground:make:package --force --file resources/configurations/playground-cms-resource/package.playground-cms-resource.json --model-package resources/configurations/playground-cms/package.playground-cms.json -n
+```
+
 **TODO:** working
 - [x] needs abilities in config
 - [x] needs routes in config

@@ -138,7 +138,7 @@ trait BuildSkeletonGitHub
                 $workflow .= PHP_EOL;
             }
             $workflow .=
-                '[![PHPStan Level 9](https://img.shields.io/badge/PHPStan-level%209-brightgreen)](.github/workflows/ci.yml#L120)';
+                '[![PHPStan Level 10](https://img.shields.io/badge/PHPStan-level%2010-brightgreen)](.github/workflows/ci.yml#L128)';
         }
         // dd([
         //     '__METHOD__' => __METHOD__,

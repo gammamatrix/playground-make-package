@@ -29,6 +29,9 @@ trait BuildModels
             $params['--test'] = true;
         }
 
+        $this->searches['readme_models'] = '';
+
+        $i = 0;
         foreach ($this->c->models() as $model => $file) {
             if (is_string($file) && $file) {
                 $params['--file'] = $file;
@@ -36,13 +39,23 @@ trait BuildModels
                 if ($this->c->skeleton()) {
                     $params['--skeleton'] = true;
                 }
-                // dump([
-                //     '__METHOD__' => __METHOD__,
-                //     '$params' => $params,
-                // ]);
+//                 dd([
+//                     '__METHOD__' => __METHOD__,
+//                     '$params' => $params,
+//                     '$model' => $model,
+//                 ]);
                 $this->call('playground:make:model', $params);
+
+                $this->searches['readme_models'] .= sprintf(
+                    '%1$s- [%2$s](src/Models/%2$s.php)',
+                    PHP_EOL,
+                    $model
+                );
+                $i++;
             }
         }
+
+        $this->searches['readme_models_count'] = strval($i);
     }
 
     protected function make_published_models(): void

@@ -19,20 +19,46 @@ trait BuildControllers
 {
     protected ?Package $modelPackage = null;
 
+//    public function handle_controller_params($model): void
     public function handle_controllers(): void
     {
         $params = [
-            '--file' => '',
         ];
 
         if ($this->hasOption('force') && $this->option('force')) {
             $params['--force'] = true;
         }
 
-        foreach ($this->c->controllers() as $controller) {
-            if (is_string($controller) && $controller) {
-                $params['--file'] = $controller;
-                $this->call('playground:make:controller', $params);
+        $controllers = $this->c->controllers();
+
+        if (empty($controllers) && ! empty($this->modelPackage)) {
+
+
+            if ($this->hasOption('file') && $this->option('file')) {
+                $params['--package-file'] = $this->option('file');
+            }
+
+            foreach ($this->modelPackage->models() as $model => $file) {
+                if (is_string($model) && $model) {
+                    $params['--model-file'] = $file;
+
+                    $this->call('playground:make:controller', $params);
+//                    dd([
+//                        '__METHOD__' => __METHOD__,
+//                        '$params' => $params,
+//                        '$model' => $model,
+//                        '$file' => $file,
+//                        '$this->options()' => $this->options(),
+//                    ]);
+                }
+            }
+
+        } else {
+            foreach ($controllers as $controller) {
+                if (is_string($controller) && $controller) {
+                    $params['--file'] = $controller;
+                    $this->call('playground:make:controller', $params);
+                }
             }
         }
     }
@@ -44,6 +70,10 @@ trait BuildControllers
             $this->modelPackage = new Package($payload);
             // $this->modelPackage->apply();
         }
+        //        dd([
+        //            '__METHOD__' => __METHOD__,
+        //            '$this->modelPackage' => $this->modelPackage,
+        //        ]);
     }
 
     /**
@@ -60,7 +90,7 @@ trait BuildControllers
         // ]);
         if (! $this->call('playground:make:request', $params)) {
             $file_request = sprintf(
-                '%1$s/app/stub/%2$s/resources/packages/form.request.json',
+                '%1$s/app/stub/%2$s/resources/package/form.request.json',
                 $this->laravel->storagePath(),
                 $package,
             );
@@ -122,6 +152,13 @@ PHP_CODE;
 PHP_CODE;
     }
 
+    protected function build_config_revision_docs_line(string $model_plural): string
+    {
+        return <<<PHP_CODE
+        '$model_plural' => *           $model_plural:, bool,
+PHP_CODE;
+    }
+
     protected function build_config_revision(string $revisions): string
     {
         $config_space = $this->c->config_space();
@@ -137,9 +174,77 @@ PHP_CODE;
     */
 
     'revisions' => [
-        'optional' => (bool) env('{$config_space}_ROUTES_OPTIONAL', false),
+        'optional' => (bool) env('{$config_space}_REVISIONS_OPTIONAL', false),
 {$revisions}    ],
 
+PHP_CODE;
+    }
+
+    protected function build_config_revision_docs(string $revisions): string
+    {
+        return <<<PHP_CODE
+
+ *       revisions: array{
+ *           options: bool,
+{$revisions}
+ *       },
+PHP_CODE;
+    }
+
+    protected function build_config_revision_docs_sp(string $revisions, string $indent = ''): string
+    {
+        return <<<PHP_CODE
+
+         *        revisions: array{
+         *            options: bool,
+{$revisions}
+         *        },
+PHP_CODE;
+    }
+
+    protected function build_config_cache_docs(string $models_text): string
+    {
+
+        return <<<PHP_CODE
+
+ *       cache: array{
+ *           enable: bool,{$models_text}
+ *       },
+PHP_CODE;
+    }
+
+    protected function build_config_cache_docs_sp(string $models_text): string
+    {
+
+        return <<<PHP_CODE
+
+         *        cache: array{
+         *            enable: bool,{$models_text}
+         *        },
+PHP_CODE;
+    }
+
+    protected function build_config_cache_model_docs(string $model_snake): string
+    {
+        $config_space = $this->c->config_space();
+
+        return <<<PHP_CODE
+
+ *           $model_snake: bool,
+ *           {$model_snake}_store: string,
+ *           {$model_snake}_ttl: int,
+PHP_CODE;
+    }
+
+    protected function build_config_cache_model_docs_sp(string $model_snake): string
+    {
+        $config_space = $this->c->config_space();
+
+        return <<<PHP_CODE
+
+         *           $model_snake: bool,
+         *           {$model_snake}_store: string,
+         *           {$model_snake}_ttl: int,
 PHP_CODE;
     }
 
@@ -150,6 +255,10 @@ PHP_CODE;
 
         $addConfigForRevisions = false;
         $revisions_text = '';
+        $config_revisions_docs = '';
+        $config_revisions_docs_sp = '';
+        $config_cache_docs = '';
+        $config_cache_docs_sp = '';
 
         $force = $this->hasOption('force') && $this->option('force');
         // $withControllers = $this->hasOption('controllers') && $this->option('controllers');
@@ -198,6 +307,10 @@ PHP_CODE;
         $params_controller = [
             '--model-file' => '',
         ];
+
+        if ($this->hasOption('file') && $this->option('file')) {
+            $params_controller['--package-file'] = $this->option('file');
+        }
 
         if ($this->c->skeleton()) {
             $params_controller['--skeleton'] = true;
@@ -306,6 +419,22 @@ PHP_CODE;
                     $revisions_text .= $this->build_config_revision_line(
                         Str::of($model->name())->plural()->kebab()->toString()
                     );
+                    $config_revisions_docs .= sprintf(
+                        ' *           %1$s: bool,%2$s',
+                        Str::of($model->name())->plural()->lower()->kebab()->toString(),
+                        PHP_EOL
+                    );
+                    $config_revisions_docs_sp .= sprintf(
+                        '         *            %1$s: bool,%2$s',
+                        Str::of($model->name())->plural()->lower()->kebab()->toString(),
+                        PHP_EOL
+                    );
+                    $config_cache_docs .= $this->build_config_cache_model_docs(
+                        Str::of($model->name())->singular()->snake()->toString()
+                    );
+                    $config_cache_docs_sp .= $this->build_config_cache_model_docs_sp(
+                        Str::of($model->name())->singular()->snake()->toString()
+                    );
                 } else {
                     $config_policies .= $this->build_config_policy_line($model);
                 }
@@ -323,6 +452,14 @@ PHP_CODE;
 
         if ($revisions_text) {
             $this->searches['config_revisions'] = $this->build_config_revision($revisions_text);
+            $this->searches['config_revisions_docs'] = $this->build_config_revision_docs(
+                rtrim($config_revisions_docs, PHP_EOL),
+            );
+            $this->searches['config_service_provider_docs_revisions'] = $this->build_config_revision_docs_sp(
+                rtrim($config_revisions_docs_sp, PHP_EOL),
+            );
+            $this->searches['config_cache_docs'] = $this->build_config_cache_docs($config_cache_docs);
+            $this->searches['config_service_provider_docs_cache'] = $this->build_config_cache_docs_sp($config_cache_docs_sp);
         }
 
         // dump([
@@ -376,26 +513,26 @@ PHP_CODE;
         //     $params['--covers'] = true;
         // }
 
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$withCovers' => $withCovers,
-        //     '$isApi' => $isApi,
-        //     '$isResource' => $isResource,
-        //     '$namespace' => $namespace,
-        //     '$params' => $params,
-        // ]);
+//         dump([
+//             '__METHOD__' => __METHOD__,
+//             '$withCovers' => $withCovers,
+//             '$isApi' => $isApi,
+//             '$isResource' => $isResource,
+//             '$namespace' => $namespace,
+//             '$params' => $params,
+//         ]);
         if (! $this->call('playground:make:controller', $params)) {
             $model_slug = Str::of($model->name())->kebab()->toString();
             $model_plural_slug = Str::of($model->model_plural())->kebab()->toString();
             $file_controller = sprintf(
-                '%1$s/app/stub/%2$s/resources/packages/%3$s/controller.json',
+                '%1$s/app/stub/%2$s/resources/package/%3$s/controller.json',
                 $this->laravel->storagePath(),
                 $package,
                 $model_slug
             );
             $this->c->addClassFileTo('controllers', $file_controller);
             $file_route = sprintf(
-                '%1$s/app/stub/%2$s/resources/packages/%3$s/route.json',
+                '%1$s/app/stub/%2$s/resources/package/%3$s/route.json',
                 $this->laravel->storagePath(),
                 $package,
                 $model_slug
@@ -483,7 +620,7 @@ PHP_CODE;
         // ]);
         if (! $this->call('playground:make:controller', $params)) {
             $file_controller = sprintf(
-                '%1$s/app/stub/%2$s/resources/packages/controller.base.json',
+                '%1$s/app/stub/%2$s/resources/package/controller.base.json',
                 $this->laravel->storagePath(),
                 $package,
             );
@@ -583,7 +720,7 @@ PHP_CODE;
         // ]);
         if (! $this->call('playground:make:controller', $params)) {
             $file_controller = sprintf(
-                '%1$s/app/stub/%2$s/resources/packages/index/controller.json',
+                '%1$s/app/stub/%2$s/resources/package/index/controller.json',
                 $this->laravel->storagePath(),
                 $package,
             );

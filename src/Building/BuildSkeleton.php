@@ -52,20 +52,21 @@ trait BuildSkeleton
         ])) {
             $withPhpunit = true;
             $phpstan .= '-api';
-            $skeletons['README-API.md'] = 'README.md';
+            $skeletons['README-api.md'] = 'README.md';
         } elseif (in_array($type, [
             'resource',
             'playground-resource',
         ])) {
             $withPhpunit = true;
             $phpstan .= '-resource';
-            $skeletons['README-API.md'] = 'README.md';
+            $skeletons['README-resource.md'] = 'README.md';
         } elseif (in_array($type, [
             'model',
             'playground-model',
         ])) {
             $withPhpunit = true;
             $phpstan .= '-model';
+            $skeletons['README-model.md'] = 'README.md';
         }
 
         $this->setUpLang();
@@ -333,7 +334,7 @@ trait BuildSkeleton
         //     // '$this->c' => $this->c,
         // ]);
 
-        if (! $package_require && $playground) {
+        if ($playground) {
             if (in_array($this->c->type(), [
                 'playground-api',
                 'playground-model',
@@ -380,12 +381,13 @@ trait BuildSkeleton
             }
         }
 
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$package_require' => $package_require,
-        //     '$package_require_dev' => $package_require_dev,
-        //     // '$this->c' => $this->c,
-        // ]);
+//         dd([
+//             '__METHOD__' => __METHOD__,
+//             '$this->c->type()' => $this->c->type(),
+//             '$package_require' => $package_require,
+//             '$package_require_dev' => $package_require_dev,
+//             // '$this->c' => $this->c,
+//         ]);
 
         $this->c->setOptions([
             'package_require' => $package_require,
@@ -463,7 +465,6 @@ trait BuildSkeleton
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
 PHP_CODE;
     }
 }

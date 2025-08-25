@@ -1,4 +1,5 @@
 <?php
+
 /**
  * {{ organization }}
  */
@@ -46,8 +47,7 @@ class ServiceProvider extends AuthServiceProvider
          *            class-string<\Illuminate\Database\Eloquent\Model>,
          *            class-string<\Playground\Auth\Policies\Policy>
          *        >,{{ config_service_provider_docs_revisions }}
-         *        routes: array{
-         *            cms: bool,{{ config_routes_docs }}
+         *        routes: array{{{ config_service_provider_routes_docs }}
          *        },
          *        blade: string, {{ config_service_provider_docs_cache }}
          *        abilities: array<string, string[]>,
@@ -124,7 +124,7 @@ class ServiceProvider extends AuthServiceProvider
     /**
      * Set the application's policies from the configuration.
      *
-     * @param array<class-string, class-string> $policies
+     * @param  array<class-string, class-string>  $policies
      */
     public function setPolicies(array $policies): void
     {
@@ -142,7 +142,7 @@ class ServiceProvider extends AuthServiceProvider
             if (! is_string($policy) || ! class_exists($policy)) {
                 Log::error('Expecting the policy to exist for the model.', [
                     '__METHOD__' => __METHOD__,
-                    'model' => is_string($model) ? $model : gettype($model),
+                    'model' => $model,
                     'policy' => is_string($policy) ? $policy : gettype($policy),
                     'policies' => $policies,
                 ]);
@@ -154,7 +154,7 @@ class ServiceProvider extends AuthServiceProvider
     }
 
     /**
-     * @param array<string, mixed> $config
+     * @param  array<string, mixed>  $config
      */
     public function routes(array $config): void
     {{{ load_routes }}
@@ -184,12 +184,12 @@ class ServiceProvider extends AuthServiceProvider
             '<fg=yellow;options=bold>Middleware</> default' => ! empty($middleware['default']) ? sprintf('%s', json_encode($middleware['default'])) : '',
             '<fg=yellow;options=bold>Middleware</> guest' => ! empty($middleware['guest']) ? sprintf('%s', json_encode($middleware['guest'])) : '',
 
-            '<fg=blue;options=bold>View</> [Blade]' => ! empty($config['blade']) ? sprintf('[%s]', $config['blade']) : '',
+            '<fg=blue;options=bold>View</> [Blade]' => ! empty($config['blade']) && is_string($config['blade']) ? sprintf('[%s]', $config['blade']) : '',
 
             '<fg=magenta;options=bold>Sitemap</> Views' => ! empty($sitemap['enable']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
             '<fg=magenta;options=bold>Sitemap</> Guest' => ! empty($sitemap['guest']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
             '<fg=magenta;options=bold>Sitemap</> User' => ! empty($sitemap['user']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
-            '<fg=magenta;options=bold>Sitemap</> [view]' => sprintf('[%s]', $sitemap['view']),
+            '<fg=magenta;options=bold>Sitemap</> [view]' => ! empty($sitemap['view']) && is_string($sitemap['view']) ? sprintf('[%s]', $sitemap['view']) : '',
 
 {{ about_routes }}
             'Package' => $this->package,

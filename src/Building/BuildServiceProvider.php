@@ -22,12 +22,14 @@ trait BuildServiceProvider
         $about_routes = '';
         $config_routes = '';
         $config_routes_docs = '';
+        $config_routes_docs_sp = '';
         $load_routes = '';
 
         $about_line = '%1$s\'<fg=red;options=bold>Route</> %2$s\' => ! empty($routes[\'%2$s\']) ? \'<fg=green;options=bold>ENABLED</>\' : \'<fg=yellow;options=bold>DISABLED</>\',%3$s';
 
         $route_line = '%1$s\'%2$s\' => (bool) env(\'%3$s_ROUTES_%4$s\', %5$s),%6$s';
-        $doc_route_line = ' *%1$s\'%2$s\': bool%1$s,%6$s';
+        $doc_route_line = '%6$s *   %1$s%2$s: bool,';
+        $doc_route_line_sp = '%6$s         *%1$s %2$s: bool,';
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$this->c->routes()' => $this->c->routes(),
@@ -57,6 +59,14 @@ trait BuildServiceProvider
                 'true',
                 PHP_EOL,
             );
+            $config_routes_docs_sp .= sprintf($doc_route_line_sp,
+                str_repeat(static::INDENT, 3),
+                $route,
+                $this->c->config_space(),
+                strtoupper($route),
+                'true',
+                PHP_EOL,
+            );
             $i++;
             $load_routes .= <<<PHP_CODE
 
@@ -72,6 +82,8 @@ PHP_CODE;
 
         if (! empty($config_routes)) {
             $this->searches['config_routes'] = rtrim($config_routes);
+            $this->searches['config_routes_docs'] = rtrim($config_routes_docs);
+            $this->searches['config_service_provider_routes_docs'] = rtrim($config_routes_docs_sp);
         }
 
         if (! empty($load_routes)) {
@@ -146,10 +158,10 @@ PHP_CODE;
         }
 
         $this->make_service_provider_routes();
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     // '$models' => $models,
-        //     '$this->c->routes()' => $this->c->routes(),
-        // ]);
+//         dump([
+//             '__METHOD__' => __METHOD__,
+//             // '$models' => $models,
+//             '$this->c->routes()' => $this->c->routes(),
+//         ]);
     }
 }

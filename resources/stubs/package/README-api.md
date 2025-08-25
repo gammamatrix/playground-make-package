@@ -58,6 +58,23 @@ composer cloc
 ```
 ➜  {{ package }} git:(develop) ✗ composer cloc
 > cloc --exclude-dir=node_modules,output,vendor .
+      0 text files.
+      0 unique files.
+       0 files ignored.
+
+github.com/AlDanial/cloc v 1.98  T=0.0 s (0.0 files/s, 0.0 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+JSON                             0              0              0              0
+PHP                              0              0              0              0
+YAML                             0              0              0              0
+XML                              0              0              0              0
+Markdown                         0              0              0              0
+INI                              0              0              0              0
+-------------------------------------------------------------------------------
+SUM:                             0              0              0              0
+-------------------------------------------------------------------------------
 ```
 
 ## PHPStan

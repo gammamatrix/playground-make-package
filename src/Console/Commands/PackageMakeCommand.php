@@ -71,14 +71,19 @@ class PackageMakeCommand extends GeneratorCommand
         'packagist' => '',
         'policies' => '',
         'publish_migrations' => '',
+        'config_cache_docs' => '',
+        'config_service_provider_routes_docs' => '',
         'config_policies' => '',
         'config_revisions' => '',
+        'config_revisions_docs' => '',
         'config_routes' => '',
         'config_routes_docs' => '',
         'config_service_provider_docs_revisions' => '', // TODO implement
         'config_service_provider_docs_cache' => '', // TODO implement
         'config_abilities_manager' => '',
         'config_abilities_user' => '',
+        'readme_models' => '',
+        'readme_models_count' => '',
         'routes' => '',
         'version' => '',
         'about_routes' => '',
@@ -296,6 +301,9 @@ class PackageMakeCommand extends GeneratorCommand
             $this->c->setOptions([
                 'withRoutes' => true,
             ]);
+        }
+
+        if ($this->c->withRoutes()) {
             $this->preload_model_routes_for_service_provider();
         }
 
@@ -335,32 +343,38 @@ class PackageMakeCommand extends GeneratorCommand
 
         $this->make_composer_package_name();
 
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$this->c->type()' => $this->c->type(),
-        //     '$this->c' => $this->c,
-        //     '$this->searches' => $this->searches,
-        // ]);
+        $build = $this->hasOption('build') && $this->option('build');
+
+        if ($build) {
+            $this->createBaseController();
+            $this->createResourceIndexController();
+            $this->build_crud();
+        }
+
+//         dd([
+//             '__METHOD__' => __METHOD__,
+//             '$this->c->type()' => $this->c->type(),
+//             '$this->c' => $this->c,
+//             '$this->searches' => $this->searches,
+//         ]);
     }
 
     public function finish(): ?bool
     {
         $build = $this->hasOption('build') && $this->option('build');
 
-        if (! $build) {
+        if (!$build) {
             $this->handle_models();
             $this->handle_controllers();
-        } else {
-            $this->createBaseController();
-            $this->createResourceIndexController();
-            $this->build_crud();
         }
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$this->c->type()' => $this->c->type(),
-        //     '$this->c' => $this->c,
-        //     '$this->searches' => $this->searches,
-        // ]);
+
+//         dd([
+//             '__METHOD__' => __METHOD__,
+//             '$build' => $build,
+//             '$this->c->type()' => $this->c->type(),
+//             '$this->c' => $this->c,
+//             '$this->searches' => $this->searches,
+//         ]);
 
         // $this->saveConfiguration();
 

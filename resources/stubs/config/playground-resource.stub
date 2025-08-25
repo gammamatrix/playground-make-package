@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 /**
  * {{ package_name }} Configuration and Environment Variables
-
+ *
  * @return array{
  *       about: bool,
  *       layout: string,
@@ -26,11 +26,10 @@ declare(strict_types=1);
  *       policies: array<
  *           class-string<\Illuminate\Database\Eloquent\Model>,
  *           class-string<\Playground\Auth\Policies\Policy>
- *       >,
- *       routes: array{
- *           {{ module_slug }}: bool,{{ config_routes_docs }}
+ *       >,{{ config_revisions_docs }}
+ *       routes: array{{{ config_routes_docs }}
  *       },
- *       blade: string,
+ *       blade: string,{{ config_cache_docs }}
  *       abilities: array<string, string[]>,
  *       sitemap: array{
  *            enable: bool,
