@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-08-18 01:51:57</timestamp>
+  <timestamp>2025-08-25 06:39:42</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>114</methodCount>
+    <methodCount>121</methodCount>
     <crapMethodCount>13</crapMethodCount>
-    <crapLoad>187</crapLoad>
-    <totalCrap>3594.74</totalCrap>
-    <crapMethodPercent>11.4</crapMethodPercent>
+    <crapLoad>191</crapLoad>
+    <totalCrap>3717.28</totalCrap>
+    <crapMethodPercent>10.74</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -41,7 +41,7 @@
       <fullMethod>make_composer_require(): string</fullMethod>
       <crap>7</crap>
       <complexity>7</complexity>
-      <coverage>100</coverage>
+      <coverage>96.55</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -52,7 +52,7 @@
       <fullMethod>make_composer_require_dev(): string</fullMethod>
       <crap>7</crap>
       <complexity>7</complexity>
-      <coverage>100</coverage>
+      <coverage>96.55</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -171,9 +171,9 @@
       <methodName>handle_controllers</methodName>
       <methodSignature>handle_controllers(): void</methodSignature>
       <fullMethod>handle_controllers(): void</fullMethod>
-      <crap>6</crap>
-      <complexity>6</complexity>
-      <coverage>100</coverage>
+      <crap>21.91</crap>
+      <complexity>13</complexity>
+      <coverage>62.5</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -234,6 +234,17 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_revision_docs_line</methodName>
+      <methodSignature>build_config_revision_docs_line(string $model_plural): string</methodSignature>
+      <fullMethod>build_config_revision_docs_line(string $model_plural): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
       <methodName>build_config_revision</methodName>
       <methodSignature>build_config_revision(string $revisions): string</methodSignature>
       <fullMethod>build_config_revision(string $revisions): string</fullMethod>
@@ -245,13 +256,79 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_revision_docs</methodName>
+      <methodSignature>build_config_revision_docs(string $revisions): string</methodSignature>
+      <fullMethod>build_config_revision_docs(string $revisions): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_revision_docs_sp</methodName>
+      <methodSignature>build_config_revision_docs_sp(string $revisions, string $indent): string</methodSignature>
+      <fullMethod>build_config_revision_docs_sp(string $revisions, string $indent): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_cache_docs</methodName>
+      <methodSignature>build_config_cache_docs(string $models_text): string</methodSignature>
+      <fullMethod>build_config_cache_docs(string $models_text): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_cache_docs_sp</methodName>
+      <methodSignature>build_config_cache_docs_sp(string $models_text): string</methodSignature>
+      <fullMethod>build_config_cache_docs_sp(string $models_text): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_cache_model_docs</methodName>
+      <methodSignature>build_config_cache_model_docs(string $model_snake): string</methodSignature>
+      <fullMethod>build_config_cache_model_docs(string $model_snake): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
+      <methodName>build_config_cache_model_docs_sp</methodName>
+      <methodSignature>build_config_cache_model_docs_sp(string $model_snake): string</methodSignature>
+      <fullMethod>build_config_cache_model_docs_sp(string $model_snake): string</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildControllers</className>
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>702</crap>
-      <complexity>26</complexity>
+      <crap>812</crap>
+      <complexity>28</complexity>
       <coverage>0</coverage>
-      <crapLoad>27</crapLoad>
+      <crapLoad>29</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -292,9 +369,9 @@
       <methodName>handle_models</methodName>
       <methodSignature>handle_models(): void</methodSignature>
       <fullMethod>handle_models(): void</fullMethod>
-      <crap>9.04</crap>
+      <crap>9</crap>
       <complexity>9</complexity>
-      <coverage>92.31</coverage>
+      <coverage>95.45</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -338,7 +415,7 @@
       <fullMethod>createSkeleton(): void</fullMethod>
       <crap>12.04</crap>
       <complexity>12</complexity>
-      <coverage>93.55</coverage>
+      <coverage>93.65</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -402,9 +479,9 @@
       <methodName>setPackageRequire</methodName>
       <methodSignature>setPackageRequire(): void</methodSignature>
       <fullMethod>setPackageRequire(): void</fullMethod>
-      <crap>48.29</crap>
-      <complexity>9</complexity>
-      <coverage>21.43</coverage>
+      <crap>9.9</crap>
+      <complexity>8</complexity>
+      <coverage>69.05</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -1161,10 +1238,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>126.52</crap>
-      <complexity>47</complexity>
-      <coverage>66.98</coverage>
-      <crapLoad>16</crapLoad>
+      <crap>147.64</crap>
+      <complexity>50</complexity>
+      <coverage>66.07</coverage>
+      <crapLoad>18</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Console\Commands</package>
@@ -1172,9 +1249,9 @@
       <methodName>finish</methodName>
       <methodSignature>finish(): ?bool</methodSignature>
       <fullMethod>finish(): ?bool</fullMethod>
-      <crap>4.06</crap>
+      <crap>4</crap>
       <complexity>4</complexity>
-      <coverage>84.62</coverage>
+      <coverage>95.65</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
