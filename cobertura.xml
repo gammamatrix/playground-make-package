@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.51736651114567" branch-rate="0" lines-covered="998" lines-valid="1929" branches-covered="0" branches-valid="0" complexity="651" version="0.4" timestamp="1756103982">
+<coverage line-rate="0.51709844559585" branch-rate="0" lines-covered="998" lines-valid="1930" branches-covered="0" branches-valid="0" complexity="651" version="0.4" timestamp="1756104963">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -817,9 +817,9 @@
         </class>
       </classes>
     </package>
-    <package name="Building/BuildControllers.php" line-rate="0.031152647975078" branch-rate="0" complexity="103">
+    <package name="Building/BuildControllers.php" line-rate="0.031055900621118" branch-rate="0" complexity="103">
       <classes>
-        <class name="Playground\Make\Package\Building\BuildControllers" filename="Building/BuildControllers.php" line-rate="0.031152647975078" branch-rate="0" complexity="103">
+        <class name="Playground\Make\Package\Building\BuildControllers" filename="Building/BuildControllers.php" line-rate="0.031055900621118" branch-rate="0" complexity="103">
           <methods>
             <method name="handle_controllers" signature="" line-rate="0.625" branch-rate="0" complexity="13">
               <lines>
@@ -1171,27 +1171,27 @@
                 <line number="651" hits="0"/>
                 <line number="653" hits="0"/>
                 <line number="656" hits="0"/>
-                <line number="657" hits="0"/>
                 <line number="658" hits="0"/>
-                <line number="661" hits="0"/>
-                <line number="663" hits="0"/>
-                <line number="664" hits="0"/>
+                <line number="659" hits="0"/>
+                <line number="660" hits="0"/>
+                <line number="662" hits="0"/>
                 <line number="665" hits="0"/>
+                <line number="667" hits="0"/>
                 <line number="668" hits="0"/>
                 <line number="669" hits="0"/>
-                <line number="670" hits="0"/>
+                <line number="672" hits="0"/>
                 <line number="673" hits="0"/>
                 <line number="674" hits="0"/>
-                <line number="675" hits="0"/>
-                <line number="676" hits="0"/>
                 <line number="677" hits="0"/>
                 <line number="678" hits="0"/>
                 <line number="679" hits="0"/>
+                <line number="680" hits="0"/>
                 <line number="681" hits="0"/>
                 <line number="682" hits="0"/>
                 <line number="683" hits="0"/>
                 <line number="685" hits="0"/>
                 <line number="686" hits="0"/>
+                <line number="687" hits="0"/>
                 <line number="689" hits="0"/>
                 <line number="690" hits="0"/>
                 <line number="693" hits="0"/>
@@ -1202,16 +1202,17 @@
                 <line number="702" hits="0"/>
                 <line number="705" hits="0"/>
                 <line number="706" hits="0"/>
-                <line number="707" hits="0"/>
-                <line number="708" hits="0"/>
                 <line number="709" hits="0"/>
-                <line number="721" hits="0"/>
-                <line number="722" hits="0"/>
-                <line number="723" hits="0"/>
+                <line number="710" hits="0"/>
+                <line number="711" hits="0"/>
+                <line number="712" hits="0"/>
                 <line number="724" hits="0"/>
                 <line number="725" hits="0"/>
                 <line number="726" hits="0"/>
                 <line number="727" hits="0"/>
+                <line number="728" hits="0"/>
+                <line number="729" hits="0"/>
+                <line number="730" hits="0"/>
               </lines>
             </method>
           </methods>
@@ -1496,27 +1497,27 @@
             <line number="651" hits="0"/>
             <line number="653" hits="0"/>
             <line number="656" hits="0"/>
-            <line number="657" hits="0"/>
             <line number="658" hits="0"/>
-            <line number="661" hits="0"/>
-            <line number="663" hits="0"/>
-            <line number="664" hits="0"/>
+            <line number="659" hits="0"/>
+            <line number="660" hits="0"/>
+            <line number="662" hits="0"/>
             <line number="665" hits="0"/>
+            <line number="667" hits="0"/>
             <line number="668" hits="0"/>
             <line number="669" hits="0"/>
-            <line number="670" hits="0"/>
+            <line number="672" hits="0"/>
             <line number="673" hits="0"/>
             <line number="674" hits="0"/>
-            <line number="675" hits="0"/>
-            <line number="676" hits="0"/>
             <line number="677" hits="0"/>
             <line number="678" hits="0"/>
             <line number="679" hits="0"/>
+            <line number="680" hits="0"/>
             <line number="681" hits="0"/>
             <line number="682" hits="0"/>
             <line number="683" hits="0"/>
             <line number="685" hits="0"/>
             <line number="686" hits="0"/>
+            <line number="687" hits="0"/>
             <line number="689" hits="0"/>
             <line number="690" hits="0"/>
             <line number="693" hits="0"/>
@@ -1527,16 +1528,17 @@
             <line number="702" hits="0"/>
             <line number="705" hits="0"/>
             <line number="706" hits="0"/>
-            <line number="707" hits="0"/>
-            <line number="708" hits="0"/>
             <line number="709" hits="0"/>
-            <line number="721" hits="0"/>
-            <line number="722" hits="0"/>
-            <line number="723" hits="0"/>
+            <line number="710" hits="0"/>
+            <line number="711" hits="0"/>
+            <line number="712" hits="0"/>
             <line number="724" hits="0"/>
             <line number="725" hits="0"/>
             <line number="726" hits="0"/>
             <line number="727" hits="0"/>
+            <line number="728" hits="0"/>
+            <line number="729" hits="0"/>
+            <line number="730" hits="0"/>
           </lines>
         </class>
       </classes>
