@@ -653,9 +653,13 @@ PHP_CODE;
             return;
         }
 
+        $models = $this->modelPackage?->models() ?? [];
+
         $model = '';
         if ($this->hasOption('model') && $this->option('model') && is_string($this->option('model'))) {
             $model = $this->option('model');
+        } else {
+            $model = array_key_first($models);
         }
 
         $namespace = $this->c->namespace();
@@ -704,7 +708,6 @@ PHP_CODE;
 
         if ($model) {
             $params['--model'] = $model;
-            $models = $this->modelPackage?->models();
             if (is_array($models) && ! empty($models[$model])) {
                 $params['--model-file'] = $models[$model];
             }
