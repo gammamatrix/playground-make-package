@@ -351,30 +351,30 @@ class PackageMakeCommand extends GeneratorCommand
             $this->build_crud();
         }
 
-//         dd([
-//             '__METHOD__' => __METHOD__,
-//             '$this->c->type()' => $this->c->type(),
-//             '$this->c' => $this->c,
-//             '$this->searches' => $this->searches,
-//         ]);
+        //         dd([
+        //             '__METHOD__' => __METHOD__,
+        //             '$this->c->type()' => $this->c->type(),
+        //             '$this->c' => $this->c,
+        //             '$this->searches' => $this->searches,
+        //         ]);
     }
 
     public function finish(): ?bool
     {
         $build = $this->hasOption('build') && $this->option('build');
 
-        if (!$build) {
+        if (! $build) {
             $this->handle_models();
             $this->handle_controllers();
         }
 
-//         dd([
-//             '__METHOD__' => __METHOD__,
-//             '$build' => $build,
-//             '$this->c->type()' => $this->c->type(),
-//             '$this->c' => $this->c,
-//             '$this->searches' => $this->searches,
-//         ]);
+        //         dd([
+        //             '__METHOD__' => __METHOD__,
+        //             '$build' => $build,
+        //             '$this->c->type()' => $this->c->type(),
+        //             '$this->c' => $this->c,
+        //             '$this->searches' => $this->searches,
+        //         ]);
 
         // $this->saveConfiguration();
 

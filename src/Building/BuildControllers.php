@@ -19,7 +19,7 @@ trait BuildControllers
 {
     protected ?Package $modelPackage = null;
 
-//    public function handle_controller_params($model): void
+    //    public function handle_controller_params($model): void
     public function handle_controllers(): void
     {
         $params = [
@@ -33,7 +33,6 @@ trait BuildControllers
 
         if (empty($controllers) && ! empty($this->modelPackage)) {
 
-
             if ($this->hasOption('file') && $this->option('file')) {
                 $params['--package-file'] = $this->option('file');
             }
@@ -43,13 +42,13 @@ trait BuildControllers
                     $params['--model-file'] = $file;
 
                     $this->call('playground:make:controller', $params);
-//                    dd([
-//                        '__METHOD__' => __METHOD__,
-//                        '$params' => $params,
-//                        '$model' => $model,
-//                        '$file' => $file,
-//                        '$this->options()' => $this->options(),
-//                    ]);
+                    //                    dd([
+                    //                        '__METHOD__' => __METHOD__,
+                    //                        '$params' => $params,
+                    //                        '$model' => $model,
+                    //                        '$file' => $file,
+                    //                        '$this->options()' => $this->options(),
+                    //                    ]);
                 }
             }
 
@@ -513,14 +512,14 @@ PHP_CODE;
         //     $params['--covers'] = true;
         // }
 
-//         dump([
-//             '__METHOD__' => __METHOD__,
-//             '$withCovers' => $withCovers,
-//             '$isApi' => $isApi,
-//             '$isResource' => $isResource,
-//             '$namespace' => $namespace,
-//             '$params' => $params,
-//         ]);
+        //         dump([
+        //             '__METHOD__' => __METHOD__,
+        //             '$withCovers' => $withCovers,
+        //             '$isApi' => $isApi,
+        //             '$isResource' => $isResource,
+        //             '$namespace' => $namespace,
+        //             '$params' => $params,
+        //         ]);
         if (! $this->call('playground:make:controller', $params)) {
             $model_slug = Str::of($model->name())->kebab()->toString();
             $model_plural_slug = Str::of($model->model_plural())->kebab()->toString();
@@ -708,7 +707,7 @@ PHP_CODE;
 
         if ($model) {
             $params['--model'] = $model;
-            if (is_array($models) && ! empty($models[$model])) {
+            if (! empty($models[$model])) {
                 $params['--model-file'] = $models[$model];
             }
 

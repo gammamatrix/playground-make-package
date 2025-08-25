@@ -39,11 +39,11 @@ trait BuildModels
                 if ($this->c->skeleton()) {
                     $params['--skeleton'] = true;
                 }
-//                 dd([
-//                     '__METHOD__' => __METHOD__,
-//                     '$params' => $params,
-//                     '$model' => $model,
-//                 ]);
+                //                 dd([
+                //                     '__METHOD__' => __METHOD__,
+                //                     '$params' => $params,
+                //                     '$model' => $model,
+                //                 ]);
                 $this->call('playground:make:model', $params);
 
                 $this->searches['readme_models'] .= sprintf(

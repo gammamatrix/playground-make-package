@@ -381,13 +381,13 @@ trait BuildSkeleton
             }
         }
 
-//         dd([
-//             '__METHOD__' => __METHOD__,
-//             '$this->c->type()' => $this->c->type(),
-//             '$package_require' => $package_require,
-//             '$package_require_dev' => $package_require_dev,
-//             // '$this->c' => $this->c,
-//         ]);
+        //         dd([
+        //             '__METHOD__' => __METHOD__,
+        //             '$this->c->type()' => $this->c->type(),
+        //             '$package_require' => $package_require,
+        //             '$package_require_dev' => $package_require_dev,
+        //             // '$this->c' => $this->c,
+        //         ]);
 
         $this->c->setOptions([
             'package_require' => $package_require,
