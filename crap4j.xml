@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-08-25 07:05:21</timestamp>
+  <timestamp>2025-08-30 18:40:54</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>121</methodCount>
     <crapMethodCount>13</crapMethodCount>
-    <crapLoad>190</crapLoad>
-    <totalCrap>3673.28</totalCrap>
+    <crapLoad>193</crapLoad>
+    <totalCrap>3727.28</totalCrap>
     <crapMethodPercent>10.74</crapMethodPercent>
   </stats>
   <methods>
@@ -754,10 +754,10 @@
       <methodName>command_tests_about_command</methodName>
       <methodSignature>command_tests_about_command(): void</methodSignature>
       <fullMethod>command_tests_about_command(): void</fullMethod>
-      <crap>56</crap>
-      <complexity>7</complexity>
+      <crap>110</crap>
+      <complexity>10</complexity>
       <coverage>0</coverage>
-      <crapLoad>7</crapLoad>
+      <crapLoad>10</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>

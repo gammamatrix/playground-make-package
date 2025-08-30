@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.51709844559585" branch-rate="0" lines-covered="998" lines-valid="1930" branches-covered="0" branches-valid="0" complexity="650" version="0.4" timestamp="1756105521">
+<coverage line-rate="0.51576227390181" branch-rate="0" lines-covered="998" lines-valid="1935" branches-covered="0" branches-valid="0" complexity="653" version="0.4" timestamp="1756579254">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -2681,9 +2681,9 @@
         </class>
       </classes>
     </package>
-    <package name="Building/BuildTests.php" line-rate="0" branch-rate="0" complexity="63">
+    <package name="Building/BuildTests.php" line-rate="0" branch-rate="0" complexity="66">
       <classes>
-        <class name="Playground\Make\Package\Building\BuildTests" filename="Building/BuildTests.php" line-rate="0" branch-rate="0" complexity="63">
+        <class name="Playground\Make\Package\Building\BuildTests" filename="Building/BuildTests.php" line-rate="0" branch-rate="0" complexity="66">
           <methods>
             <method name="createTest" signature="" line-rate="0" branch-rate="0" complexity="4">
               <lines>
@@ -2977,7 +2977,7 @@
                 <line number="489" hits="0"/>
               </lines>
             </method>
-            <method name="command_tests_about_command" signature="" line-rate="0" branch-rate="0" complexity="7">
+            <method name="command_tests_about_command" signature="" line-rate="0" branch-rate="0" complexity="10">
               <lines>
                 <line number="494" hits="0"/>
                 <line number="495" hits="0"/>
@@ -2987,19 +2987,24 @@
                 <line number="500" hits="0"/>
                 <line number="501" hits="0"/>
                 <line number="502" hits="0"/>
-                <line number="503" hits="0"/>
-                <line number="504" hits="0"/>
-                <line number="505" hits="0"/>
                 <line number="506" hits="0"/>
                 <line number="507" hits="0"/>
+                <line number="508" hits="0"/>
                 <line number="509" hits="0"/>
                 <line number="510" hits="0"/>
                 <line number="511" hits="0"/>
                 <line number="512" hits="0"/>
+                <line number="513" hits="0"/>
+                <line number="514" hits="0"/>
                 <line number="515" hits="0"/>
-                <line number="516" hits="0"/>
+                <line number="517" hits="0"/>
+                <line number="518" hits="0"/>
+                <line number="519" hits="0"/>
+                <line number="520" hits="0"/>
+                <line number="523" hits="0"/>
                 <line number="524" hits="0"/>
-                <line number="525" hits="0"/>
+                <line number="532" hits="0"/>
+                <line number="533" hits="0"/>
               </lines>
             </method>
           </methods>
@@ -3260,19 +3265,24 @@
             <line number="500" hits="0"/>
             <line number="501" hits="0"/>
             <line number="502" hits="0"/>
-            <line number="503" hits="0"/>
-            <line number="504" hits="0"/>
-            <line number="505" hits="0"/>
             <line number="506" hits="0"/>
             <line number="507" hits="0"/>
+            <line number="508" hits="0"/>
             <line number="509" hits="0"/>
             <line number="510" hits="0"/>
             <line number="511" hits="0"/>
             <line number="512" hits="0"/>
+            <line number="513" hits="0"/>
+            <line number="514" hits="0"/>
             <line number="515" hits="0"/>
-            <line number="516" hits="0"/>
+            <line number="517" hits="0"/>
+            <line number="518" hits="0"/>
+            <line number="519" hits="0"/>
+            <line number="520" hits="0"/>
+            <line number="523" hits="0"/>
             <line number="524" hits="0"/>
-            <line number="525" hits="0"/>
+            <line number="532" hits="0"/>
+            <line number="533" hits="0"/>
           </lines>
         </class>
       </classes>
