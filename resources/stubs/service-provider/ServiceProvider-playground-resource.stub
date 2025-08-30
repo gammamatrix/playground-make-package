@@ -49,7 +49,7 @@ class ServiceProvider extends AuthServiceProvider
          *        >,{{ config_service_provider_docs_revisions }}
          *        routes: array{{{ config_service_provider_routes_docs }}
          *        },
-         *        blade: string, {{ config_service_provider_docs_cache }}
+         *        blade: string,{{ config_service_provider_docs_cache }}
          *        abilities: array<string, string[]>,
          *        sitemap: array{
          *             enable: bool,
