@@ -516,8 +516,10 @@ trait BuildTests
 
         if ($isApi) {
             $options['--api'] = true;
+            $options['name'] = $this->c->name();
         } elseif ($isResource) {
             $options['--resource'] = true;
+            $options['name'] = $this->c->name();
         }
 
         if ($this->c->skeleton()) {
