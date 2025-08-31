@@ -94,7 +94,7 @@ trait BuildSkeleton
             $skeletons['pint.json'] = 'pint.json';
         }
 
-        if ($this->c->withSwagger()) {
+        if ($this->c->withOpenAPI()) {
             $skeletons['package-docs.json'] = 'package.json';
             $skeletons['redocly.yaml'] = 'redocly.yaml';
         }

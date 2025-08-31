@@ -52,7 +52,7 @@ class InstanceTest extends TestCase
         'withPolicies' => false,
         'withRequests' => false,
         'withRoutes' => false,
-        'withSwagger' => false,
+        'withOpenAPI' => false,
         'withTests' => false,
         'playground' => false,
         'revision' => false,

@@ -264,7 +264,7 @@ PHP_CODE;
         // $withPolicies = $this->hasOption('policies') && $this->option('policies');
         // $withRequests = $this->hasOption('requests') && $this->option('requests');
         // $withRoutes = $this->hasOption('routes') && $this->option('routes');
-        // $withSwagger = $this->hasOption('swagger') && $this->option('swagger');
+        // $withOpenAPI = $this->hasOption('openapi') && $this->option('openapi');
         // $withTests = $this->hasOption('test') && $this->option('test');
 
         $isApi = $this->hasOption('api') && $this->option('api');
@@ -347,7 +347,7 @@ PHP_CODE;
             $params_controller['--policies'] = true;
             $params_controller['--requests'] = true;
             $params_controller['--routes'] = true;
-            $params_controller['--swagger'] = true;
+            $params_controller['--openapi'] = true;
             $params_controller['--test'] = true;
             $params_controller['--type'] = 'playground-api';
         } elseif ($isResource) {
@@ -358,7 +358,7 @@ PHP_CODE;
             $params_controller['--requests'] = true;
             $params_controller['--resource'] = true;
             $params_controller['--routes'] = true;
-            $params_controller['--swagger'] = true;
+            $params_controller['--openapi'] = true;
             $params_controller['--test'] = true;
             $params_controller['--type'] = 'playground-resource';
         }

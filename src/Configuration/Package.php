@@ -39,7 +39,7 @@ class Package extends PrimaryConfiguration
         'withPolicies' => false,
         'withRequests' => false,
         'withRoutes' => false,
-        'withSwagger' => false,
+        'withOpenAPI' => false,
         'withTests' => false,
         'playground' => false,
         'revision' => false,
@@ -89,7 +89,7 @@ class Package extends PrimaryConfiguration
 
     protected bool $withRoutes = false;
 
-    protected bool $withSwagger = false;
+    protected bool $withOpenAPI = false;
 
     protected bool $withTests = false;
 
@@ -200,7 +200,7 @@ class Package extends PrimaryConfiguration
      *     withPolicies?: bool,
      *     withRequests?: bool,
      *     withRoutes?: bool,
-     *     withSwagger?: bool,
+     *     withOpenAPI?: bool,
      *     withTests?: bool,
      *     revision?: bool,
      *     package_name?: string,
@@ -263,8 +263,8 @@ class Package extends PrimaryConfiguration
             $this->withRoutes = ! empty($options['withRoutes']);
         }
 
-        if (array_key_exists('withSwagger', $options)) {
-            $this->withSwagger = ! empty($options['withSwagger']);
+        if (array_key_exists('withOpenAPI', $options)) {
+            $this->withOpenAPI = ! empty($options['withOpenAPI']);
         }
 
         if (array_key_exists('withTests', $options)) {
@@ -658,9 +658,9 @@ class Package extends PrimaryConfiguration
         return $this->withRoutes;
     }
 
-    public function withSwagger(): bool
+    public function withOpenAPI(): bool
     {
-        return $this->withSwagger;
+        return $this->withOpenAPI;
     }
 
     public function withTests(): bool

@@ -162,7 +162,7 @@ class PackageMakeCommand extends GeneratorCommand
         $options[] = ['build', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' controllers, policies, requests and routes for the models'];
         $options[] = ['playground', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use Playground features'];
         $options[] = ['revision', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use revision features'];
-        $options[] = ['swagger', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' the Swagger documentation'];
+        $options[] = ['openapi', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' the OpenAPI documentation'];
         $options[] = ['test', null, InputOption::VALUE_NONE, 'Create the unit and feature tests for the '.strtolower($this->type)];
         $options[] = ['api', null, InputOption::VALUE_NONE, 'Generate an API controller class when creating the model. Requires --controllers option'];
         $options[] = ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class when creating the model. Requires --controllers option'];
@@ -307,9 +307,9 @@ class PackageMakeCommand extends GeneratorCommand
             $this->preload_model_routes_for_service_provider();
         }
 
-        if ($this->hasOption('swagger') && $this->option('swagger')) {
+        if ($this->hasOption('openapi') && $this->option('openapi')) {
             $this->c->setOptions([
-                'withSwagger' => true,
+                'withOpenAPI' => true,
             ]);
         }
 
