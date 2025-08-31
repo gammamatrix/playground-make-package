@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.51522973670625" branch-rate="0" lines-covered="998" lines-valid="1937" branches-covered="0" branches-valid="0" complexity="653" version="0.4" timestamp="1756584462">
+<coverage line-rate="0.51522973670625" branch-rate="0" lines-covered="998" lines-valid="1937" branches-covered="0" branches-valid="0" complexity="653" version="0.4" timestamp="1756599804">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -3581,7 +3581,7 @@
                 <line number="658" hits="3"/>
               </lines>
             </method>
-            <method name="withSwagger" signature="" line-rate="1" branch-rate="0" complexity="1">
+            <method name="withOpenAPI" signature="" line-rate="1" branch-rate="0" complexity="1">
               <lines>
                 <line number="663" hits="3"/>
               </lines>

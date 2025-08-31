@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-08-30 20:07:42</timestamp>
+  <timestamp>2025-08-31 00:23:24</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>121</methodCount>
@@ -927,9 +927,9 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
-      <methodName>withSwagger</methodName>
-      <methodSignature>withSwagger(): bool</methodSignature>
-      <fullMethod>withSwagger(): bool</fullMethod>
+      <methodName>withOpenAPI</methodName>
+      <methodSignature>withOpenAPI(): bool</methodSignature>
+      <fullMethod>withOpenAPI(): bool</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
