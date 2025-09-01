@@ -132,3 +132,23 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Built Components
+
+### Taxonomy
+
+```shell
+artisan playground:make:package Taxonomy --license MIT --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --packagist gammamatrix/playground-taxonomy --type playground-model --package-version 74.0.0 --email jeremy.postlethwaite@gmail.com --playground --covers --factories --skeleton --force --migrations --models --test
+```
+
+```shell
+artisan playground:make:model Life --playground --all --skeleton --force --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --type playground-model --recipe taxonomy
+artisan playground:make:model Domain --playground --all --skeleton --force --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --type playground-model --recipe taxonomy
+artisan playground:make:model Kingdom --playground --all --skeleton --force --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --type playground-model --recipe taxonomy
+artisan playground:make:model Phylum --playground --all --skeleton --force --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --type playground-model --recipe taxonomy
+artisan playground:make:model TaxonomyClass --playground --all --skeleton --force --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --type playground-model --recipe taxonomy
+artisan playground:make:model TaxonomyOrder --playground --all --skeleton --force --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --type playground-model --recipe taxonomy
+artisan playground:make:model Family --playground --all --skeleton --force --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --type playground-model --recipe taxonomy
+artisan playground:make:model Genus --playground --all --skeleton --force --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --type playground-model --recipe taxonomy
+artisan playground:make:model Species --playground --all --skeleton --force --namespace Playground/Taxonomy --package playground-taxonomy --module Taxonomy --type playground-model --recipe taxonomy
+```

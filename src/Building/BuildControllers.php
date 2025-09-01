@@ -396,14 +396,20 @@ PHP_CODE;
                 $params_controller['name'] = Str::of($model->name())->studly()->finish('Controller')->toString();
                 $params_controller['--model-file'] = $file;
 
-                // dump([
-                //     '__METHOD__' => __METHOD__,
-                //     '$params_controller' => $params_controller,
-                //     // '$this->c' => $this->c,
-                //     '$model->name()' => $model->name(),
-                //     '$model->revision()' => $model->revision(),
-                // ]);
+//                 dump([
+//                     '__METHOD__' => __METHOD__,
+//                     '$params_controller' => $params_controller,
+//                     // '$this->c' => $this->c,
+//                     '$model->name()' => $model->name(),
+//                     '$model->revision()' => $model->revision(),
+//                 ]);
                 $this->createControllerForModel($model, $package, $params_controller);
+//                dd([
+//                    '__METHOD__' => __METHOD__,
+//                    '$params_controller' => $params_controller,
+//                    // '$this->c' => $this->c,
+//                    '$model->name()' => $model->name(),
+//                ]);
 
                 // $config_policies .= sprintf($policy_line,
                 //     str_repeat(static::INDENT, 2),
@@ -438,10 +444,10 @@ PHP_CODE;
                     $config_policies .= $this->build_config_policy_line($model);
                 }
 
-                // dd([
-                //     '__METHOD__' => __METHOD__,
-                //     '$this->c' => $this->c->toArray(),
-                // ]);
+//                 dd([
+//                     '__METHOD__' => __METHOD__,
+//                     '$this->c' => $this->c->toArray(),
+//                 ]);
             }
         }
 
@@ -512,14 +518,14 @@ PHP_CODE;
         //     $params['--covers'] = true;
         // }
 
-        //         dump([
-        //             '__METHOD__' => __METHOD__,
-        //             '$withCovers' => $withCovers,
-        //             '$isApi' => $isApi,
-        //             '$isResource' => $isResource,
-        //             '$namespace' => $namespace,
-        //             '$params' => $params,
-        //         ]);
+        //dump([
+        //    '__METHOD__' => __METHOD__,
+        //    '$withCovers' => $withCovers,
+        //    '$isApi' => $isApi,
+        //    '$isResource' => $isResource,
+        //    '$namespace' => $namespace,
+        //    '$params' => $params,
+        //]);
         if (! $this->call('playground:make:controller', $params)) {
             $model_slug = Str::of($model->name())->kebab()->toString();
             $model_plural_slug = Str::of($model->model_plural())->kebab()->toString();
@@ -540,13 +546,13 @@ PHP_CODE;
                 $this->c->addRoute($model_plural_slug, $file_route);
             }
 
-            // dump([
-            //     '__METHOD__' => __METHOD__,
-            //     '$file_controller' => $file_controller,
-            //     '$package' => $package,
-            //     // '$this->c' => $this->c->toArray(),
-            //     '$this->c' => $this->c,
-            // ]);
+//             dd([
+//                 '__METHOD__' => __METHOD__,
+//                 '$file_controller' => $file_controller,
+//                 '$package' => $package,
+//                 // '$this->c' => $this->c->toArray(),
+////                 '$this->c' => $this->c,
+//             ]);
         }
     }
 
@@ -646,6 +652,14 @@ PHP_CODE;
         $model_package = $this->hasOption('model-package') && $this->option('model-package') ? $this->option('model-package') : '';
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
+
+        if ($this->c->playground()) {
+            if ($this->c->type() === 'playground-api') {
+                $isApi = true;
+            } elseif ($this->c->type() === 'playground-resource') {
+                $isResource = true;
+            }
+        }
 
         if ($isApi) {
             // Playground API controllers do not have an index.

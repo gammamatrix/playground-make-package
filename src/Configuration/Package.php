@@ -43,7 +43,11 @@ class Package extends PrimaryConfiguration
         'withTests' => false,
         'playground' => false,
         'revision' => false,
+        'docs_name' => '',
+        'docs_url' => '',
         'package_name' => '',
+        'model_package' => '',
+        'model_package_name' => '',
         // 'package_autoload' => '',
         'package_description' => '',
         'package_homepage' => '',
@@ -58,6 +62,8 @@ class Package extends PrimaryConfiguration
         'package_providers' => [],
         'package_laravel_providers' => [],
         'packagist' => '',
+        'postman_collection' => '',
+        'postman_url' => '',
         'controllers' => [],
         'models' => [],
         'policies' => [],
@@ -97,7 +103,15 @@ class Package extends PrimaryConfiguration
 
     protected string $config_space = '';
 
+    protected string $docs_name = '';
+
+    protected string $docs_url = '';
+
     protected string $organization_email = '';
+
+    protected string $model_package = '';
+
+    protected string $model_package_name = '';
 
     protected string $package_name = '';
 
@@ -156,6 +170,10 @@ class Package extends PrimaryConfiguration
 
     protected string $packagist = '';
 
+    protected string $postman_collection = '';
+
+    protected string $postman_url = '';
+
     /**
      * @var array<int, string>
      */
@@ -203,6 +221,10 @@ class Package extends PrimaryConfiguration
      *     withOpenAPI?: bool,
      *     withTests?: bool,
      *     revision?: bool,
+     *     model_package?: string,
+     *     model_package_name?: string,
+     *     docs_name?: string,
+     *     docs_url?: string,
      *     package_name?: string,
      *     config_space?: string,
      *     organization_email?: string,
@@ -217,6 +239,8 @@ class Package extends PrimaryConfiguration
      *     package_laravel_providers?: string[],
      *     package_providers?: string[],
      *     packagist?: string,
+     *     postman_collection?: string,
+     *     postman_url?: string,
      *     controllers?: string[],
      *     policies?: string[],
      *     resources?: string[],
@@ -274,6 +298,7 @@ class Package extends PrimaryConfiguration
         if (array_key_exists('revision', $options)) {
             $this->revision = ! empty($options['revision']);
         }
+
         if (! empty($options['package_name'])
 
             && is_string($options['package_name'])
@@ -281,10 +306,36 @@ class Package extends PrimaryConfiguration
             $this->package_name = $options['package_name'];
         }
 
+        if (! empty($options['model_package'])
+
+            && is_string($options['model_package'])
+        ) {
+            $this->model_package = $options['model_package'];
+        }
+
+        if (! empty($options['model_package_name'])
+
+            && is_string($options['model_package_name'])
+        ) {
+            $this->model_package_name = $options['model_package_name'];
+        }
+
         if (! empty($options['config_space'])
             && is_string($options['config_space'])
         ) {
             $this->config_space = $options['config_space'];
+        }
+
+        if (! empty($options['docs_name'])
+            && is_string($options['docs_name'])
+        ) {
+            $this->docs_name = $options['docs_name'];
+        }
+
+        if (! empty($options['docs_url'])
+            && is_string($options['docs_url'])
+        ) {
+            $this->docs_url = $options['docs_url'];
         }
 
         if (! empty($options['organization_email'])
@@ -377,6 +428,18 @@ class Package extends PrimaryConfiguration
             && is_string($options['packagist'])
         ) {
             $this->packagist = $options['packagist'];
+        }
+
+        if (! empty($options['postman_collection'])
+            && is_string($options['postman_collection'])
+        ) {
+            $this->postman_collection = $options['postman_collection'];
+        }
+
+        if (! empty($options['postman_url'])
+            && is_string($options['postman_url'])
+        ) {
+            $this->postman_url = $options['postman_url'];
         }
 
         if (! empty($options['controllers'])
@@ -678,6 +741,16 @@ class Package extends PrimaryConfiguration
         return $this->config_space;
     }
 
+    public function docs_name(): string
+    {
+        return $this->docs_name;
+    }
+
+    public function docs_url(): string
+    {
+        return $this->docs_url;
+    }
+
     public function organization_email(): string
     {
         return $this->organization_email;
@@ -686,6 +759,16 @@ class Package extends PrimaryConfiguration
     public function package_name(): string
     {
         return $this->package_name;
+    }
+
+    public function model_package(): string
+    {
+        return $this->model_package;
+    }
+
+    public function model_package_name(): string
+    {
+        return $this->model_package_name;
     }
 
     // public function package_autoload(): string
@@ -785,6 +868,16 @@ class Package extends PrimaryConfiguration
     public function packagist(): string
     {
         return $this->packagist;
+    }
+
+    public function postman_collection(): string
+    {
+        return $this->postman_collection;
+    }
+
+    public function postman_url(): string
+    {
+        return $this->postman_url;
     }
 
     /**

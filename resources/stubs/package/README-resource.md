@@ -1,8 +1,19 @@
 # {{ package_name }}
 {{ package_workflow }}
-The {{ package_name }} package.
+{{ package_name }}
+
+This package provides an API and a Blade UI for interacting with the [{{ model_package_name }}](https://github.com/gammamatrix/{{ model_package }}), a model package for Laravel.
+
+If you need a JSON API without a UI, then have a look at [{{ model_package_name }} API.](https://github.com/gammamatrix/{{ model_package }}-api)
 
 ## Documentation
+
+Read more on using [{{ docs_name }}]({{ docs_url }})
+
+### Postman
+
+A postman collection is provided in the repository: [postman-{{ package }}.json.](postman-{{ package }}.json)
+- This same collection is viewable on the [{{ postman_collection }}.]({{ postman_url }})
 
 ### OpenAPI
 
@@ -38,16 +49,40 @@ You can install the package via composer:
 composer require {{ packagist }}
 ```
 
+## `artisan about`
+
+Playground provides information in the `artisan about` command.
+
+<!-- <img src="resources/docs/artisan-about-{{ package }}.png" alt="screenshot of artisan about command with {{ package_name }}."> -->
+
 ## Configuration
 
-All options are disabled by default.
-
-See the contents of the published config file: [config/{{ package }}.php](config/{{ package }}.php)
-
 You can publish the config file with:
+
 ```bash
 php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-config"
 ```
+
+All routes are enabled by default. They may be disabled via enviroment variable or the configuration.
+
+See the contents of the published config file: [config/{{ package }}.php](config/{{ package }}.php)
+
+You can publish the routes file with:
+```bash
+php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-routes"
+```
+- The routes while be published in a folder at `routes/{{ package }}`
+
+### Environment Variables
+
+If you are unable or do not want to publish [configuration files for this package](config/{{ package }}.php),
+you may override the options via system environment variables.
+
+Information on [environment variables is available on the wiki for this package](https://github.com/gammamatrix/{{ package }}/wiki/Environment-Variables)
+
+## Migrations
+
+This package requires the migrations in [{{ model_package }}](https://github.com/gammamatrix/{{ model_package }}) a Laravel package.
 
 ## Cloc
 
@@ -60,7 +95,7 @@ composer cloc
 > cloc --exclude-dir=node_modules,output,vendor .
       0 text files.
       0 unique files.
-       0 files ignored.
+      0 files ignored.
 
 github.com/AlDanial/cloc v 1.98  T=0.0 s (0.0 files/s, 0.0 lines/s)
 -------------------------------------------------------------------------------
@@ -94,8 +129,14 @@ composer format
 
 ## Testing
 
+Run unit tests:
 ```sh
-composer test --parallel
+composer test
+```
+
+Run unit and feature tests:
+```sh
+composer test-dev
 ```
 
 ## Changelog

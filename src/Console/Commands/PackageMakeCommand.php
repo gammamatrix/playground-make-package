@@ -53,7 +53,11 @@ class PackageMakeCommand extends GeneratorCommand
         'organization' => '',
         'organization_email' => '',
         'config_space' => '',
+        'docs_name' => '',
+        'docs_url' => '',
         'package' => '',
+        'model_package' => '',
+        'model_package_name' => '',
         'package_name' => '',
         'package_autoload' => '',
         'package_description' => '',
@@ -69,6 +73,8 @@ class PackageMakeCommand extends GeneratorCommand
         'package_autoload_dev' => '',
         'package_laravel_providers' => '',
         'packagist' => '',
+        'postman_collection' => '',
+        'postman_url' => '',
         'policies' => '',
         'publish_migrations' => '',
         'config_cache_docs' => '',
@@ -351,12 +357,28 @@ class PackageMakeCommand extends GeneratorCommand
             $this->build_crud();
         }
 
-        //         dd([
-        //             '__METHOD__' => __METHOD__,
-        //             '$this->c->type()' => $this->c->type(),
-        //             '$this->c' => $this->c,
-        //             '$this->searches' => $this->searches,
-        //         ]);
+        if (!empty($this->modelPackage?->package())) {
+            $this->c->setOptions([
+                'model_package' => $this->modelPackage->package(),
+                'model_package_name' => $this->modelPackage->package_name(),
+            ]);
+//            dd([
+//                '__METHOD__' => __METHOD__,
+//                '$this->c->package_model()' => $this->c->package_model(),
+//            ]);
+
+        }
+        $this->c->apply();
+
+//                 dd([
+//                     '__METHOD__' => __METHOD__,
+//                     '$this->c->type()' => $this->c->type(),
+//                     '$this->c' => $this->c,
+//                     '$this->options()' => $this->options(),
+////                     '$this->modelPackage' => $this->modelPackage,
+////                     '$this->searches' => $this->searches,
+//                     '$this->c->package_model()' => $this->c->package_model(),
+//                 ]);
     }
 
     public function finish(): ?bool
