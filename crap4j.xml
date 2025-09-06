@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-08-31 00:23:24</timestamp>
+  <timestamp>2025-09-06 15:02:27</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>121</methodCount>
+    <methodCount>127</methodCount>
     <crapMethodCount>13</crapMethodCount>
-    <crapLoad>193</crapLoad>
-    <totalCrap>3727.28</totalCrap>
-    <crapMethodPercent>10.74</crapMethodPercent>
+    <crapLoad>201</crapLoad>
+    <totalCrap>3936.14</totalCrap>
+    <crapMethodPercent>10.24</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -358,10 +358,10 @@
       <methodName>createResourceIndexController</methodName>
       <methodSignature>createResourceIndexController(): void</methodSignature>
       <fullMethod>createResourceIndexController(): void</fullMethod>
-      <crap>462</crap>
-      <complexity>21</complexity>
+      <crap>600</crap>
+      <complexity>24</complexity>
       <coverage>0</coverage>
-      <crapLoad>21</crapLoad>
+      <crapLoad>24</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -523,9 +523,9 @@
       <methodName>setReadmePhpStan</methodName>
       <methodSignature>setReadmePhpStan(): void</methodSignature>
       <fullMethod>setReadmePhpStan(): void</fullMethod>
-      <crap>5.12</crap>
-      <complexity>5</complexity>
-      <coverage>83.33</coverage>
+      <crap>11.55</crap>
+      <complexity>9</complexity>
+      <coverage>68.42</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -765,10 +765,10 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>94.41</crap>
-      <complexity>69</complexity>
-      <coverage>82.52</coverage>
-      <crapLoad>13</crapLoad>
+      <crap>132.2</crap>
+      <complexity>81</complexity>
+      <coverage>80.17</coverage>
+      <crapLoad>18</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
@@ -971,6 +971,28 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>docs_name</methodName>
+      <methodSignature>docs_name(): string</methodSignature>
+      <fullMethod>docs_name(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>docs_url</methodName>
+      <methodSignature>docs_url(): string</methodSignature>
+      <fullMethod>docs_url(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
       <methodName>organization_email</methodName>
       <methodSignature>organization_email(): string</methodSignature>
       <fullMethod>organization_email(): string</fullMethod>
@@ -985,6 +1007,28 @@
       <methodName>package_name</methodName>
       <methodSignature>package_name(): string</methodSignature>
       <fullMethod>package_name(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>model_package</methodName>
+      <methodSignature>model_package(): string</methodSignature>
+      <fullMethod>model_package(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>model_package_name</methodName>
+      <methodSignature>model_package_name(): string</methodSignature>
+      <fullMethod>model_package_name(): string</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
@@ -1136,6 +1180,28 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>postman_collection</methodName>
+      <methodSignature>postman_collection(): string</methodSignature>
+      <fullMethod>postman_collection(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>postman_url</methodName>
+      <methodSignature>postman_url(): string</methodSignature>
+      <fullMethod>postman_url(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
       <methodName>controllers</methodName>
       <methodSignature>controllers(): array</methodSignature>
       <fullMethod>controllers(): array</fullMethod>
@@ -1238,10 +1304,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>147.64</crap>
-      <complexity>50</complexity>
-      <coverage>66.07</coverage>
-      <crapLoad>18</crapLoad>
+      <crap>168.28</crap>
+      <complexity>51</complexity>
+      <coverage>64.41</coverage>
+      <crapLoad>19</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Console\Commands</package>
