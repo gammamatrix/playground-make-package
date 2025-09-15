@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-09-06 15:02:27</timestamp>
+  <timestamp>2025-09-15 17:11:56</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>127</methodCount>
+    <methodCount>128</methodCount>
     <crapMethodCount>13</crapMethodCount>
     <crapLoad>201</crapLoad>
-    <totalCrap>3936.14</totalCrap>
-    <crapMethodPercent>10.24</crapMethodPercent>
+    <totalCrap>3964.53</totalCrap>
+    <crapMethodPercent>10.16</crapMethodPercent>
   </stats>
   <methods>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildComposer</className>
+      <methodName>make_composer_scripts</methodName>
+      <methodSignature>make_composer_scripts(): string</methodSignature>
+      <fullMethod>make_composer_scripts(): string</fullMethod>
+      <crap>16</crap>
+      <complexity>8</complexity>
+      <coverage>50</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildComposer</className>
@@ -50,9 +61,9 @@
       <methodName>make_composer_require_dev</methodName>
       <methodSignature>make_composer_require_dev(): string</methodSignature>
       <fullMethod>make_composer_require_dev(): string</fullMethod>
-      <crap>7</crap>
-      <complexity>7</complexity>
-      <coverage>96.55</coverage>
+      <crap>13.2</crap>
+      <complexity>13</complexity>
+      <coverage>89.47</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -413,9 +424,9 @@
       <methodName>createSkeleton</methodName>
       <methodSignature>createSkeleton(): void</methodSignature>
       <fullMethod>createSkeleton(): void</fullMethod>
-      <crap>12.04</crap>
-      <complexity>12</complexity>
-      <coverage>93.65</coverage>
+      <crap>15.11</crap>
+      <complexity>14</complexity>
+      <coverage>82.19</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -567,9 +578,9 @@
       <methodName>setUpWorkflow</methodName>
       <methodSignature>setUpWorkflow(): void</methodSignature>
       <fullMethod>setUpWorkflow(): void</fullMethod>
-      <crap>11</crap>
-      <complexity>11</complexity>
-      <coverage>95.24</coverage>
+      <crap>14.12</crap>
+      <complexity>14</complexity>
+      <coverage>91.49</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
