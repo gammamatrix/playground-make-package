@@ -77,6 +77,7 @@ class PackageMakeCommand extends GeneratorCommand
         'postman_url' => '',
         'policies' => '',
         'publish_migrations' => '',
+        'composer_scripts' => '',
         'config_cache_docs' => '',
         'config_service_provider_routes_docs' => '',
         'config_policies' => '',
@@ -357,28 +358,28 @@ class PackageMakeCommand extends GeneratorCommand
             $this->build_crud();
         }
 
-        if (!empty($this->modelPackage?->package())) {
+        if (! empty($this->modelPackage?->package())) {
             $this->c->setOptions([
                 'model_package' => $this->modelPackage->package(),
                 'model_package_name' => $this->modelPackage->package_name(),
             ]);
-//            dd([
-//                '__METHOD__' => __METHOD__,
-//                '$this->c->package_model()' => $this->c->package_model(),
-//            ]);
+            //            dd([
+            //                '__METHOD__' => __METHOD__,
+            //                '$this->c->package_model()' => $this->c->package_model(),
+            //            ]);
 
         }
         $this->c->apply();
 
-//                 dd([
-//                     '__METHOD__' => __METHOD__,
-//                     '$this->c->type()' => $this->c->type(),
-//                     '$this->c' => $this->c,
-//                     '$this->options()' => $this->options(),
-////                     '$this->modelPackage' => $this->modelPackage,
-////                     '$this->searches' => $this->searches,
-//                     '$this->c->package_model()' => $this->c->package_model(),
-//                 ]);
+        //                 dd([
+        //                     '__METHOD__' => __METHOD__,
+        //                     '$this->c->type()' => $this->c->type(),
+        //                     '$this->c' => $this->c,
+        //                     '$this->options()' => $this->options(),
+        // //                     '$this->modelPackage' => $this->modelPackage,
+        // //                     '$this->searches' => $this->searches,
+        //                     '$this->c->package_model()' => $this->c->package_model(),
+        //                 ]);
     }
 
     public function finish(): ?bool

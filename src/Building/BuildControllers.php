@@ -88,11 +88,12 @@ trait BuildControllers
         //     // '$this->c' => $this->c,
         // ]);
         if (! $this->call('playground:make:request', $params)) {
-            $file_request = sprintf(
-                '%1$s/app/stub/%2$s/resources/package/form.request.json',
-                $this->laravel->storagePath(),
-                $package,
-            );
+            //            $file_request = sprintf(
+            //                '%1$s/app/stub/%2$s/resources/package/form.request.json',
+            //                $this->laravel->storagePath(),
+            //                $package,
+            //            );
+            $file_request = 'resources/package/form.request.json';
             $this->c->addClassFileTo('requests', $file_request);
             // dd([
             //     '__METHOD__' => __METHOD__,
@@ -301,6 +302,7 @@ PHP_CODE;
         $params_form_request = [
             'name' => 'FormRequest',
             '--type' => 'form-request',
+            '--test' => true,
         ];
 
         $params_controller = [
@@ -396,20 +398,20 @@ PHP_CODE;
                 $params_controller['name'] = Str::of($model->name())->studly()->finish('Controller')->toString();
                 $params_controller['--model-file'] = $file;
 
-//                 dump([
-//                     '__METHOD__' => __METHOD__,
-//                     '$params_controller' => $params_controller,
-//                     // '$this->c' => $this->c,
-//                     '$model->name()' => $model->name(),
-//                     '$model->revision()' => $model->revision(),
-//                 ]);
+                //                 dump([
+                //                     '__METHOD__' => __METHOD__,
+                //                     '$params_controller' => $params_controller,
+                //                     // '$this->c' => $this->c,
+                //                     '$model->name()' => $model->name(),
+                //                     '$model->revision()' => $model->revision(),
+                //                 ]);
                 $this->createControllerForModel($model, $package, $params_controller);
-//                dd([
-//                    '__METHOD__' => __METHOD__,
-//                    '$params_controller' => $params_controller,
-//                    // '$this->c' => $this->c,
-//                    '$model->name()' => $model->name(),
-//                ]);
+                //                dd([
+                //                    '__METHOD__' => __METHOD__,
+                //                    '$params_controller' => $params_controller,
+                //                    // '$this->c' => $this->c,
+                //                    '$model->name()' => $model->name(),
+                //                ]);
 
                 // $config_policies .= sprintf($policy_line,
                 //     str_repeat(static::INDENT, 2),
@@ -444,10 +446,10 @@ PHP_CODE;
                     $config_policies .= $this->build_config_policy_line($model);
                 }
 
-//                 dd([
-//                     '__METHOD__' => __METHOD__,
-//                     '$this->c' => $this->c->toArray(),
-//                 ]);
+                //                 dd([
+                //                     '__METHOD__' => __METHOD__,
+                //                     '$this->c' => $this->c->toArray(),
+                //                 ]);
             }
         }
 
@@ -518,41 +520,49 @@ PHP_CODE;
         //     $params['--covers'] = true;
         // }
 
-        //dump([
+        // dump([
         //    '__METHOD__' => __METHOD__,
         //    '$withCovers' => $withCovers,
         //    '$isApi' => $isApi,
         //    '$isResource' => $isResource,
         //    '$namespace' => $namespace,
         //    '$params' => $params,
-        //]);
+        // ]);
         if (! $this->call('playground:make:controller', $params)) {
             $model_slug = Str::of($model->name())->kebab()->toString();
             $model_plural_slug = Str::of($model->model_plural())->kebab()->toString();
+            //            $file_controller = sprintf(
+            //                '%1$s/app/stub/%2$s/resources/package/%3$s/controller.json',
+            //                $this->laravel->storagePath(),
+            //                $package,
+            //                $model_slug
+            //            );
             $file_controller = sprintf(
-                '%1$s/app/stub/%2$s/resources/package/%3$s/controller.json',
-                $this->laravel->storagePath(),
-                $package,
+                'resources/package/%1$s/controller.json',
                 $model_slug
             );
             $this->c->addClassFileTo('controllers', $file_controller);
+            //            $file_route = sprintf(
+            //                '%1$s/app/stub/%2$s/resources/package/%3$s/route.json',
+            //                $this->laravel->storagePath(),
+            //                $package,
+            //                $model_slug
+            //            );
             $file_route = sprintf(
-                '%1$s/app/stub/%2$s/resources/package/%3$s/route.json',
-                $this->laravel->storagePath(),
-                $package,
+                'resources/package/%1$s/route.json',
                 $model_slug
             );
             if ($model_plural_slug) {
                 $this->c->addRoute($model_plural_slug, $file_route);
             }
 
-//             dd([
-//                 '__METHOD__' => __METHOD__,
-//                 '$file_controller' => $file_controller,
-//                 '$package' => $package,
-//                 // '$this->c' => $this->c->toArray(),
-////                 '$this->c' => $this->c,
-//             ]);
+            //             dd([
+            //                 '__METHOD__' => __METHOD__,
+            //                 '$file_controller' => $file_controller,
+            //                 '$package' => $package,
+            //                 // '$this->c' => $this->c->toArray(),
+            // //                 '$this->c' => $this->c,
+            //             ]);
         }
     }
 
@@ -624,11 +634,12 @@ PHP_CODE;
         //     '$params' => $params,
         // ]);
         if (! $this->call('playground:make:controller', $params)) {
-            $file_controller = sprintf(
-                '%1$s/app/stub/%2$s/resources/package/controller.base.json',
-                $this->laravel->storagePath(),
-                $package,
-            );
+            //            $file_controller = sprintf(
+            //                '%1$s/app/stub/%2$s/resources/package/controller.base.json',
+            //                $this->laravel->storagePath(),
+            //                $package,
+            //            );
+            $file_controller = 'resources/package/controller.base.json';
             $this->c->addClassFileTo('controllers', $file_controller);
             // dd([
             //     '__METHOD__' => __METHOD__,
@@ -727,19 +738,20 @@ PHP_CODE;
 
         }
 
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$params' => $params,
-        //     // 'model-package' => $this->option('model-package'),
-        //     // '$this->options()' => $this->options(),
-        //     // '$this->modelPackage' => $this->modelPackage,
-        // ]);
+        dump([
+            '__METHOD__' => __METHOD__,
+            '$params' => $params,
+            // 'model-package' => $this->option('model-package'),
+            // '$this->options()' => $this->options(),
+            // '$this->modelPackage' => $this->modelPackage,
+        ]);
         if (! $this->call('playground:make:controller', $params)) {
-            $file_controller = sprintf(
-                '%1$s/app/stub/%2$s/resources/package/index/controller.json',
-                $this->laravel->storagePath(),
-                $package,
-            );
+            //            $file_controller = sprintf(
+            //                '%1$s/app/stub/%2$s/resources/package/index/controller.json',
+            //                $this->laravel->storagePath(),
+            //                $package,
+            //            );
+            $file_controller = 'resources/package/index/controller.json';
             $this->c->addClassFileTo('controllers', $file_controller);
             // dd([
             //     '__METHOD__' => __METHOD__,

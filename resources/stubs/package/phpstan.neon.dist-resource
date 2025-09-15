@@ -2,6 +2,13 @@ includes:
     - vendor/larastan/larastan/extension.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-phpunit/rules.neon
+    - vendor/tomasvotruba/bladestan/config/extension.neon
+
+# See fix https://github.com/larastan/larastan/pull/2365
+services:
+    -
+        class: Illuminate\Filesystem\Filesystem
+        autowired: self
 
 parameters:
     level: max

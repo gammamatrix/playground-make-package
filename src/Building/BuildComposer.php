@@ -15,6 +15,41 @@ use Illuminate\Support\Str;
  */
 trait BuildComposer
 {
+    protected function make_composer_scripts(): string
+    {
+        $this->searches['composer_scripts'] = '';
+
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
+
+        $scripts = [];
+
+        if ($this->c->playground()) {
+            if ($this->c->type() === 'playground-api') {
+                $isApi = true;
+            } elseif ($this->c->type() === 'playground-resource') {
+                $isResource = true;
+            }
+        }
+
+        if ($isResource) {
+            $scripts['format-blade'] = 'npx prettier --write \\"resources/views/**/*.blade.php\\"';
+        }
+
+        foreach ($scripts as $key => $script) {
+            $this->searches['composer_scripts'] .= sprintf(
+                '%1$s%2$s"%3$s": "%4$s",',
+                PHP_EOL,
+                str_repeat(static::INDENT, 2),
+                $key,
+                $script
+            );
+        }
+
+        return $this->searches['composer_scripts'];
+
+    }
+
     protected function make_composer_autoload(): string
     {
         $this->autoload['psr-4'] = [];
@@ -195,6 +230,17 @@ trait BuildComposer
 
     protected function make_composer_require_dev(): string
     {
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
+
+        if ($this->c->playground()) {
+            if ($this->c->type() === 'playground-api') {
+                $isApi = true;
+            } elseif ($this->c->type() === 'playground-resource') {
+                $isResource = true;
+            }
+        }
+
         $element = '%2$s';
         $element = '';
 
@@ -212,6 +258,10 @@ trait BuildComposer
             && empty($package_require_dev['gammamatrix/playground-test'])
         ) {
             $package_require_dev['gammamatrix/playground-test'] = '*';
+        }
+
+        if ($isResource) {
+            $package_require_dev['tomasvotruba/bladestan'] = '^0.11.3';
         }
 
         $i = 0;
@@ -550,6 +600,7 @@ trait BuildComposer
         $this->make_composer_autoload();
         $this->make_composer_autoload_dev();
         $this->make_composer_providers();
+        $this->make_composer_scripts();
 
         $this->search_and_replace($stub);
 

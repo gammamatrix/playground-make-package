@@ -114,6 +114,11 @@ Unit and feature tests
 composer test-dev
 ```
 
+Run unit and feature tests in parallel:
+```sh
+composer test-parallel
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

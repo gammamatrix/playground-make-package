@@ -71,6 +71,14 @@ trait BuildSkeletonGitHub
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
 
+        if ($this->c->playground()) {
+            if ($this->c->type() === 'playground-api') {
+                $isApi = true;
+            } elseif ($this->c->type() === 'playground-resource') {
+                $isResource = true;
+            }
+        }
+
         // $path_github_workflows = sprintf(
         //     '%1$s/.github/workflows',
         //     dirname($this->folder()),

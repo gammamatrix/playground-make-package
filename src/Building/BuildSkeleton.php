@@ -60,6 +60,7 @@ trait BuildSkeleton
             $withPhpunit = true;
             $phpstan .= '-resource';
             $skeletons['README-resource.md'] = 'README.md';
+            $skeletons['.prettierrc-blade'] = '.prettierrc';
         } elseif (in_array($type, [
             'model',
             'playground-model',
@@ -95,7 +96,18 @@ trait BuildSkeleton
         }
 
         if ($this->c->withOpenAPI()) {
-            $skeletons['package-docs.json'] = 'package.json';
+
+            if (in_array($type, [
+                'api',
+                'playground-api',
+            ])) {
+                $skeletons['package-docs.json'] = 'package.json';
+            } elseif (in_array($type, [
+                'resource',
+                'playground-resource',
+            ])) {
+                $skeletons['package-docs-resource.json'] = 'package.json';
+            }
             $skeletons['redocly.yaml'] = 'redocly.yaml';
         }
 

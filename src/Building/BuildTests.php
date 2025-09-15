@@ -525,11 +525,11 @@ trait BuildTests
         if ($this->c->skeleton()) {
             $options['--skeleton'] = true;
         }
-//         dd([
-//             '__METHOD__' => __METHOD__,
-//             '$options' => $options,
-////             '$this->c' => $this->c,
-//         ]);
+        //         dd([
+        //             '__METHOD__' => __METHOD__,
+        //             '$options' => $options,
+        // //             '$this->c' => $this->c,
+        //         ]);
 
         $options['--suite'] = 'feature';
         $this->call('playground:make:test', $options);
