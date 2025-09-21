@@ -4,7 +4,7 @@ The {{ organization }} {{ module }} is a package for [Laravel](https://laravel.c
 
 {{ package_description }}
 
-Read more on using [{{ package_name }} at Read the Docs](https://gammamatrix-playground.readthedocs.io/en/develop/components/{{ module_slug }}.html)
+Read more on using [{{ package_name }} at Read the Docs](https://gammamatrix-playground.readthedocs.io/en/develop/built-components/{{ module_slug }}.html)
 
 ## Installation
 

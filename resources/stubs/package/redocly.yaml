@@ -11,3 +11,14 @@ rules:
   scalar-property-missing-example: error
 ignore:
   - .github
+  - .phpunit.cache
+  - config
+  - docs
+  - node_modules
+  - output
+  - resources
+  - routes
+  - src
+  - tests
+  - vendor
+  - openapi.yaml

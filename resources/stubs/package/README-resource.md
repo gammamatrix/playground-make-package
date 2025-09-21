@@ -17,7 +17,7 @@ A postman collection is provided in the repository: [postman-{{ package }}.json.
 
 ### OpenAPI
 
-This application provides OpenAPI documentation: [openapi.json](openapi.json).
+This application provides OpenAPI documentation: [openapi.yaml](openapi.yaml).
 - The endpoint models support locks, trash with force delete, restoring, revisions and more.
 - Index endpoints support advanced query filtering.
 
@@ -32,14 +32,14 @@ Install npm.
 npm install
 ```
 
-Build the documentation to generate the [openapi.json](openapi.json) configuration.
+Build the documentation to generate the [openapi.yaml](openapi.yaml) configuration.
 
 ```sh
 npm run docs
 ```
 
 Documentation
-- Preview [openapi.json on the Redocly Editor UI.](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/{{packagist}}/develop/openapi.json)
+- Preview [openapi.yaml on the Redocly Editor UI.](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/{{packagist}}/develop/openapi.yaml)
 
 ## Installation
 

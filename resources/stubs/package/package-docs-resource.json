@@ -3,7 +3,7 @@
     "scripts": {
         "bundle": "npx @redocly/cli bundle",
         "lint": "npx @redocly/cli lint",
-        "preview": "npx @redocly/cli preview-docs",
+        "preview": "npx @redocly/cli preview",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",
