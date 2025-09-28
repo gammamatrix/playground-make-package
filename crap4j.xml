@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-09-21 18:37:16</timestamp>
+  <timestamp>2025-09-28 20:57:01</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>128</methodCount>
-    <crapMethodCount>13</crapMethodCount>
-    <crapLoad>201</crapLoad>
-    <totalCrap>3964.53</totalCrap>
-    <crapMethodPercent>10.16</crapMethodPercent>
+    <methodCount>134</methodCount>
+    <crapMethodCount>15</crapMethodCount>
+    <crapLoad>224</crapLoad>
+    <totalCrap>4436.83</totalCrap>
+    <crapMethodPercent>11.19</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -336,10 +336,10 @@
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>812</crap>
-      <complexity>28</complexity>
+      <crap>992</crap>
+      <complexity>31</complexity>
       <coverage>0</coverage>
-      <crapLoad>29</crapLoad>
+      <crapLoad>32</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -413,10 +413,10 @@
       <methodName>preload_model_routes_for_service_provider</methodName>
       <methodSignature>preload_model_routes_for_service_provider(): void</methodSignature>
       <fullMethod>preload_model_routes_for_service_provider(): void</fullMethod>
-      <crap>90</crap>
-      <complexity>9</complexity>
+      <crap>156</crap>
+      <complexity>12</complexity>
       <coverage>0</coverage>
-      <crapLoad>9</crapLoad>
+      <crapLoad>12</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -776,10 +776,10 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>132.2</crap>
-      <complexity>81</complexity>
-      <coverage>80.17</coverage>
-      <crapLoad>18</crapLoad>
+      <crap>147.5</crap>
+      <complexity>84</complexity>
+      <coverage>79.2</coverage>
+      <crapLoad>19</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
@@ -850,6 +850,61 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addLanguages</methodName>
+      <methodSignature>addLanguages(mixed $languages): self</methodSignature>
+      <fullMethod>addLanguages(mixed $languages): self</fullMethod>
+      <crap>72</crap>
+      <complexity>8</complexity>
+      <coverage>0</coverage>
+      <crapLoad>8</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addSections</methodName>
+      <methodSignature>addSections(string $language, array $sections): self</methodSignature>
+      <fullMethod>addSections(string $language, array $sections): self</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addSection</methodName>
+      <methodSignature>addSection(string $language, string $section, array $translations): self</methodSignature>
+      <fullMethod>addSection(string $language, string $section, array $translations): self</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addTranslations</methodName>
+      <methodSignature>addTranslations(string $language, string $section, array $translations): self</methodSignature>
+      <fullMethod>addTranslations(string $language, string $section, array $translations): self</fullMethod>
+      <crap>56</crap>
+      <complexity>7</complexity>
+      <coverage>0</coverage>
+      <crapLoad>7</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addTranslation</methodName>
+      <methodSignature>addTranslation(string $language, string $section, string $key, string $message): self</methodSignature>
+      <fullMethod>addTranslation(string $language, string $section, string $key, string $message): self</fullMethod>
+      <crap>42</crap>
+      <complexity>6</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
       <methodName>withBlades</methodName>
       <methodSignature>withBlades(): bool</methodSignature>
       <fullMethod>withBlades(): bool</fullMethod>
@@ -905,6 +960,17 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>withOpenAPI</methodName>
+      <methodSignature>withOpenAPI(): bool</methodSignature>
+      <fullMethod>withOpenAPI(): bool</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
       <methodName>withPolicies</methodName>
       <methodSignature>withPolicies(): bool</methodSignature>
       <fullMethod>withPolicies(): bool</fullMethod>
@@ -938,9 +1004,9 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
-      <methodName>withOpenAPI</methodName>
-      <methodSignature>withOpenAPI(): bool</methodSignature>
-      <fullMethod>withOpenAPI(): bool</fullMethod>
+      <methodName>withTests</methodName>
+      <methodSignature>withTests(): bool</methodSignature>
+      <fullMethod>withTests(): bool</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
@@ -949,9 +1015,9 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
-      <methodName>withTests</methodName>
-      <methodSignature>withTests(): bool</methodSignature>
-      <fullMethod>withTests(): bool</fullMethod>
+      <methodName>withTranslations</methodName>
+      <methodSignature>withTranslations(): bool</methodSignature>
+      <fullMethod>withTranslations(): bool</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
