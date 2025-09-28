@@ -29,7 +29,27 @@ class ServiceProvider extends AuthServiceProvider
     public function boot(): void
     {
         /**
-         * @var array<string, mixed> $config
+         * @var array{
+         *        about: bool,
+         *        layout: string,
+         *        load: array{
+         *            policies: bool,
+         *            routes: bool,
+         *            translations: bool
+         *        },
+         *        middleware: array{
+         *            default: string|string[],
+         *            auth: string|string[],
+         *            guest: string|string[]
+         *        },
+         *        policies: array<
+         *            class-string<\Illuminate\Database\Eloquent\Model>,
+         *            class-string<\Playground\Auth\Policies\Policy>
+         *        >,{{ config_service_provider_docs_revisions }}
+         *        routes: array{{{ config_service_provider_routes_docs }}
+         *        },
+         *        abilities: array<string, string[]>,
+         *    } $config
          */
         $config = config($this->package);
 
@@ -89,7 +109,7 @@ class ServiceProvider extends AuthServiceProvider
     /**
      * Set the application's policies from the configuration.
      *
-     * @param array<class-string, class-string> $policies
+     * @param  array<class-string, class-string>  $policies
      */
     public function setPolicies(array $policies): void
     {
@@ -107,7 +127,7 @@ class ServiceProvider extends AuthServiceProvider
             if (! is_string($policy) || ! class_exists($policy)) {
                 Log::error('Expecting the policy to exist for the model.', [
                     '__METHOD__' => __METHOD__,
-                    'model' => is_string($model) ? $model : gettype($model),
+                    'model' => $model,
                     'policy' => is_string($policy) ? $policy : gettype($policy),
                     'policies' => $policies,
                 ]);

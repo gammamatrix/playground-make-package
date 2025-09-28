@@ -17,6 +17,8 @@ return [
     */
 
     'keywords.required' => 'Ignoring a keyword [INVALID: :keyword] for the composer.json file.',
+    'translations.invalid' => 'Ignoring an invalid translation under [language: :language] in [section: :section] for [key: :key => :message].',
+    'translations.section.invalid' => 'Ignoring an invalid [section: :section] for [:language] translations.',
     'require.required' => 'Ignoring a requirement: package [INVALID: :package] with version [:version] for the composer.json file.',
     'require.version.required' => 'Ignoring a requirement: package [:package] with version [INVALID: :version] for the composer.json file.',
     'require-dev.required' => 'Ignoring a dev requirement: package [INVALID: :package] with version [:version] for the composer.json file.',

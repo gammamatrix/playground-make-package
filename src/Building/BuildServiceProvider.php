@@ -89,7 +89,7 @@ PHP_CODE;
         if (! empty($load_routes)) {
             $this->searches['load_routes'] = $load_routes;
         }
-        // dump([
+        // dd([
         //     '__METHOD__' => __METHOD__,
         //     '$about_routes' => $about_routes,
         //     '$config_routes' => $config_routes,
@@ -103,6 +103,13 @@ PHP_CODE;
     public function preload_model_routes_for_service_provider(): void
     {
         $isApi = $this->hasOption('api') && $this->option('api');
+        if ($this->c->playground()) {
+            if ($this->c->type() === 'playground-api') {
+                $isApi = true;
+            } elseif ($this->c->type() === 'playground-resource') {
+                $isResource = true;
+            }
+        }
 
         $config_abilities_manager = '';
         $config_abilities_user = '';

@@ -270,6 +270,13 @@ PHP_CODE;
 
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
+        if ($this->c->playground()) {
+            if ($this->c->type() === 'playground-api') {
+                $isApi = true;
+            } elseif ($this->c->type() === 'playground-resource') {
+                $isResource = true;
+            }
+        }
 
         $namespace = $this->c->namespace();
         // dump([
@@ -738,13 +745,13 @@ PHP_CODE;
 
         }
 
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$params' => $params,
-            // 'model-package' => $this->option('model-package'),
-            // '$this->options()' => $this->options(),
-            // '$this->modelPackage' => $this->modelPackage,
-        ]);
+        // dump([
+        //    '__METHOD__' => __METHOD__,
+        //    '$params' => $params,
+        //    // 'model-package' => $this->option('model-package'),
+        //    // '$this->options()' => $this->options(),
+        //    // '$this->modelPackage' => $this->modelPackage,
+        // ]);
         if (! $this->call('playground:make:controller', $params)) {
             //            $file_controller = sprintf(
             //                '%1$s/app/stub/%2$s/resources/package/index/controller.json',

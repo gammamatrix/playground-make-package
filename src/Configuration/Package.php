@@ -36,11 +36,12 @@ class Package extends PrimaryConfiguration
         'withFactories' => false,
         'withMigrations' => false,
         'withModels' => false,
+        'withOpenAPI' => false,
         'withPolicies' => false,
         'withRequests' => false,
         'withRoutes' => false,
-        'withOpenAPI' => false,
         'withTests' => false,
+        'withTranslations' => false,
         'playground' => false,
         'revision' => false,
         'docs_name' => '',
@@ -51,30 +52,31 @@ class Package extends PrimaryConfiguration
         // 'package_autoload' => '',
         'package_description' => '',
         'package_homepage' => '',
-        'package_keywords' => [],
         'package_license' => '',
-        'package_authors' => [],
-        'package_require' => [],
-        'package_require_dev' => [],
-        'package_suggest' => [],
-        'package_autoload_psr4' => [],
-        'package_autoload_dev_psr4' => [],
-        'package_providers' => [],
-        'package_laravel_providers' => [],
         'packagist' => '',
         'postman_collection' => '',
         'postman_url' => '',
+        'service_provider' => '',
+        // 'version' => '0.1.2-alpha.3',
+        'type' => '',
+        'version' => '',
+        'package_authors' => [],
+        'package_autoload_psr4' => [],
+        'package_autoload_dev_psr4' => [],
+        'package_keywords' => [],
+        'package_laravel_providers' => [],
+        'package_providers' => [],
+        'package_require' => [],
+        'package_require_dev' => [],
+        'package_suggest' => [],
         'controllers' => [],
         'models' => [],
         'policies' => [],
         'requests' => [],
         'routes' => [],
         'transformers' => [],
+        'translations' => [],
         'uses' => [],
-        'service_provider' => '',
-        // 'version' => '0.1.2-alpha.3',
-        'type' => '',
-        'version' => '',
     ];
 
     protected string $class = 'ServiceProvider';
@@ -89,15 +91,17 @@ class Package extends PrimaryConfiguration
 
     protected bool $withModels = false;
 
+    protected bool $withOpenAPI = false;
+
     protected bool $withPolicies = false;
 
     protected bool $withRequests = false;
 
     protected bool $withRoutes = false;
 
-    protected bool $withOpenAPI = false;
-
     protected bool $withTests = false;
+
+    protected bool $withTranslations = false;
 
     protected bool $revision = false;
 
@@ -180,6 +184,17 @@ class Package extends PrimaryConfiguration
     protected array $controllers = [];
 
     /**
+     * @var array<string, array<string, array<string, string>>>
+     */
+    protected array $translations = [
+        // 'en' => [
+        //    'configuration' => [
+        //        'keywords.required' => 'Ignoring a keyword [INVALID: :keyword] for the composer.json file.',
+        //    ],
+        // ],
+    ];
+
+    /**
      * @var array<string, string>
      */
     protected array $models = [];
@@ -210,45 +225,51 @@ class Package extends PrimaryConfiguration
 
     /**
      * @param  array{
+     *     config_space?: string,
+     *     organization_email?: string,
      *     withBlades?: bool,
      *     withControllers?: bool,
      *     withFactories?: bool,
      *     withMigrations?: bool,
      *     withModels?: bool,
+     *     withOpenAPI?: bool,
      *     withPolicies?: bool,
      *     withRequests?: bool,
      *     withRoutes?: bool,
-     *     withOpenAPI?: bool,
      *     withTests?: bool,
+     *     withTranslations?: bool,
+     *     playground?: bool,
      *     revision?: bool,
-     *     model_package?: string,
-     *     model_package_name?: string,
      *     docs_name?: string,
      *     docs_url?: string,
      *     package_name?: string,
-     *     config_space?: string,
-     *     organization_email?: string,
+     *     model_package?: string,
+     *     model_package_name?: string,
      *     package_description?: string,
      *     package_homepage?: string,
-     *     package_keywords?: string[],
      *     package_license?: string,
-     *     package_require?: array<string, string>,
-     *     package_require_dev?: array<string, string>,
-     *     package_suggest?: array<string, string>,
-     *     package_authors?: array<int, array<string, string>>,
-     *     package_laravel_providers?: string[],
-     *     package_providers?: string[],
      *     packagist?: string,
      *     postman_collection?: string,
      *     postman_url?: string,
+     *     service_provider?: string,
+     *     type?: string,
+     *     version?: string,
+     *     package_authors?: array<int, array<string, string>>,
+     *     package_keywords?: string[],
+     *     package_require?: array<string, string>,
+     *     package_require_dev?: array<string, string>,
+     *     package_suggest?: array<string, string>,
+     *     package_laravel_providers?: string[],
+     *     package_providers?: string[],
      *     controllers?: string[],
+     *     models?: string[],
      *     policies?: string[],
+     *     requests?: string[],
      *     resources?: string[],
      *     routes?: string[],
      *     transformers?: string[],
-     *     requests?: string[],
-     *     service_provider?: string,
-     *     version?: string
+     *     translations?: string[],
+     *     user?: array<int|string, string>,
      * }  $options
      */
     public function setOptions(array $options = []): self
@@ -265,6 +286,10 @@ class Package extends PrimaryConfiguration
 
         if (array_key_exists('withFactories', $options)) {
             $this->withFactories = ! empty($options['withFactories']);
+        }
+
+        if (array_key_exists('withTranslations', $options)) {
+            $this->withTranslations = ! empty($options['withTranslations']);
         }
 
         if (array_key_exists('withMigrations', $options)) {
@@ -490,6 +515,10 @@ class Package extends PrimaryConfiguration
             }
         }
 
+        if (! empty($options['translations']) && is_array($options['translations'])) {
+            $this->addLanguages($options['translations']);
+        }
+
         if (! empty($options['service_provider'])
             && is_string($options['service_provider'])
         ) {
@@ -681,6 +710,120 @@ class Package extends PrimaryConfiguration
         return $this;
     }
 
+    public function addLanguages(mixed $languages): self
+    {
+        if (! empty($languages) && is_array($languages)) {
+            /**
+             * @var array<string, array<string, string>> $sections
+             */
+            foreach ($languages as $language => $sections) {
+                if (! empty($language)
+                    && is_string($language)
+                    && ! empty($sections)
+                    && is_array($sections)
+                ) {
+                    $this->addSections($language, $sections);
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param  array<string, array<string, string>>  $sections
+     */
+    public function addSections(string $language, array $sections): self
+    {
+        foreach ($sections as $section => $translations) {
+            if (! empty($section) && is_string($section)) {
+                $this->addSection($language, $section, $translations);
+            } else {
+                Log::warning(__('playground-make-package::configuration.translations.section.invalid', [
+                    'language' => $language,
+                    'section' => $section,
+                    'TYPE: translations' => gettype($translations),
+                ]));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param  array<string, string>  $translations
+     */
+    public function addSection(string $language, string $section, array $translations): self
+    {
+        if (! empty($language) && ! empty($section) && ! empty($translations)) {
+            $this->addTranslations($language, $section, $translations);
+        } else {
+            Log::warning(__('playground-make-package::configuration.translations.section.invalid', [
+                'language' => $language,
+                'section' => $section,
+                'TYPE: translations' => gettype($translations),
+            ]));
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param  array<string, string>  $translations
+     */
+    public function addTranslations(
+        string $language,
+        string $section,
+        array $translations
+    ): self {
+
+        foreach ($translations as $key => $message) {
+            // It is ok for messages to be empty for building skeleton files automated translations.
+            if (empty($key) || ! is_string($key) || ! is_string($message)) {
+                Log::warning(__('playground-make-package::configuration.translations.invalid', [
+                    'language' => $language,
+                    'section' => $section,
+                    'key' => is_string($key) ? $key : gettype($key),
+                    'message' => is_string($message) ? $message : gettype($message),
+                ]));
+            } else {
+                $this->addTranslation($language, $section, $key, $message);
+            }
+        }
+
+        return $this;
+    }
+
+    public function addTranslation(
+        string $language,
+        string $section,
+        string $key,
+        string $message
+    ): self {
+        if (empty($language) || empty($section) || empty($key)) {
+            Log::warning(__('playground-make-package::configuration.translations.invalid', [
+                'language' => $language,
+                'section' => $section,
+                'key' => $section,
+                'message' => $section,
+            ]));
+
+            return $this;
+        }
+
+        if (! is_array($this->translations[$language])) {
+            $this->translations[$language] = [];
+        }
+
+        if (! is_array($this->translations[$language][$section])) {
+            $this->translations[$language][$section] = [];
+        }
+
+        $this->translations[$language][$section][$key] = $message;
+
+        return $this;
+    }
+
     public function withBlades(): bool
     {
         return $this->withBlades;
@@ -706,6 +849,11 @@ class Package extends PrimaryConfiguration
         return $this->withModels;
     }
 
+    public function withOpenAPI(): bool
+    {
+        return $this->withOpenAPI;
+    }
+
     public function withPolicies(): bool
     {
         return $this->withPolicies;
@@ -721,14 +869,14 @@ class Package extends PrimaryConfiguration
         return $this->withRoutes;
     }
 
-    public function withOpenAPI(): bool
-    {
-        return $this->withOpenAPI;
-    }
-
     public function withTests(): bool
     {
         return $this->withTests;
+    }
+
+    public function withTranslations(): bool
+    {
+        return $this->withTranslations;
     }
 
     public function revision(): bool
