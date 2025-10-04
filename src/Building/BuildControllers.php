@@ -563,13 +563,14 @@ PHP_CODE;
                 $this->c->addRoute($model_plural_slug, $file_route);
             }
 
-            //             dd([
-            //                 '__METHOD__' => __METHOD__,
-            //                 '$file_controller' => $file_controller,
-            //                 '$package' => $package,
-            //                 // '$this->c' => $this->c->toArray(),
-            // //                 '$this->c' => $this->c,
-            //             ]);
+            // dd([
+            //     '__METHOD__' => __METHOD__,
+            //     '$file_controller' => $file_controller,
+            //     '$package' => $package,
+            //     '$params' => $params,
+            //     // '$this->c' => $this->c->toArray(),
+            //    '$this->c' => $this->c,
+            // ]);
         }
     }
 

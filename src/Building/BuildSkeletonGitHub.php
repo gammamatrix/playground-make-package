@@ -148,10 +148,6 @@ trait BuildSkeletonGitHub
             $workflow .=
                 '[![PHPStan Level 10](https://img.shields.io/badge/PHPStan-level%2010-brightgreen)](.github/workflows/ci.yml#L128)';
         }
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$workflow' => $workflow,
-        // ]);
 
         if ($workflow) {
             $this->searches['package_workflow'] = PHP_EOL.$workflow.PHP_EOL;

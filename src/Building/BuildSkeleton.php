@@ -461,7 +461,10 @@ trait BuildSkeleton
         if (! $isApi && ! $isResource) {
             $phpstan[] = '- `database/`';
         } else {
-            $phpstan[] = '- `lang/`';
+
+            if ($this->c->withTranslations()) {
+                $phpstan[] = '- `lang/`';
+            }
 
             if ($isResource) {
                 $phpstan[] = '- `resources/views/`';

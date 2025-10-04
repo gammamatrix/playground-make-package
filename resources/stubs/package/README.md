@@ -49,8 +49,19 @@ composer format
 
 ## Testing
 
+Run unit tests:
 ```sh
-composer test --parallel
+composer test
+```
+
+Run unit and feature tests:
+```sh
+composer test-dev
+```
+
+Run unit and feature tests in parallel:
+```sh
+composer test-parallel
 ```
 
 ## Changelog

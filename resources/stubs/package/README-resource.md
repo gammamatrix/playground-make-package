@@ -123,8 +123,20 @@ composer analyse
 
 ## Coding Standards
 
+Format source code:
 ```sh
 composer format
+```
+
+Format blades in resources/views:
+
+```sh
+composer format-blade
+```
+- **NOTE:** requires installing dev packages from package.json.
+
+```sh
+npm install
 ```
 
 ## Testing

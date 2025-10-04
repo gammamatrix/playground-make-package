@@ -9,7 +9,7 @@ parameters:
 
     paths:
         - config
-        # - lang
+        {{phpstan_with_lang}}- lang
         - resources
         - routes
         - src

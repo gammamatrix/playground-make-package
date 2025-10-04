@@ -97,6 +97,8 @@ class PackageMakeCommand extends GeneratorCommand
         'load_routes' => '',
         'lang_models_revisions' => '',
         'readme_phpstan' => '',
+        'ci_phpstan_folders' => '',
+        'phpstan_with_lang' => '# ',
     ];
 
     protected string $path_destination_folder = 'src';
@@ -203,6 +205,17 @@ class PackageMakeCommand extends GeneratorCommand
             $requireConfigSpace = true;
         }
 
+        $isApi = false;
+        $isResource = false;
+
+        if ($this->c->playground()) {
+            if ($this->c->type() === 'playground-api') {
+                $isApi = true;
+            } elseif ($this->c->type() === 'playground-resource') {
+                $isResource = true;
+            }
+        }
+
         $build = $this->hasOption('build') && $this->option('build');
 
         $model_package = $this->hasOption('model-package') && is_string($this->option('model-package')) ? $this->option('model-package') : '';
@@ -231,6 +244,29 @@ class PackageMakeCommand extends GeneratorCommand
         //     '$requireConfigSpace' => $requireConfigSpace,
         //     '$this->searches' => $this->searches,
         // ]);
+
+        $withTranslations = $this->c->withTranslations();
+        if ($withTranslations) {
+            $this->searches['phpstan_with_lang'] = '';
+        }
+
+        if ($isApi) {
+            if ($withTranslations) {
+                $ci_phpstan_folders = 'config/ lang/ routes/ src/ tests/Feature/ tests/Unit/';
+            } else {
+                $ci_phpstan_folders = 'config/ routes/ src/ tests/Feature/ tests/Unit/';
+            }
+        } elseif ($isResource) {
+            if ($withTranslations) {
+                $ci_phpstan_folders = 'config/ lang/ resources/views/ routes/ src/ tests/Feature/ tests/Unit/';
+            } else {
+                $ci_phpstan_folders = 'config/ resources/views/ routes/ src/ tests/Feature/ tests/Unit/';
+            }
+        } else {
+            $ci_phpstan_folders = 'config/ database/ src/ tests/Feature/ tests/Unit/';
+        }
+
+        $this->searches['ci_phpstan_folders'] = $ci_phpstan_folders;
 
         if ($this->hasOption('packagist')
             && is_string($this->option('packagist'))

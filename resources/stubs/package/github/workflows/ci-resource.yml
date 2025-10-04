@@ -129,8 +129,7 @@ jobs:
       with:
         level: 10
         php_version: "8.4"
-        # path: config/ lang/ resources/views/ routes/ src/ tests/Feature/ tests/Unit/
-        path: config/ resources/views/ routes/ src/ tests/Feature/ tests/Unit/
+        path: {{ci_phpstan_folders}}
         args: --verbose --debug
     - name: Stopping timer
       if: ${{ !cancelled() }}

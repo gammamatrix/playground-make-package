@@ -8,7 +8,7 @@ parameters:
 
     paths:
         - config
-        - lang
+        {{phpstan_with_lang}}- lang
         - routes
         - src
         - tests
