@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-09-28 20:57:01</timestamp>
+  <timestamp>2025-10-04 00:16:48</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>134</methodCount>
     <crapMethodCount>15</crapMethodCount>
-    <crapLoad>224</crapLoad>
-    <totalCrap>4436.83</totalCrap>
+    <crapLoad>228</crapLoad>
+    <totalCrap>4505.99</totalCrap>
     <crapMethodPercent>11.19</crapMethodPercent>
   </stats>
   <methods>
@@ -534,9 +534,9 @@
       <methodName>setReadmePhpStan</methodName>
       <methodSignature>setReadmePhpStan(): void</methodSignature>
       <fullMethod>setReadmePhpStan(): void</fullMethod>
-      <crap>11.55</crap>
-      <complexity>9</complexity>
-      <coverage>68.42</coverage>
+      <crap>14.29</crap>
+      <complexity>10</complexity>
+      <coverage>65</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -1381,10 +1381,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>168.28</crap>
-      <complexity>51</complexity>
-      <coverage>64.41</coverage>
-      <crapLoad>19</crapLoad>
+      <crap>234.7</crap>
+      <complexity>59</complexity>
+      <coverage>63.04</coverage>
+      <crapLoad>23</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Console\Commands</package>
