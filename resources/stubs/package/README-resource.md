@@ -63,7 +63,7 @@ You can publish the config file with:
 php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-config"
 ```
 
-All routes are enabled by default. They may be disabled via enviroment variable or the configuration.
+All routes are enabled by default. They may be disabled via environment variable or the configuration.
 
 See the contents of the published config file: [config/{{ package }}.php](config/{{ package }}.php)
 
