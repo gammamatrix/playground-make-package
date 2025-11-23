@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-10-05 17:47:06</timestamp>
+  <timestamp>2025-11-23 18:19:48</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>134</methodCount>
+    <methodCount>135</methodCount>
     <crapMethodCount>15</crapMethodCount>
-    <crapLoad>228</crapLoad>
-    <totalCrap>4505.99</totalCrap>
-    <crapMethodPercent>11.19</crapMethodPercent>
+    <crapLoad>229</crapLoad>
+    <totalCrap>4564.87</totalCrap>
+    <crapMethodPercent>11.11</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -398,6 +398,17 @@
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildModels</className>
+      <methodName>load_packages_from_resources</methodName>
+      <methodSignature>load_packages_from_resources(): void</methodSignature>
+      <fullMethod>load_packages_from_resources(): void</fullMethod>
+      <crap>42</crap>
+      <complexity>6</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildServiceProvider</className>
       <methodName>make_service_provider_routes</methodName>
       <methodSignature>make_service_provider_routes(): void</methodSignature>
@@ -490,9 +501,9 @@
       <methodName>setPackageRequire</methodName>
       <methodSignature>setPackageRequire(): void</methodSignature>
       <fullMethod>setPackageRequire(): void</fullMethod>
-      <crap>9.9</crap>
-      <complexity>8</complexity>
-      <coverage>69.05</coverage>
+      <crap>10.71</crap>
+      <complexity>9</complexity>
+      <coverage>72.34</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -1381,10 +1392,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>234.7</crap>
-      <complexity>59</complexity>
-      <coverage>63.04</coverage>
-      <crapLoad>23</crapLoad>
+      <crap>250.77</crap>
+      <complexity>62</complexity>
+      <coverage>63.38</coverage>
+      <crapLoad>24</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Console\Commands</package>
