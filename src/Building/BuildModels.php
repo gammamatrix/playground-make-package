@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Playground\Make\Package\Building;
 
+use Illuminate\Support\Str;
 use Playground\Make\Configuration\Model;
 
 /**
@@ -83,10 +84,56 @@ trait BuildModels
                 );
             }
         }
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$this->searches[publish_migrations]' => $this->searches['publish_migrations'],
-        //     '$this->c' => $this->c,
+        // dump([
+        // '__METHOD__' => __METHOD__,
+        // '$this->c->models()' => $this->c->models(),
+        // '$this->searches[publish_migrations]' => $this->searches['publish_migrations'],
+        // //'$this->c' => $this->c,
+        // ]);
+    }
+
+    public function load_packages_from_resources(): void
+    {
+        $path = $this->getResourcePackageFolder();
+
+        dump([
+            '__METHOD__' => __METHOD__,
+            '$path' => $path,
+        ]);
+
+        $fullpath = $this->laravel->storagePath().$path;
+
+        $models = [];
+
+        $listing = scandir($fullpath);
+        if (is_array($listing)) {
+            foreach ($listing as $model) {
+                if (! is_dir($fullpath.'/'.$model)
+                    || in_array($model, ['.', '..'])
+                ) {
+                    continue;
+                }
+
+                $className = Str::of($model)->studly()->toString();
+                $models[$className] = sprintf('resources/package/%1$s/model.json', $model);
+            }
+        }
+
+        if (! empty($models)) {
+            $this->c->addModels([
+                'models' => $models,
+            ]);
+            $this->c->apply();
+        }
+        // dump([
+        //    '__METHOD__' => __METHOD__,
+        //    '$this->c->models()' => $this->c->models(),
+        //    '$this->getPackageFolder()' => $this->getPackageFolder(),
+        //    '$this->getResourcePackageFolder()' => $this->getResourcePackageFolder(),
+        //    '$path' => $path,
+        //    '$fullpath' => $fullpath,
+        //    '$models' => $models,
+        //    '$listing' => $listing,
         // ]);
     }
 }

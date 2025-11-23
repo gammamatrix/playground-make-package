@@ -284,8 +284,8 @@ trait BuildSkeleton
                 'playground-model',
             ])) {
                 $package_description = sprintf(
-                    // Playground: Provide the CMS models for the Playground Content Management System.
-                    '%1$s: Provide the %2$s models for the %1$s %3$s.',
+                    // Playground: Provides the CMS models for the Playground Content Management System.
+                    '%1$s: Provides the %2$s models for the %1$s %3$s.',
                     // '%1$s: Provide the %2$s models for the %1$s %2$s System.',
                     $organization,
                     $module,
@@ -355,7 +355,6 @@ trait BuildSkeleton
                 $package_require['php'] = '^8.4';
                 $package_require['gammamatrix/playground'] = '*';
                 $package_require_dev['gammamatrix/playground-test'] = '*';
-                $package_require['illuminate/support'] = '^12.0';
                 $package_require_dev['illuminate/testing'] = '^12.0';
             }
 
@@ -363,6 +362,14 @@ trait BuildSkeleton
                 'playground-model',
             ])) {
                 $package_require['illuminate/database'] = '^12.0';
+            }
+
+            if (in_array($this->c->type(), [
+                'playground-api',
+                'playground-model',
+                'playground-resource',
+            ])) {
+                $package_require['illuminate/support'] = '^12.0';
             }
 
             if (in_array($this->c->type(), [

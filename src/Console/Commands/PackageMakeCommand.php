@@ -371,6 +371,13 @@ class PackageMakeCommand extends GeneratorCommand
         if ($this->c->playground() && in_array($this->c->type(), [
             'playground-model',
         ])) {
+            if (empty($this->c->models())
+                && $this->hasOption('skeleton')
+                && $this->option('skeleton')
+            ) {
+                $this->load_packages_from_resources();
+            }
+
             $this->make_published_models();
         }
 
@@ -399,10 +406,6 @@ class PackageMakeCommand extends GeneratorCommand
                 'model_package' => $this->modelPackage->package(),
                 'model_package_name' => $this->modelPackage->package_name(),
             ]);
-            //            dd([
-            //                '__METHOD__' => __METHOD__,
-            //                '$this->c->package_model()' => $this->c->package_model(),
-            //            ]);
 
         }
         $this->c->apply();

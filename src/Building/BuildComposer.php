@@ -368,7 +368,8 @@ trait BuildComposer
                 '%1$s%2$s%3$s',
                 $this->c->organization(),
                 $this->c->organization() ? ': ' : '',
-                $this->c->name(),
+                // TODO this was name()
+                $this->c->module(),
             );
             $this->c->setOptions(['package_name' => $package_name]);
             $this->searches['package_name'] = $this->c->package_name();
