@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.50117757889779" branch-rate="0" lines-covered="1064" lines-valid="2123" branches-covered="0" branches-valid="0" complexity="756" version="0.4" timestamp="1763921988">
+<coverage line-rate="0.50070588235294" branch-rate="0" lines-covered="1064" lines-valid="2125" branches-covered="0" branches-valid="0" complexity="757" version="0.4" timestamp="1779744633">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -1597,9 +1597,9 @@
         </class>
       </classes>
     </package>
-    <package name="Building/BuildModels.php" line-rate="0.61818181818182" branch-rate="0" complexity="19">
+    <package name="Building/BuildModels.php" line-rate="0.59649122807018" branch-rate="0" complexity="20">
       <classes>
-        <class name="Playground\Make\Package\Building\BuildModels" filename="Building/BuildModels.php" line-rate="0.61818181818182" branch-rate="0" complexity="19">
+        <class name="Playground\Make\Package\Building\BuildModels" filename="Building/BuildModels.php" line-rate="0.59649122807018" branch-rate="0" complexity="20">
           <methods>
             <method name="handle_models" signature="" line-rate="0.95454545454545" branch-rate="0" complexity="9">
               <lines>
@@ -1644,7 +1644,7 @@
                 <line number="84" hits="2"/>
               </lines>
             </method>
-            <method name="load_packages_from_resources" signature="" line-rate="0" branch-rate="0" complexity="6">
+            <method name="load_packages_from_resources" signature="" line-rate="0" branch-rate="0" complexity="7">
               <lines>
                 <line number="97" hits="0"/>
                 <line number="99" hits="0"/>
@@ -1653,19 +1653,21 @@
                 <line number="102" hits="0"/>
                 <line number="104" hits="0"/>
                 <line number="106" hits="0"/>
-                <line number="108" hits="0"/>
-                <line number="109" hits="0"/>
+                <line number="107" hits="0"/>
                 <line number="110" hits="0"/>
-                <line number="111" hits="0"/>
                 <line number="112" hits="0"/>
+                <line number="113" hits="0"/>
                 <line number="114" hits="0"/>
-                <line number="117" hits="0"/>
+                <line number="115" hits="0"/>
+                <line number="116" hits="0"/>
                 <line number="118" hits="0"/>
+                <line number="121" hits="0"/>
                 <line number="122" hits="0"/>
-                <line number="123" hits="0"/>
-                <line number="124" hits="0"/>
-                <line number="125" hits="0"/>
                 <line number="126" hits="0"/>
+                <line number="127" hits="0"/>
+                <line number="128" hits="0"/>
+                <line number="129" hits="0"/>
+                <line number="130" hits="0"/>
               </lines>
             </method>
           </methods>
@@ -1712,19 +1714,21 @@
             <line number="102" hits="0"/>
             <line number="104" hits="0"/>
             <line number="106" hits="0"/>
-            <line number="108" hits="0"/>
-            <line number="109" hits="0"/>
+            <line number="107" hits="0"/>
             <line number="110" hits="0"/>
-            <line number="111" hits="0"/>
             <line number="112" hits="0"/>
+            <line number="113" hits="0"/>
             <line number="114" hits="0"/>
-            <line number="117" hits="0"/>
+            <line number="115" hits="0"/>
+            <line number="116" hits="0"/>
             <line number="118" hits="0"/>
+            <line number="121" hits="0"/>
             <line number="122" hits="0"/>
-            <line number="123" hits="0"/>
-            <line number="124" hits="0"/>
-            <line number="125" hits="0"/>
             <line number="126" hits="0"/>
+            <line number="127" hits="0"/>
+            <line number="128" hits="0"/>
+            <line number="129" hits="0"/>
+            <line number="130" hits="0"/>
           </lines>
         </class>
       </classes>

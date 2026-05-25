@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2025-11-23 18:19:48</timestamp>
+  <timestamp>2026-05-25 21:30:33</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>135</methodCount>
-    <crapMethodCount>15</crapMethodCount>
-    <crapLoad>229</crapLoad>
-    <totalCrap>4564.87</totalCrap>
-    <crapMethodPercent>11.11</crapMethodPercent>
+    <crapMethodCount>16</crapMethodCount>
+    <crapLoad>236</crapLoad>
+    <totalCrap>4578.87</totalCrap>
+    <crapMethodPercent>11.85</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -402,10 +402,10 @@
       <methodName>load_packages_from_resources</methodName>
       <methodSignature>load_packages_from_resources(): void</methodSignature>
       <fullMethod>load_packages_from_resources(): void</fullMethod>
-      <crap>42</crap>
-      <complexity>6</complexity>
+      <crap>56</crap>
+      <complexity>7</complexity>
       <coverage>0</coverage>
-      <crapLoad>0</crapLoad>
+      <crapLoad>7</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
