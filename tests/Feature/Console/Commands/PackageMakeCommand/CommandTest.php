@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Testing\PendingCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Playground\Make\Package\Console\Commands\PackageMakeCommand;
 use Tests\Feature\Playground\Make\Package\TestCase;
@@ -22,7 +23,7 @@ class CommandTest extends TestCase
     public function test_command_without_options_or_arguments(): void
     {
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan('playground:make:package');
         // $result = $this->withoutMockingConsoleOutput()->artisan('playground:make:package');
@@ -34,7 +35,7 @@ class CommandTest extends TestCase
     public function test_command_skeleton(): void
     {
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan('playground:make:package testing --skeleton --force');
         $result->assertExitCode(0);

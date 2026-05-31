@@ -6,8 +6,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acceptance\Playground\Make\Package\Console\Commands\PackageMakeCommand;
+namespace Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
+use Illuminate\Testing\PendingCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Playground\Make\Package\Console\Commands\PackageMakeCommand;
 use Tests\Feature\Playground\Make\Package\TestCase;
@@ -27,7 +28,7 @@ class ApiTest extends TestCase
         // dump($command);
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -42,7 +43,7 @@ class ApiTest extends TestCase
         // dump($command);
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);

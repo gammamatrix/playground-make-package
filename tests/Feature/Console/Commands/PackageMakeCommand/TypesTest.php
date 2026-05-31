@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
+use Illuminate\Testing\PendingCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Playground\Make\Package\Console\Commands\PackageMakeCommand;
 use Tests\Feature\Playground\Make\Package\TestCase;
@@ -26,7 +27,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -40,7 +41,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -51,7 +52,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --force --type playground';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -62,7 +63,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --type playground';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -76,7 +77,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -90,7 +91,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -101,7 +102,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --force --type playground-model';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -112,7 +113,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --type playground-model';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -126,7 +127,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -140,7 +141,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -151,7 +152,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --force --type playground-api';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -162,7 +163,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --type playground-api';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -176,7 +177,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -190,7 +191,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -201,7 +202,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --force --type playground-resource';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -212,7 +213,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --type playground-resource';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -226,7 +227,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -240,7 +241,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -251,7 +252,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --force --type api';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -262,7 +263,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --type api';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -276,7 +277,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -290,7 +291,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -301,7 +302,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --force --type resource';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -312,7 +313,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --type resource';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -326,7 +327,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -340,7 +341,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -351,7 +352,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --force';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -362,7 +363,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -376,7 +377,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -390,7 +391,7 @@ class TypesTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -401,7 +402,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --force --policies';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -412,7 +413,7 @@ class TypesTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --policies';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);

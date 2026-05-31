@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
+use Illuminate\Testing\PendingCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Playground\Make\Package\Console\Commands\PackageMakeCommand;
 use Tests\Unit\Playground\Make\Package\TestCase;
@@ -21,7 +22,7 @@ class CommandTest extends TestCase
     public function test_command_displays_help(): void
     {
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan('playground:make:package --help');
         $result->assertExitCode(0);

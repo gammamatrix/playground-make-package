@@ -103,7 +103,7 @@ trait BuildModels
 
         $fullpath = $this->laravel->storagePath().$path;
 
-        if (!is_dir($fullpath)) {
+        if (! is_dir($fullpath)) {
             return;
         }
 

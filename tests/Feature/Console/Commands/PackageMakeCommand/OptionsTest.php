@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
+use Illuminate\Testing\PendingCommand;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Playground\Make\Package\Console\Commands\PackageMakeCommand;
 use Tests\Feature\Playground\Make\Package\TestCase;
@@ -26,7 +27,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -40,7 +41,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -51,7 +52,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --force --factories';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -62,7 +63,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --factories';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -76,7 +77,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -90,7 +91,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -101,7 +102,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --force --policies';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -112,7 +113,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --policies';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -126,7 +127,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -140,7 +141,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -151,7 +152,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --force --controllers';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -162,7 +163,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --controllers';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -176,7 +177,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -190,7 +191,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -201,7 +202,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --force --migrations';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -212,7 +213,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --migrations';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -226,7 +227,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -240,7 +241,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -251,7 +252,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --force --models';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -262,7 +263,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --models';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -276,7 +277,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -290,7 +291,7 @@ class OptionsTest extends TestCase
         );
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -301,7 +302,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --force --license private';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);
@@ -312,7 +313,7 @@ class OptionsTest extends TestCase
         $command = 'playground:make:package testing --skeleton --force --license private';
 
         /**
-         * @var \Illuminate\Testing\PendingCommand $result
+         * @var PendingCommand $result
          */
         $result = $this->artisan($command);
         $result->assertExitCode(0);

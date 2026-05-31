@@ -783,8 +783,8 @@ class Package extends PrimaryConfiguration
                 Log::warning(__('playground-make-package::configuration.translations.invalid', [
                     'language' => $language,
                     'section' => $section,
-                    'key' => is_string($key) ? $key : gettype($key),
-                    'message' => is_string($message) ? $message : gettype($message),
+                    'key' => $key,
+                    'message' => $message,
                 ]));
             } else {
                 $this->addTranslation($language, $section, $key, $message);
