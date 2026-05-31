@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.50070588235294" branch-rate="0" lines-covered="1064" lines-valid="2125" branches-covered="0" branches-valid="0" complexity="757" version="0.4" timestamp="1779744633">
+<coverage line-rate="0.50070588235294" branch-rate="0" lines-covered="1064" lines-valid="2125" branches-covered="0" branches-valid="0" complexity="755" version="0.4" timestamp="1780264740">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -3459,9 +3459,9 @@
         </class>
       </classes>
     </package>
-    <package name="Configuration/Package.php" line-rate="0.58610271903323" branch-rate="0" complexity="233">
+    <package name="Configuration/Package.php" line-rate="0.58610271903323" branch-rate="0" complexity="231">
       <classes>
-        <class name="Playground\Make\Package\Configuration\Package" filename="Configuration/Package.php" line-rate="0.58610271903323" branch-rate="0" complexity="233">
+        <class name="Playground\Make\Package\Configuration\Package" filename="Configuration/Package.php" line-rate="0.58610271903323" branch-rate="0" complexity="231">
           <methods>
             <method name="setOptions" signature="array $options" line-rate="0.792" branch-rate="0" complexity="84">
               <lines>
@@ -3768,7 +3768,7 @@
                 <line number="768" hits="0"/>
               </lines>
             </method>
-            <method name="addTranslations" signature="string $language, string $section, array $translations" line-rate="0" branch-rate="0" complexity="7">
+            <method name="addTranslations" signature="string $language, string $section, array $translations" line-rate="0" branch-rate="0" complexity="5">
               <lines>
                 <line number="780" hits="0"/>
                 <line number="782" hits="0"/>

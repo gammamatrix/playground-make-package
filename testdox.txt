@@ -1,4 +1,4 @@
-Api (Tests\Acceptance\Playground\Make\Package\Console\Commands\PackageMakeCommand\Api)
+Api (Tests\Feature\Playground\Make\Package\Console\Commands\PackageMakeCommand\Api)
  [x] Command make api package with force and without skeleton
  [x] Command make api package with force and with skeleton
 
