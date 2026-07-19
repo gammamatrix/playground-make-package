@@ -8,7 +8,7 @@
     "fqdn": "Playground\\Cms\\Api\\ServiceProvider",
     "namespace": "Playground\\Cms\\Api",
     "organization": "Playground",
-    "version": "74.0.0",
+    "version": "75.0.0",
     "type": "playground-api",
     "package_name": "Playground: CMS API",
     "package_homepage": "https://github.com/gammamatrix/playground-cms-api",
@@ -24,7 +24,7 @@
         "php": "^8.4"
     },
     "package_require_dev": {
-        "playground-test": "^74.0"
+        "playground-test": "^75.0"
     },
     "package_autoload_psr4":  {
         "Vendor\\Namespace\\": ""

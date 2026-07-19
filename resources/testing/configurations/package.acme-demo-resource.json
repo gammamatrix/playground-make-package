@@ -8,7 +8,7 @@
     "fqdn": "Acme/Demo/Resource/ServiceProvider",
     "namespace": "Acme/Demo/Resource",
     "organization": "Acme",
-    "version": "74.0.0",
+    "version": "75.0.0",
     "type": "playground-resource",
     "package_name": "Acme: Demo Resource",
     "package_homepage": "https://github.com/gammamatrix/acme-demo-resource",
@@ -24,7 +24,7 @@
         "php": "^8.4"
     },
     "package_require_dev": {
-        "acme-test": "^74.0"
+        "acme-test": "^75.0"
     },
     "package_autoload_psr4":  {
         "Vendor\\Namespace\\": ""

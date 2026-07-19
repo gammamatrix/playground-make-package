@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\App;
  */
 class ServiceProvider extends AuthServiceProvider
 {
-    public const string VERSION = '74.0.0';
+    public const string VERSION = '75.0.0';
 
     public string $package = 'playground-make-package';
 
