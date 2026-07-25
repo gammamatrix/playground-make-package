@@ -8,12 +8,10 @@ declare(strict_types=1);
 
 namespace Playground\Make\Package\Console\Commands;
 
-// use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Support\Str;
 use Playground\Make\Configuration\Contracts\PrimaryConfiguration as PrimaryConfigurationContract;
 use Playground\Make\Console\Commands\GeneratorCommand;
 use Playground\Make\Package\Building;
-// use Symfony\Component\Console\Input\InputArgument;
 use Playground\Make\Package\Configuration\Package as Configuration;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
@@ -31,9 +29,9 @@ class PackageMakeCommand extends GeneratorCommand
     use Building\BuildServiceProvider;
     use Building\BuildSkeleton;
     use Building\BuildSkeletonGitHub;
+    use Building\BuildSkeletonOutput;
     use Building\BuildSkeletonLang;
     use Building\BuildTests;
-    // use CreatesMatchingTest;
 
     /**
      * @var class-string<Configuration>

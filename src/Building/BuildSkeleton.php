@@ -72,6 +72,7 @@ trait BuildSkeleton
 
         $this->setUpLang();
         $this->setUpWorkflow();
+        $this->setUpOutput();
 
         $skeletons[$phpstan] = 'phpstan.neon.dist';
 
