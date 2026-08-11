@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-05-31 21:59:00</timestamp>
+  <timestamp>2026-08-11 17:17:29</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>135</methodCount>
-    <crapMethodCount>15</crapMethodCount>
-    <crapLoad>229</crapLoad>
-    <totalCrap>4552.87</totalCrap>
-    <crapMethodPercent>11.11</crapMethodPercent>
+    <methodCount>140</methodCount>
+    <crapMethodCount>16</crapMethodCount>
+    <crapLoad>240</crapLoad>
+    <totalCrap>4691.47</totalCrap>
+    <crapMethodPercent>11.43</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -43,6 +43,17 @@
       <complexity>10</complexity>
       <coverage>41.46</coverage>
       <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildComposer</className>
+      <methodName>make_composer_repositories</methodName>
+      <methodSignature>make_composer_repositories(): string</methodSignature>
+      <fullMethod>make_composer_repositories(): string</fullMethod>
+      <crap>130.65</crap>
+      <complexity>12</complexity>
+      <coverage>6.25</coverage>
+      <crapLoad>11</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -435,9 +446,9 @@
       <methodName>createSkeleton</methodName>
       <methodSignature>createSkeleton(): void</methodSignature>
       <fullMethod>createSkeleton(): void</fullMethod>
-      <crap>15.11</crap>
+      <crap>15.06</crap>
       <complexity>14</complexity>
-      <coverage>82.19</coverage>
+      <coverage>82.43</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -647,6 +658,39 @@
       <crap>12</crap>
       <complexity>3</complexity>
       <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeletonOutput</className>
+      <methodName>setUpOutputGitkeep_create_output</methodName>
+      <methodSignature>setUpOutputGitkeep_create_output(): void</methodSignature>
+      <fullMethod>setUpOutputGitkeep_create_output(): void</fullMethod>
+      <crap>3</crap>
+      <complexity>3</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeletonOutput</className>
+      <methodName>setUpOutputGitkeep_create_output_gitkeep</methodName>
+      <methodSignature>setUpOutputGitkeep_create_output_gitkeep(): void</methodSignature>
+      <fullMethod>setUpOutputGitkeep_create_output_gitkeep(): void</fullMethod>
+      <crap>3</crap>
+      <complexity>3</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSkeletonOutput</className>
+      <methodName>setUpOutput</methodName>
+      <methodSignature>setUpOutput(): void</methodSignature>
+      <fullMethod>setUpOutput(): void</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -1172,6 +1216,17 @@
       <methodName>package_authors</methodName>
       <methodSignature>package_authors(): array</methodSignature>
       <fullMethod>package_authors(): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>package_repositories</methodName>
+      <methodSignature>package_repositories(): array</methodSignature>
+      <fullMethod>package_repositories(): array</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
