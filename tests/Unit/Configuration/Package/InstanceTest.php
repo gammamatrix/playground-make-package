@@ -79,6 +79,7 @@ class InstanceTest extends TestCase
         'package_keywords' => [],
         'package_laravel_providers' => [],
         'package_providers' => [],
+        'package_repositories' => [],
         'package_require' => [],
         'package_require_dev' => [],
         'package_suggest' => [],
@@ -222,7 +223,7 @@ class InstanceTest extends TestCase
             'php' => '^8.4',
         ], $instance->package_require());
         $this->assertSame([
-            'playground-test' => '^74.0',
+            'playground-test' => '^75.0',
         ], $instance->package_require_dev());
         // $this->assertSame([], $instance->package_autoload_psr4());
         $this->assertSame([

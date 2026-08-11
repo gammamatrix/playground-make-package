@@ -66,6 +66,7 @@ class Package extends PrimaryConfiguration
         'package_keywords' => [],
         'package_laravel_providers' => [],
         'package_providers' => [],
+        'package_repositories' => [],
         'package_require' => [],
         'package_require_dev' => [],
         'package_suggest' => [],
@@ -136,6 +137,11 @@ class Package extends PrimaryConfiguration
     protected array $package_authors = [];
 
     protected string $package_license = '';
+
+    /**
+     * @var array<int, array<string, string>>
+     */
+    protected array $package_repositories = [];
 
     /**
      * @var array<string, string>
@@ -256,6 +262,7 @@ class Package extends PrimaryConfiguration
      *     version?: string,
      *     package_authors?: array<int, array<string, string>>,
      *     package_keywords?: string[],
+     *     package_repositories?: array<int, array<string, string>>,
      *     package_require?: array<string, string>,
      *     package_require_dev?: array<string, string>,
      *     package_suggest?: array<string, string>,
@@ -400,6 +407,14 @@ class Package extends PrimaryConfiguration
         ) {
             $this->package_license = $options['package_license'];
         }
+
+        //        if (! empty($options['package_repositories'])
+        //            && is_array($options['package_repositories'])
+        //        ) {
+        //            foreach ($options['package_repositories'] as $repository) {
+        //                $this->addPackageRepository($repository);
+        //            }
+        //        }
 
         if (! empty($options['package_require'])
             && is_array($options['package_require'])
@@ -953,6 +968,14 @@ class Package extends PrimaryConfiguration
     public function package_authors(): array
     {
         return $this->package_authors;
+    }
+
+    /**
+     * @return array<int, array<string, string>>
+     */
+    public function package_repositories(): array
+    {
+        return $this->package_repositories;
     }
 
     /**

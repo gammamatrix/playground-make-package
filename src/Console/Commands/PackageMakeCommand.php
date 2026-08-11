@@ -29,8 +29,8 @@ class PackageMakeCommand extends GeneratorCommand
     use Building\BuildServiceProvider;
     use Building\BuildSkeleton;
     use Building\BuildSkeletonGitHub;
-    use Building\BuildSkeletonOutput;
     use Building\BuildSkeletonLang;
+    use Building\BuildSkeletonOutput;
     use Building\BuildTests;
 
     /**
@@ -65,6 +65,7 @@ class PackageMakeCommand extends GeneratorCommand
         'package_authors' => '',
         'package_require' => '',
         'package_require_dev' => '',
+        'package_repositories' => '',
         'package_suggest' => '',
         'package_scripts' => '',
         'package_autoload_psr4' => '',
@@ -168,6 +169,7 @@ class PackageMakeCommand extends GeneratorCommand
         $options[] = ['packagist', null, InputOption::VALUE_OPTIONAL, 'The '.strtolower($this->type).' packagist name in composer.json'];
         $options[] = ['build', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' controllers, policies, requests and routes for the models'];
         $options[] = ['playground', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use Playground features'];
+        $options[] = ['sandbox', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use Playground Sandbox'];
         $options[] = ['revision', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use revision features'];
         $options[] = ['openapi', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' the OpenAPI documentation'];
         $options[] = ['test', null, InputOption::VALUE_NONE, 'Create the unit and feature tests for the '.strtolower($this->type)];

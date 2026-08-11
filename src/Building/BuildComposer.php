@@ -182,6 +182,74 @@ trait BuildComposer
         return $this->searches['package_autoload_dev'];
     }
 
+    protected function make_composer_repositories(): string
+    {
+        $isSandbox = $this->hasOption('sandbox') && $this->option('sandbox');
+
+        if (! $isSandbox) {
+            return '';
+        }
+        $element = '%2$s"repositories": [%1$s%3$s%2$s],%1$s';
+
+        $content = '';
+
+        $package_repositories = $this->c->package_repositories();
+
+        $model_package = $this->c->model_package();
+        $isApi = $this->c->type() === 'playground-api';
+        $isResource = $this->c->type() === 'playground-resource';
+
+        if (empty($package_repositories)) {
+            $package_repositories[] = [
+                'type' => 'git',
+                'url' => sprintf('git.gammamatrix.com:/home/git/%1$s.git', $model_package),
+            ];
+
+            if ($isApi) {
+                $package_repositories[] = [
+                    'type' => 'git',
+                    'url' => sprintf('git.gammamatrix.com:/home/git/%1$s-api.git', $model_package),
+                ];
+            } elseif ($isResource) {
+                $package_repositories[] = [
+                    'type' => 'git',
+                    'url' => sprintf('git.gammamatrix.com:/home/git/%1$s-resource.git', $model_package),
+                ];
+            }
+        }
+
+        $i = 0;
+        foreach ($package_repositories as $repository) {
+            $content .= str_repeat(static::INDENT, 2).'{';
+            if (! empty($repository['type']) && is_string($repository['type'])) {
+                $content .= sprintf('%1$s%2$s"type": "%3$s",%1$s',
+                    PHP_EOL,
+                    str_repeat(static::INDENT, 3),
+                    $repository['type'],
+                );
+            }
+            if (! empty($repository['url']) && is_string($repository['url'])) {
+                $content .= sprintf('%1$s"url": "%2$s"',
+                    str_repeat(static::INDENT, 3),
+                    $repository['url'],
+                );
+            }
+            $content .= PHP_EOL.str_repeat(static::INDENT, 2).'}'.((count($package_repositories) - 2) >= $i ? ',' : '').PHP_EOL;
+            $i++;
+        }
+
+        $this->searches['package_repositories'] = '';
+
+        $this->searches['package_repositories'] = sprintf(
+            $element,
+            PHP_EOL,
+            str_repeat(static::INDENT, 1),
+            $content
+        );
+
+        return $this->searches['package_repositories'];
+    }
+
     protected function make_composer_require(): string
     {
         $element = '%2$s"require": {%1$s%3$s%2$s},';
@@ -595,6 +663,7 @@ trait BuildComposer
         $this->make_composer_license();
         $this->make_composer_authors();
         $this->make_composer_homepage();
+        $this->make_composer_repositories();
         $this->make_composer_require();
         $this->make_composer_require_dev();
         $this->make_composer_suggest();
