@@ -40,6 +40,7 @@ class Package extends PrimaryConfiguration
         'withPolicies' => false,
         'withRequests' => false,
         'withRoutes' => false,
+        'withSeeders' => false,
         'withTests' => false,
         'withTranslations' => false,
         'playground' => false,
@@ -75,6 +76,7 @@ class Package extends PrimaryConfiguration
         'policies' => [],
         'requests' => [],
         'routes' => [],
+        'seeders' => [],
         'transformers' => [],
         'translations' => [],
         'uses' => [],
@@ -99,6 +101,8 @@ class Package extends PrimaryConfiguration
     protected bool $withRequests = false;
 
     protected bool $withRoutes = false;
+
+    protected bool $withSeeders = false;
 
     protected bool $withTests = false;
 
@@ -242,6 +246,7 @@ class Package extends PrimaryConfiguration
      *     withPolicies?: bool,
      *     withRequests?: bool,
      *     withRoutes?: bool,
+     *     withSeeders?: bool,
      *     withTests?: bool,
      *     withTranslations?: bool,
      *     playground?: bool,
@@ -307,6 +312,10 @@ class Package extends PrimaryConfiguration
             $this->withModels = ! empty($options['withModels']);
         }
 
+        if (array_key_exists('withOpenAPI', $options)) {
+            $this->withOpenAPI = ! empty($options['withOpenAPI']);
+        }
+
         if (array_key_exists('withPolicies', $options)) {
             $this->withPolicies = ! empty($options['withPolicies']);
         }
@@ -319,8 +328,8 @@ class Package extends PrimaryConfiguration
             $this->withRoutes = ! empty($options['withRoutes']);
         }
 
-        if (array_key_exists('withOpenAPI', $options)) {
-            $this->withOpenAPI = ! empty($options['withOpenAPI']);
+        if (array_key_exists('withSeeders', $options)) {
+            $this->withSeeders = ! empty($options['withSeeders']);
         }
 
         if (array_key_exists('withTests', $options)) {
@@ -882,6 +891,11 @@ class Package extends PrimaryConfiguration
     public function withRoutes(): bool
     {
         return $this->withRoutes;
+    }
+
+    public function withSeeders(): bool
+    {
+        return $this->withSeeders;
     }
 
     public function withTests(): bool

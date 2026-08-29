@@ -405,13 +405,29 @@ PHP_CODE;
                 $params_controller['name'] = Str::of($model->name())->studly()->finish('Controller')->toString();
                 $params_controller['--model-file'] = $file;
 
-                //                 dump([
-                //                     '__METHOD__' => __METHOD__,
-                //                     '$params_controller' => $params_controller,
-                //                     // '$this->c' => $this->c,
-                //                     '$model->name()' => $model->name(),
-                //                     '$model->revision()' => $model->revision(),
-                //                 ]);
+                if (in_array($model->type(), ['playground-model-linked', 'model-linked'])) {
+                    if ($isApi) {
+                        $params_controller['--type'] = 'playground-api-linked';
+
+                    } elseif ($isResource) {
+                        $params_controller['--type'] = 'playground-resource-linked';
+                    }
+                } elseif (in_array($model->type(), ['playground-model-tagged', 'model-tagged'])) {
+                    if ($isApi) {
+                        $params_controller['--type'] = 'playground-api-tagged';
+
+                    } elseif ($isResource) {
+                        $params_controller['--type'] = 'playground-resource-tagged';
+                    }
+                }
+
+                dump([
+                    '__METHOD__' => __METHOD__,
+                    '$params_controller' => $params_controller,
+                    // '$this->c' => $this->c,
+                    '$model->name()' => $model->name(),
+                    '$model->revision()' => $model->revision(),
+                ]);
                 $this->createControllerForModel($model, $package, $params_controller);
                 //                dd([
                 //                    '__METHOD__' => __METHOD__,
