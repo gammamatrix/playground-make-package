@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-08-22 17:50:15</timestamp>
+  <timestamp>2026-08-29 16:38:04</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>140</methodCount>
+    <methodCount>141</methodCount>
     <crapMethodCount>16</crapMethodCount>
-    <crapLoad>240</crapLoad>
-    <totalCrap>4693.97</totalCrap>
-    <crapMethodPercent>11.43</crapMethodPercent>
+    <crapLoad>247</crapLoad>
+    <totalCrap>5115.9</totalCrap>
+    <crapMethodPercent>11.35</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -347,10 +347,10 @@
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>992</crap>
-      <complexity>31</complexity>
+      <crap>1406</crap>
+      <complexity>37</complexity>
       <coverage>0</coverage>
-      <crapLoad>32</crapLoad>
+      <crapLoad>38</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -831,10 +831,10 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>147.5</crap>
-      <complexity>84</complexity>
-      <coverage>79.2</coverage>
-      <crapLoad>19</crapLoad>
+      <crap>154.43</crap>
+      <complexity>85</complexity>
+      <coverage>78.74</coverage>
+      <crapLoad>20</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
@@ -1051,6 +1051,17 @@
       <methodName>withRoutes</methodName>
       <methodSignature>withRoutes(): bool</methodSignature>
       <fullMethod>withRoutes(): bool</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>withSeeders</methodName>
+      <methodSignature>withSeeders(): bool</methodSignature>
+      <fullMethod>withSeeders(): bool</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
