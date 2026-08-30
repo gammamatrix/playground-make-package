@@ -96,11 +96,6 @@ trait BuildModels
     {
         $path = $this->getResourcePackageFolder();
 
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$path' => $path,
-        ]);
-
         $fullpath = $this->laravel->storagePath().$path;
 
         if (! is_dir($fullpath)) {
