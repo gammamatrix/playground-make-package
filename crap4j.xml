@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-08-30 18:43:48</timestamp>
+  <timestamp>2026-09-07 18:12:22</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>141</methodCount>
-    <crapMethodCount>16</crapMethodCount>
-    <crapLoad>247</crapLoad>
-    <totalCrap>5115.9</totalCrap>
-    <crapMethodPercent>11.35</crapMethodPercent>
+    <methodCount>142</methodCount>
+    <crapMethodCount>17</crapMethodCount>
+    <crapLoad>266</crapLoad>
+    <totalCrap>5799.48</totalCrap>
+    <crapMethodPercent>11.97</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -347,10 +347,10 @@
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>1406</crap>
-      <complexity>37</complexity>
+      <crap>1892</crap>
+      <complexity>43</complexity>
       <coverage>0</coverage>
-      <crapLoad>38</crapLoad>
+      <crapLoad>44</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -380,10 +380,10 @@
       <methodName>createResourceIndexController</methodName>
       <methodSignature>createResourceIndexController(): void</methodSignature>
       <fullMethod>createResourceIndexController(): void</fullMethod>
-      <crap>600</crap>
-      <complexity>24</complexity>
+      <crap>702</crap>
+      <complexity>26</complexity>
       <coverage>0</coverage>
-      <crapLoad>24</crapLoad>
+      <crapLoad>27</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -435,10 +435,10 @@
       <methodName>preload_model_routes_for_service_provider</methodName>
       <methodSignature>preload_model_routes_for_service_provider(): void</methodSignature>
       <fullMethod>preload_model_routes_for_service_provider(): void</fullMethod>
-      <crap>156</crap>
-      <complexity>12</complexity>
+      <crap>182</crap>
+      <complexity>13</complexity>
       <coverage>0</coverage>
-      <crapLoad>12</crapLoad>
+      <crapLoad>13</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -512,9 +512,9 @@
       <methodName>setPackageRequire</methodName>
       <methodSignature>setPackageRequire(): void</methodSignature>
       <fullMethod>setPackageRequire(): void</fullMethod>
-      <crap>10.71</crap>
+      <crap>11.09</crap>
       <complexity>9</complexity>
-      <coverage>72.34</coverage>
+      <coverage>70.45</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -763,12 +763,12 @@
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildTests</className>
       <methodName>command_tests_playground_controller_test_case</methodName>
-      <methodSignature>command_tests_playground_controller_test_case(): void</methodSignature>
-      <fullMethod>command_tests_playground_controller_test_case(): void</fullMethod>
-      <crap>42</crap>
-      <complexity>6</complexity>
+      <methodSignature>command_tests_playground_controller_test_case(string $type): void</methodSignature>
+      <fullMethod>command_tests_playground_controller_test_case(string $type): void</fullMethod>
+      <crap>56</crap>
+      <complexity>7</complexity>
       <coverage>0</coverage>
-      <crapLoad>0</crapLoad>
+      <crapLoad>7</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -776,10 +776,10 @@
       <methodName>command_tests_playground_controller_model_cases</methodName>
       <methodSignature>command_tests_playground_controller_model_cases(): void</methodSignature>
       <fullMethod>command_tests_playground_controller_model_cases(): void</fullMethod>
-      <crap>110</crap>
-      <complexity>10</complexity>
+      <crap>156</crap>
+      <complexity>12</complexity>
       <coverage>0</coverage>
-      <crapLoad>10</crapLoad>
+      <crapLoad>12</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -831,9 +831,9 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>154.43</crap>
-      <complexity>85</complexity>
-      <coverage>78.74</coverage>
+      <crap>162.63</crap>
+      <complexity>87</complexity>
+      <coverage>78.46</coverage>
       <crapLoad>20</crapLoad>
     </method>
     <method>
@@ -1150,6 +1150,17 @@
       <methodName>package_name</methodName>
       <methodSignature>package_name(): string</methodSignature>
       <fullMethod>package_name(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>model_index</methodName>
+      <methodSignature>model_index(): string</methodSignature>
+      <fullMethod>model_index(): string</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
