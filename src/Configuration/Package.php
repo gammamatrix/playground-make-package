@@ -48,6 +48,7 @@ class Package extends PrimaryConfiguration
         'docs_name' => '',
         'docs_url' => '',
         'package_name' => '',
+        'model_index' => '',
         'model_package' => '',
         'model_package_name' => '',
         // 'package_autoload' => '',
@@ -117,6 +118,8 @@ class Package extends PrimaryConfiguration
     protected string $docs_url = '';
 
     protected string $organization_email = '';
+
+    protected string $model_index = '';
 
     protected string $model_package = '';
 
@@ -254,6 +257,7 @@ class Package extends PrimaryConfiguration
      *     docs_name?: string,
      *     docs_url?: string,
      *     package_name?: string,
+     *     model_index?: string,
      *     model_package?: string,
      *     model_package_name?: string,
      *     package_description?: string,
@@ -345,6 +349,13 @@ class Package extends PrimaryConfiguration
             && is_string($options['package_name'])
         ) {
             $this->package_name = $options['package_name'];
+        }
+
+        if (! empty($options['model_index'])
+
+            && is_string($options['model_index'])
+        ) {
+            $this->model_index = $options['model_index'];
         }
 
         if (! empty($options['model_package'])
@@ -936,6 +947,11 @@ class Package extends PrimaryConfiguration
     public function package_name(): string
     {
         return $this->package_name;
+    }
+
+    public function model_index(): string
+    {
+        return $this->model_index;
     }
 
     public function model_package(): string

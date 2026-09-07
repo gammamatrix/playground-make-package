@@ -39,7 +39,8 @@ trait BuildTests
             $this->command_tests_providers('providers-api');
             $this->command_tests_playground_api();
             $this->command_tests_playground_request_test_case();
-            $this->command_tests_playground_controller_test_case();
+            $this->command_tests_playground_controller_test_case($type);
+            $this->command_tests_playground_controller_test_case('playground');
             $this->command_tests_playground_controller_model_cases();
             $this->command_tests_playground_controller_route_tests();
             $this->command_tests_playground_service_provider();
@@ -50,7 +51,8 @@ trait BuildTests
             $this->command_tests_providers('providers-resource');
             $this->command_tests_playground_resource();
             $this->command_tests_playground_request_test_case();
-            $this->command_tests_playground_controller_test_case();
+            $this->command_tests_playground_controller_test_case($type);
+            $this->command_tests_playground_controller_test_case('playground');
             $this->command_tests_playground_controller_model_cases();
             $this->command_tests_playground_controller_route_tests();
             $this->command_tests_playground_service_provider();
@@ -238,10 +240,10 @@ trait BuildTests
         $this->call('playground:make:test', $options);
     }
 
-    public function command_tests_playground_controller_test_case(): void
-    {
+    public function command_tests_playground_controller_test_case(
+        string $type = ''
+    ): void {
         $force = $this->hasOption('force') && $this->option('force');
-        $type = $this->c->type();
 
         $options = [
             'name' => 'ControllerTestCase',
@@ -270,6 +272,11 @@ trait BuildTests
             'playground-resource',
         ])) {
             $options['--type'] = 'playground-resource-controller-test-case';
+        } elseif (in_array($type, [
+            'playground',
+        ])) {
+            $options['name'] = 'PlaygroundTestCase';
+            $options['--type'] = 'playground-resource-controller-playground-case';
         }
 
         // dump([
@@ -314,16 +321,6 @@ trait BuildTests
         //     $options['--type'] = 'playground-resource-controller-model-case';
         // }
 
-        if (in_array($type, [
-            'playground-api',
-        ])) {
-            $options['--type'] = 'playground-api-controller-model-user';
-        } elseif (in_array($type, [
-            'playground-resource',
-        ])) {
-            $options['--type'] = 'playground-resource-controller-model-user';
-        }
-
         $models = $this->modelPackage?->models() ?? [];
         // dump([
         //     '__METHOD__' => __METHOD__,
@@ -338,13 +335,32 @@ trait BuildTests
                     // Revision models do not have controllers.
                     continue;
                 }
+
+                if (in_array($type, [
+                    'playground-api',
+                ])) {
+                    if ($model->type() === 'playground-model-tagged') {
+                        $options['--type'] = 'playground-api-controller-model-tagged';
+                    } else {
+                        $options['--type'] = 'playground-api-controller-model-user';
+                    }
+                } elseif (in_array($type, [
+                    'playground-resource',
+                ])) {
+                    if ($model->type() === 'playground-model-tagged') {
+                        $options['--type'] = 'playground-resource-controller-model-tagged';
+                    } else {
+                        $options['--type'] = 'playground-resource-controller-model-user';
+                    }
+                }
+
                 $options['--model'] = $model->name();
                 $options['name'] = Str::of($model->name())->studly()->finish('RouteTest')->toString();
                 $options['--model-file'] = $file;
-                // dump([
-                //     '__METHOD__' => __METHOD__,
-                //     '$options' => $options,
-                // ]);
+                dump([
+                    '__METHOD__' => __METHOD__,
+                    '$options' => $options,
+                ]);
 
                 $this->call('playground:make:test', $options);
 

@@ -419,15 +419,30 @@ PHP_CODE;
                     } elseif ($isResource) {
                         $params_controller['--type'] = 'playground-resource-tagged';
                     }
+                } elseif (in_array($model->type(), ['playground-model'])) {
+                    if ($isApi) {
+                        $params_controller['--type'] = 'playground-api';
+
+                    } elseif ($isResource) {
+                        $params_controller['--type'] = 'playground-resource';
+                    }
+                } elseif (in_array($model->type(), ['model'])) {
+                    if ($isApi) {
+                        $params_controller['--type'] = 'api';
+
+                    } elseif ($isResource) {
+                        $params_controller['--type'] = 'resource';
+                    }
                 }
 
-                dump([
-                    '__METHOD__' => __METHOD__,
-                    '$params_controller' => $params_controller,
-                    // '$this->c' => $this->c,
-                    '$model->name()' => $model->name(),
-                    '$model->revision()' => $model->revision(),
-                ]);
+                // dump([
+                //    '__METHOD__' => __METHOD__,
+                //    '$params_controller' => $params_controller,
+                //    // '$this->c' => $this->c,
+                //    '$model->name()' => $model->name(),
+                //    '$model->type()' => $model->type(),
+                //    '$model->revision()' => $model->revision(),
+                // ]);
                 $this->createControllerForModel($model, $package, $params_controller);
                 //                dd([
                 //                    '__METHOD__' => __METHOD__,
@@ -685,6 +700,11 @@ PHP_CODE;
     protected function createResourceIndexController(): void
     {
         $model_package = $this->hasOption('model-package') && $this->option('model-package') ? $this->option('model-package') : '';
+        //        dump([
+        //            '__METHOD__' => __METHOD__,
+        //            '$model_package' => $model_package,
+        //            '$this->options()' => $this->options(),
+        //        ]);
         $isApi = $this->hasOption('api') && $this->option('api');
         $isResource = $this->hasOption('resource') && $this->option('resource');
 
@@ -704,11 +724,26 @@ PHP_CODE;
         $models = $this->modelPackage?->models() ?? [];
 
         $model = '';
+        //        dump([
+        //            '__METHOD__' => __METHOD__,
+        //            '$model' => $model,
+        //            '$this->options()' => $this->options(),
+        //        ]);
         if ($this->hasOption('model') && $this->option('model') && is_string($this->option('model'))) {
             $model = $this->option('model');
+        } elseif (! empty($this->c->model_index()) && array_key_exists($this->c->model_index(), $models)) {
+            $model = $this->c->model_index();
         } else {
             $model = array_key_first($models);
         }
+        //        dd([
+        //            '__METHOD__' => __METHOD__,
+        //            '$model' => $model,
+        //            '$models' => $models,
+        //            '$this->c' => $this->c,
+        //            '$this->c->model_index()' => $this->c->model_index(),
+        //            '$this->options()' => $this->options(),
+        //        ]);
 
         $namespace = $this->c->namespace();
 
@@ -762,13 +797,13 @@ PHP_CODE;
 
         }
 
-        // dump([
-        //    '__METHOD__' => __METHOD__,
-        //    '$params' => $params,
-        //    // 'model-package' => $this->option('model-package'),
-        //    // '$this->options()' => $this->options(),
-        //    // '$this->modelPackage' => $this->modelPackage,
-        // ]);
+        //         dump([
+        //            '__METHOD__' => __METHOD__,
+        //            '$params' => $params,
+        //            // 'model-package' => $this->option('model-package'),
+        //             '$this->options()' => $this->options(),
+        //            // '$this->modelPackage' => $this->modelPackage,
+        //         ]);
         if (! $this->call('playground:make:controller', $params)) {
             //            $file_controller = sprintf(
             //                '%1$s/app/stub/%2$s/resources/package/index/controller.json',

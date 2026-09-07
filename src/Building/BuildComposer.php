@@ -329,7 +329,7 @@ trait BuildComposer
         }
 
         if ($isResource) {
-            $package_require_dev['tomasvotruba/bladestan'] = '^0.11.3';
+            $package_require_dev['tomasvotruba/bladestan'] = '^0.11.7';
         }
 
         $i = 0;

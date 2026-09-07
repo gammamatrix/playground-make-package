@@ -134,11 +134,14 @@ PHP_CODE;
             if (Str::of($model)->endsWith('Revision')) {
                 continue;
             }
-            $model_plural_slug = Str::of($model)->plural()->kebab()->toString();
-            // $model_slug = Str::of($model)->slug()->toString();
+            if (Str::endsWith($model, ['ed'])) {
+                $model_route_slug = Str::of($model)->kebab()->toString();
+            } else {
+                $model_route_slug = Str::of($model)->plural()->kebab()->toString();
+            }
             $model_kebab = Str::of($model)->kebab()->toString();
-            if ($model_plural_slug) {
-                $this->c->addRoute($model_plural_slug);
+            if ($model_route_slug) {
+                $this->c->addRoute($model_route_slug);
             }
 
             $config_abilities_manager .= sprintf($manager_line,

@@ -61,6 +61,7 @@ class InstanceTest extends TestCase
         'docs_name' => '',
         'docs_url' => '',
         'package_name' => '',
+        'model_index' => '',
         'model_package' => '',
         'model_package_name' => '',
         // 'package_autoload' => '',

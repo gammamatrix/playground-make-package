@@ -356,13 +356,13 @@ trait BuildSkeleton
                 $package_require['php'] = '^8.4';
                 $package_require['gammamatrix/playground'] = '*';
                 $package_require_dev['gammamatrix/playground-test'] = '*';
-                $package_require_dev['illuminate/testing'] = '^13.0';
+                // $package_require_dev['illuminate/testing'] = '^13.0';
             }
 
             if (in_array($this->c->type(), [
                 'playground-model',
             ])) {
-                $package_require['illuminate/database'] = '^13.0';
+                // $package_require['illuminate/database'] = '^13.0';
             }
 
             if (in_array($this->c->type(), [
@@ -370,7 +370,7 @@ trait BuildSkeleton
                 'playground-model',
                 'playground-resource',
             ])) {
-                $package_require['illuminate/support'] = '^13.0';
+                // $package_require['illuminate/support'] = '^13.0';
             }
 
             if (in_array($this->c->type(), [
