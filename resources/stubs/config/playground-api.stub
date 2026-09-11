@@ -8,6 +8,36 @@ declare(strict_types=1);
 
 /**
  * {{ package_name }} Configuration and Environment Variables
+ *
+ * @return array{
+ *       about: bool,
+ *       load: array{
+ *           policies: bool,
+ *           routes: bool,
+ *           translations: bool
+ *       },
+ *       matrix: array{
+ *           enabled: bool,
+ *       },
+ *       middleware: array{
+ *           default: string|string[],
+ *           auth: string|string[],
+ *           guest: string|string[]
+ *       },
+ *       policies: array<
+ *           class-string<\Illuminate\Database\Eloquent\Model>,
+ *           class-string<\Playground\Auth\Policies\Policy>
+ *       >,{{ config_revisions_docs }}
+ *       routes: array{{{ config_routes_docs }}
+ *       },{{ config_cache_docs }}
+ *       abilities: array<string, string[]>,
+ *       sitemap: array{
+ *            enable: bool,
+ *            guest: bool,
+ *            user: bool,
+ *            view: string
+ *       }
+ *   }
  */
 return [
 
@@ -37,6 +67,18 @@ return [
         'policies' => (bool) env('{{ config_space }}_LOAD_POLICIES', true),
         'routes' => (bool) env('{{ config_space }}_LOAD_ROUTES', true),
         'translations' => (bool) env('{{ config_space }}_LOAD_TRANSLATIONS', true),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Matrix
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'matrix' => [
+        'enabled' => (bool) env('{{ config_space }}_MATRIX_ENABLED', false),
     ],
 
     /*

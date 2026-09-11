@@ -18,6 +18,9 @@ declare(strict_types=1);
  *           translations: bool,
  *           views: bool
  *       },
+ *       matrix: array{
+ *           enabled: bool,
+ *       },
  *       middleware: array{
  *           default: string|string[],
  *           auth: string|string[],
@@ -68,6 +71,18 @@ return [
         'routes' => (bool) env('{{ config_space }}_LOAD_ROUTES', true),
         'translations' => (bool) env('{{ config_space }}_LOAD_TRANSLATIONS', true),
         'views' => (bool) env('{{ config_space }}_LOAD_VIEWS', true),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Matrix
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'matrix' => [
+        'enabled' => (bool) env('{{ config_space }}_MATRIX_ENABLED', false),
     ],
 
     /*

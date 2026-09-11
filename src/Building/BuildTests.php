@@ -357,10 +357,10 @@ trait BuildTests
                 $options['--model'] = $model->name();
                 $options['name'] = Str::of($model->name())->studly()->finish('RouteTest')->toString();
                 $options['--model-file'] = $file;
-                dump([
-                    '__METHOD__' => __METHOD__,
-                    '$options' => $options,
-                ]);
+                // dump([
+                //    '__METHOD__' => __METHOD__,
+                //    '$options' => $options,
+                // ]);
 
                 $this->call('playground:make:test', $options);
 
