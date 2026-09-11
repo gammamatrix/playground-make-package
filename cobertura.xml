@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.48659517426273" branch-rate="0" lines-covered="1089" lines-valid="2238" branches-covered="0" branches-valid="0" complexity="798" version="0.4" timestamp="1788888562">
+<coverage line-rate="0.48746642793196" branch-rate="0" lines-covered="1089" lines-valid="2234" branches-covered="0" branches-valid="0" complexity="798" version="0.4" timestamp="1789162227">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -3281,10 +3281,6 @@
                 <line number="357" hits="0"/>
                 <line number="358" hits="0"/>
                 <line number="359" hits="0"/>
-                <line number="360" hits="0"/>
-                <line number="361" hits="0"/>
-                <line number="362" hits="0"/>
-                <line number="363" hits="0"/>
                 <line number="365" hits="0"/>
               </lines>
             </method>
@@ -3591,10 +3587,6 @@
             <line number="357" hits="0"/>
             <line number="358" hits="0"/>
             <line number="359" hits="0"/>
-            <line number="360" hits="0"/>
-            <line number="361" hits="0"/>
-            <line number="362" hits="0"/>
-            <line number="363" hits="0"/>
             <line number="365" hits="0"/>
             <line number="381" hits="0"/>
             <line number="382" hits="0"/>
