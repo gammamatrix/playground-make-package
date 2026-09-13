@@ -276,13 +276,18 @@ trait BuildTests
             'playground',
         ])) {
             $options['name'] = 'PlaygroundTestCase';
-            $options['--type'] = 'playground-resource-controller-playground-case';
+            if ($this->c->type() === 'playground-api') {
+                $options['--type'] = 'playground-api-controller-playground-case';
+            } else {
+                $options['--type'] = 'playground-resource-controller-playground-case';
+            }
+            // dump([
+            //     '__METHOD__' => __METHOD__,
+            //     '$options' => $options,
+            //     '$this->options()' => $this->options(),
+            //     '$this->c' => $this->c,
+            // ]);
         }
-
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$options' => $options,
-        // ]);
 
         $options['--suite'] = 'feature';
         $this->call('playground:make:test', $options);
