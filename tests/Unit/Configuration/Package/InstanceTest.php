@@ -246,7 +246,8 @@ class InstanceTest extends TestCase
             'vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/policy.snippet.json',
         ], $instance->policies());
         $this->assertSame([
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/route.snippet.json',
+            'pages' => 'resources/configurations/playground-cms-api/page/route.json',
+            'snippets' => 'resources/configurations/playground-cms-api/snippet/route.json',
         ], $instance->routes());
         $this->assertFalse($instance->withControllers());
         $this->assertFalse($instance->withFactories());

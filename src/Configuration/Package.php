@@ -537,8 +537,10 @@ class Package extends PrimaryConfiguration
         if (! empty($options['routes'])
             && is_array($options['routes'])
         ) {
-            foreach ($options['routes'] as $file) {
-                $this->addClassFileTo('routes', $file);
+            foreach ($options['routes'] as $key => $file) {
+                if (is_string($key) && is_string($file)) {
+                    $this->addMappedClassTo('routes', $key, $file);
+                }
             }
         }
 

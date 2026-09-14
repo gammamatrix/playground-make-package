@@ -56,8 +56,9 @@
         "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.store.json",
         "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/snippet/request.update.json"
     ],
-    "routes": [
-        "vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/route.snippet.json"
-    ],
+    "routes": {
+        "pages": "resources/configurations/playground-cms-api/page/route.json",
+        "snippets": "resources/configurations/playground-cms-api/snippet/route.json"
+    },
     "service_provider": "playground-policies"
 }

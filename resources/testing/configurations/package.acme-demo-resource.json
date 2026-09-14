@@ -49,8 +49,9 @@
         "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/rocket/request.store.json",
         "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/rocket/request.update.json"
     ],
-    "routes": [
-        "vendor/gammamatrix/acme-make/resources/configurations/acme-demo-resource/route.rocket.json"
-    ],
+    "routes": {
+        "pages": "resources/configurations/acme-demo-resource/page/route.json",
+        "snippets": "resources/configurations/acme-demo-resource/snippet/route.json"
+    },
     "service_provider": "acme-policies"
 }
