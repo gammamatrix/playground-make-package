@@ -6,7 +6,7 @@ The {{ package_name }} package.
 
 You can install the package via composer:
 
-```bash
+```shell
 composer require {{ packagist }}
 ```
 
@@ -17,19 +17,18 @@ All options are disabled by default.
 See the contents of the published config file: [config/{{ package }}.php](config/{{ package }}.php)
 
 You can publish the config file with:
-```bash
+```shell
 php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-config"
 ```
 
 ## Cloc
 
-```sh
+```shell
 composer cloc
 ```
 
-```
+```terminaloutput
 ➜  {{ package }} git:(develop) ✗ composer cloc
-> cloc --exclude-dir=node_modules,output,vendor .
 ```
 
 ## PHPStan
@@ -37,30 +36,30 @@ composer cloc
 Tests at level 9 on:
 {{readme_phpstan}}
 
-```sh
+```shell
 composer analyse
 ```
 
 ## Coding Standards
 
-```sh
+```shell
 composer format
 ```
 
 ## Testing
 
 Run unit tests:
-```sh
+```shell
 composer test
 ```
 
 Run unit and feature tests:
-```sh
+```shell
 composer test-dev
 ```
 
 Run unit and feature tests in parallel:
-```sh
+```shell
 composer test-parallel
 ```
 

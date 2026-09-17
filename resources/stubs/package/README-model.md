@@ -14,7 +14,7 @@ Read more on using [{{ package_name }} at Read the Docs](https://gammamatrix-pla
 
 Install this package, with composer, to get access to the {{ module }} Models:
 
-```bash
+```shell
 composer require {{ packagist }}
 ```
 
@@ -31,7 +31,7 @@ Migrations are disabled by default. This package may sometimes be installed wher
 See the contents of the published config file: [config/{{ package }}.php](config/{{ package }}.php)
 
 You can publish the config file with:
-```bash
+```shell
 php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-config"
 ```
 
@@ -55,19 +55,18 @@ See the contents of the published config file: [database/migrations](database/mi
 - NOTE: There are {{ readme_models_count }} tables that will be created, they do have indexes and unique constraints defined; however, this release does not have the foreign key constraint migrations included at this time.
 
 You can publish the migrations file with:
-```bash
+```shell
 php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-migrations"
 ```
 
 ## Cloc
 
-```sh
+```shell
 composer cloc
 ```
 
-```
+```terminaloutput
 ➜  {{ package }} git:(develop) ✗ composer cloc
-> cloc --exclude-dir=node_modules,output,vendor .
        0 text files.
        0 unique files.
        0 files ignored.
@@ -92,30 +91,30 @@ SUM:                             0              0              0              0
 Tests at level 10 on:
 {{readme_phpstan}}
 
-```sh
+```shell
 composer analyse
 ```
 
 ## Coding Standards
 
-```sh
+```shell
 composer format
 ```
 
 ## Testing
 
 Unit tests
-```sh
+```shell
 composer test
 ```
 
 Unit and feature tests
-```sh
+```shell
 composer test-dev
 ```
 
 Run unit and feature tests in parallel:
-```sh
+```shell
 composer test-parallel
 ```
 

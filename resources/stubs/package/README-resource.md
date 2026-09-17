@@ -28,13 +28,13 @@ See [package.json](package.json) requirements.
 
 Install npm.
 
-```sh
+```shell
 npm install
 ```
 
 Build the documentation to generate the [openapi.yaml](openapi.yaml) configuration.
 
-```sh
+```shell
 npm run docs
 ```
 
@@ -45,7 +45,7 @@ Documentation
 
 You can install the package via composer:
 
-```bash
+```shell
 composer require {{ packagist }}
 ```
 
@@ -59,7 +59,7 @@ Playground provides information in the `artisan about` command.
 
 You can publish the config file with:
 
-```bash
+```shell
 php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-config"
 ```
 
@@ -68,7 +68,7 @@ All routes are enabled by default. They may be disabled via environment variable
 See the contents of the published config file: [config/{{ package }}.php](config/{{ package }}.php)
 
 You can publish the routes file with:
-```bash
+```shell
 php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-routes"
 ```
 - The routes while be published in a folder at `routes/{{ package }}`
@@ -86,13 +86,12 @@ This package requires the migrations in [{{ model_package }}](https://github.com
 
 ## Cloc
 
-```sh
+```shell
 composer cloc
 ```
 
-```
+```terminaloutput
 ➜  {{ package }} git:(develop) ✗ composer cloc
-> cloc --exclude-dir=node_modules,output,vendor .
       0 text files.
       0 unique files.
       0 files ignored.
@@ -117,42 +116,42 @@ SUM:                             0              0              0              0
 Tests at level 10 on:
 {{readme_phpstan}}
 
-```sh
+```shell
 composer analyse
 ```
 
 ## Coding Standards
 
 Format source code:
-```sh
+```shell
 composer format
 ```
 
 Format blades in resources/views:
 
-```sh
+```shell
 composer format-blade
 ```
 - **NOTE:** requires installing dev packages from package.json.
 
-```sh
+```shell
 npm install
 ```
 
 ## Testing
 
 Run unit tests:
-```sh
+```shell
 composer test
 ```
 
 Run unit and feature tests:
-```sh
+```shell
 composer test-dev
 ```
 
 Run unit and feature tests in parallel:
-```sh
+```shell
 composer test-parallel
 ```
 
