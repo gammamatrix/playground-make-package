@@ -137,7 +137,7 @@ PHP_CODE;
             if (Str::endsWith($model, ['ed'])) {
                 $model_route_slug = Str::of($model)->kebab()->toString();
             } else {
-                $model_route_slug = Str::of($model)->plural()->kebab()->toString();
+                $model_route_slug = Str::of($model)->plural()->finish('s')->kebab()->toString();
             }
             $model_kebab = Str::of($model)->kebab()->toString();
             if ($model_route_slug) {
