@@ -94,7 +94,8 @@ trait BuildControllers
             //                $package,
             //            );
             $file_request = 'resources/package/form.request.json';
-            $this->c->addClassFileTo('requests', $file_request);
+            // TODO disabled
+            // $this->c->addClassFileTo('requests', $file_request);
             // dd([
             //     '__METHOD__' => __METHOD__,
             //     '$file_request' => $file_request,
@@ -579,7 +580,8 @@ PHP_CODE;
                 'resources/package/%1$s/controller.json',
                 $model_slug
             );
-            $this->c->addClassFileTo('controllers', $file_controller);
+            // TODO disabled
+            // $this->c->addClassFileTo('controllers', $file_controller);
             //            $file_route = sprintf(
             //                '%1$s/app/stub/%2$s/resources/package/%3$s/route.json',
             //                $this->laravel->storagePath(),
@@ -591,7 +593,8 @@ PHP_CODE;
                 $model_slug
             );
             if ($model_plural_slug) {
-                $this->c->addRoute($model_plural_slug, $file_route);
+                // TODO disabling saving of routes in the base configuration
+                // $this->c->addRoute($model_plural_slug, $file_route);
             }
 
             // dd([
@@ -679,7 +682,8 @@ PHP_CODE;
             //                $package,
             //            );
             $file_controller = 'resources/package/controller.base.json';
-            $this->c->addClassFileTo('controllers', $file_controller);
+            // TODO disabling adding the controller class files to the base
+            // $this->c->addClassFileTo('controllers', $file_controller);
             // dd([
             //     '__METHOD__' => __METHOD__,
             //     '$file_controller' => $file_controller,
@@ -811,7 +815,8 @@ PHP_CODE;
             //                $package,
             //            );
             $file_controller = 'resources/package/index/controller.json';
-            $this->c->addClassFileTo('controllers', $file_controller);
+            // TODO disabled
+            // $this->c->addClassFileTo('controllers', $file_controller);
             // dd([
             //     '__METHOD__' => __METHOD__,
             //     '$file_controller' => $file_controller,
