@@ -22,7 +22,7 @@
     "prefer-stable": true,
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
-        "cloc": "cloc --exclude-dir=node_modules,output,vendor .",
+        "cloc": "cloc --exclude-ext=lock --exclude-dir=.git,.idea,.phpunit.cache,node_modules,output,vendor .",
         "format": "vendor/bin/pint",{{ composer_scripts }}
         "test": "vendor/bin/testbench package:test",
         "test-dev": [

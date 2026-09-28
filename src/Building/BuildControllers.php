@@ -347,7 +347,8 @@ PHP_CODE;
         $params_form_request['--module'] = $this->c->module();
 
         if (! $isApi && $this->c->module_slug()) {
-            $this->c->addRoute($this->c->module_slug());
+            // TODO disabled adding to files
+             $this->c->addRoute($this->c->module_slug());
         }
 
         if ($isApi) {
@@ -395,7 +396,12 @@ PHP_CODE;
         foreach ($models as $model => $file) {
             if (is_string($file) && $file) {
 
-                $model = new Model($this->readJsonFileAsArray($file));
+                $model = new Model($this->readJsonFileAsArray($file))->apply();
+                //                dd([
+                //                    '__METHOD__' => __METHOD__,
+                //                    '$file' => $file,
+                //                    '$model' => $model->toArray(),
+                //                ]);
 
                 if ($model->revision()) {
                     // Revision models do not have controllers.
@@ -403,7 +409,7 @@ PHP_CODE;
                 }
 
                 $params_controller['--model'] = $model->name();
-                $params_controller['name'] = Str::of($model->name())->studly()->finish('Controller')->toString();
+                $params_controller['name'] = Str::of($model->model_studly())->finish('Controller')->toString();
                 $params_controller['--model-file'] = $file;
 
                 if (in_array($model->type(), ['playground-model-linked', 'model-linked'])) {
@@ -463,32 +469,32 @@ PHP_CODE;
                 if ($addConfigForRevisions) {
                     $config_policies .= $this->build_config_policy_line_revision($model);
                     $revisions_text .= $this->build_config_revision_line(
-                        Str::of($model->name())->plural()->kebab()->toString()
+                        $model->model_kebabs()
                     );
                     $config_revisions_docs .= sprintf(
                         ' *           %1$s: bool,%2$s',
-                        Str::of($model->name())->plural()->lower()->kebab()->toString(),
+                        $model->model_kebabs(),
                         PHP_EOL
                     );
                     $config_revisions_docs_sp .= sprintf(
                         '         *            %1$s: bool,%2$s',
-                        Str::of($model->name())->plural()->lower()->kebab()->toString(),
+                        $model->model_kebabs(),
                         PHP_EOL
                     );
                     $config_cache_docs .= $this->build_config_cache_model_docs(
-                        Str::of($model->name())->singular()->snake()->toString()
+                        $model->model_snake()
                     );
                     $config_cache_docs_sp .= $this->build_config_cache_model_docs_sp(
-                        Str::of($model->name())->singular()->snake()->toString()
+                        $model->model_snake()
                     );
                 } else {
                     $config_policies .= $this->build_config_policy_line($model);
                 }
 
-                //                 dd([
-                //                     '__METHOD__' => __METHOD__,
-                //                     '$this->c' => $this->c->toArray(),
-                //                 ]);
+                // dd([
+                //     '__METHOD__' => __METHOD__,
+                //     '$this->c' => $this->c->toArray(),
+                // ]);
             }
         }
 
@@ -517,6 +523,7 @@ PHP_CODE;
         // ]);
 
         $this->make_service_provider_routes();
+        $this->preload_model_routes_for_service_provider();
     }
 
     /**
@@ -568,8 +575,8 @@ PHP_CODE;
         //    '$params' => $params,
         // ]);
         if (! $this->call('playground:make:controller', $params)) {
-            $model_slug = Str::of($model->name())->kebab()->toString();
-            $model_plural_slug = Str::of($model->model_plural())->kebab()->toString();
+            $model_slug = $model->model_kebab();
+            $model_plural_slug = $model->model_kebabs();
             //            $file_controller = sprintf(
             //                '%1$s/app/stub/%2$s/resources/package/%3$s/controller.json',
             //                $this->laravel->storagePath(),
@@ -594,17 +601,18 @@ PHP_CODE;
             );
             if ($model_plural_slug) {
                 // TODO disabling saving of routes in the base configuration
-                // $this->c->addRoute($model_plural_slug, $file_route);
+                 $this->c->addRoute($model_plural_slug, $file_route);
             }
 
-            // dd([
-            //     '__METHOD__' => __METHOD__,
-            //     '$file_controller' => $file_controller,
-            //     '$package' => $package,
-            //     '$params' => $params,
-            //     // '$this->c' => $this->c->toArray(),
-            //    '$this->c' => $this->c,
-            // ]);
+             dump([
+                 '__METHOD__' => __METHOD__,
+                 '$model_plural_slug' => $model_plural_slug,
+                 '$file_controller' => $file_controller,
+                 '$file_route' => $file_route,
+                 '$package' => $package,
+                 '$params' => $params,
+                  '$this->c->routes' => $this->c->routes(),
+             ]);
         }
     }
 

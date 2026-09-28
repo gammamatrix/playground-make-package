@@ -334,7 +334,7 @@ trait BuildTests
         foreach ($models as $model => $file) {
             if (is_string($file) && $file) {
 
-                $model = new Model($this->readJsonFileAsArray($file));
+                $model = new Model($this->readJsonFileAsArray($file))->apply();
 
                 if ($model->revision()) {
                     // Revision models do not have controllers.
@@ -360,7 +360,7 @@ trait BuildTests
                 }
 
                 $options['--model'] = $model->name();
-                $options['name'] = Str::of($model->name())->studly()->finish('RouteTest')->toString();
+                $options['name'] = Str::of($model->model_studly())->finish('RouteTest')->toString();
                 $options['--model-file'] = $file;
                 // dump([
                 //    '__METHOD__' => __METHOD__,
@@ -430,14 +430,14 @@ trait BuildTests
         foreach ($models as $model => $file) {
             if (is_string($file) && $file) {
 
-                $model = new Model($this->readJsonFileAsArray($file));
+                $model = new Model($this->readJsonFileAsArray($file))->apply();
 
                 if ($model->revision()) {
                     // Revision models do not have controllers.
                     continue;
                 }
                 $options['--model'] = $model->name();
-                $options['name'] = Str::of($model->name())->studly()->finish('TestCase')->toString();
+                $options['name'] = Str::of($model->model_studly())->finish('TestCase')->toString();
                 $options['--model-file'] = $file;
                 // dump([
                 //     '__METHOD__' => __METHOD__,
@@ -546,11 +546,11 @@ trait BuildTests
         if ($this->c->skeleton()) {
             $options['--skeleton'] = true;
         }
-        //         dd([
-        //             '__METHOD__' => __METHOD__,
-        //             '$options' => $options,
-        // //             '$this->c' => $this->c,
-        //         ]);
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$options' => $options,
+        //     // '$this->c' => $this->c,
+        // ]);
 
         $options['--suite'] = 'feature';
         $this->call('playground:make:test', $options);

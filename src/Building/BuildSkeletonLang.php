@@ -75,21 +75,21 @@ trait BuildSkeletonLang
         $lang_models_revisions = '';
 
         foreach ($models as $name => $file) {
-            $model = new Model($this->readJsonFileAsArray($file));
-            $model_slug_plural = $model->model_slug_plural();
+            $model = new Model($this->readJsonFileAsArray($file))->apply();
+            $model_slugs = $model->model_slugs();
 
             if ($revision
                 && ! $model->revision()
-                && $model_slug_plural
+                && $model_slugs
             ) {
-                $lang_models_revisions .= $this->make_lang_revision($model_slug_plural);
+                $lang_models_revisions .= $this->make_lang_revision($model_slugs);
             }
 
             // dump([
             //     '__METHOD__' => __METHOD__,
             //     '$name' => $name,
             //     '$file' => $file,
-            //     '$model_slug_plural' => $model_slug_plural,
+            //     '$model_slugs' => $model_slugs,
             //     '$lang_models_revisions' => $lang_models_revisions,
             //     // '$model' => $model->apply()->toArray(),
             // ]);

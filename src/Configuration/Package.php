@@ -24,7 +24,10 @@ class Package extends PrimaryConfiguration
         'config_space' => '',
         'fqdn' => '',
         'module' => '',
+        'module_label' => '',
+        'module_labels' => '',
         'module_slug' => '',
+        'module_slugs' => '',
         'name' => '',
         'namespace' => '',
         'organization' => '',
@@ -1139,5 +1142,24 @@ class Package extends PrimaryConfiguration
     public function version(): string
     {
         return $this->version;
+    }
+
+    public function reset(): Package
+    {
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     // '$models' => $models,
+        //     '$this->routes()' => $this->routes(),
+        // ]);
+
+        // TODO finish handling for saving these files.
+        $this->controllers = [];
+        $this->policies = [];
+        $this->requests = [];
+        $this->routes = [];
+        $this->transformers = [];
+        $this->translations = [];
+
+        return $this;
     }
 }

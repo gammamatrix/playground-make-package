@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Playground\Make\Package\Building;
 
 use Illuminate\Support\Str;
+use Playground\Make\Configuration\Model;
 
 /**
  * \Playground\Make\Package\Building\BuildServiceProvider
@@ -119,7 +120,8 @@ PHP_CODE;
         $user_line .= '%1$s\'%2$s:%3$s:viewAny\',%4$s';
 
         if (! $isApi && $this->c->module_slug()) {
-            $this->c->addRoute($this->c->module_slug());
+            // TODO disabled adding to files
+            //$this->c->addRoute($this->c->module_slug());
         }
         // dump([
         //     '__METHOD__' => __METHOD__,
@@ -128,20 +130,27 @@ PHP_CODE;
         // ]);
 
         $models = $this->modelPackage?->models() ?? [];
+        // dd([
+        //     '__METHOD__' => __METHOD__,
+        //     '$models' => $models,
+        // ]);
 
         foreach ($models as $model => $file) {
 
-            if (Str::of($model)->endsWith('Revision')) {
+            $model = new Model($this->readJsonFileAsArray($file))->apply();
+
+            if (Str::of($model->name())->endsWith('Revision')) {
                 continue;
             }
-            if (Str::endsWith($model, ['ed'])) {
-                $model_route_slug = Str::of($model)->kebab()->toString();
+            if (Str::endsWith($model->name(), ['ed'])) {
+                $model_route_slug = $model->model_kebab();
             } else {
-                $model_route_slug = Str::of($model)->plural()->finish('s')->kebab()->toString();
+                $model_route_slug = $model->model_kebabs();
             }
-            $model_kebab = Str::of($model)->kebab()->toString();
+            $model_kebab = $model->model_kebab();
             if ($model_route_slug) {
-                $this->c->addRoute($model_route_slug);
+                // TODO disabled adding to files
+                //$this->c->addRoute($model_route_slug);
             }
 
             $config_abilities_manager .= sprintf($manager_line,
@@ -167,11 +176,13 @@ PHP_CODE;
             $this->searches['config_abilities_user'] = rtrim($config_abilities_user);
         }
 
-        $this->make_service_provider_routes();
-        //         dump([
-        //             '__METHOD__' => __METHOD__,
-        //             // '$models' => $models,
-        //             '$this->c->routes()' => $this->c->routes(),
-        //         ]);
+        //$this->make_service_provider_routes();
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$config_abilities_manager' => $config_abilities_manager,
+        //     '$config_abilities_user' => $config_abilities_user,
+        //     // '$models' => $models,
+        //     // '$this->c->routes()' => $this->c->routes(),
+        // ]);
     }
 }

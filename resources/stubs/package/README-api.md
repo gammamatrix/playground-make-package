@@ -22,7 +22,7 @@ This application provides OpenAPI documentation: [openapi.yaml](openapi.yaml).
 - Index endpoints support advanced query filtering.
 
 OpenAPI API Documentation is built with npm using Redocly.
-- npm is only needed to generate documentation and is not needed to operate the {{ package_name }} API.
+- npm is only needed to generate documentation and is not needed to operate the {{ package_name }}.
 
 See [package.json](package.json) requirements.
 

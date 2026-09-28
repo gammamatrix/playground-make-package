@@ -172,6 +172,8 @@ class PackageMakeCommand extends GeneratorCommand
         $options[] = ['sandbox', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use Playground Sandbox'];
         $options[] = ['revision', null, InputOption::VALUE_NONE, 'Allow the '.strtolower($this->type).' to use revision features'];
         $options[] = ['openapi', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' the OpenAPI documentation'];
+        $options[] = ['seeders', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' seeders'];
+        $options[] = ['translations', null, InputOption::VALUE_NONE, 'Build the '.strtolower($this->type).' translations'];
         $options[] = ['test', null, InputOption::VALUE_NONE, 'Create the unit and feature tests for the '.strtolower($this->type)];
         $options[] = ['api', null, InputOption::VALUE_NONE, 'Generate an API controller class when creating the model. Requires --controllers option'];
         $options[] = ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class when creating the model. Requires --controllers option'];
@@ -182,6 +184,10 @@ class PackageMakeCommand extends GeneratorCommand
 
     public function prepareOptions(): void
     {
+        //dump([
+        //    '__METHOD__' => __METHOD__,
+        //    '$this->options()' => $this->options(),
+        //]);
         // if ($this->hasOption('factories')
         //     && $this->option('factories')
         // ) {
@@ -189,7 +195,10 @@ class PackageMakeCommand extends GeneratorCommand
         //         'factories' => true,
         //     ]);
         // }
+        $setOptions = [];
+
         if ($this->hasOption('playground') && $this->option('playground')) {
+            $setOptions['playground'] = true;
             $this->c->setOptions([
                 'playground' => true,
             ]);
@@ -205,8 +214,8 @@ class PackageMakeCommand extends GeneratorCommand
             $requireConfigSpace = true;
         }
 
-        $isApi = false;
-        $isResource = false;
+        $isApi = $this->hasOption('api') && $this->option('api');
+        $isResource = $this->hasOption('resource') && $this->option('resource');
 
         if ($this->c->playground()) {
             if ($this->c->type() === 'playground-api') {
@@ -232,10 +241,7 @@ class PackageMakeCommand extends GeneratorCommand
                 ->replace('\\', '_')
                 ->toString();
 
-            $this->c->setOptions([
-                'config_space' => $config_space,
-            ]);
-            $this->searches['config_space'] = $config_space;
+            $setOptions['config_space'] = $config_space;
         }
         // dd([
         //     '__METHOD__' => __METHOD__,
@@ -244,6 +250,96 @@ class PackageMakeCommand extends GeneratorCommand
         //     '$requireConfigSpace' => $requireConfigSpace,
         //     '$this->searches' => $this->searches,
         // ]);
+
+        if ($this->hasOption('packagist')
+            && is_string($this->option('packagist'))
+            && $this->option('packagist')
+        ) {
+            $setOptions['packagist'] = $this->option('packagist');
+        }
+
+        if ($this->hasOption('license')
+            && is_string($this->option('license'))
+            && $this->option('license')
+        ) {
+            $setOptions['package_license'] = $this->option('license');
+        }
+
+        if ($this->hasOption('email')
+            && is_string($this->option('email'))
+            && $this->option('email')
+        ) {
+            $setOptions['organization_email'] = $this->option('email');
+        }
+
+        if ($this->hasOption('blade') && $this->option('blade')) {
+            $setOptions['withBlades'] = true;
+        }
+
+        if ($this->hasOption('controllers') && $this->option('controllers')) {
+            $setOptions['withControllers'] = true;
+        }
+
+        if ($this->hasOption('factories') && $this->option('factories')) {
+            $setOptions['withFactories'] = true;
+        }
+
+        if ($this->hasOption('migrations') && $this->option('migrations')) {
+            $setOptions['withMigrations'] = true;
+        }
+
+        if ($this->hasOption('models') && $this->option('models')) {
+            $setOptions['withModels'] = true;
+        }
+
+        if ($this->hasOption('policies') && $this->option('policies')) {
+            $setOptions['withPolicies'] = true;
+        }
+
+        if ($this->hasOption('requests') && $this->option('requests')) {
+            $setOptions['withRequests'] = true;
+        }
+
+        $withRoutes = false;
+        if ($this->hasOption('routes') && $this->option('routes')) {
+            $withRoutes = true;
+            $setOptions['withRoutes'] = $withRoutes;
+        }
+
+        if ($withRoutes) {
+            $this->preload_model_routes_for_service_provider();
+        }
+
+        if ($this->hasOption('openapi') && $this->option('openapi')) {
+            $setOptions['withOpenAPI'] = true;
+        }
+
+        if ($this->hasOption('revision') && $this->option('revision')) {
+            $setOptions['revision'] = true;
+        }
+
+        if ($this->hasOption('seeders') && $this->option('seeders')) {
+            $setOptions['withSeeders'] = true;
+        }
+
+        if ($this->hasOption('test') && $this->option('test')) {
+            $setOptions['withTests'] = true;
+        }
+
+        if ($this->hasOption('translations') && $this->option('translations')) {
+            $setOptions['withTranslations'] = true;
+        }
+
+        if (! empty($setOptions)) {
+            $this->c->setOptions($setOptions);
+        }
+
+        $this->searches['config_space'] = $this->c->config_space();
+        $this->searches['packagist'] = $this->c->packagist();
+        $this->searches['package_license'] = $this->c->package_license();
+        $this->searches['organization_email'] = $this->c->organization_email();
+        $this->searches['packagist'] = $this->c->packagist();
+        $this->searches['packagist'] = $this->c->packagist();
 
         $withTranslations = $this->c->withTranslations();
         if ($withTranslations) {
@@ -267,106 +363,6 @@ class PackageMakeCommand extends GeneratorCommand
         }
 
         $this->searches['ci_phpstan_folders'] = $ci_phpstan_folders;
-
-        if ($this->hasOption('packagist')
-            && is_string($this->option('packagist'))
-            && $this->option('packagist')
-        ) {
-            $this->c->setOptions([
-                'packagist' => $this->option('packagist'),
-            ]);
-            $this->searches['packagist'] = $this->c->packagist();
-        }
-
-        if ($this->hasOption('license')
-            && is_string($this->option('license'))
-            && $this->option('license')
-        ) {
-            $this->c->setOptions([
-                'package_license' => $this->option('license'),
-            ]);
-            $this->searches['package_license'] = $this->c->package_license();
-        }
-
-        if ($this->hasOption('email')
-            && is_string($this->option('email'))
-            && $this->option('email')
-        ) {
-            $this->c->setOptions([
-                'organization_email' => $this->option('email'),
-            ]);
-            $this->searches['organization_email'] = $this->c->organization_email();
-        }
-
-        if ($this->hasOption('blade') && $this->option('blade')) {
-            $this->c->setOptions([
-                'withBlades' => true,
-            ]);
-        }
-
-        if ($this->hasOption('controllers') && $this->option('controllers')) {
-            $this->c->setOptions([
-                'withControllers' => true,
-            ]);
-        }
-
-        if ($this->hasOption('factories') && $this->option('factories')) {
-            $this->c->setOptions([
-                'withFactories' => true,
-            ]);
-        }
-
-        if ($this->hasOption('migrations') && $this->option('migrations')) {
-            $this->c->setOptions([
-                'withMigrations' => true,
-            ]);
-        }
-
-        if ($this->hasOption('models') && $this->option('models')) {
-            $this->c->setOptions([
-                'withModels' => true,
-            ]);
-        }
-
-        if ($this->hasOption('policies') && $this->option('policies')) {
-            $this->c->setOptions([
-                'withPolicies' => true,
-            ]);
-        }
-
-        if ($this->hasOption('requests') && $this->option('requests')) {
-            $this->c->setOptions([
-                'withRequests' => true,
-            ]);
-        }
-
-        if ($this->hasOption('routes') && $this->option('routes')) {
-            $this->c->setOptions([
-                'withRoutes' => true,
-            ]);
-        }
-
-        if ($this->c->withRoutes()) {
-            $this->preload_model_routes_for_service_provider();
-        }
-
-        if ($this->hasOption('openapi') && $this->option('openapi')) {
-            $this->c->setOptions([
-                'withOpenAPI' => true,
-            ]);
-        }
-
-        if ($this->hasOption('test') && $this->option('test')) {
-            $this->c->setOptions([
-                'withTests' => true,
-            ]);
-        }
-
-        if ($this->hasOption('revision') && $this->option('revision')) {
-            $this->c->setOptions([
-                'revision' => true,
-            ]);
-        }
 
         if ($this->c->playground() && in_array($this->c->type(), [
             'playground-model',
@@ -409,6 +405,11 @@ class PackageMakeCommand extends GeneratorCommand
 
         }
         $this->c->apply();
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$withRoutes' => $withRoutes,
+        //     '$this->c' => $this->c,
+        // ]);
 
         // dd([
         //     '__METHOD__' => __METHOD__,
@@ -464,18 +465,20 @@ class PackageMakeCommand extends GeneratorCommand
         $this->createConfig();
         $this->createSkeleton();
 
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$this->c->type()' => $this->c->type(),
-        //     '$this->c' => $this->c,
-        //     '$this->searches' => $this->searches,
-        // ]);
         $this->saveConfiguration();
 
         if ($this->c->withTests()) {
             $this->createTest();
         }
 
+        // Reset
+        $this->c->reset()->apply();
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->c' => $this->c,
+        //     //'$this->searches' => $this->searches,
+        // ]);
         $this->saveConfiguration();
 
         return $this->return_status;
