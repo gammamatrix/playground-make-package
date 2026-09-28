@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-09-26 16:36:22</timestamp>
+  <timestamp>2026-09-28 23:46:17</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>142</methodCount>
+    <methodCount>143</methodCount>
     <crapMethodCount>17</crapMethodCount>
-    <crapLoad>268</crapLoad>
-    <totalCrap>5819.2</totalCrap>
-    <crapMethodPercent>11.97</crapMethodPercent>
+    <crapLoad>266</crapLoad>
+    <totalCrap>5776.45</totalCrap>
+    <crapMethodPercent>11.89</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -1453,6 +1453,17 @@
       <crapLoad>0</crapLoad>
     </method>
     <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>reset</methodName>
+      <methodSignature>reset(): Package</methodSignature>
+      <fullMethod>reset(): Package</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
       <package>Playground\Make\Package\Console\Commands</package>
       <className>Playground\Make\Package\Console\Commands\PackageMakeCommand</className>
       <methodName>getOptions</methodName>
@@ -1469,10 +1480,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>250.77</crap>
-      <complexity>62</complexity>
-      <coverage>63.38</coverage>
-      <crapLoad>24</crapLoad>
+      <crap>206.02</crap>
+      <complexity>69</complexity>
+      <coverage>69.35</coverage>
+      <crapLoad>23</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Console\Commands</package>
@@ -1482,7 +1493,7 @@
       <fullMethod>finish(): ?bool</fullMethod>
       <crap>4</crap>
       <complexity>4</complexity>
-      <coverage>95.65</coverage>
+      <coverage>95.83</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
