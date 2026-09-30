@@ -40,11 +40,22 @@ trait BuildModels
                 if ($this->c->skeleton()) {
                     $params['--skeleton'] = true;
                 }
-                //                 dd([
-                //                     '__METHOD__' => __METHOD__,
-                //                     '$params' => $params,
-                //                     '$model' => $model,
-                //                 ]);
+
+                // TODO the package config is not being loaded
+//                if ($this->c->namespace()) {
+//                    $params['--namespace'] = $this->c->namespace();
+//                }
+//
+//                if ($this->c->package()) {
+//                    $params['--package'] = $this->c->package();
+//                }
+
+//                dd([
+//                     '__METHOD__' => __METHOD__,
+//                     '$params' => $params,
+//                     '$model' => $model,
+//                     '$this->c' => $this->c->toArray(),
+//                 ]);
                 $this->call('playground:make:model', $params);
 
                 $this->searches['readme_models'] .= sprintf(

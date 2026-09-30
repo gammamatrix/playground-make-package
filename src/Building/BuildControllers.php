@@ -604,15 +604,15 @@ PHP_CODE;
                  $this->c->addRoute($model_plural_slug, $file_route);
             }
 
-             dump([
-                 '__METHOD__' => __METHOD__,
-                 '$model_plural_slug' => $model_plural_slug,
-                 '$file_controller' => $file_controller,
-                 '$file_route' => $file_route,
-                 '$package' => $package,
-                 '$params' => $params,
-                  '$this->c->routes' => $this->c->routes(),
-             ]);
+            // dump([
+            //     '__METHOD__' => __METHOD__,
+            //     '$model_plural_slug' => $model_plural_slug,
+            //     '$file_controller' => $file_controller,
+            //     '$file_route' => $file_route,
+            //     '$package' => $package,
+            //     '$params' => $params,
+            //      '$this->c->routes' => $this->c->routes(),
+            // ]);
         }
     }
 
