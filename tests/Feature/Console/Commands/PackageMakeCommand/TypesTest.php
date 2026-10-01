@@ -49,7 +49,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_playground_type_without_file(): void
     {
-        $command = 'playground:make:package testing --force --type playground';
+        $command = 'playground:make:package testing --force --type playground --package acme';
 
         /**
          * @var PendingCommand $result
@@ -60,7 +60,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_with_playground_type_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --type playground';
+        $command = 'playground:make:package testing --skeleton --force --type playground --package acme';
 
         /**
          * @var PendingCommand $result
@@ -99,7 +99,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_playground_model_type_without_file(): void
     {
-        $command = 'playground:make:package testing --force --type playground-model';
+        $command = 'playground:make:package testing --force --type playground-model --package acme';
 
         /**
          * @var PendingCommand $result
@@ -110,7 +110,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_with_playground_model_type_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --type playground-model';
+        $command = 'playground:make:package testing --skeleton --force --type playground-model --package acme';
 
         /**
          * @var PendingCommand $result
@@ -149,7 +149,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_playground_api_type_without_file(): void
     {
-        $command = 'playground:make:package testing --force --type playground-api';
+        $command = 'playground:make:package testing --force --type playground-api --package acme';
 
         /**
          * @var PendingCommand $result
@@ -160,7 +160,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_with_playground_api_type_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --type playground-api';
+        $command = 'playground:make:package testing --skeleton --force --type playground-api --package acme';
 
         /**
          * @var PendingCommand $result
@@ -199,7 +199,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_playground_resource_type_without_file(): void
     {
-        $command = 'playground:make:package testing --force --type playground-resource';
+        $command = 'playground:make:package testing --force --type playground-resource --package acme';
 
         /**
          * @var PendingCommand $result
@@ -210,7 +210,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_with_playground_resource_type_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --type playground-resource';
+        $command = 'playground:make:package testing --skeleton --force --type playground-resource --package acme';
 
         /**
          * @var PendingCommand $result
@@ -249,7 +249,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_api_type_without_file(): void
     {
-        $command = 'playground:make:package testing --force --type api';
+        $command = 'playground:make:package testing --force --type api --package acme';
 
         /**
          * @var PendingCommand $result
@@ -260,7 +260,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_with_api_type_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --type api';
+        $command = 'playground:make:package testing --skeleton --force --type api --package acme';
 
         /**
          * @var PendingCommand $result
@@ -299,7 +299,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_resource_type_without_file(): void
     {
-        $command = 'playground:make:package testing --force --type resource';
+        $command = 'playground:make:package testing --force --type resource --package acme';
 
         /**
          * @var PendingCommand $result
@@ -310,7 +310,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_with_resource_type_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --type resource';
+        $command = 'playground:make:package testing --skeleton --force --type resource --package acme';
 
         /**
          * @var PendingCommand $result
@@ -349,7 +349,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_default_type_without_file(): void
     {
-        $command = 'playground:make:package testing --force';
+        $command = 'playground:make:package testing --force --package acme';
 
         /**
          * @var PendingCommand $result
@@ -360,7 +360,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_with_default_type_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force';
+        $command = 'playground:make:package testing --skeleton --force --package acme';
 
         /**
          * @var PendingCommand $result
@@ -399,7 +399,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_playground_model_type_without_file_with_policies(): void
     {
-        $command = 'playground:make:package testing --force --policies';
+        $command = 'playground:make:package testing --force --policies --package acme';
 
         /**
          * @var PendingCommand $result
@@ -410,7 +410,7 @@ class TypesTest extends TestCase
 
     public function test_command_make_package_with_force_with_playground_model_type_and_with_skeleton_without_file_with_policies(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --policies';
+        $command = 'playground:make:package testing --skeleton --force --policies --package acme';
 
         /**
          * @var PendingCommand $result

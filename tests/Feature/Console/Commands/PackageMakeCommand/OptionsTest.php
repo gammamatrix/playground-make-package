@@ -49,7 +49,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_factories_without_file(): void
     {
-        $command = 'playground:make:package testing --force --factories';
+        $command = 'playground:make:package testing --force --factories --package acme';
 
         /**
          * @var PendingCommand $result
@@ -60,7 +60,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_with_factories_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --factories';
+        $command = 'playground:make:package testing --skeleton --force --factories --package acme';
 
         /**
          * @var PendingCommand $result
@@ -99,7 +99,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_policies_without_file(): void
     {
-        $command = 'playground:make:package testing --force --policies';
+        $command = 'playground:make:package testing --force --policies --package acme';
 
         /**
          * @var PendingCommand $result
@@ -110,7 +110,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_with_policies_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --policies';
+        $command = 'playground:make:package testing --skeleton --force --policies --package acme';
 
         /**
          * @var PendingCommand $result
@@ -149,7 +149,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_controllers_without_file(): void
     {
-        $command = 'playground:make:package testing --force --controllers';
+        $command = 'playground:make:package testing --force --controllers --package acme';
 
         /**
          * @var PendingCommand $result
@@ -160,7 +160,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_with_controllers_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --controllers';
+        $command = 'playground:make:package testing --skeleton --force --controllers --package acme';
 
         /**
          * @var PendingCommand $result
@@ -199,7 +199,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_migrations_without_file(): void
     {
-        $command = 'playground:make:package testing --force --migrations';
+        $command = 'playground:make:package testing --force --migrations --package acme';
 
         /**
          * @var PendingCommand $result
@@ -210,7 +210,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_with_migrations_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --migrations';
+        $command = 'playground:make:package testing --skeleton --force --migrations --package acme';
 
         /**
          * @var PendingCommand $result
@@ -249,7 +249,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_models_without_file(): void
     {
-        $command = 'playground:make:package testing --force --models';
+        $command = 'playground:make:package testing --force --models --package acme';
 
         /**
          * @var PendingCommand $result
@@ -260,7 +260,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_with_models_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --models';
+        $command = 'playground:make:package testing --skeleton --force --models --package acme';
 
         /**
          * @var PendingCommand $result
@@ -299,7 +299,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_and_with_license_without_file(): void
     {
-        $command = 'playground:make:package testing --force --license private';
+        $command = 'playground:make:package testing --force --license private --package acme';
 
         /**
          * @var PendingCommand $result
@@ -310,7 +310,7 @@ class OptionsTest extends TestCase
 
     public function test_command_make_package_with_force_with_license_and_with_skeleton_without_file(): void
     {
-        $command = 'playground:make:package testing --skeleton --force --license private';
+        $command = 'playground:make:package testing --skeleton --force --license private --package acme';
 
         /**
          * @var PendingCommand $result

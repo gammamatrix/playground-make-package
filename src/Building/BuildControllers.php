@@ -17,8 +17,6 @@ use Playground\Make\Package\Configuration\Package;
  */
 trait BuildControllers
 {
-    protected ?Package $modelPackage = null;
-
     //    public function handle_controller_params($model): void
     public function handle_controllers(): void
     {
@@ -60,19 +58,6 @@ trait BuildControllers
                 }
             }
         }
-    }
-
-    public function load_model_package(string $model_package): void
-    {
-        $payload = $this->readJsonFileAsArray($model_package);
-        if (! empty($payload)) {
-            $this->modelPackage = new Package($payload);
-            // $this->modelPackage->apply();
-        }
-        //        dd([
-        //            '__METHOD__' => __METHOD__,
-        //            '$this->modelPackage' => $this->modelPackage,
-        //        ]);
     }
 
     /**
@@ -348,7 +333,7 @@ PHP_CODE;
 
         if (! $isApi && $this->c->module_slug()) {
             // TODO disabled adding to files
-             $this->c->addRoute($this->c->module_slug());
+            $this->c->addRoute($this->c->module_slug());
         }
 
         if ($isApi) {
@@ -393,109 +378,112 @@ PHP_CODE;
         $this->build_crud_form_request($package, $params_form_request);
 
         $models = $this->modelPackage?->models() ?? [];
-        foreach ($models as $model => $file) {
-            if (is_string($file) && $file) {
+        foreach ($this->models as $modelName => $model) {
 
-                $model = new Model($this->readJsonFileAsArray($file))->apply();
-                //                dd([
-                //                    '__METHOD__' => __METHOD__,
-                //                    '$file' => $file,
-                //                    '$model' => $model->toArray(),
-                //                ]);
+            //                dump([
+            //                    '__METHOD__' => __METHOD__,
+            //                    '$file' => $file,
+            //                ]);
+            //                dd([
+            //                    '__METHOD__' => __METHOD__,
+            //                    '$file' => $file,
+            //                    '$model' => $model->toArray(),
+            //                ]);
 
-                if ($model->revision()) {
-                    // Revision models do not have controllers.
-                    continue;
-                }
-
-                $params_controller['--model'] = $model->name();
-                $params_controller['name'] = Str::of($model->model_studly())->finish('Controller')->toString();
-                $params_controller['--model-file'] = $file;
-
-                if (in_array($model->type(), ['playground-model-linked', 'model-linked'])) {
-                    if ($isApi) {
-                        $params_controller['--type'] = 'playground-api-linked';
-
-                    } elseif ($isResource) {
-                        $params_controller['--type'] = 'playground-resource-linked';
-                    }
-                } elseif (in_array($model->type(), ['playground-model-tagged', 'model-tagged'])) {
-                    if ($isApi) {
-                        $params_controller['--type'] = 'playground-api-tagged';
-
-                    } elseif ($isResource) {
-                        $params_controller['--type'] = 'playground-resource-tagged';
-                    }
-                } elseif (in_array($model->type(), ['playground-model'])) {
-                    if ($isApi) {
-                        $params_controller['--type'] = 'playground-api';
-
-                    } elseif ($isResource) {
-                        $params_controller['--type'] = 'playground-resource';
-                    }
-                } elseif (in_array($model->type(), ['model'])) {
-                    if ($isApi) {
-                        $params_controller['--type'] = 'api';
-
-                    } elseif ($isResource) {
-                        $params_controller['--type'] = 'resource';
-                    }
-                }
-
-                // dump([
-                //    '__METHOD__' => __METHOD__,
-                //    '$params_controller' => $params_controller,
-                //    // '$this->c' => $this->c,
-                //    '$model->name()' => $model->name(),
-                //    '$model->type()' => $model->type(),
-                //    '$model->revision()' => $model->revision(),
-                // ]);
-                $this->createControllerForModel($model, $package, $params_controller);
-                //                dd([
-                //                    '__METHOD__' => __METHOD__,
-                //                    '$params_controller' => $params_controller,
-                //                    // '$this->c' => $this->c,
-                //                    '$model->name()' => $model->name(),
-                //                ]);
-
-                // $config_policies .= sprintf($policy_line,
-                //     str_repeat(static::INDENT, 2),
-                //     $this->parseClassInput($model->fqdn()),
-                //     $this->parseClassInput($this->c->namespace()),
-                //     $model->model(),
-                //     PHP_EOL,
-                // );
-
-                if ($addConfigForRevisions) {
-                    $config_policies .= $this->build_config_policy_line_revision($model);
-                    $revisions_text .= $this->build_config_revision_line(
-                        $model->model_kebabs()
-                    );
-                    $config_revisions_docs .= sprintf(
-                        ' *           %1$s: bool,%2$s',
-                        $model->model_kebabs(),
-                        PHP_EOL
-                    );
-                    $config_revisions_docs_sp .= sprintf(
-                        '         *            %1$s: bool,%2$s',
-                        $model->model_kebabs(),
-                        PHP_EOL
-                    );
-                    $config_cache_docs .= $this->build_config_cache_model_docs(
-                        $model->model_snake()
-                    );
-                    $config_cache_docs_sp .= $this->build_config_cache_model_docs_sp(
-                        $model->model_snake()
-                    );
-                } else {
-                    $config_policies .= $this->build_config_policy_line($model);
-                }
-
-                // dd([
-                //     '__METHOD__' => __METHOD__,
-                //     '$this->c' => $this->c->toArray(),
-                // ]);
+            if ($model->revision()) {
+                // Revision models do not have controllers.
+                continue;
             }
+
+            $params_controller['--model'] = $model->name();
+            $params_controller['name'] = Str::of($model->model_studly())->finish('Controller')->toString();
+            if (! empty($this->modelFiles[$modelName])) {
+                $params_controller['--model-file'] = $this->modelFiles[$modelName];
+            }
+
+            if (in_array($model->type(), ['playground-model-linked', 'model-linked'])) {
+                if ($isApi) {
+                    $params_controller['--type'] = 'playground-api-linked';
+
+                } elseif ($isResource) {
+                    $params_controller['--type'] = 'playground-resource-linked';
+                }
+            } elseif (in_array($model->type(), ['playground-model-tagged', 'model-tagged'])) {
+                if ($isApi) {
+                    $params_controller['--type'] = 'playground-api-tagged';
+
+                } elseif ($isResource) {
+                    $params_controller['--type'] = 'playground-resource-tagged';
+                }
+            } elseif (in_array($model->type(), ['playground-model'])) {
+                if ($isApi) {
+                    $params_controller['--type'] = 'playground-api';
+
+                } elseif ($isResource) {
+                    $params_controller['--type'] = 'playground-resource';
+                }
+            } elseif (in_array($model->type(), ['model'])) {
+                if ($isApi) {
+                    $params_controller['--type'] = 'api';
+
+                } elseif ($isResource) {
+                    $params_controller['--type'] = 'resource';
+                }
+            }
+
+            //dump([
+            //    '__METHOD__' => __METHOD__,
+            //    '$params_controller' => $params_controller,
+            //    // '$this->c' => $this->c,
+            //    '$model->name()' => $model->name(),
+            //    '$model->type()' => $model->type(),
+            //    '$model->revision()' => $model->revision(),
+            //]);
+            $this->createControllerForModel($model, $package, $params_controller);
+            //                dd([
+            //                    '__METHOD__' => __METHOD__,
+            //                    '$params_controller' => $params_controller,
+            //                    // '$this->c' => $this->c,
+            //                    '$model->name()' => $model->name(),
+            //                ]);
+
+            // $config_policies .= sprintf($policy_line,
+            //     str_repeat(static::INDENT, 2),
+            //     $this->parseClassInput($model->fqdn()),
+            //     $this->parseClassInput($this->c->namespace()),
+            //     $model->model(),
+            //     PHP_EOL,
+            // );
+
+            if ($addConfigForRevisions) {
+                $config_policies .= $this->build_config_policy_line_revision($model);
+                $revisions_text .= $this->build_config_revision_line(
+                    $model->model_kebabs()
+                );
+                $config_revisions_docs .= sprintf(
+                    ' *           %1$s: bool,%2$s',
+                    $model->model_kebabs(),
+                    PHP_EOL
+                );
+                $config_revisions_docs_sp .= sprintf(
+                    '         *            %1$s: bool,%2$s',
+                    $model->model_kebabs(),
+                    PHP_EOL
+                );
+                $config_cache_docs .= $this->build_config_cache_model_docs(
+                    $model->model_snake()
+                );
+                $config_cache_docs_sp .= $this->build_config_cache_model_docs_sp(
+                    $model->model_snake()
+                );
+            } else {
+                $config_policies .= $this->build_config_policy_line($model);
+            }
+
+            // dd([
+            //     '__METHOD__' => __METHOD__,
+            //     '$this->c' => $this->c->toArray(),
+            // ]);
         }
 
         if (! empty($config_policies)) {
@@ -601,7 +589,7 @@ PHP_CODE;
             );
             if ($model_plural_slug) {
                 // TODO disabling saving of routes in the base configuration
-                 $this->c->addRoute($model_plural_slug, $file_route);
+                $this->c->addRoute($model_plural_slug, $file_route);
             }
 
             // dump([

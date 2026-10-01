@@ -10,8 +10,10 @@ namespace Playground\Make\Package\Console\Commands;
 
 use Illuminate\Support\Str;
 use Playground\Make\Configuration\Contracts\PrimaryConfiguration as PrimaryConfigurationContract;
+use Playground\Make\Configuration\Model;
 use Playground\Make\Console\Commands\GeneratorCommand;
 use Playground\Make\Package\Building;
+use Playground\Make\Package\Configuration\Package;
 use Playground\Make\Package\Configuration\Package as Configuration;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
@@ -182,12 +184,24 @@ class PackageMakeCommand extends GeneratorCommand
         return $options;
     }
 
+    protected ?Package $modelPackage = null;
+
+    /**
+     * @var array<string, Model>
+     */
+    protected array $models = [];
+
+    /**
+     * @var array<string, string>
+     */
+    protected array $modelFiles = [];
+
     public function prepareOptions(): void
     {
-        //dump([
+        // dump([
         //    '__METHOD__' => __METHOD__,
         //    '$this->options()' => $this->options(),
-        //]);
+        // ]);
         // if ($this->hasOption('factories')
         //     && $this->option('factories')
         // ) {
@@ -500,7 +514,7 @@ class PackageMakeCommand extends GeneratorCommand
     {
         $template = 'service-provider/ServiceProvider.stub';
 
-        $type = $this->getConfigurationType();
+        $type = $this->c->type();
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$type' => $type,

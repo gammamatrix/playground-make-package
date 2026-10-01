@@ -10,12 +10,43 @@ namespace Playground\Make\Package\Building;
 
 use Illuminate\Support\Str;
 use Playground\Make\Configuration\Model;
+use Playground\Make\Package\Configuration\Package;
 
 /**
  * \Playground\Make\Package\Building\BuildModels
  */
 trait BuildModels
 {
+    public function load_model_package(string $model_package): void
+    {
+        $payload = $this->readJsonFileAsArray($model_package);
+        // dump([
+        //    '__METHOD__' => __METHOD__,
+        //    '$model_package' => $model_package,
+        //    '$payload' => $payload,
+        // ]);
+        if (! empty($payload)) {
+            $this->modelPackage = new Package($payload);
+            // $this->modelPackage->apply();
+        }
+
+        $models = $this->modelPackage?->models() ?? [];
+        // dump([
+        //    '__METHOD__' => __METHOD__,
+        //    '$models' => $models,
+        // ]);
+        foreach ($models as $model => $file) {
+            if (is_string($file) && $file) {
+                $this->modelFiles[$model] = $file;
+                $this->models[$model] = new Model($this->readJsonFileAsArray($file))->apply();
+            }
+        }
+        //        dd([
+        //            '__METHOD__' => __METHOD__,
+        //            '$this->modelPackage' => $this->modelPackage,
+        //        ]);
+    }
+
     public function handle_models(): void
     {
         $params = [
@@ -42,20 +73,20 @@ trait BuildModels
                 }
 
                 // TODO the package config is not being loaded
-//                if ($this->c->namespace()) {
-//                    $params['--namespace'] = $this->c->namespace();
-//                }
-//
-//                if ($this->c->package()) {
-//                    $params['--package'] = $this->c->package();
-//                }
+                if ($this->c->namespace()) {
+                    $params['--namespace'] = $this->c->namespace();
+                }
 
-//                dd([
-//                     '__METHOD__' => __METHOD__,
-//                     '$params' => $params,
-//                     '$model' => $model,
-//                     '$this->c' => $this->c->toArray(),
-//                 ]);
+                if ($this->c->package()) {
+                    $params['--package'] = $this->c->package();
+                }
+
+                // dd([
+                //     '__METHOD__' => __METHOD__,
+                //     '$params' => $params,
+                //     '$model' => $model,
+                //     '$this->c' => $this->c->toArray(),
+                // ]);
                 $this->call('playground:make:model', $params);
 
                 $this->searches['readme_models'] .= sprintf(
@@ -77,6 +108,10 @@ trait BuildModels
         $migrations = [];
 
         foreach ($this->c->models() as $name => $file) {
+            // dump([
+            //    '__METHOD__' => __METHOD__,
+            //    '$file' => $file,
+            // ]);
             $model = new Model($this->readJsonFileAsArray($file));
             $migration = $model->create()?->migration();
             // dump([

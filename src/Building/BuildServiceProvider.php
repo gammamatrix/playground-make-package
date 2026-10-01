@@ -121,7 +121,7 @@ PHP_CODE;
 
         if (! $isApi && $this->c->module_slug()) {
             // TODO disabled adding to files
-            //$this->c->addRoute($this->c->module_slug());
+            // $this->c->addRoute($this->c->module_slug());
         }
         // dump([
         //     '__METHOD__' => __METHOD__,
@@ -150,7 +150,7 @@ PHP_CODE;
             $model_kebab = $model->model_kebab();
             if ($model_route_slug) {
                 // TODO disabled adding to files
-                //$this->c->addRoute($model_route_slug);
+                // $this->c->addRoute($model_route_slug);
             }
 
             $config_abilities_manager .= sprintf($manager_line,
@@ -176,7 +176,7 @@ PHP_CODE;
             $this->searches['config_abilities_user'] = rtrim($config_abilities_user);
         }
 
-        //$this->make_service_provider_routes();
+        // $this->make_service_provider_routes();
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$config_abilities_manager' => $config_abilities_manager,

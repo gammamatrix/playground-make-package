@@ -37,7 +37,7 @@ class CommandTest extends TestCase
         /**
          * @var PendingCommand $result
          */
-        $result = $this->artisan('playground:make:package testing --skeleton --force');
+        $result = $this->artisan('playground:make:package testing --skeleton --force --package acme');
         $result->assertExitCode(0);
     }
 }
