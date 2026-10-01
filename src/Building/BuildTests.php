@@ -326,50 +326,46 @@ trait BuildTests
         //     $options['--type'] = 'playground-resource-controller-model-case';
         // }
 
-        $models = $this->modelPackage?->models() ?? [];
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$models' => $models,
         // ]);
-        foreach ($models as $model => $file) {
-            if (is_string($file) && $file) {
+        foreach ($this->models as $modelName => $model) {
 
-                $model = new Model($this->readJsonFileAsArray($file))->apply();
-
-                if ($model->revision()) {
-                    // Revision models do not have controllers.
-                    continue;
-                }
-
-                if (in_array($type, [
-                    'playground-api',
-                ])) {
-                    if ($model->type() === 'playground-model-tagged') {
-                        $options['--type'] = 'playground-api-controller-model-tagged';
-                    } else {
-                        $options['--type'] = 'playground-api-controller-model-user';
-                    }
-                } elseif (in_array($type, [
-                    'playground-resource',
-                ])) {
-                    if ($model->type() === 'playground-model-tagged') {
-                        $options['--type'] = 'playground-resource-controller-model-tagged';
-                    } else {
-                        $options['--type'] = 'playground-resource-controller-model-user';
-                    }
-                }
-
-                $options['--model'] = $model->name();
-                $options['name'] = Str::of($model->model_studly())->finish('RouteTest')->toString();
-                $options['--model-file'] = $file;
-                // dump([
-                //    '__METHOD__' => __METHOD__,
-                //    '$options' => $options,
-                // ]);
-
-                $this->call('playground:make:test', $options);
-
+            if ($model->revision()) {
+                // Revision models do not have controllers.
+                continue;
             }
+
+            if (in_array($type, [
+                'playground-api',
+            ])) {
+                if ($model->type() === 'playground-model-tagged') {
+                    $options['--type'] = 'playground-api-controller-model-tagged';
+                } else {
+                    $options['--type'] = 'playground-api-controller-model-user';
+                }
+            } elseif (in_array($type, [
+                'playground-resource',
+            ])) {
+                if ($model->type() === 'playground-model-tagged') {
+                    $options['--type'] = 'playground-resource-controller-model-tagged';
+                } else {
+                    $options['--type'] = 'playground-resource-controller-model-user';
+                }
+            }
+
+            $options['--model'] = $model->name();
+            $options['name'] = Str::of($model->model_studly())->finish('RouteTest')->toString();
+            if (! empty($this->modelFiles[$modelName])) {
+                $options['--model-file'] = $this->modelFiles[$modelName];
+            }
+            // dump([
+            //    '__METHOD__' => __METHOD__,
+            //    '$options' => $options,
+            // ]);
+
+            $this->call('playground:make:test', $options);
         }
 
         // dump([
@@ -422,31 +418,23 @@ trait BuildTests
             $options['--type'] = 'playground-resource-controller-model-case';
         }
 
-        $models = $this->modelPackage?->models() ?? [];
-        // dump([
-        //     '__METHOD__' => __METHOD__,
-        //     '$models' => $models,
-        // ]);
-        foreach ($models as $model => $file) {
-            if (is_string($file) && $file) {
+        foreach ($this->models as $modelName => $model) {
 
-                $model = new Model($this->readJsonFileAsArray($file))->apply();
-
-                if ($model->revision()) {
-                    // Revision models do not have controllers.
-                    continue;
-                }
-                $options['--model'] = $model->name();
-                $options['name'] = Str::of($model->model_studly())->finish('TestCase')->toString();
-                $options['--model-file'] = $file;
-                // dump([
-                //     '__METHOD__' => __METHOD__,
-                //     '$options' => $options,
-                // ]);
-
-                $this->call('playground:make:test', $options);
-
+            if ($model->revision()) {
+                // Revision models do not have controllers.
+                continue;
             }
+            $options['--model'] = $model->name();
+            $options['name'] = Str::of($model->model_studly())->finish('TestCase')->toString();
+            if (! empty($this->modelFiles[$modelName])) {
+                $options['--model-file'] = $this->modelFiles[$modelName];
+            }
+            // dump([
+            //     '__METHOD__' => __METHOD__,
+            //     '$options' => $options,
+            // ]);
+
+            $this->call('playground:make:test', $options);
         }
 
         // dump([

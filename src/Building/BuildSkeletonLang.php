@@ -8,8 +8,6 @@ declare(strict_types=1);
 
 namespace Playground\Make\Package\Building;
 
-use Playground\Make\Configuration\Model;
-
 /**
  * \Playground\Make\Package\Building\BuildSkeletonLang
  */
@@ -70,12 +68,9 @@ trait BuildSkeletonLang
             $this->setUpLang_create_for_lang($locale);
         }
 
-        $models = $this->modelPackage?->models() ?? [];
-
         $lang_models_revisions = '';
 
-        foreach ($models as $name => $file) {
-            $model = new Model($this->readJsonFileAsArray($file))->apply();
+        foreach ($this->models as $modelName => $model) {
             $model_slugs = $model->model_slugs();
 
             if ($revision

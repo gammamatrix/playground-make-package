@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Playground\Make\Package\Building;
 
 use Illuminate\Support\Str;
-use Playground\Make\Configuration\Model;
 
 /**
  * \Playground\Make\Package\Building\BuildServiceProvider
@@ -129,15 +128,7 @@ PHP_CODE;
         //     '$this->c->routes()' => $this->c->routes(),
         // ]);
 
-        $models = $this->modelPackage?->models() ?? [];
-        // dd([
-        //     '__METHOD__' => __METHOD__,
-        //     '$models' => $models,
-        // ]);
-
-        foreach ($models as $model => $file) {
-
-            $model = new Model($this->readJsonFileAsArray($file))->apply();
+        foreach ($this->models as $modelName => $model) {
 
             if (Str::of($model->name())->endsWith('Revision')) {
                 continue;

@@ -35,19 +35,19 @@ trait BuildControllers
                 $params['--package-file'] = $this->option('file');
             }
 
-            foreach ($this->modelPackage->models() as $model => $file) {
-                if (is_string($model) && $model) {
-                    $params['--model-file'] = $file;
-
-                    $this->call('playground:make:controller', $params);
-                    //                    dd([
-                    //                        '__METHOD__' => __METHOD__,
-                    //                        '$params' => $params,
-                    //                        '$model' => $model,
-                    //                        '$file' => $file,
-                    //                        '$this->options()' => $this->options(),
-                    //                    ]);
+            foreach ($this->models as $modelName => $model) {
+                if (! empty($this->modelFiles[$modelName])) {
+                    $params['--model-file'] = $this->modelFiles[$modelName];
                 }
+
+                $this->call('playground:make:controller', $params);
+                // dd([
+                //    '__METHOD__' => __METHOD__,
+                //    '$params' => $params,
+                //    '$model' => $model,
+                //    '$modelName' => $modelName,
+                //    '$this->options()' => $this->options(),
+                // ]);
             }
 
         } else {
@@ -377,7 +377,6 @@ PHP_CODE;
 
         $this->build_crud_form_request($package, $params_form_request);
 
-        $models = $this->modelPackage?->models() ?? [];
         foreach ($this->models as $modelName => $model) {
 
             //                dump([
@@ -431,14 +430,14 @@ PHP_CODE;
                 }
             }
 
-            //dump([
+            // dump([
             //    '__METHOD__' => __METHOD__,
             //    '$params_controller' => $params_controller,
             //    // '$this->c' => $this->c,
             //    '$model->name()' => $model->name(),
             //    '$model->type()' => $model->type(),
             //    '$model->revision()' => $model->revision(),
-            //]);
+            // ]);
             $this->createControllerForModel($model, $package, $params_controller);
             //                dd([
             //                    '__METHOD__' => __METHOD__,
@@ -721,8 +720,6 @@ PHP_CODE;
             return;
         }
 
-        $models = $this->modelPackage?->models() ?? [];
-
         $model = '';
         //        dump([
         //            '__METHOD__' => __METHOD__,
@@ -731,10 +728,10 @@ PHP_CODE;
         //        ]);
         if ($this->hasOption('model') && $this->option('model') && is_string($this->option('model'))) {
             $model = $this->option('model');
-        } elseif (! empty($this->c->model_index()) && array_key_exists($this->c->model_index(), $models)) {
+        } elseif (! empty($this->c->model_index()) && array_key_exists($this->c->model_index(), $this->models)) {
             $model = $this->c->model_index();
         } else {
-            $model = array_key_first($models);
+            $model = array_key_first($this->models);
         }
         //        dd([
         //            '__METHOD__' => __METHOD__,
@@ -791,8 +788,8 @@ PHP_CODE;
 
         if ($model) {
             $params['--model'] = $model;
-            if (! empty($models[$model])) {
-                $params['--model-file'] = $models[$model];
+            if (! empty($this->models[$model])) {
+                $params['--model-file'] = $this->models[$model];
             }
 
         }
