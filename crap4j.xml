@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-10-01 16:37:23</timestamp>
+  <timestamp>2026-10-01 18:01:39</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>143</methodCount>
     <crapMethodCount>17</crapMethodCount>
-    <crapLoad>265</crapLoad>
-    <totalCrap>5716.45</totalCrap>
+    <crapLoad>263</crapLoad>
+    <totalCrap>5693.69</totalCrap>
     <crapMethodPercent>11.89</crapMethodPercent>
   </stats>
   <methods>
@@ -193,8 +193,8 @@
       <methodName>handle_controllers</methodName>
       <methodSignature>handle_controllers(): void</methodSignature>
       <fullMethod>handle_controllers(): void</fullMethod>
-      <crap>21.91</crap>
-      <complexity>13</complexity>
+      <crap>19.59</crap>
+      <complexity>12</complexity>
       <coverage>62.5</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -391,9 +391,9 @@
       <methodName>handle_models</methodName>
       <methodSignature>handle_models(): void</methodSignature>
       <fullMethod>handle_models(): void</fullMethod>
-      <crap>11</crap>
-      <complexity>11</complexity>
-      <coverage>96.15</coverage>
+      <crap>33.3</crap>
+      <complexity>10</complexity>
+      <coverage>38.46</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -611,10 +611,10 @@
       <methodName>setUpLang</methodName>
       <methodSignature>setUpLang(): void</methodSignature>
       <fullMethod>setUpLang(): void</fullMethod>
-      <crap>54.84</crap>
+      <crap>56.1</crap>
       <complexity>13</complexity>
-      <coverage>37.21</coverage>
-      <crapLoad>8</crapLoad>
+      <coverage>36.59</coverage>
+      <crapLoad>9</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -776,10 +776,10 @@
       <methodName>command_tests_playground_controller_model_cases</methodName>
       <methodSignature>command_tests_playground_controller_model_cases(): void</methodSignature>
       <fullMethod>command_tests_playground_controller_model_cases(): void</fullMethod>
-      <crap>156</crap>
-      <complexity>12</complexity>
+      <crap>132</crap>
+      <complexity>11</complexity>
       <coverage>0</coverage>
-      <crapLoad>12</crapLoad>
+      <crapLoad>11</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -787,10 +787,10 @@
       <methodName>command_tests_playground_controller_route_tests</methodName>
       <methodSignature>command_tests_playground_controller_route_tests(): void</methodSignature>
       <fullMethod>command_tests_playground_controller_route_tests(): void</fullMethod>
-      <crap>110</crap>
-      <complexity>10</complexity>
+      <crap>90</crap>
+      <complexity>9</complexity>
       <coverage>0</coverage>
-      <crapLoad>10</crapLoad>
+      <crapLoad>9</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
