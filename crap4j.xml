@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-09-28 23:46:17</timestamp>
+  <timestamp>2026-10-01 16:37:23</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>143</methodCount>
     <crapMethodCount>17</crapMethodCount>
-    <crapLoad>266</crapLoad>
-    <totalCrap>5776.45</totalCrap>
+    <crapLoad>265</crapLoad>
+    <totalCrap>5716.45</totalCrap>
     <crapMethodPercent>11.89</crapMethodPercent>
   </stats>
   <methods>
@@ -201,17 +201,6 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildControllers</className>
-      <methodName>load_model_package</methodName>
-      <methodSignature>load_model_package(string $model_package): void</methodSignature>
-      <fullMethod>load_model_package(string $model_package): void</fullMethod>
-      <crap>6</crap>
-      <complexity>2</complexity>
-      <coverage>0</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Package\Building</package>
-      <className>Playground\Make\Package\Building\BuildControllers</className>
       <methodName>build_crud_form_request</methodName>
       <methodSignature>build_crud_form_request(string $package, array $params): void</methodSignature>
       <fullMethod>build_crud_form_request(string $package, array $params): void</fullMethod>
@@ -347,10 +336,10 @@
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>1892</crap>
-      <complexity>43</complexity>
+      <crap>1806</crap>
+      <complexity>42</complexity>
       <coverage>0</coverage>
-      <crapLoad>44</crapLoad>
+      <crapLoad>43</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -388,12 +377,23 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildModels</className>
+      <methodName>load_model_package</methodName>
+      <methodSignature>load_model_package(string $model_package): void</methodSignature>
+      <fullMethod>load_model_package(string $model_package): void</fullMethod>
+      <crap>30</crap>
+      <complexity>5</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildModels</className>
       <methodName>handle_models</methodName>
       <methodSignature>handle_models(): void</methodSignature>
       <fullMethod>handle_models(): void</fullMethod>
-      <crap>9</crap>
-      <complexity>9</complexity>
-      <coverage>95.45</coverage>
+      <crap>11</crap>
+      <complexity>11</complexity>
+      <coverage>96.15</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
