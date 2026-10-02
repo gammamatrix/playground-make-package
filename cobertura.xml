@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.48469846984698" branch-rate="0" lines-covered="1077" lines-valid="2222" branches-covered="0" branches-valid="0" complexity="809" version="0.4" timestamp="1790877699">
+<coverage line-rate="0.4849167041873" branch-rate="0" lines-covered="1077" lines-valid="2221" branches-covered="0" branches-valid="0" complexity="809" version="0.4" timestamp="1790900981">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -982,9 +982,9 @@
         </class>
       </classes>
     </package>
-    <package name="Building/BuildControllers.php" line-rate="0.03030303030303" branch-rate="0" complexity="118">
+    <package name="Building/BuildControllers.php" line-rate="0.030395136778116" branch-rate="0" complexity="118">
       <classes>
-        <class name="Playground\Make\Package\Building\BuildControllers" filename="Building/BuildControllers.php" line-rate="0.03030303030303" branch-rate="0" complexity="118">
+        <class name="Playground\Make\Package\Building\BuildControllers" filename="Building/BuildControllers.php" line-rate="0.030395136778116" branch-rate="0" complexity="118">
           <methods>
             <method name="handle_controllers" signature="" line-rate="0.625" branch-rate="0" complexity="12">
               <lines>
@@ -1365,23 +1365,22 @@
                 <line number="763" hits="0"/>
                 <line number="765" hits="0"/>
                 <line number="766" hits="0"/>
-                <line number="767" hits="0"/>
+                <line number="768" hits="0"/>
                 <line number="769" hits="0"/>
-                <line number="770" hits="0"/>
+                <line number="772" hits="0"/>
                 <line number="773" hits="0"/>
-                <line number="774" hits="0"/>
+                <line number="776" hits="0"/>
                 <line number="777" hits="0"/>
-                <line number="778" hits="0"/>
+                <line number="780" hits="0"/>
                 <line number="781" hits="0"/>
-                <line number="782" hits="0"/>
+                <line number="784" hits="0"/>
                 <line number="785" hits="0"/>
-                <line number="786" hits="0"/>
+                <line number="788" hits="0"/>
                 <line number="789" hits="0"/>
                 <line number="790" hits="0"/>
                 <line number="791" hits="0"/>
-                <line number="792" hits="0"/>
-                <line number="804" hits="0"/>
-                <line number="810" hits="0"/>
+                <line number="805" hits="0"/>
+                <line number="811" hits="0"/>
               </lines>
             </method>
           </methods>
@@ -1699,23 +1698,22 @@
             <line number="763" hits="0"/>
             <line number="765" hits="0"/>
             <line number="766" hits="0"/>
-            <line number="767" hits="0"/>
+            <line number="768" hits="0"/>
             <line number="769" hits="0"/>
-            <line number="770" hits="0"/>
+            <line number="772" hits="0"/>
             <line number="773" hits="0"/>
-            <line number="774" hits="0"/>
+            <line number="776" hits="0"/>
             <line number="777" hits="0"/>
-            <line number="778" hits="0"/>
+            <line number="780" hits="0"/>
             <line number="781" hits="0"/>
-            <line number="782" hits="0"/>
+            <line number="784" hits="0"/>
             <line number="785" hits="0"/>
-            <line number="786" hits="0"/>
+            <line number="788" hits="0"/>
             <line number="789" hits="0"/>
             <line number="790" hits="0"/>
             <line number="791" hits="0"/>
-            <line number="792" hits="0"/>
-            <line number="804" hits="0"/>
-            <line number="810" hits="0"/>
+            <line number="805" hits="0"/>
+            <line number="811" hits="0"/>
           </lines>
         </class>
       </classes>
