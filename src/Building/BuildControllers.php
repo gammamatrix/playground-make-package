@@ -733,14 +733,14 @@ PHP_CODE;
         } else {
             $model = array_key_first($this->models);
         }
-        //        dd([
-        //            '__METHOD__' => __METHOD__,
-        //            '$model' => $model,
-        //            '$models' => $models,
-        //            '$this->c' => $this->c,
-        //            '$this->c->model_index()' => $this->c->model_index(),
-        //            '$this->options()' => $this->options(),
-        //        ]);
+        // dd([
+        //    '__METHOD__' => __METHOD__,
+        //    '$model' => $model,
+        //    //'$this->models' => $this->models,
+        //    '$this->c' => $this->c,
+        //    '$this->c->model_index()' => $this->c->model_index(),
+        //    '$this->options()' => $this->options(),
+        // ]);
 
         $namespace = $this->c->namespace();
 
@@ -764,7 +764,6 @@ PHP_CODE;
             // '--routes' => true,
             '--type' => 'playground-resource-index',
         ];
-        $namespace = $this->c->namespace();
 
         if ($this->c->playground()) {
             $params['--playground'] = true;
@@ -788,15 +787,17 @@ PHP_CODE;
 
         if ($model) {
             $params['--model'] = $model;
-            if (! empty($this->models[$model])) {
-                $params['--model-file'] = $this->models[$model];
+            if (! empty($this->modelFiles[$model])) {
+                $params['--model-file'] = $this->modelFiles[$model];
             }
 
         }
 
-        //         dump([
+        //         dd([
         //            '__METHOD__' => __METHOD__,
-        //            '$params' => $params,
+        //             '$model' => $model,
+        //             '$params' => $params,
+        //             '$this->modelFiles' => $this->modelFiles,
         //            // 'model-package' => $this->option('model-package'),
         //             '$this->options()' => $this->options(),
         //            // '$this->modelPackage' => $this->modelPackage,
