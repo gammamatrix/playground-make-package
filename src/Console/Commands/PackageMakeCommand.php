@@ -403,14 +403,6 @@ class PackageMakeCommand extends GeneratorCommand
 
         $this->make_composer_package_name();
 
-        $build = $this->hasOption('build') && $this->option('build');
-
-        if ($build) {
-            $this->createBaseController();
-            $this->createResourceIndexController();
-            $this->build_crud();
-        }
-
         if (! empty($this->modelPackage?->package())) {
             $this->c->setOptions([
                 'model_package' => $this->modelPackage->package(),
@@ -418,7 +410,24 @@ class PackageMakeCommand extends GeneratorCommand
             ]);
 
         }
+
         $this->c->apply();
+
+        $build = $this->hasOption('build') && $this->option('build');
+
+        if ($build) {
+            if (in_array($this->c->type(), [
+                'api',
+                'playground-api',
+                'resource',
+                'playground-resource',
+            ])) {
+                $this->createBaseController();
+                $this->createResourceIndexController();
+                $this->build_crud();
+            }
+        }
+
         // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$withRoutes' => $withRoutes,
@@ -439,10 +448,28 @@ class PackageMakeCommand extends GeneratorCommand
     public function finish(): ?bool
     {
         $build = $this->hasOption('build') && $this->option('build');
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$build' => $build,
+        //     '$this->c->type()' => $this->c->type(),
+        // ]);
 
         if (! $build) {
-            $this->handle_models();
-            $this->handle_controllers();
+            if (in_array($this->c->type(), [
+                'model',
+                'playground-model',
+            ])) {
+                $this->handle_models();
+            }
+
+            if (in_array($this->c->type(), [
+                'api',
+                'playground-api',
+                'resource',
+                'playground-resource',
+            ])) {
+                $this->handle_controllers();
+            }
         }
 
         //         dd([

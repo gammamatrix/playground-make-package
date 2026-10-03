@@ -10,6 +10,7 @@ namespace Playground\Make\Package\Building;
 
 use Illuminate\Support\Str;
 use Playground\Make\Configuration\Model;
+use Playground\Make\Controller\Configuration\Controller;
 use Playground\Make\Package\Configuration\Package;
 
 /**
@@ -22,10 +23,42 @@ trait BuildControllers
     {
         $params = [
         ];
+        $withCovers = $this->hasOption('covers') && $this->option('covers');
 
         if ($this->hasOption('force') && $this->option('force')) {
             $params['--force'] = true;
         }
+
+        if ($this->c->namespace()) {
+            $params['--namespace'] = $this->c->namespace();
+        }
+
+        if ($this->c->package()) {
+            $params['--package'] = $this->c->package();
+        }
+
+        if ($this->c->playground()) {
+            $params['--playground'] = true;
+        }
+
+        if ($this->c->skeleton()) {
+            $params['--skeleton'] = true;
+        }
+
+        if ($this->c->withTests()) {
+            $params['--test'] = true;
+        }
+
+        if ($withCovers) {
+            $params['--covers'] = true;
+        }
+        // dd([
+        //    '__METHOD__' => __METHOD__,
+        //    '$params' => $params,
+        //    //'$model' => $model,
+        //    '$this->c' => $this->c,
+        //    '$this->options()' => $this->options(),
+        // ]);
 
         $controllers = $this->c->controllers();
 
@@ -36,9 +69,17 @@ trait BuildControllers
             }
 
             foreach ($this->models as $modelName => $model) {
+                $params['name'] = $modelName.'Controller';
                 if (! empty($this->modelFiles[$modelName])) {
                     $params['--model-file'] = $this->modelFiles[$modelName];
                 }
+                // dump([
+                //    '__METHOD__' => __METHOD__,
+                //    '$params' => $params,
+                //    //'$model' => $model,
+                //    '$modelName' => $modelName,
+                //    '$this->options()' => $this->options(),
+                // ]);
 
                 $this->call('playground:make:controller', $params);
                 // dd([

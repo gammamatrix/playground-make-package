@@ -89,7 +89,7 @@ PHP_CODE;
         if (! empty($load_routes)) {
             $this->searches['load_routes'] = $load_routes;
         }
-        // dd([
+        // dump([
         //     '__METHOD__' => __METHOD__,
         //     '$about_routes' => $about_routes,
         //     '$config_routes' => $config_routes,

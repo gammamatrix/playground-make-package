@@ -199,6 +199,14 @@ trait BuildComposer
         $isApi = $this->c->type() === 'playground-api';
         $isResource = $this->c->type() === 'playground-resource';
 
+        if (empty($model_package)) {
+            if ($isApi) {
+                $model_package = Str::of($this->c->package())->before('-api')->toString();
+            } elseif ($isResource) {
+                $isResource = Str::of($this->c->package())->before('-resource')->toString();
+            }
+        }
+
         if (empty($package_repositories)) {
             $package_repositories[] = [
                 'type' => 'git',
@@ -238,8 +246,6 @@ trait BuildComposer
             $i++;
         }
 
-        $this->searches['package_repositories'] = '';
-
         $this->searches['package_repositories'] = sprintf(
             $element,
             PHP_EOL,
@@ -247,6 +253,14 @@ trait BuildComposer
             $content
         );
 
+        // dd([
+        //    '__METHOD__' => __METHOD__,
+        //    '$isSandbox' => $isSandbox,
+        //    '$this->options()' => $this->options(),
+        //    '$package_repositories' => $package_repositories,
+        //    '$this->searches' => $this->searches,
+        //    '$this->c' => $this->c,
+        // ]);
         return $this->searches['package_repositories'];
     }
 
@@ -436,8 +450,7 @@ trait BuildComposer
                 '%1$s%2$s%3$s',
                 $this->c->organization(),
                 $this->c->organization() ? ': ' : '',
-                // TODO this was name()
-                $this->c->module(),
+                $this->c->name(),
             );
             $this->c->setOptions(['package_name' => $package_name]);
             $this->searches['package_name'] = $this->c->package_name();
