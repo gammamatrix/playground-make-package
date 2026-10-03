@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-10-02 00:29:41</timestamp>
+  <timestamp>2026-10-03 19:24:39</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>143</methodCount>
     <crapMethodCount>17</crapMethodCount>
-    <crapLoad>263</crapLoad>
-    <totalCrap>5693.69</totalCrap>
+    <crapLoad>269</crapLoad>
+    <totalCrap>5835.05</totalCrap>
     <crapMethodPercent>11.89</crapMethodPercent>
   </stats>
   <methods>
@@ -50,10 +50,10 @@
       <methodName>make_composer_repositories</methodName>
       <methodSignature>make_composer_repositories(): string</methodSignature>
       <fullMethod>make_composer_repositories(): string</fullMethod>
-      <crap>130.65</crap>
-      <complexity>12</complexity>
-      <coverage>6.25</coverage>
-      <crapLoad>11</crapLoad>
+      <crap>203.26</crap>
+      <complexity>15</complexity>
+      <coverage>5.77</coverage>
+      <crapLoad>14</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -193,9 +193,9 @@
       <methodName>handle_controllers</methodName>
       <methodSignature>handle_controllers(): void</methodSignature>
       <fullMethod>handle_controllers(): void</fullMethod>
-      <crap>19.59</crap>
-      <complexity>12</complexity>
-      <coverage>62.5</coverage>
+      <crap>32.37</crap>
+      <complexity>19</complexity>
+      <coverage>66.67</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -1480,10 +1480,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>206.02</crap>
-      <complexity>69</complexity>
-      <coverage>69.35</coverage>
-      <crapLoad>23</crapLoad>
+      <crap>259.99</crap>
+      <complexity>70</complexity>
+      <coverage>66.15</coverage>
+      <crapLoad>25</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Console\Commands</package>
@@ -1491,9 +1491,9 @@
       <methodName>finish</methodName>
       <methodSignature>finish(): ?bool</methodSignature>
       <fullMethod>finish(): ?bool</fullMethod>
-      <crap>4</crap>
-      <complexity>4</complexity>
-      <coverage>95.83</coverage>
+      <crap>6</crap>
+      <complexity>6</complexity>
+      <coverage>97.06</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
