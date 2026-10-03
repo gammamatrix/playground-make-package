@@ -37,8 +37,8 @@ php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="p
 
 ### Environment Variables
 
-| env()                                | config()                         | Default |
-|--------------------------------------|----------------------------------|---------|
+| env(){{readme_model_env_spaces}}| config(){{readme_model_config_spaces}}| Default |
+|{{readme_model_env_dashes}}|{{readme_model_config_dashes}}|---------|
 | `{{ config_space }}_ABOUT`           | `{{ package }}.about`           | `true`  |
 | `{{ config_space }}_LOAD_MIGRATIONS` | `{{ package }}.load.migrations` | `false` |
 - The loading option for migrations does not take effect if the migrations have been exported to your app. The control for loading is handled in the package [ServiceProvider.](src/ServiceProvider.php)

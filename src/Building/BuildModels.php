@@ -17,14 +17,22 @@ use Playground\Make\Package\Configuration\Package;
  */
 trait BuildModels
 {
+    public function load_models(): void
+    {
+        $models = $this->c->models();
+
+        foreach ($models as $model => $file) {
+            if (is_string($file) && $file) {
+                $this->modelFiles[$model] = $file;
+                $this->models[$model] = new Model($this->readJsonFileAsArray($file))->apply();
+            }
+        }
+    }
+
     public function load_model_package(string $model_package): void
     {
         $payload = $this->readJsonFileAsArray($model_package);
-        // dump([
-        //    '__METHOD__' => __METHOD__,
-        //    '$model_package' => $model_package,
-        //    '$payload' => $payload,
-        // ]);
+
         if (! empty($payload)) {
             $this->modelPackage = new Package($payload);
             // $this->modelPackage->apply();
@@ -47,6 +55,24 @@ trait BuildModels
         //        ]);
     }
 
+    public function prepare_models_for_readme(): void
+    {
+        $this->searches['readme_models'] = '';
+
+        $i = 0;
+        foreach ($this->models as $modelName => $model) {
+
+            $this->searches['readme_models'] .= sprintf(
+                '%1$s- [%2$s](src/Models/%2$s.php)',
+                PHP_EOL,
+                $modelName
+            );
+            $i++;
+        }
+
+        $this->searches['readme_models_count'] = strval($i);
+    }
+
     public function handle_models(): void
     {
         $params = [
@@ -61,9 +87,6 @@ trait BuildModels
             $params['--test'] = true;
         }
 
-        $this->searches['readme_models'] = '';
-
-        $i = 0;
         foreach ($this->models as $modelName => $model) {
             if (! empty($this->modelFiles[$modelName])) {
                 $params['--file'] = $this->modelFiles[$modelName];
@@ -90,30 +113,29 @@ trait BuildModels
             //     // '$this->c' => $this->c->toArray(),
             // ]);
             $this->call('playground:make:model', $params);
-
-            $this->searches['readme_models'] .= sprintf(
-                '%1$s- [%2$s](src/Models/%2$s.php)',
-                PHP_EOL,
-                $modelName
-            );
-            $i++;
         }
-
-        $this->searches['readme_models_count'] = strval($i);
     }
 
-    protected function make_published_models(): void
+    protected function prepare_readme_env_vars(): void
+    {
+        $package = $this->c->package();
+        $this->searches['readme_model_config_dashes'] = sprintf('%1$s%2$s', str_repeat('-', strlen($package)), str_repeat('-', 20));
+        $this->searches['readme_model_config_spaces'] = sprintf('%1$s%2$s', str_repeat(' ', strlen($package)), str_repeat(' ', 11));
+        $this->searches['readme_model_env_dashes'] = sprintf('%1$s%2$s', str_repeat('-', strlen($package)), str_repeat('-', 20));
+        $this->searches['readme_model_env_spaces'] = sprintf('%1$s%2$s', str_repeat(' ', strlen($package)), str_repeat(' ', 14));
+    }
+
+    protected function prepare_published_models(): void
     {
         $this->searches['publish_migrations'] = '';
 
         $migrations = [];
 
-        foreach ($this->c->models() as $name => $file) {
+        foreach ($this->models as $modelName => $model) {
             // dump([
             //    '__METHOD__' => __METHOD__,
             //    '$file' => $file,
             // ]);
-            $model = new Model($this->readJsonFileAsArray($file));
             $migration = $model->create()?->migration();
             // dump([
             //     '__METHOD__' => __METHOD__,
@@ -139,47 +161,50 @@ trait BuildModels
         // ]);
     }
 
-    public function load_packages_from_resources(): void
-    {
-        $path = $this->getResourcePackageFolder();
-
-        $fullpath = $this->laravel->storagePath().$path;
-
-        if (! is_dir($fullpath)) {
-            return;
-        }
-
-        $models = [];
-
-        $listing = scandir($fullpath);
-        if (is_array($listing)) {
-            foreach ($listing as $model) {
-                if (! is_dir($fullpath.'/'.$model)
-                    || in_array($model, ['.', '..'])
-                ) {
-                    continue;
-                }
-
-                $className = Str::of($model)->studly()->toString();
-                $models[$className] = sprintf('resources/package/%1$s/model.json', $model);
-            }
-        }
-
-        if (! empty($models)) {
-            $this->c->addModels([
-                'models' => $models,
-            ]);
-            $this->c->apply();
-        }
-        // dump([
-        //    '__METHOD__' => __METHOD__,
-        //    '$this->c->models()' => $this->c->models(),
-        //    '$this->getPackageFolder()' => $this->getPackageFolder(),
-        //    '$this->getResourcePackageFolder()' => $this->getResourcePackageFolder(),
-        //    '$path' => $path,
-        //    '$fullpath' => $fullpath,
-        //    '$models' => $models,
-        //    '$listing' => $listing,
-        // ]);
-    }
+    // /**
+    // * @deprecated use load_model_package instead
+    // */
+    // public function load_packages_from_resources(): void
+    // {
+    //    $path = $this->getResourcePackageFolder();
+    //
+    //    $fullpath = $this->laravel->storagePath().$path;
+    //
+    //    if (! is_dir($fullpath)) {
+    //        return;
+    //    }
+    //
+    //    $models = [];
+    //
+    //    $listing = scandir($fullpath);
+    //    if (is_array($listing)) {
+    //        foreach ($listing as $model) {
+    //            if (! is_dir($fullpath.'/'.$model)
+    //                || in_array($model, ['.', '..'])
+    //            ) {
+    //                continue;
+    //            }
+    //
+    //            $className = Str::of($model)->studly()->toString();
+    //            $models[$className] = sprintf('resources/package/%1$s/model.json', $model);
+    //        }
+    //    }
+    //
+    //    if (! empty($models)) {
+    //        $this->c->addModels([
+    //            'models' => $models,
+    //        ]);
+    //        $this->c->apply();
+    //    }
+    //     dump([
+    //        '__METHOD__' => __METHOD__,
+    //        '$this->c->models()' => $this->c->models(),
+    //        '$this->getPackageFolder()' => $this->getPackageFolder(),
+    //        '$this->getResourcePackageFolder()' => $this->getResourcePackageFolder(),
+    //        '$path' => $path,
+    //        '$fullpath' => $fullpath,
+    //        '$models' => $models,
+    //        '$listing' => $listing,
+    //     ]);
+    // }
 }

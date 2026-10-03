@@ -92,6 +92,10 @@ class PackageMakeCommand extends GeneratorCommand
         'config_abilities_user' => '',
         'readme_models' => '',
         'readme_models_count' => '',
+        'readme_model_config_dashes' => '                        ',
+        'readme_model_config_spaces' => '---------------------------------',
+        'readme_model_env_dashes' => '                                 ',
+        'readme_model_env_spaces' => '-------------------------------------------',
         'routes' => '',
         'version' => '',
         'about_routes' => '',
@@ -245,6 +249,19 @@ class PackageMakeCommand extends GeneratorCommand
         if ($model_package) {
             $this->load_model_package($model_package);
         }
+
+        if (in_array($this->c->type(), [
+            'model',
+            'playground-model',
+        ])) {
+            $this->load_models();
+        }
+
+        // dump([
+        //     '__METHOD__' => __METHOD__,
+        //     '$this->c->type()' => $this->c->type(),
+        //     '$this->options()' => $this->options(),
+        // ]);
         $config_space = null;
         if ($requireConfigSpace && ! $this->c->config_space()) {
             $config_space = Str::of($this->c->namespace())
@@ -381,14 +398,8 @@ class PackageMakeCommand extends GeneratorCommand
         if ($this->c->playground() && in_array($this->c->type(), [
             'playground-model',
         ])) {
-            if (empty($this->c->models())
-                && $this->hasOption('skeleton')
-                && $this->option('skeleton')
-            ) {
-                $this->load_packages_from_resources();
-            }
-
-            $this->make_published_models();
+            $this->prepare_published_models();
+            $this->prepare_readme_env_vars();
         }
 
         if ($this->hasOption('package-version')
@@ -413,7 +424,12 @@ class PackageMakeCommand extends GeneratorCommand
 
         $this->c->apply();
 
-        $build = $this->hasOption('build') && $this->option('build');
+        if (in_array($this->c->type(), [
+            'model',
+            'playground-model',
+        ])) {
+            $this->prepare_models_for_readme();
+        }
 
         if ($build) {
             if (in_array($this->c->type(), [

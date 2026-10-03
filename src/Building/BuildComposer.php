@@ -75,6 +75,10 @@ trait BuildComposer
             $this->autoload['psr-4'][addslashes(sprintf('Database\\Factories\\%1$s\\Models\\', $this->searches['namespace']))] = 'database/factories';
         }
 
+        if ($this->c->withSeeders()) {
+            $this->autoload['psr-4'][addslashes(sprintf('Database\\Seeders\\%1$s\\Models\\', $this->searches['namespace']))] = 'database/seeders';
+        }
+
         if ($this->c->class() === 'ServiceProvider') {
             $this->autoload['psr-4'][addslashes(sprintf('%1$s\\', $this->searches['namespace']))] = 'src';
         }
@@ -203,7 +207,7 @@ trait BuildComposer
             if ($isApi) {
                 $model_package = Str::of($this->c->package())->before('-api')->toString();
             } elseif ($isResource) {
-                $isResource = Str::of($this->c->package())->before('-resource')->toString();
+                $model_package = Str::of($this->c->package())->before('-resource')->toString();
             }
         }
 
@@ -253,13 +257,17 @@ trait BuildComposer
             $content
         );
 
-        // dd([
+        // dump([
         //    '__METHOD__' => __METHOD__,
-        //    '$isSandbox' => $isSandbox,
-        //    '$this->options()' => $this->options(),
+        //     '$model_package' => $model_package,
+        //     '$isApi' => $isApi,
+        //     '$isResource' => $isResource,
+        //    // '$this->options()' => $this->options(),
         //    '$package_repositories' => $package_repositories,
-        //    '$this->searches' => $this->searches,
-        //    '$this->c' => $this->c,
+        //    //'$this->searches' => $this->searches,
+        //     //'$this->c' => $this->c,
+        //     '$this->c->package()' => $this->c->package(),
+        //     '$this->c->type()' => $this->c->type(),
         // ]);
         return $this->searches['package_repositories'];
     }
