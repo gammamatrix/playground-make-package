@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-10-03 19:24:39</timestamp>
+  <timestamp>2026-10-09 17:38:42</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>143</methodCount>
+    <methodCount>155</methodCount>
     <crapMethodCount>17</crapMethodCount>
-    <crapLoad>269</crapLoad>
-    <totalCrap>5835.05</totalCrap>
-    <crapMethodPercent>11.89</crapMethodPercent>
+    <crapLoad>291</crapLoad>
+    <totalCrap>6624.87</totalCrap>
+    <crapMethodPercent>10.97</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -28,9 +28,9 @@
       <methodName>make_composer_autoload</methodName>
       <methodSignature>make_composer_autoload(): string</methodSignature>
       <fullMethod>make_composer_autoload(): string</fullMethod>
-      <crap>11</crap>
-      <complexity>11</complexity>
-      <coverage>100</coverage>
+      <crap>12</crap>
+      <complexity>12</complexity>
+      <coverage>97.73</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -377,6 +377,17 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildModels</className>
+      <methodName>load_models</methodName>
+      <methodSignature>load_models(): void</methodSignature>
+      <fullMethod>load_models(): void</fullMethod>
+      <crap>4</crap>
+      <complexity>4</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildModels</className>
       <methodName>load_model_package</methodName>
       <methodSignature>load_model_package(string $model_package): void</methodSignature>
       <fullMethod>load_model_package(string $model_package): void</fullMethod>
@@ -388,35 +399,101 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildModels</className>
+      <methodName>prepare_models_for_readme</methodName>
+      <methodSignature>prepare_models_for_readme(): void</methodSignature>
+      <fullMethod>prepare_models_for_readme(): void</fullMethod>
+      <crap>2</crap>
+      <complexity>2</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildModels</className>
       <methodName>handle_models</methodName>
       <methodSignature>handle_models(): void</methodSignature>
       <fullMethod>handle_models(): void</fullMethod>
-      <crap>33.3</crap>
+      <crap>10.02</crap>
       <complexity>10</complexity>
-      <coverage>38.46</coverage>
+      <coverage>94.12</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildModels</className>
-      <methodName>make_published_models</methodName>
-      <methodSignature>make_published_models(): void</methodSignature>
-      <fullMethod>make_published_models(): void</fullMethod>
-      <crap>6.5</crap>
+      <methodName>prepare_readme_env_vars</methodName>
+      <methodSignature>prepare_readme_env_vars(): void</methodSignature>
+      <fullMethod>prepare_readme_env_vars(): void</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildModels</className>
+      <methodName>prepare_published_models</methodName>
+      <methodSignature>prepare_published_models(): void</methodSignature>
+      <fullMethod>prepare_published_models(): void</fullMethod>
+      <crap>7.18</crap>
       <complexity>4</complexity>
-      <coverage>46.15</coverage>
+      <coverage>41.67</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
-      <className>Playground\Make\Package\Building\BuildModels</className>
-      <methodName>load_packages_from_resources</methodName>
-      <methodSignature>load_packages_from_resources(): void</methodSignature>
-      <fullMethod>load_packages_from_resources(): void</fullMethod>
-      <crap>56</crap>
-      <complexity>7</complexity>
+      <className>Playground\Make\Package\Building\BuildSeeders</className>
+      <methodName>load_seeder_configs</methodName>
+      <methodSignature>load_seeder_configs(): void</methodSignature>
+      <fullMethod>load_seeder_configs(): void</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
       <coverage>0</coverage>
-      <crapLoad>7</crapLoad>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSeeders</className>
+      <methodName>load_seeders</methodName>
+      <methodSignature>load_seeders(): void</methodSignature>
+      <fullMethod>load_seeders(): void</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSeeders</className>
+      <methodName>prepare_seeders_data</methodName>
+      <methodSignature>prepare_seeders_data(): void</methodSignature>
+      <fullMethod>prepare_seeders_data(): void</fullMethod>
+      <crap>4.37</crap>
+      <complexity>4</complexity>
+      <coverage>71.43</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSeeders</className>
+      <methodName>prepare_seeders_for_readme</methodName>
+      <methodSignature>prepare_seeders_for_readme(): void</methodSignature>
+      <fullMethod>prepare_seeders_for_readme(): void</fullMethod>
+      <crap>14.9</crap>
+      <complexity>4</complexity>
+      <coverage>12</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSeeders</className>
+      <methodName>handle_seeders</methodName>
+      <methodSignature>handle_seeders(): void</methodSignature>
+      <fullMethod>handle_seeders(): void</fullMethod>
+      <crap>697.97</crap>
+      <complexity>27</complexity>
+      <coverage>2.73</coverage>
+      <crapLoad>27</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -611,10 +688,10 @@
       <methodName>setUpLang</methodName>
       <methodSignature>setUpLang(): void</methodSignature>
       <fullMethod>setUpLang(): void</fullMethod>
-      <crap>56.1</crap>
+      <crap>42.83</crap>
       <complexity>13</complexity>
-      <coverage>36.59</coverage>
-      <crapLoad>9</crapLoad>
+      <coverage>43.9</coverage>
+      <crapLoad>0</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -831,10 +908,43 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>166.35</crap>
-      <complexity>89</complexity>
-      <coverage>78.63</coverage>
-      <crapLoad>21</crapLoad>
+      <crap>183.82</crap>
+      <complexity>93</complexity>
+      <coverage>78.1</coverage>
+      <crapLoad>22</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>handleSeeders</methodName>
+      <methodSignature>handleSeeders(array $seedersOptions): void</methodSignature>
+      <fullMethod>handleSeeders(array $seedersOptions): void</fullMethod>
+      <crap>132</crap>
+      <complexity>11</complexity>
+      <coverage>0</coverage>
+      <crapLoad>11</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addSeeder</methodName>
+      <methodSignature>addSeeder(string $className, array $options): void</methodSignature>
+      <fullMethod>addSeeder(string $className, array $options): void</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addSeederConfig</methodName>
+      <methodSignature>addSeederConfig(string $slug, array $options): void</methodSignature>
+      <fullMethod>addSeederConfig(string $slug, array $options): void</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
@@ -1367,6 +1477,17 @@
     <method>
       <package>Playground\Make\Package\Configuration</package>
       <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>recipe</methodName>
+      <methodSignature>recipe(): string</methodSignature>
+      <fullMethod>recipe(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
       <methodName>controllers</methodName>
       <methodSignature>controllers(): array</methodSignature>
       <fullMethod>controllers(): array</fullMethod>
@@ -1414,6 +1535,17 @@
       <methodName>routes</methodName>
       <methodSignature>routes(): array</methodSignature>
       <fullMethod>routes(): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>seeders</methodName>
+      <methodSignature>seeders(): array</methodSignature>
+      <fullMethod>seeders(): array</fullMethod>
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
@@ -1480,10 +1612,10 @@
       <methodName>prepareOptions</methodName>
       <methodSignature>prepareOptions(): void</methodSignature>
       <fullMethod>prepareOptions(): void</fullMethod>
-      <crap>259.99</crap>
-      <complexity>70</complexity>
-      <coverage>66.15</coverage>
-      <crapLoad>25</crapLoad>
+      <crap>220.97</crap>
+      <complexity>71</complexity>
+      <coverage>69.01</coverage>
+      <crapLoad>23</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Console\Commands</package>
@@ -1493,7 +1625,7 @@
       <fullMethod>finish(): ?bool</fullMethod>
       <crap>6</crap>
       <complexity>6</complexity>
-      <coverage>97.06</coverage>
+      <coverage>97.14</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
