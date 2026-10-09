@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Playground\Make\Package\Building;
 
-/**
+use Playground\Make\Package\Console\Commands\PackageMakeCommand; /**
  * \Playground\Make\Package\Building\BuildSkeletonGitHub
+ *
+ * @mixin PackageMakeCommand
  */
 trait BuildSkeletonGitHub
 {

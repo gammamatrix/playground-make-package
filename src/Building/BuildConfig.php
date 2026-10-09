@@ -9,9 +9,12 @@ declare(strict_types=1);
 namespace Playground\Make\Package\Building;
 
 use Illuminate\Support\Str;
+use Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
 /**
  * \Playground\Make\Package\Building\BuildConfig
+ *
+ * @mixin PackageMakeCommand
  */
 trait BuildConfig
 {

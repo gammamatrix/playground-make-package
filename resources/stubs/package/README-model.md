@@ -59,6 +59,7 @@ You can publish the migrations file with:
 php artisan vendor:publish --provider="{{ namespace }}\ServiceProvider" --tag="playground-migrations"
 ```
 
+{{readme_seeders}}
 ## Cloc
 
 ```shell

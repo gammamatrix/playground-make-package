@@ -8,7 +8,11 @@ declare(strict_types=1);
 namespace Playground\Make\Package\Configuration;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Playground\Make\Configuration\PrimaryConfiguration;
+use Playground\Make\Model\Configuration\Seeder;
+use Playground\Make\Model\Configuration\SeederConfig;
+use Playground\Make\Model\Configuration\Seeders;
 
 /**
  * \Playground\Make\Package\Configuration\Package
@@ -33,6 +37,7 @@ class Package extends PrimaryConfiguration
         'organization' => '',
         'organization_email' => '',
         'package' => '',
+        'recipe' => '',
         // properties
         'withBlades' => false,
         'withControllers' => false,
@@ -194,10 +199,20 @@ class Package extends PrimaryConfiguration
 
     protected string $postman_url = '';
 
+    protected string $recipe = '';
+
     /**
      * @var array<int, string>
      */
     protected array $controllers = [];
+
+    /**
+     * @var array{
+     *      configs?: SeederConfig[],
+     *      seeders?: Seeders
+     *  }
+     */
+    protected array $seeders = [];
 
     /**
      * @var array<string, array<string, array<string, string>>>
@@ -269,6 +284,7 @@ class Package extends PrimaryConfiguration
      *     packagist?: string,
      *     postman_collection?: string,
      *     postman_url?: string,
+     *     recipe?: string,
      *     service_provider?: string,
      *     type?: string,
      *     version?: string,
@@ -289,6 +305,10 @@ class Package extends PrimaryConfiguration
      *     transformers?: string[],
      *     translations?: string[],
      *     user?: array<int|string, string>,
+     *     seeders?: array{
+     *         configs: array<string, SeederConfig>,
+     *         seeders: array<string, Seeder>,
+     *     },
      * }  $options
      */
     public function setOptions(array $options = []): self
@@ -352,6 +372,13 @@ class Package extends PrimaryConfiguration
             && is_string($options['package_name'])
         ) {
             $this->package_name = $options['package_name'];
+        }
+
+        if (! empty($options['recipe'])
+
+            && is_string($options['recipe'])
+        ) {
+            $this->recipe = $options['recipe'];
         }
 
         if (! empty($options['model_index'])
@@ -571,7 +598,72 @@ class Package extends PrimaryConfiguration
             $this->version = $options['version'];
         }
 
+        if (! empty($options['seeders'])
+            && is_array($options['seeders'])
+        ) {
+            $this->handleSeeders($options['seeders']);
+        }
+
         return $this;
+    }
+
+    /**
+     * @param array<string, mixed> $seedersOptions
+     */
+    public function handleSeeders(array $seedersOptions): void
+    {
+        if (! empty($seedersOptions['configs']) && is_array($seedersOptions['configs'])) {
+            foreach ($seedersOptions['configs'] as $slug => $config) {
+                if (is_string($slug) && is_array($config)) {
+                    $this->addSeederConfig($slug, $config);
+                }
+            }
+        }
+
+        if (! empty($seedersOptions['seeders']) && is_array($seedersOptions['seeders'])) {
+            foreach ($seedersOptions['seeders'] as $className => $config) {
+                if (is_string($className) && is_array($config)) {
+                    $this->addSeeder($className, $config);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * @param array<mixed> $options
+     */
+    public function addSeeder(string $className, array $options = []): void
+    {
+        if (empty($className) || Str::studly($className) !== $className) {
+            Log::warning(__('playground-make-package::configuration.seeders.className.required', [
+                '$className' => $className,
+            ]));
+
+            return;
+        }
+
+        if (! array_key_exists('seeders', $this->seeders)) {
+            $this->seeders['seeders'] = [];
+        }
+
+        $this->seeders['seeders'][$className] = new Seeder($options)->apply();
+    }
+
+    public function addSeederConfig(string $slug, array $options = []): void
+    {
+        if (empty($slug) || ! preg_match('/^[a-z0-9-]+$/', $slug)) {
+            Log::warning(__('playground-make-package::configuration.seeders.configs.slug.required', [
+                'slug' => $slug,
+            ]));
+
+            return;
+        }
+        if (! array_key_exists('configs', $this->seeders)) {
+            $this->seeders['configs'] = [];
+        }
+
+        $this->seeders['configs'][$slug] = new SeederConfig($options)->apply();
     }
 
     public function addKeyword(mixed $keyword): self
@@ -1086,6 +1178,11 @@ class Package extends PrimaryConfiguration
         return $this->postman_url;
     }
 
+    public function recipe(): string
+    {
+        return $this->recipe;
+    }
+
     /**
      * @return array<int, string>
      */
@@ -1124,6 +1221,17 @@ class Package extends PrimaryConfiguration
     public function routes(): array
     {
         return $this->routes;
+    }
+
+    /**
+     * @return array{
+     *     configs?: SeederConfig[],
+     *     seeders?: Seeder[]
+     * }
+     */
+    public function seeders(): array
+    {
+        return $this->seeders;
     }
 
     /**

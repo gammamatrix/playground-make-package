@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Playground\Make\Package\Building;
 
-use Illuminate\Support\Str;
 use Playground\Make\Configuration\Model;
 use Playground\Make\Package\Configuration\Package;
 
@@ -160,51 +159,4 @@ trait BuildModels
         // //'$this->c' => $this->c,
         // ]);
     }
-
-    // /**
-    // * @deprecated use load_model_package instead
-    // */
-    // public function load_packages_from_resources(): void
-    // {
-    //    $path = $this->getResourcePackageFolder();
-    //
-    //    $fullpath = $this->laravel->storagePath().$path;
-    //
-    //    if (! is_dir($fullpath)) {
-    //        return;
-    //    }
-    //
-    //    $models = [];
-    //
-    //    $listing = scandir($fullpath);
-    //    if (is_array($listing)) {
-    //        foreach ($listing as $model) {
-    //            if (! is_dir($fullpath.'/'.$model)
-    //                || in_array($model, ['.', '..'])
-    //            ) {
-    //                continue;
-    //            }
-    //
-    //            $className = Str::of($model)->studly()->toString();
-    //            $models[$className] = sprintf('resources/package/%1$s/model.json', $model);
-    //        }
-    //    }
-    //
-    //    if (! empty($models)) {
-    //        $this->c->addModels([
-    //            'models' => $models,
-    //        ]);
-    //        $this->c->apply();
-    //    }
-    //     dump([
-    //        '__METHOD__' => __METHOD__,
-    //        '$this->c->models()' => $this->c->models(),
-    //        '$this->getPackageFolder()' => $this->getPackageFolder(),
-    //        '$this->getResourcePackageFolder()' => $this->getResourcePackageFolder(),
-    //        '$path' => $path,
-    //        '$fullpath' => $fullpath,
-    //        '$models' => $models,
-    //        '$listing' => $listing,
-    //     ]);
-    // }
 }

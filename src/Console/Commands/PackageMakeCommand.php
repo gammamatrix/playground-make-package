@@ -28,6 +28,7 @@ class PackageMakeCommand extends GeneratorCommand
     use Building\BuildConfig;
     use Building\BuildControllers;
     use Building\BuildModels;
+    use Building\BuildSeeders;
     use Building\BuildServiceProvider;
     use Building\BuildSkeleton;
     use Building\BuildSkeletonGitHub;
@@ -78,6 +79,7 @@ class PackageMakeCommand extends GeneratorCommand
         'postman_url' => '',
         'policies' => '',
         'publish_migrations' => '',
+        'recipe' => '',
         'composer_scripts' => '',
         'config_cache_docs' => '',
         'config_service_provider_routes_docs' => '',
@@ -96,6 +98,7 @@ class PackageMakeCommand extends GeneratorCommand
         'readme_model_config_spaces' => '---------------------------------',
         'readme_model_env_dashes' => '                                 ',
         'readme_model_env_spaces' => '-------------------------------------------',
+        'readme_seeders' => '',
         'routes' => '',
         'version' => '',
         'about_routes' => '',
@@ -184,6 +187,7 @@ class PackageMakeCommand extends GeneratorCommand
         $options[] = ['api', null, InputOption::VALUE_NONE, 'Generate an API controller class when creating the model. Requires --controllers option'];
         $options[] = ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class when creating the model. Requires --controllers option'];
         $options[] = ['model-package', null, InputOption::VALUE_OPTIONAL, 'Provide a model package configuration to import into an API or Resource package.'];
+        $options[] = ['recipe', null, InputOption::VALUE_REQUIRED, 'The configuration recipe of the '.strtolower($this->type)];
 
         return $options;
     }
@@ -282,6 +286,13 @@ class PackageMakeCommand extends GeneratorCommand
         //     '$this->searches' => $this->searches,
         // ]);
 
+        if ($this->hasOption('recipe')
+            && is_string($this->option('recipe'))
+            && $this->option('recipe')
+        ) {
+            $setOptions['recipe'] = $this->option('recipe');
+        }
+
         if ($this->hasOption('packagist')
             && is_string($this->option('packagist'))
             && $this->option('packagist')
@@ -362,8 +373,13 @@ class PackageMakeCommand extends GeneratorCommand
         }
 
         if (! empty($setOptions)) {
-            $this->c->setOptions($setOptions);
+            $this->c->setOptions($setOptions)->apply();
         }
+        // dump([
+        //    '__METHOD__' => __METHOD__,
+        //    '$setOptions' => $setOptions,
+        //    '$this->c->recipe()' => $this->c->recipe(),
+        // ]);
 
         $this->searches['config_space'] = $this->c->config_space();
         $this->searches['packagist'] = $this->c->packagist();
@@ -371,6 +387,7 @@ class PackageMakeCommand extends GeneratorCommand
         $this->searches['organization_email'] = $this->c->organization_email();
         $this->searches['packagist'] = $this->c->packagist();
         $this->searches['packagist'] = $this->c->packagist();
+        $this->searches['recipe'] = $this->c->packagist();
 
         $withTranslations = $this->c->withTranslations();
         if ($withTranslations) {
@@ -400,6 +417,7 @@ class PackageMakeCommand extends GeneratorCommand
         ])) {
             $this->prepare_published_models();
             $this->prepare_readme_env_vars();
+            $this->prepare_seeders_for_readme();
         }
 
         if ($this->hasOption('package-version')
@@ -476,6 +494,7 @@ class PackageMakeCommand extends GeneratorCommand
                 'playground-model',
             ])) {
                 $this->handle_models();
+                $this->handle_seeders();
             }
 
             if (in_array($this->c->type(), [

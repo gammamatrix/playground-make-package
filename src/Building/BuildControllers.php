@@ -12,9 +12,12 @@ use Illuminate\Support\Str;
 use Playground\Make\Configuration\Model;
 use Playground\Make\Controller\Configuration\Controller;
 use Playground\Make\Package\Configuration\Package;
+use Playground\Make\Package\Console\Commands\PackageMakeCommand;
 
 /**
  * \Playground\Make\Package\Building\BuildControllers
+ *
+ * @mixin PackageMakeCommand
  */
 trait BuildControllers
 {
