@@ -208,8 +208,8 @@ class Package extends PrimaryConfiguration
 
     /**
      * @var array{
-     *      configs?: SeederConfig[],
-     *      seeders?: Seeders
+     *     configs?: array<string, SeederConfig>,
+     *     seeders?: array<string, Seeder>,
      *  }
      */
     protected array $seeders = [];
@@ -608,7 +608,7 @@ class Package extends PrimaryConfiguration
     }
 
     /**
-     * @param array<string, mixed> $seedersOptions
+     * @param  array<string, mixed>  $seedersOptions
      */
     public function handleSeeders(array $seedersOptions): void
     {
@@ -629,9 +629,8 @@ class Package extends PrimaryConfiguration
         }
     }
 
-
     /**
-     * @param array<mixed> $options
+     * @param  array<mixed>  $options
      */
     public function addSeeder(string $className, array $options = []): void
     {
@@ -647,9 +646,13 @@ class Package extends PrimaryConfiguration
             $this->seeders['seeders'] = [];
         }
 
-        $this->seeders['seeders'][$className] = new Seeder($options)->apply();
+        $this->seeders['seeders'][$className] = new Seeder($options);
+        $this->seeders['seeders'][$className]->apply();
     }
 
+    /**
+     * @param  array<mixed>  $options
+     */
     public function addSeederConfig(string $slug, array $options = []): void
     {
         if (empty($slug) || ! preg_match('/^[a-z0-9-]+$/', $slug)) {
@@ -663,7 +666,8 @@ class Package extends PrimaryConfiguration
             $this->seeders['configs'] = [];
         }
 
-        $this->seeders['configs'][$slug] = new SeederConfig($options)->apply();
+        $this->seeders['configs'][$slug] = new SeederConfig($options);
+        $this->seeders['configs'][$slug]->apply();
     }
 
     public function addKeyword(mixed $keyword): self
@@ -1225,8 +1229,8 @@ class Package extends PrimaryConfiguration
 
     /**
      * @return array{
-     *     configs?: SeederConfig[],
-     *     seeders?: Seeder[]
+     *     configs?: array<string, SeederConfig>,
+     *     seeders?: array<string, Seeder>,
      * }
      */
     public function seeders(): array
