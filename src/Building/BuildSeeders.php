@@ -42,63 +42,63 @@ trait BuildSeeders
      */
     protected array $seederFiles = [];
 
-    /**
-     * @var array<string, string>
-     *
-     * "seeders-tasks-primary": {
-     * "file": "seeders-tasks--primary.php",
-     * "type": "data",
-     * "seeder": "\\Database\\Seeders\\Playground\\Task\\Models\\TaskPrimarySeeder",
-     * "data": "resources/configurations/playground-task/seeders/seeders-tasks--primary.json"
-     * },
-     */
-    protected array $seederConfigFiles = [];
+    //    /**
+    //     * @var array<string, string>
+    //     *
+    //     * "seeders-tasks-primary": {
+    //     * "file": "seeders-tasks--primary.php",
+    //     * "type": "data",
+    //     * "seeder": "\\Database\\Seeders\\Playground\\Task\\Models\\TaskPrimarySeeder",
+    //     * "data": "resources/configurations/playground-task/seeders/seeders-tasks--primary.json"
+    //     * },
+    //     */
+    //    protected array $seederConfigFiles = [];
 
-    /**
-     * Load from package: seeders.configs
-     *
-     * "seeders": {
-     * "TaskPrimarySeeder": "resources/configurations/playground-task/seeders/task-primary-seeder.json",
-     * "TaskSecondarySeeder": "resources/configurations/playground-task/seeders/task-secondary-seeder.json",
-     * "TaskTertiarySeeder": "resources/configurations/playground-task/seeders/task-tertiary-seeder.json"
-     * }
-     */
-    public function load_seeder_configs(): void
-    {
-        $seeders = $this->c->seeders();
-
-        dd([
-            '__METHOD__' => __METHOD__,
-            '$seeders' => $seeders,
-        ]);
-        //        foreach ($models as $model => $file) {
-        //            if (is_string($file) && $file) {
-        //                $this->seederConfigFiles[$model] = $file;
-        //                $this->seederConfigs[$model] = new SeederConfig($this->readJsonFileAsArray($file))->apply();
-        //            }
-        //        }
-    }
-
-    /**
-     * Load from package: seeders.seeders
-     */
-    public function load_seeders(): void
-    {
-        $seeders = $this->c->seeders();
-
-        dd([
-            '__METHOD__' => __METHOD__,
-            '$seeders' => $seeders,
-        ]);
-        //        $models = $this->c->models();
-        //
-        //        foreach ($models as $model => $file) {
-        //            if (is_string($file) && $file) {
-        //                $this->modelFiles[$model] = $file;
-        //                $this->models[$model] = new Model($this->readJsonFileAsArray($file))->apply();
-        //            }
-        //        }
-    }
+    //    /**
+    //     * Load from package: seeders.configs
+    //     *
+    //     * "seeders": {
+    //     * "TaskPrimarySeeder": "resources/configurations/playground-task/seeders/task-primary-seeder.json",
+    //     * "TaskSecondarySeeder": "resources/configurations/playground-task/seeders/task-secondary-seeder.json",
+    //     * "TaskTertiarySeeder": "resources/configurations/playground-task/seeders/task-tertiary-seeder.json"
+    //     * }
+    //     */
+    //    public function load_seeder_configs(): void
+    //    {
+    //        $seeders = $this->c->seeders();
+    //
+    //        dd([
+    //            '__METHOD__' => __METHOD__,
+    //            '$seeders' => $seeders,
+    //        ]);
+    //        //        foreach ($models as $model => $file) {
+    //        //            if (is_string($file) && $file) {
+    //        //                $this->seederConfigFiles[$model] = $file;
+    //        //                $this->seederConfigs[$model] = new SeederConfig($this->readJsonFileAsArray($file))->apply();
+    //        //            }
+    //        //        }
+    //    }
+    //
+    //    /**
+    //     * Load from package: seeders.seeders
+    //     */
+    //    public function load_seeders(): void
+    //    {
+    //        $seeders = $this->c->seeders();
+    //
+    //        dd([
+    //            '__METHOD__' => __METHOD__,
+    //            '$seeders' => $seeders,
+    //        ]);
+    //        //        $models = $this->c->models();
+    //        //
+    //        //        foreach ($models as $model => $file) {
+    //        //            if (is_string($file) && $file) {
+    //        //                $this->modelFiles[$model] = $file;
+    //        //                $this->models[$model] = new Model($this->readJsonFileAsArray($file))->apply();
+    //        //            }
+    //        //        }
+    //    }
 
     protected bool $preparedSeeders = false;
 
@@ -118,12 +118,12 @@ trait BuildSeeders
             $this->seederSlugsByClass[$config->seeder()][] = $filename;
         }
 
-        dump([
-            '__METHOD__' => __METHOD__,
-            '$seeders' => $seeders,
-            '$configs' => $configs,
-            // '$this->seederSlugsByClass' => $this->seederSlugsByClass,
-        ]);
+        //dump([
+        //    '__METHOD__' => __METHOD__,
+        //    '$seeders' => $seeders,
+        //    '$configs' => $configs,
+        //    // '$this->seederSlugsByClass' => $this->seederSlugsByClass,
+        //]);
     }
 
     /**
@@ -158,7 +158,6 @@ trait BuildSeeders
 
         $this->searches['readme_seeders'] .= '## Seeders';
         $this->searches['readme_seeders'] .= PHP_EOL;
-        $this->searches['readme_seeders'] .= PHP_EOL;
 
         $seeders = $this->c->seeders()['seeders'] ?? [];
 
@@ -184,6 +183,7 @@ trait BuildSeeders
 
             $this->searches['readme_seeders'] .= PHP_EOL.'```'.PHP_EOL;
         }
+        $this->searches['readme_seeders'] .= PHP_EOL;
     }
 
     public function handle_seeders(): void
@@ -262,11 +262,11 @@ trait BuildSeeders
                 }
             }
 
-            dump([
-                '__METHOD__' => __METHOD__,
-                '$className' => $className,
-                '$seeder' => $seeder,
-            ]);
+            // dump([
+            //    '__METHOD__' => __METHOD__,
+            //    '$className' => $className,
+            //    '$seeder' => $seeder,
+            // ]);
             if (in_array($seeder->type(), [
                 'abstract-tag',
                 // 'abstract-doublet',
@@ -328,7 +328,6 @@ trait BuildSeeders
                 $params['--skeleton'] = true;
             }
 
-            // TODO the package config is not being loaded
             if ($this->c->namespace()) {
                 $params['--namespace'] = $this->c->namespace();
             }
@@ -345,13 +344,207 @@ trait BuildSeeders
                 $params['--recipe'] = $this->c->recipe();
             }
 
-            dump([
-                '__METHOD__' => __METHOD__,
-                '$className' => $className,
-                '$params' => $params,
-                // '$model' => $model,
-                // '$this->c' => $this->c->toArray(),
-            ]);
+            // dump([
+            //    '__METHOD__' => __METHOD__,
+            //    '$className' => $className,
+            //    '$params' => $params,
+            //    // '$model' => $model,
+            //    // '$this->c' => $this->c->toArray(),
+            // ]);
+            $this->call('playground:make:seeder', $params);
+        }
+    }
+
+    public function handle_seeder_configs(): void
+    {
+        //        dump([
+        //            '__METHOD__' => __METHOD__,
+        //            '$this->options()' => $this->options(),
+        //            // '$this->c' => $this->c->toArray(),
+        //        ]);
+
+        $configs = $this->c->seeders()['configs'] ?? [];
+
+        $i = 0;
+        foreach ($configs as $slug => $config) {
+
+            $params = [
+                'name' => $slug,
+                '--type' => $config->type(),
+            ];
+
+            if ($this->hasOption('force') && $this->option('force')) {
+                $params['--force'] = true;
+            }
+
+            $model = null;
+            // dump([
+            //    '__METHOD__' => __METHOD__,
+            //    '$slug' => $slug,
+            //    '$config' => $config,
+            // ]);
+            //            if (in_array($config->type(), [
+            //                'abstract-tag',
+            //                // 'abstract-doublet',
+            //                // 'abstract-triplet',
+            //            ])) {
+            //                $params['--model'] = $config->model();
+            //
+            //            } elseif (in_array($config->type(), [
+            //                'abstract-triplet',
+            //            ])) {
+            //                $params['--model'] = $config->model();
+            //                $params['--model-tag'] = $config->model_tag();
+            //                $params['--model-tagged'] = $config->model_tagged();
+            //
+            //            } elseif (in_array($config->type(), [
+            //                'primary-tag',
+            //                'secondary-tag',
+            //            ])) {
+            //                $params['--model'] = $config->model();
+            //                //                dd([
+            //                //                    '__METHOD__' => __METHOD__,
+            //                //                    '$slug' => $slug,
+            //                //                    '$params' => $params,
+            //                //                    '$config' => $config,
+            //                //                    '$configClass' => $configClass,
+            //                //                    '$this->configs' => $this->configs,
+            //                //                    // '$model' => $model,
+            //                //                    // '$this->c' => $this->c->toArray(),
+            //                //                ]);
+            //            } elseif (in_array($config->type(), [
+            //                'primary-triplet',
+            //                'secondary-triplet',
+            //                'tertiary-triplet',
+            //            ])) {
+            //                $params['--model'] = $config->model();
+            //                //                dd([
+            //                //                    '__METHOD__' => __METHOD__,
+            //                //                    '$slug' => $slug,
+            //                //                    '$params' => $params,
+            //                //                    '$config' => $config,
+            //                //                    '$configClass' => $configClass,
+            //                //                    // '$model' => $model,
+            //                //                    // '$this->c' => $this->c->toArray(),
+            //                //                ]);
+            //            } else
+            if (in_array($config->type(), [
+                'data-tag-primary',
+                'data-model-primary',
+                //                'data-model-secondary',
+                //                'data-model-tertiary',
+            ])) {
+
+                if (! empty($config->data())) {
+                    $params['--data'] = $config->data();
+                }
+                if (! empty($config->seeder())) {
+                    $params['--seeder'] = $config->seeder();
+
+                    $model = Str::of($config->seeder())->classBasename()->before('PrimarySeeder')->toString();
+                }
+                if (! empty($model)) {
+                    $params['--model'] = $model;
+                }
+                // dump([
+                //    '__METHOD__' => __METHOD__,
+                //    '$slug' => $slug,
+                //    '$params' => $params,
+                //    '$config' => $config,
+                //    //'$this->seederSlugsByClass' => $this->seederSlugsByClass,
+                //     '$model' => $model,
+                //    // '$this->c' => $this->c->toArray(),
+                // ]);
+
+            } elseif (in_array($config->type(), [
+                'data-tag-secondary',
+                'data-model-secondary',
+            ])) {
+
+                if (! empty($config->data())) {
+                    $params['--data'] = $config->data();
+                }
+                if (! empty($config->seeder())) {
+                    $params['--seeder'] = $config->seeder();
+
+                    $model = Str::of($config->seeder())->classBasename()->before('SecondarySeeder')->toString();
+                }
+                if (! empty($model)) {
+                    $params['--model'] = $model;
+                }
+                // dump([
+                //    '__METHOD__' => __METHOD__,
+                //    '$slug' => $slug,
+                //    '$params' => $params,
+                //    '$config' => $config,
+                //    //'$this->seederSlugsByClass' => $this->seederSlugsByClass,
+                //    // '$model' => $model,
+                //    // '$this->c' => $this->c->toArray(),
+                // ]);
+
+            } elseif (in_array($config->type(), [
+                'data-model-tertiary',
+            ])) {
+
+                if (! empty($config->data())) {
+                    $params['--data'] = $config->data();
+                }
+                if (! empty($config->seeder())) {
+                    $params['--seeder'] = $config->seeder();
+
+                    $model = Str::of($config->seeder())->classBasename()->before('TertiarySeeder')->toString();
+                }
+                if (! empty($model)) {
+                    $params['--model'] = $model;
+                }
+                // dump([
+                //    '__METHOD__' => __METHOD__,
+                //    '$slug' => $slug,
+                //    '$params' => $params,
+                //    '$config' => $config,
+                //    //'$this->seederSlugsByClass' => $this->seederSlugsByClass,
+                //    // '$model' => $model,
+                //    // '$this->c' => $this->c->toArray(),
+                // ]);
+
+            } else {
+                dd([
+                    '__METHOD__' => __METHOD__,
+                    '$slug' => $slug,
+                    '$params' => $params,
+                    '$config' => $config,
+                    // '$model' => $model,
+                    // '$this->c' => $this->c->toArray(),
+                ]);
+            }
+
+            if ($this->c->skeleton()) {
+                $params['--skeleton'] = true;
+            }
+
+            if ($this->c->namespace()) {
+                $params['--namespace'] = $this->c->namespace();
+            }
+
+            if ($this->c->package()) {
+                $params['--package'] = $this->c->package();
+            }
+
+            if ($this->c->module()) {
+                $params['--module'] = $this->c->module();
+            }
+
+            if ($this->c->recipe()) {
+                $params['--recipe'] = $this->c->recipe();
+            }
+
+            // dump([
+            //    '__METHOD__' => __METHOD__,
+            //    '$slug' => $slug,
+            //    '$params' => $params,
+            //    // '$model' => $model,
+            //    // '$this->c' => $this->c->toArray(),
+            // ]);
             $this->call('playground:make:seeder', $params);
         }
     }

@@ -495,6 +495,7 @@ class PackageMakeCommand extends GeneratorCommand
             ])) {
                 $this->handle_models();
                 $this->handle_seeders();
+                $this->handle_seeder_configs();
             }
 
             if (in_array($this->c->type(), [
