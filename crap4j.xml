@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-10-10 16:19:11</timestamp>
+  <timestamp>2026-10-11 04:06:27</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>155</methodCount>
-    <crapMethodCount>17</crapMethodCount>
-    <crapLoad>291</crapLoad>
-    <totalCrap>6624.87</totalCrap>
-    <crapMethodPercent>10.97</crapMethodPercent>
+    <methodCount>154</methodCount>
+    <crapMethodCount>18</crapMethodCount>
+    <crapLoad>311</crapLoad>
+    <totalCrap>7017.56</totalCrap>
+    <crapMethodPercent>11.69</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -443,34 +443,12 @@
     <method>
       <package>Playground\Make\Package\Building</package>
       <className>Playground\Make\Package\Building\BuildSeeders</className>
-      <methodName>load_seeder_configs</methodName>
-      <methodSignature>load_seeder_configs(): void</methodSignature>
-      <fullMethod>load_seeder_configs(): void</fullMethod>
-      <crap>2</crap>
-      <complexity>1</complexity>
-      <coverage>0</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Package\Building</package>
-      <className>Playground\Make\Package\Building\BuildSeeders</className>
-      <methodName>load_seeders</methodName>
-      <methodSignature>load_seeders(): void</methodSignature>
-      <fullMethod>load_seeders(): void</fullMethod>
-      <crap>2</crap>
-      <complexity>1</complexity>
-      <coverage>0</coverage>
-      <crapLoad>0</crapLoad>
-    </method>
-    <method>
-      <package>Playground\Make\Package\Building</package>
-      <className>Playground\Make\Package\Building\BuildSeeders</className>
       <methodName>prepare_seeders_data</methodName>
       <methodSignature>prepare_seeders_data(): void</methodSignature>
       <fullMethod>prepare_seeders_data(): void</fullMethod>
-      <crap>4.37</crap>
+      <crap>6</crap>
       <complexity>4</complexity>
-      <coverage>71.43</coverage>
+      <coverage>50</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -490,10 +468,21 @@
       <methodName>handle_seeders</methodName>
       <methodSignature>handle_seeders(): void</methodSignature>
       <fullMethod>handle_seeders(): void</fullMethod>
-      <crap>697.97</crap>
+      <crap>691.08</crap>
       <complexity>27</complexity>
-      <coverage>2.73</coverage>
+      <coverage>3.06</coverage>
       <crapLoad>27</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Building</package>
+      <className>Playground\Make\Package\Building\BuildSeeders</className>
+      <methodName>handle_seeder_configs</methodName>
+      <methodSignature>handle_seeder_configs(): void</methodSignature>
+      <fullMethod>handle_seeder_configs(): void</fullMethod>
+      <crap>401.95</crap>
+      <complexity>21</complexity>
+      <coverage>4.76</coverage>
+      <crapLoad>20</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -1625,7 +1614,7 @@
       <fullMethod>finish(): ?bool</fullMethod>
       <crap>6</crap>
       <complexity>6</complexity>
-      <coverage>97.14</coverage>
+      <coverage>97.22</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
