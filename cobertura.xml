@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage line-rate="0.46548956661316" branch-rate="0" lines-covered="1160" lines-valid="2492" branches-covered="0" branches-valid="0" complexity="905" version="0.4" timestamp="1791691587">
+<coverage line-rate="0.46570397111913" branch-rate="0" lines-covered="1161" lines-valid="2493" branches-covered="0" branches-valid="0" complexity="906" version="0.4" timestamp="1792728609">
   <sources>
     <source>/app/src</source>
   </sources>
@@ -3246,11 +3246,11 @@
         </class>
       </classes>
     </package>
-    <package name="Building/BuildSkeletonLang.php" line-rate="0.32432432432432" branch-rate="0" complexity="27">
+    <package name="Building/BuildSkeletonLang.php" line-rate="0.33333333333333" branch-rate="0" complexity="28">
       <classes>
-        <class name="Playground\Make\Package\Building\BuildSkeletonLang" filename="Building/BuildSkeletonLang.php" line-rate="0.32432432432432" branch-rate="0" complexity="27">
+        <class name="Playground\Make\Package\Building\BuildSkeletonLang" filename="Building/BuildSkeletonLang.php" line-rate="0.33333333333333" branch-rate="0" complexity="28">
           <methods>
-            <method name="setUpLang" signature="" line-rate="0.4390243902439" branch-rate="0" complexity="13">
+            <method name="setUpLang" signature="" line-rate="0.45238095238095" branch-rate="0" complexity="14">
               <lines>
                 <line number="34" hits="63"/>
                 <line number="36" hits="63"/>
@@ -3277,7 +3277,8 @@
                 <line number="74" hits="6"/>
                 <line number="76" hits="6"/>
                 <line number="77" hits="6"/>
-                <line number="80" hits="0"/>
+                <line number="79" hits="6"/>
+                <line number="81" hits="0"/>
                 <line number="98" hits="63"/>
                 <line number="99" hits="0"/>
                 <line number="102" hits="63"/>
@@ -3371,7 +3372,8 @@
             <line number="74" hits="6"/>
             <line number="76" hits="6"/>
             <line number="77" hits="6"/>
-            <line number="80" hits="0"/>
+            <line number="79" hits="6"/>
+            <line number="81" hits="0"/>
             <line number="98" hits="63"/>
             <line number="99" hits="0"/>
             <line number="102" hits="63"/>
