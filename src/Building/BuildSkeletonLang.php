@@ -76,14 +76,14 @@ trait BuildSkeletonLang
             if ($revision
                 && ! $model->revision()
                 && $model_slugs
+                && ! in_array($modelName, ['Tag', 'Tagged'])
             ) {
                 $lang_models_revisions .= $this->make_lang_revision($model_slugs);
             }
 
             // dump([
             //     '__METHOD__' => __METHOD__,
-            //     '$name' => $name,
-            //     '$file' => $file,
+            //     '$modelName' => $modelName,
             //     '$model_slugs' => $model_slugs,
             //     '$lang_models_revisions' => $lang_models_revisions,
             //     // '$model' => $model->apply()->toArray(),
