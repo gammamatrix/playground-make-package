@@ -354,11 +354,6 @@ PHP_CODE;
             $params_controller['--skeleton'] = true;
         }
 
-        if ($this->c->revision()) {
-            $params_controller['--revision'] = true;
-            $addConfigForRevisions = true;
-        }
-
         if ($force) {
             $params_controller['--force'] = true;
             $params_form_request['--force'] = true;
@@ -423,10 +418,13 @@ PHP_CODE;
 
         foreach ($this->models as $modelName => $model) {
 
-            //                dump([
-            //                    '__METHOD__' => __METHOD__,
-            //                    '$file' => $file,
-            //                ]);
+            // dump([
+            //    '__METHOD__' => __METHOD__,
+            //    '$modelName' => $modelName,
+            //    '$model->name()' => $model->name(),
+            //    '$model->type()' => $model->type(),
+            //    '$model->revision()' => $model->revision(),
+            // ]);
             //                dd([
             //                    '__METHOD__' => __METHOD__,
             //                    '$file' => $file,
@@ -436,6 +434,15 @@ PHP_CODE;
             if ($model->revision()) {
                 // Revision models do not have controllers.
                 continue;
+            }
+
+            if ($this->c->revision()
+                && array_key_exists('revision', $model->attributes())
+            ) {
+                $params_controller['--revision'] = true;
+                $addConfigForRevisions = true;
+            } else {
+                $addConfigForRevisions = false;
             }
 
             $params_controller['--model'] = $model->name();
@@ -522,6 +529,16 @@ PHP_CODE;
             } else {
                 $config_policies .= $this->build_config_policy_line($model);
             }
+            //            dd([
+            //                '__METHOD__' => __METHOD__,
+            //                '$addConfigForRevisions' => $addConfigForRevisions,
+            //                '$modelName' => $modelName,
+            // //                '$model->name()' => $model->name(),
+            // //                '$model->type()' => $model->type(),
+            // //                '$model->revision()' => $model->revision(),
+            //                '$config_policies' => $config_policies,
+            //                //'$model->toArray()' => $model->toArray(),
+            //            ]);
 
             // dd([
             //     '__METHOD__' => __METHOD__,
