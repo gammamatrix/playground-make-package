@@ -41,6 +41,9 @@ trait BuildTests
             $this->command_tests_playground_request_test_case();
             $this->command_tests_playground_controller_test_case($type);
             $this->command_tests_playground_controller_test_case('playground');
+            if ($this->c->revision()) {
+                $this->command_tests_playground_controller_test_case('revision');
+            }
             $this->command_tests_playground_controller_model_cases();
             $this->command_tests_playground_controller_route_tests();
             $this->command_tests_playground_service_provider();
@@ -53,6 +56,9 @@ trait BuildTests
             $this->command_tests_playground_request_test_case();
             $this->command_tests_playground_controller_test_case($type);
             $this->command_tests_playground_controller_test_case('playground');
+            if ($this->c->revision()) {
+                $this->command_tests_playground_controller_test_case('revision');
+            }
             $this->command_tests_playground_controller_model_cases();
             $this->command_tests_playground_controller_route_tests();
             $this->command_tests_playground_service_provider();
@@ -282,10 +288,25 @@ trait BuildTests
                 $options['--type'] = 'playground-resource-controller-playground-case';
             }
             // dump([
-            //     '__METHOD__' => __METHOD__,
-            //     '$options' => $options,
-            //     '$this->options()' => $this->options(),
-            //     '$this->c' => $this->c,
+            //    '__METHOD__' => __METHOD__,
+            //    '$this->c' => $this->c,
+            //    '$options' => $options,
+            //    '$this->options()' => $this->options(),
+            // ]);
+        } elseif (in_array($type, [
+            'revision',
+        ])) {
+            $options['name'] = 'PlaygroundTestCase';
+            if ($this->c->type() === 'playground-api') {
+                $options['--type'] = 'playground-api-controller-revision-case';
+            } else {
+                $options['--type'] = 'playground-resource-controller-revision-case';
+            }
+            // dump([
+            //    '__METHOD__' => __METHOD__,
+            //    '$this->c' => $this->c,
+            //    '$options' => $options,
+            //    '$this->options()' => $this->options(),
             // ]);
         }
 
