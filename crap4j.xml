@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-10-23 04:10:09</timestamp>
+  <timestamp>2026-10-29 21:35:58</timestamp>
   <stats>
     <name>Method Crap Stats</name>
     <methodCount>154</methodCount>
     <crapMethodCount>18</crapMethodCount>
-    <crapLoad>311</crapLoad>
-    <totalCrap>7020.92</totalCrap>
+    <crapLoad>314</crapLoad>
+    <totalCrap>7166.92</totalCrap>
     <crapMethodPercent>11.69</crapMethodPercent>
   </stats>
   <methods>
@@ -336,10 +336,10 @@
       <methodName>build_crud</methodName>
       <methodSignature>build_crud(): void</methodSignature>
       <fullMethod>build_crud(): void</fullMethod>
-      <crap>1806</crap>
-      <complexity>42</complexity>
+      <crap>1892</crap>
+      <complexity>43</complexity>
       <coverage>0</coverage>
-      <crapLoad>43</crapLoad>
+      <crapLoad>44</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -765,8 +765,8 @@
       <methodName>createTest</methodName>
       <methodSignature>createTest(): void</methodSignature>
       <fullMethod>createTest(): void</fullMethod>
-      <crap>20</crap>
-      <complexity>4</complexity>
+      <crap>42</crap>
+      <complexity>6</complexity>
       <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
@@ -831,10 +831,10 @@
       <methodName>command_tests_playground_controller_test_case</methodName>
       <methodSignature>command_tests_playground_controller_test_case(string $type): void</methodSignature>
       <fullMethod>command_tests_playground_controller_test_case(string $type): void</fullMethod>
-      <crap>72</crap>
-      <complexity>8</complexity>
+      <crap>110</crap>
+      <complexity>10</complexity>
       <coverage>0</coverage>
-      <crapLoad>8</crapLoad>
+      <crapLoad>10</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
