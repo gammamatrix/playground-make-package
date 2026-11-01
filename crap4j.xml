@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <crap_result>
   <project/>
-  <timestamp>2026-10-29 21:35:58</timestamp>
+  <timestamp>2026-11-01 15:41:49</timestamp>
   <stats>
     <name>Method Crap Stats</name>
-    <methodCount>154</methodCount>
+    <methodCount>155</methodCount>
     <crapMethodCount>18</crapMethodCount>
-    <crapLoad>314</crapLoad>
-    <totalCrap>7166.92</totalCrap>
-    <crapMethodPercent>11.69</crapMethodPercent>
+    <crapLoad>319</crapLoad>
+    <totalCrap>7286.76</totalCrap>
+    <crapMethodPercent>11.61</crapMethodPercent>
   </stats>
   <methods>
     <method>
@@ -193,9 +193,9 @@
       <methodName>handle_controllers</methodName>
       <methodSignature>handle_controllers(): void</methodSignature>
       <fullMethod>handle_controllers(): void</fullMethod>
-      <crap>32.37</crap>
+      <crap>48.37</crap>
       <complexity>19</complexity>
-      <coverage>66.67</coverage>
+      <coverage>56.67</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
@@ -347,10 +347,10 @@
       <methodName>createControllerForModel</methodName>
       <methodSignature>createControllerForModel(Model $model, string $package, array $params): void</methodSignature>
       <fullMethod>createControllerForModel(Model $model, string $package, array $params): void</fullMethod>
-      <crap>110</crap>
-      <complexity>10</complexity>
+      <crap>182</crap>
+      <complexity>13</complexity>
       <coverage>0</coverage>
-      <crapLoad>10</crapLoad>
+      <crapLoad>13</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Building</package>
@@ -897,10 +897,10 @@
       <methodName>setOptions</methodName>
       <methodSignature>setOptions(array $options): self</methodSignature>
       <fullMethod>setOptions(array $options): self</fullMethod>
-      <crap>183.82</crap>
-      <complexity>93</complexity>
-      <coverage>78.1</coverage>
-      <crapLoad>22</crapLoad>
+      <crap>203.66</crap>
+      <complexity>97</complexity>
+      <coverage>77.54</coverage>
+      <crapLoad>24</crapLoad>
     </method>
     <method>
       <package>Playground\Make\Package\Configuration</package>
@@ -1472,6 +1472,17 @@
       <crap>1</crap>
       <complexity>1</complexity>
       <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Make\Package\Configuration</package>
+      <className>Playground\Make\Package\Configuration\Package</className>
+      <methodName>addController</methodName>
+      <methodSignature>addController(string $controller, string $file): void</methodSignature>
+      <fullMethod>addController(string $controller, string $file): void</fullMethod>
+      <crap>12</crap>
+      <complexity>3</complexity>
+      <coverage>0</coverage>
       <crapLoad>0</crapLoad>
     </method>
     <method>
