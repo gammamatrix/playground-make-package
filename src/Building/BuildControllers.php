@@ -614,6 +614,14 @@ PHP_CODE;
         //     $params['--covers'] = true;
         // }
 
+        $name = $params['name'] ?? null;
+        $controllerFile = null;
+        if (is_string($name)) {
+            $controllerFile = $this->c->controllers()[$name] ?? null;
+        }
+        if (! empty($controllerFile) && is_string($controllerFile)) {
+            $params['--controller-file'] = $controllerFile;
+        }
         // dump([
         //    '__METHOD__' => __METHOD__,
         //    '$withCovers' => $withCovers,
@@ -632,9 +640,12 @@ PHP_CODE;
             //                $model_slug
             //            );
             $file_controller = sprintf(
-                'resources/package/%1$s/controller.json',
+                'resources/configurations/%1$s/%2$s/controller.json',
+                $this->c->package(),
                 $model_slug
             );
+            // $this->c->addController($params['name'], $file_controller);
+            $this->c->apply();
             // TODO disabled
             // $this->c->addClassFileTo('controllers', $file_controller);
             //            $file_route = sprintf(
@@ -654,12 +665,13 @@ PHP_CODE;
 
             // dump([
             //     '__METHOD__' => __METHOD__,
-            //     '$model_plural_slug' => $model_plural_slug,
-            //     '$file_controller' => $file_controller,
-            //     '$file_route' => $file_route,
+            //     //'$model_plural_slug' => $model_plural_slug,
+            //     //'$file_controller' => $file_controller,
+            //     //'$file_route' => $file_route,
             //     '$package' => $package,
             //     '$params' => $params,
-            //      '$this->c->routes' => $this->c->routes(),
+            //     // '$this->c->routes' => $this->c->routes(),
+            //     //'$this->c->toArray()' => $this->c->toArray(),
             // ]);
         }
     }

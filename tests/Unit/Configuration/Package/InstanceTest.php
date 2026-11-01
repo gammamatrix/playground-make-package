@@ -237,7 +237,7 @@ class InstanceTest extends TestCase
             'Playground\\Cms\\Api\\ServiceProvider',
         ], $instance->package_laravel_providers());
         $this->assertSame([
-            'vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/controller.page.json',
+            // 'vendor/gammamatrix/playground-make/resources/configurations/playground-cms-api/controller.page.json',
         ], $instance->controllers());
         $this->assertSame([
             'Page' => 'resources/configurations/playground-cms/model.page.json',

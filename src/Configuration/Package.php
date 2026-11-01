@@ -202,7 +202,7 @@ class Package extends PrimaryConfiguration
     protected string $recipe = '';
 
     /**
-     * @var array<int, string>
+     * @var array<string, string>
      */
     protected array $controllers = [];
 
@@ -296,7 +296,7 @@ class Package extends PrimaryConfiguration
      *     package_suggest?: array<string, string>,
      *     package_laravel_providers?: string[],
      *     package_providers?: string[],
-     *     controllers?: string[],
+     *     controllers?: array<string, string>,
      *     models?: string[],
      *     policies?: string[],
      *     requests?: string[],
@@ -535,8 +535,10 @@ class Package extends PrimaryConfiguration
         if (! empty($options['controllers'])
             && is_array($options['controllers'])
         ) {
-            foreach ($options['controllers'] as $file) {
-                $this->addClassFileTo('controllers', $file);
+            foreach ($options['controllers'] as $controller => $file) {
+                if (! empty($controller) && is_string($controller) && ! empty($file) && is_string($file)) {
+                    $this->controllers[$controller] = $file;
+                }
             }
         }
 
@@ -1187,8 +1189,17 @@ class Package extends PrimaryConfiguration
         return $this->recipe;
     }
 
+    public function addController(
+        string $controller,
+        string $file
+    ): void {
+        if (! empty($controller) && ! empty($file)) {
+            $this->controllers[$controller] = $file;
+        }
+    }
+
     /**
-     * @return array<int, string>
+     * @return array<string, string>
      */
     public function controllers(): array
     {
@@ -1265,7 +1276,7 @@ class Package extends PrimaryConfiguration
         // ]);
 
         // TODO finish handling for saving these files.
-        $this->controllers = [];
+        // $this->controllers = [];
         $this->policies = [];
         $this->requests = [];
         $this->routes = [];
